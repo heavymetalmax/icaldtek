@@ -6,9 +6,9 @@ X-WR-CALNAME:⚡️Гора
 TIMEZONE-ID:Europe/Kyiv
 X-WR-TIMEZONE:Europe/Kyiv
 BEGIN:VEVENT
-UID:49f0c4c9-805c-4ae6-8f6e-9de823638e97
+UID:9da825cf-258f-4b65-8f66-f32f93dc7d3d
 SEQUENCE:0
-DTSTAMP:20260131T185707
+DTSTAMP:20260131T190703
 DTSTART;TZID=Europe/Kyiv:20260131T010000
 DTEND;TZID=Europe/Kyiv:20260131T080000
 SUMMARY:🔴 Стабілізаційне відключення ⟲ 20:55
@@ -21,9 +21,9 @@ DESCRIPTION:Шановні клієнти!\n\nЗа наказом НЕК
  nДякуємо за ваше розуміння!
 END:VEVENT
 BEGIN:VEVENT
-UID:48767cfe-2379-4e9b-889b-21e4e2dc6f38
+UID:aed5f249-8ab2-4110-bf47-2b4b515b9ce1
 SEQUENCE:0
-DTSTAMP:20260131T185707
+DTSTAMP:20260131T190703
 DTSTART;TZID=Europe/Kyiv:20260131T113000
 DTEND;TZID=Europe/Kyiv:20260131T183000
 SUMMARY:🔴 Стабілізаційне відключення ⟲ 20:55
@@ -36,9 +36,9 @@ DESCRIPTION:Шановні клієнти!\n\nЗа наказом НЕК
  nДякуємо за ваше розуміння!
 END:VEVENT
 BEGIN:VEVENT
-UID:11952bf6-08dd-438b-a6f7-8ee559865ce0
+UID:c54abe71-17ce-48f6-a79c-f649514f5e3a
 SEQUENCE:0
-DTSTAMP:20260131T185707
+DTSTAMP:20260131T190703
 DTSTART;TZID=Europe/Kyiv:20260131T220000
 DTEND;TZID=Europe/Kyiv:20260201T000000
 SUMMARY:🔴 Стабілізаційне відключення ⟲ 20:55
@@ -51,9 +51,9 @@ DESCRIPTION:Шановні клієнти!\n\nЗа наказом НЕК
  nДякуємо за ваше розуміння!
 END:VEVENT
 BEGIN:VEVENT
-UID:1c17e08b-dc0f-4679-acc1-7b52e611f7a9
+UID:7d2c4ee7-7ce1-4392-a0cd-176bb92659ac
 SEQUENCE:0
-DTSTAMP:20260131T185707
+DTSTAMP:20260131T190703
 DTSTART;TZID=Europe/Kyiv:20260131T080000
 DTEND;TZID=Europe/Kyiv:20260131T113000
 SUMMARY:🟢 Є струм ⟲ 20:55
@@ -61,9 +61,9 @@ DESCRIPTION:Електроенергія має бути в наявнос
  ті.
 END:VEVENT
 BEGIN:VEVENT
-UID:3db4bcc5-dedc-4b2f-bf1e-13fe0e2519d0
+UID:1c2c19ca-7df5-4bde-99b5-1fcc668441e4
 SEQUENCE:0
-DTSTAMP:20260131T185707
+DTSTAMP:20260131T190703
 DTSTART;TZID=Europe/Kyiv:20260131T183000
 DTEND;TZID=Europe/Kyiv:20260131T220000
 SUMMARY:🟢 Є струм (діють екстрені відключен
