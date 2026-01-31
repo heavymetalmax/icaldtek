@@ -34,7 +34,7 @@ jobs:
         run: npm ci
       
       - name: 🎭 Встановити Playwright браузери
-        run: npx playwright install --with-deps chromium
+        run: npx playwright install chromium chromium-headless-shell --with-deps
       
       - name: ⚙️ Налаштувати конфіг
         run: |
