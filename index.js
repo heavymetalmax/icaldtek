@@ -27,29 +27,6 @@ function saveCurrentState(infoBlock, scheduledDays, modalAlert) {
   fs.writeFileSync(STATE_FILE, JSON.stringify(state, null, 2));
 }
 
-// Функція для читання попереднього календаря
-function getPreviousCalendar() {
-  try {
-    if (fs.existsSync('dtek.ics')) {
-      return fs.readFileSync('dtek.ics', 'utf8');
-    }
-  } catch (e) {}
-  return null;
-}
-
-// Функція для перевірки чи є нові дати в календарі
-function checkForNewDates(oldCal, newCal) {
-  if (!oldCal) return true;
-  
-  // Витягаємо дати з календарів
-  const oldDates = (oldCal.match(/DTSTART:(\d{8})/g) || []).map(d => d.replace('DTSTART:', ''));
-  const newDates = (newCal.match(/DTSTART:(\d{8})/g) || []).map(d => d.replace('DTSTART:', ''));
-  
-  // Перевіряємо чи є нові дати
-  const newItems = newDates.filter(d => !oldDates.includes(d));
-  return newItems.length > 0;
-}
-
 // Читаємо конфігурацію
 let config;
 try {
@@ -57,13 +34,8 @@ try {
   config = JSON.parse(configData);
 } catch (error) {
   console.error('❌ Помилка при читанні config.json:', error.message);
-  console.log('📝 Використовуємо дані за замовчуванням...');
   config = {
-    address: {
-      city: 'с. Гора',
-      street: 'вул. Мостова',
-      house: '21'
-    }
+    address: { city: 'с. Гора', street: 'вул. Мостова', house: '21' }
   };
 }
 
@@ -75,11 +47,10 @@ console.log(`   Вулиця: ${street}`);
 console.log(`   Будинок: ${house}\n`);
 
 (async () => {
-  // Для GitHub Actions використовуємо headless mode, для локального - з UI
   const isCI = process.env.CI === 'true' || process.env.GITHUB_ACTIONS === 'true';
   const browser = await chromium.launch({ 
     headless: isCI ? true : false, 
-    slowMo: isCI ? 0 : 500 
+    slowMo: 0 
   });
   const context = await browser.newContext({
     viewport: { width: 1280, height: 800 }
@@ -89,314 +60,316 @@ console.log(`   Будинок: ${house}\n`);
   console.log('🚀 Запуск... Відкриваємо сайт ДТЕК');
 
   try {
+    // --- 1. ЗАВАНТАЖУЄМО СТОРІНКУ ТА ОТРИМУЄМО СЕСІЮ ---
     await page.goto('https://www.dtek-krem.com.ua/ua/shutdowns', { 
       waitUntil: 'networkidle',
       timeout: 60000 
     });
-
-    // --- 1. ЗАКРИВАЄМО ПОПЕРЕДЖЕННЯ (МОДАЛЬНЕ ВІКНО) ---
-    console.log('🧐 Шукаємо вікно попередження...');
-    await page.waitForTimeout(2000);
     
-    // Спочатку читаємо текст зі спливного вікна (якщо є)
+    console.log('⏳ Отримуємо дані сесії...');
+    await page.waitForTimeout(1500);
+
+    // Читаємо текст зі спливного вікна
     let isUkrEnergoAlert = false;
     let modalAlertType = null;
     const alertText = await page.evaluate(() => {
-        // Спробуємо знайти спливне вікно
-        const modal = document.querySelector('.modal, .popup, [role="dialog"], .alert, .notification');
-        if (modal) {
-            return modal.innerText;
-        }
-        return null;
+      const modal = document.querySelector('.modal, .popup, [role="dialog"], .alert, .notification');
+      return modal ? modal.innerText : null;
     });
     
     if (alertText) {
-        console.log('📢 Знайдено спливне вікно з інформацією:');
-        console.log(`   ${alertText.substring(0, 100)}...`);
-        
-        // Перевіряємо чи є згадка про Укренерго (це лише маркер, не визначає тип)
-        if (alertText.toLowerCase().includes('укренерго')) {
-            isUkrEnergoAlert = true;
-            console.log('   ℹ️ Виявлено: відключення від УКРЕНЕРГО');
-        }
-        
-        // Визначаємо тип відключення з тексту вікна (пріоритет: стабілізаційне перевіряємо першим)
-        if (alertText.toLowerCase().includes('стабілізац')) {
-            modalAlertType = 'stabilization';
-            console.log('   ℹ️ Тип: Стабілізаційне відключення');
-        } else if (alertText.toLowerCase().includes('екстрен')) {
-            modalAlertType = 'emergency';
-            console.log('   ⚠️ Тип: ЕКСТРЕНЕ ВІДКЛЮЧЕННЯ');
-        }
-    }
-    
-    try {
-        const micromodalButton = page.locator('button[data-micromodal-close=""].modal__close');
-        if (await micromodalButton.isVisible({ timeout: 500 })) {
-            console.log('✅ Знайдена MicroModal кнопка закриття');
-            await micromodalButton.click({ timeout: 5000 });
-            await page.waitForTimeout(1500);
-            console.log('✅ Модальне вікно закрито через MicroModal');
-        }
-    } catch (e) {
-        console.log('⚠️ MicroModal кнопка не знайдена, спробуємо інші селектори...');
+      console.log('📢 Спливне вікно:', alertText.substring(0, 80) + '...');
+      if (alertText.toLowerCase().includes('укренерго')) {
+        isUkrEnergoAlert = true;
+      }
+      if (alertText.toLowerCase().includes('стабілізац')) {
+        modalAlertType = 'stabilization';
+      } else if (alertText.toLowerCase().includes('екстрен')) {
+        modalAlertType = 'emergency';
+      }
     }
 
-    const closeButtons = [
-        'button[data-micromodal-close]',
-        '.modal__close',
-        'button:has-text("Зрозуміло")',
-        'button:has-text("Закрити")',
-        'button:has-text("OK")',
-        'button:has-text("Ок")',
-        '.close',
-        '.btn-close',
-        '.modal-close',
-        'button.close',
-        '[aria-label="Close"]',
-        '[data-dismiss="modal"]'
-    ];
-
-    for (const selector of closeButtons) {
-        try {
-            const element = page.locator(selector).first();
-            if (await element.isVisible({ timeout: 500 })) {
-                console.log(`✅ Знайдена кнопка закриття: ${selector}`);
-                await element.click({ timeout: 5000 });
-                await page.waitForTimeout(1500);
-                console.log('✅ Модальне вікно закрито');
-                break;
-            }
-        } catch (e) {}
-    }
-
-    try {
-        const dialogPresent = await page.locator('.modal, .popup, [role="dialog"]').first().isVisible({ timeout: 500 });
-        if (dialogPresent) {
-            console.log('⌨️ Натискаємо ESC для закриття модального вікна...');
-            await page.press('Escape');
-            await page.waitForTimeout(1000);
-        }
-    } catch (e) {}
-
-    // --- 2. ВИБІР АДРЕСИ ---
-    console.log(`📍 Вводимо адресу: ${city}, ${street}, ${house}`);
-
-    // Населений пункт
-    console.log('Обираємо населений пункт...');
-    const cityInput = page.locator('form input[id="city"]').nth(0);
-    await cityInput.focus();
-    await page.waitForTimeout(300);
-    await cityInput.clear();
-    await cityInput.type(city, { delay: 50 });
-    await page.waitForTimeout(2000);
+    // Отримуємо CSRF токен та початкові дані
+    const sessionData = await page.evaluate(() => {
+      const csrfMeta = document.querySelector('meta[name="csrf-token"]');
+      return {
+        csrfToken: csrfMeta ? csrfMeta.content : null,
+        ajaxUrl: '/ua/ajax',
+        streets: typeof DisconSchedule !== 'undefined' ? DisconSchedule.streets : null,
+        preset: typeof DisconSchedule !== 'undefined' ? DisconSchedule.preset : null,
+        fact: typeof DisconSchedule !== 'undefined' ? DisconSchedule.fact : null,
+        updateTimestamp: typeof DisconSchedule !== 'undefined' ? DisconSchedule.updateTimestamp : null,
+        showCurOutage: typeof DisconSchedule !== 'undefined' ? DisconSchedule.showCurOutage : null,
+      };
+    });
     
-    // Отримаємо координати поля і клікнемо під ним
-    const cityBox = await cityInput.boundingBox();
-    if (cityBox) {
-        const dropdownX = cityBox.x + cityBox.width / 2;
-        const dropdownY = cityBox.y + cityBox.height + 10; // клікаємо під полем
-        console.log(`�️ Клікаємо на дропдаун на координатах: ${dropdownX}, ${dropdownY}`);
-        await page.mouse.click(dropdownX, dropdownY);
-        await page.waitForTimeout(1500);
-    } else {
-        console.log('⚠️ Не вдалося отримати координати поля');
-    }
-    
-    const cityValue = await cityInput.inputValue();
-    console.log(`📝 Значення поля міста: ${cityValue}`);
-    console.log('✅ Населений пункт вибрано');
+    console.log('✅ Сесія отримана, CSRF токен:', sessionData.csrfToken?.substring(0, 20) + '...');
 
-    // Вулиця
-    console.log('Обираємо вулицю...');
-    const streetInput = page.locator('form input[id="street"]').nth(0);
-    await streetInput.focus();
-    await page.waitForTimeout(300);
-    await streetInput.clear();
-    await streetInput.type(street, { delay: 50 });
-    await page.waitForTimeout(2000);
+    // --- 2. РОБИМО API ЗАПИТ ДЛЯ ОТРИМАННЯ ДАНИХ ПО АДРЕСІ ---
+    console.log(`📍 Запитуємо дані для адреси: ${city}, ${street}, ${house}`);
     
-    // Клікаємо під полем вулиці
-    const streetBox = await streetInput.boundingBox();
-    if (streetBox) {
-        const streetDropdownX = streetBox.x + streetBox.width / 2;
-        const streetDropdownY = streetBox.y + streetBox.height + 10;
-        console.log(`🖱️ Клікаємо на дропдаун вулиці на координатах: ${streetDropdownX}, ${streetDropdownY}`);
-        await page.mouse.click(streetDropdownX, streetDropdownY);
-        await page.waitForTimeout(1500);
-    }
+    // Виконуємо API запит через page.evaluate (щоб використати cookies та CSRF)
+    const apiResponse = await page.evaluate(async (params) => {
+      // Формуємо дані для POST запиту
+      const formData = new URLSearchParams();
+      formData.append('method', 'getHomeNum');
+      formData.append('data[0][name]', 'city');
+      formData.append('data[0][value]', params.city);
+      formData.append('data[1][name]', 'street');
+      formData.append('data[1][value]', params.street);
+      formData.append('data[2][name]', 'house_num');
+      formData.append('data[2][value]', params.house);
+      
+      // Додаємо CSRF токен
+      const csrfMeta = document.querySelector('meta[name="csrf-token"]');
+      const csrfParam = document.querySelector('meta[name="csrf-param"]');
+      if (csrfMeta && csrfParam) {
+        formData.append(csrfParam.content, csrfMeta.content);
+      }
+      
+      const response = await fetch('/ua/ajax', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+          'X-Requested-With': 'XMLHttpRequest'
+        },
+        body: formData.toString()
+      });
+      return response.json();
+    }, { city, street, house });
     
-    const streetValue = await streetInput.inputValue();
-    console.log(`📝 Значення поля вулиці: ${streetValue}`);
-    console.log('✅ Вулиця вибрана');
-
-    // Будинок
-    console.log('Обираємо номер будинку...');
-    const houseInput = page.locator('form input[id="house_num"]').nth(0);
-    await houseInput.focus();
-    await page.waitForTimeout(300);
-    await houseInput.clear();
-    await houseInput.type(house, { delay: 50 });
-    await page.waitForTimeout(2000);
+    console.log('✅ API відповідь отримана');
     
-    // Клікаємо під полем будинку
-    const houseBox = await houseInput.boundingBox();
-    if (houseBox) {
-        const houseDropdownX = houseBox.x + houseBox.width / 2;
-        const houseDropdownY = houseBox.y + houseBox.height + 10;
-        console.log(`🖱️ Клікаємо на дропдаун будинку на координатах: ${houseDropdownX}, ${houseDropdownY}`);
-        await page.mouse.click(houseDropdownX, houseDropdownY);
-        await page.waitForTimeout(1500);
-    }
+    // --- 3. ОБРОБЛЯЄМО ВІДПОВІДЬ API ---
+    let outageData = {
+      currentOutage: null,
+      schedules: [],
+      infoBlockText: null,
+      infoBlockType: null,
+      updateTime: null
+    };
     
-    const houseValue = await houseInput.inputValue();
-    console.log(`📝 Значення поля будинку: ${houseValue}`);
-    console.log('✅ Будинок вибрано');
-
-    // Отримуємо ВСЮ інформацію про відключення зі сторінки
-    console.log('\n📊 Отримуємо інформацію про відключення...');
-    
-    const allOutageData = await page.evaluate(() => {
-        const data = {
-            currentOutage: null,
-            schedules: [],
-            infoBlockText: null,
-            infoBlockType: null,
-            updateTime: null
+    // Парсимо час оновлення
+    if (apiResponse.updateTimestamp) {
+      const match = apiResponse.updateTimestamp.match(/(\d{1,2}):(\d{2})\s+(\d{1,2})\.(\d{1,2})\.(\d{4})/);
+      if (match) {
+        outageData.updateTime = {
+          hour: parseInt(match[1]),
+          minute: parseInt(match[2]),
+          day: parseInt(match[3]),
+          month: parseInt(match[4]),
+          year: parseInt(match[5])
         };
-        
-        // 1. Шукаємо інформаційний блок перед таблицею
-        const outageDiv = document.querySelector('#showCurOutage');
-        if (outageDiv) {
-            const text = outageDiv.innerText;
-            data.infoBlockText = text;
-            
-            // Визначаємо тип відключення з інформаційного блоку
-            const textLower = text.toLowerCase();
-            if (textLower.includes('екстрен')) {
-                data.infoBlockType = 'emergency';
-            } else if (textLower.includes('аварійн')) {
-                data.infoBlockType = 'accident';
-            } else if (textLower.includes('стабілізац')) {
-                data.infoBlockType = 'stabilization';
-            } else if (textLower.includes('струм має бути') || textLower.includes('електропостачання здійснюється')) {
-                data.infoBlockType = 'power_on';
-            } else {
-                data.infoBlockType = 'unknown';
-            }
-            
-            // Парсимо час початку
-            const startMatch = text.match(/Час початку\s*–\s*(\d{1,2}):(\d{2})\s+(\d{1,2})\.(\d{1,2})\.(\d{4})/);
-            
-            // Парсимо час завершення/відновлення
-            // Для планових: "Орієнтовний час відновлення електроенергії – до 21:30"
-            // Для аварійних: також може бути в форматі "до 14:30" або без дати
-            const endMatch = text.match(/до\s+(\d{1,2}):(\d{2})(?:\s+(\d{1,2})\.(\d{1,2})\.(\d{4}))?/);
-            
-            // Парсимо причину
-            const reasonMatch = text.match(/Причина:\s*(.+?)(?:\n|$)/);
-            
-            if (startMatch && endMatch) {
-                // Якщо дати нема в часі завершення (аварійне), беремо дату початку
-                const endDay = endMatch[3] ? parseInt(endMatch[3]) : parseInt(startMatch[3]);
-                const endMonth = endMatch[4] ? parseInt(endMatch[4]) : parseInt(startMatch[4]);
-                const endYear = endMatch[5] ? parseInt(endMatch[5]) : parseInt(startMatch[5]);
-                
-                data.currentOutage = {
-                    startHour: parseInt(startMatch[1]),
-                    startMinute: parseInt(startMatch[2]),
-                    startDay: parseInt(startMatch[3]),
-                    startMonth: parseInt(startMatch[4]),
-                    startYear: parseInt(startMatch[5]),
-                    endHour: parseInt(endMatch[1]),
-                    endMinute: parseInt(endMatch[2]),
-                    endDay: endDay,
-                    endMonth: endMonth,
-                    endYear: endYear,
-                    reason: reasonMatch ? reasonMatch[1].trim() : ''
-                };
-            }
+      }
+    }
+    
+    // Отримуємо дані про поточне відключення з відповіді
+    if (apiResponse.data) {
+      const houseData = apiResponse.data[house] || Object.values(apiResponse.data)[0];
+      if (houseData) {
+        // Визначаємо тип відключення
+        if (houseData.sub_type) {
+          const subTypeLower = houseData.sub_type.toLowerCase();
+          if (subTypeLower.includes('екстрен')) {
+            outageData.infoBlockType = 'emergency';
+          } else if (subTypeLower.includes('аварійн')) {
+            outageData.infoBlockType = 'accident';
+          } else if (subTypeLower.includes('стабілізац') || subTypeLower.includes('планов')) {
+            outageData.infoBlockType = 'stabilization';
+          }
+          outageData.infoBlockText = houseData.sub_type;
         }
         
-        // 2. Парсимо дату оновлення
-        const updateMatch = document.body.innerText.match(/Дата оновлення інформації\s*–\s*(\d{1,2}):(\d{2})\s+(\d{1,2})\.(\d{1,2})\.(\d{4})/);
-        if (updateMatch) {
-            data.updateTime = {
-                hour: parseInt(updateMatch[1]),
-                minute: parseInt(updateMatch[2]),
-                day: parseInt(updateMatch[3]),
-                month: parseInt(updateMatch[4]),
-                year: parseInt(updateMatch[5])
+        // Парсимо час відключення
+        if (houseData.start_date && houseData.end_date) {
+          const startMatch = houseData.start_date.match(/(\d{1,2}):(\d{2})\s+(\d{1,2})\.(\d{1,2})\.(\d{4})/);
+          const endMatch = houseData.end_date.match(/(\d{1,2}):(\d{2})(?:\s+(\d{1,2})\.(\d{1,2})\.(\d{4}))?/);
+          
+          if (startMatch && endMatch) {
+            outageData.currentOutage = {
+              startHour: parseInt(startMatch[1]),
+              startMinute: parseInt(startMatch[2]),
+              startDay: parseInt(startMatch[3]),
+              startMonth: parseInt(startMatch[4]),
+              startYear: parseInt(startMatch[5]),
+              endHour: parseInt(endMatch[1]),
+              endMinute: parseInt(endMatch[2]),
+              endDay: endMatch[3] ? parseInt(endMatch[3]) : parseInt(startMatch[3]),
+              endMonth: endMatch[4] ? parseInt(endMatch[4]) : parseInt(startMatch[4]),
+              endYear: endMatch[5] ? parseInt(endMatch[5]) : parseInt(startMatch[5]),
+              reason: houseData.sub_type || ''
             };
+          }
         }
-        
-        // 3. Витягуємо графіки відключень з таблиці
-        const tables = document.querySelectorAll('div.discon-fact-table');
-        tables.forEach((table) => {
-            const dayTimestamp = parseInt(table.getAttribute('rel'));
-            if (!dayTimestamp) return;
-            
-            const cells = table.querySelectorAll('tbody tr td');
+      }
+    }
+    
+    // Обробляємо графіки з fact/preset
+    const factData = apiResponse.fact || sessionData.fact;
+    const presetData = apiResponse.preset || sessionData.preset;
+    
+    if (factData && factData.data) {
+      // Знаходимо чергу для нашої адреси
+      let queueKey = null;
+      if (apiResponse.data) {
+        const houseData = apiResponse.data[house] || Object.values(apiResponse.data)[0];
+        if (houseData && houseData.sub_type_reason && houseData.sub_type_reason.length > 0) {
+          queueKey = houseData.sub_type_reason[0];
+        }
+      }
+      
+      if (queueKey && factData.data) {
+        Object.entries(factData.data).forEach(([dayTimestamp, dayData]) => {
+          if (dayData[queueKey]) {
             const schedule = [];
+            Object.entries(dayData[queueKey]).forEach(([hour, status]) => {
+              const hourNum = parseInt(hour);
+              let cellStatus = 'light';
+              if (status === 'no' || status === 'maybe') {
+                cellStatus = 'no-light';
+              } else if (status === 'first' || status === 'mfirst') {
+                cellStatus = 'no-light-first-half';
+              } else if (status === 'second' || status === 'msecond') {
+                cellStatus = 'no-light-second-half';
+              }
+              schedule.push({ hour: hourNum, status: cellStatus });
+            });
             
-            // Пропускаємо перші 2 клітинки (заголовок)
-            for (let i = 2; i < cells.length; i++) {
-                const cellClass = cells[i].className;
-                const hour = i - 2;
-                
-                let status = 'light';
-                if (cellClass.includes('cell-scheduled')) {
-                    status = 'no-light';
-                } else if (cellClass.includes('cell-first-half')) {
-                    status = 'no-light-first-half';
-                } else if (cellClass.includes('cell-second-half')) {
-                    status = 'no-light-second-half';
-                }
-                
-                schedule.push({ hour, status });
-            }
+            // Сортуємо по годинах
+            schedule.sort((a, b) => a.hour - b.hour);
             
             if (schedule.length > 0) {
-                data.schedules.push({
-                    dayTimestamp,
-                    schedule
-                });
+              outageData.schedules.push({
+                dayTimestamp: parseInt(dayTimestamp),
+                schedule
+              });
             }
+          }
+        });
+      }
+    }
+    
+    // Якщо немає даних з API, читаємо з DOM (fallback)
+    if (outageData.schedules.length === 0) {
+      console.log('⚠️ API не повернув графік, читаємо з DOM...');
+      
+      // Закриваємо модальне вікно
+      try {
+        await page.locator('button[data-micromodal-close]').first().click({ timeout: 2000 });
+        await page.waitForTimeout(500);
+      } catch (e) {}
+      
+      // Вводимо адресу через UI
+      await page.fill('#city', city);
+      await page.waitForTimeout(500);
+      const cityBox = await page.locator('#city').boundingBox();
+      if (cityBox) {
+        await page.mouse.click(cityBox.x + cityBox.width / 2, cityBox.y + cityBox.height + 10);
+        await page.waitForTimeout(1000);
+      }
+      
+      await page.fill('#street', street);
+      await page.waitForTimeout(500);
+      const streetBox = await page.locator('#street').boundingBox();
+      if (streetBox) {
+        await page.mouse.click(streetBox.x + streetBox.width / 2, streetBox.y + streetBox.height + 10);
+        await page.waitForTimeout(1000);
+      }
+      
+      await page.fill('#house_num', house);
+      await page.waitForTimeout(500);
+      const houseBox = await page.locator('#house_num').boundingBox();
+      if (houseBox) {
+        await page.mouse.click(houseBox.x + houseBox.width / 2, houseBox.y + houseBox.height + 10);
+        await page.waitForTimeout(2000);
+      }
+      
+      // Читаємо дані з DOM
+      outageData = await page.evaluate(() => {
+        const data = {
+          currentOutage: null,
+          schedules: [],
+          infoBlockText: null,
+          infoBlockType: null,
+          updateTime: null
+        };
+        
+        const outageDiv = document.querySelector('#showCurOutage');
+        if (outageDiv) {
+          const text = outageDiv.innerText;
+          data.infoBlockText = text;
+          const textLower = text.toLowerCase();
+          if (textLower.includes('екстрен')) {
+            data.infoBlockType = 'emergency';
+          } else if (textLower.includes('аварійн')) {
+            data.infoBlockType = 'accident';
+          } else if (textLower.includes('стабілізац')) {
+            data.infoBlockType = 'stabilization';
+          } else if (textLower.includes('струм має бути')) {
+            data.infoBlockType = 'power_on';
+          } else {
+            data.infoBlockType = 'unknown';
+          }
+        }
+        
+        const updateMatch = document.body.innerText.match(/Дата оновлення інформації\s*–\s*(\d{1,2}):(\d{2})\s+(\d{1,2})\.(\d{1,2})\.(\d{4})/);
+        if (updateMatch) {
+          data.updateTime = {
+            hour: parseInt(updateMatch[1]),
+            minute: parseInt(updateMatch[2]),
+            day: parseInt(updateMatch[3]),
+            month: parseInt(updateMatch[4]),
+            year: parseInt(updateMatch[5])
+          };
+        }
+        
+        const tables = document.querySelectorAll('div.discon-fact-table');
+        tables.forEach((table) => {
+          const dayTimestamp = parseInt(table.getAttribute('rel'));
+          if (!dayTimestamp) return;
+          
+          const cells = table.querySelectorAll('tbody tr td');
+          const schedule = [];
+          for (let i = 2; i < cells.length; i++) {
+            const cellClass = cells[i].className;
+            const hour = i - 2;
+            let status = 'light';
+            if (cellClass.includes('cell-scheduled')) {
+              status = 'no-light';
+            } else if (cellClass.includes('cell-first-half')) {
+              status = 'no-light-first-half';
+            } else if (cellClass.includes('cell-second-half')) {
+              status = 'no-light-second-half';
+            }
+            schedule.push({ hour, status });
+          }
+          
+          if (schedule.length > 0) {
+            data.schedules.push({ dayTimestamp, schedule });
+          }
         });
         
         return data;
-    });
-    
-    console.log('✅ Отримана інформація зі сторінки:');
-    if (allOutageData.infoBlockType) {
-        console.log(`  📋 Тип інформаційного блоку: ${allOutageData.infoBlockType}`);
+      });
     }
-    if (allOutageData.currentOutage) {
-        console.log(`  🔴 Поточне відключення: ${allOutageData.currentOutage.startHour}:${String(allOutageData.currentOutage.startMinute).padStart(2, '0')} - ${allOutageData.currentOutage.endHour}:${String(allOutageData.currentOutage.endMinute).padStart(2, '0')}`);
-        if (allOutageData.currentOutage.reason) {
-            console.log(`     Причина: ${allOutageData.currentOutage.reason}`);
-        }
-    }
-    console.log(`  📅 Графіки на окремі дні: ${allOutageData.schedules.length}`);
-    allOutageData.schedules.forEach((sched, idx) => {
-        const date = new Date(sched.dayTimestamp * 1000);
-        const hoursWithoutLight = sched.schedule.filter(s => s.status !== 'light').length;
-        if (hoursWithoutLight > 0) {
-            console.log(`     ${idx + 1}. ${date.toLocaleDateString('uk-UA')}: ${hoursWithoutLight} годин без світла`);
-        } else {
-            console.log(`     ${idx + 1}. ${date.toLocaleDateString('uk-UA')}: світло цілий день`);
-        }
-    });
     
-    const outageData = allOutageData;
+    console.log('✅ Дані отримано:');
+    if (outageData.infoBlockType) {
+      console.log(`  📋 Тип: ${outageData.infoBlockType}`);
+    }
+    console.log(`  📅 Графіків: ${outageData.schedules.length}`);
+    outageData.schedules.forEach((sched, idx) => {
+      const date = new Date(sched.dayTimestamp * 1000);
+      const hoursWithoutLight = sched.schedule.filter(s => s.status !== 'light').length;
+      console.log(`     ${idx + 1}. ${date.toLocaleDateString('uk-UA')}: ${hoursWithoutLight} год без світла`);
+    });
 
-    // --- 3. ПЕРЕВІРКА НАЯВНОСТІ ОНОВЛЕНЬ ДЛЯ АЛЕРТУ ---
+    // --- 4. ПЕРЕВІРКА ОНОВЛЕНЬ ДЛЯ АЛЕРТУ ---
     const previousState = getPreviousState();
     let showAlert = false;
     let alertSummary = '';
     let alertDescription = '';
 
-    // 1. Перевірка змін у спливаючому вікні та інформаційному блоці
     const currentInfoBlockType = outageData.infoBlockType;
     const currentInfoBlockText = outageData.infoBlockText;
     const currentModalAlert = isUkrEnergoAlert ? `ukrenegro_${modalAlertType || 'unknown'}` : (modalAlertType || null);
@@ -404,260 +377,199 @@ console.log(`   Будинок: ${house}\n`);
     const modalChanged = currentModalAlert !== previousState.lastModalAlert;
     const infoBlockChanged = currentInfoBlockType !== previousState.lastInfoBlock;
     
-    // Визначаємо ефективний тип: пріоритет має спливаюче вікно, потім інформаційний блок
     let effectiveType = modalAlertType || currentInfoBlockType;
     
-    // Алерт показуємо якщо змінився або modal, або infoBlock
     if (modalChanged || infoBlockChanged) {
+      showAlert = true;
+      switch (effectiveType) {
+        case 'emergency':
+          alertSummary = isUkrEnergoAlert ? '📢 Діють екстрені відключення (Укренерго)' : '📢 Діють екстрені відключення';
+          break;
+        case 'stabilization':
+          alertSummary = isUkrEnergoAlert ? '📢 Діють стабілізаційні відключення (Укренерго)' : '📢 Діють стабілізаційні відключення';
+          break;
+        case 'accident':
+          alertSummary = '📢 Діють аварійні відключення';
+          break;
+        case 'power_on':
+          alertSummary = '📢 Електропостачання відновлено';
+          break;
+        default:
+          alertSummary = '📢 Змінився статус відключень';
+      }
+      alertDescription = currentInfoBlockText || 'Інформація про статус відключень оновлена.';
+      console.log(`📢 Зміна статусу: ${alertSummary}`);
+    }
+
+    if (!showAlert) {
+      const currentScheduledDays = outageData.schedules.map(s => s.dayTimestamp);
+      const newDays = currentScheduledDays.filter(day => !previousState.lastScheduledDays.includes(day));
+      
+      if (newDays.length > 0) {
         showAlert = true;
-        switch (effectiveType) {
-            case 'emergency':
-                if (isUkrEnergoAlert) {
-                    alertSummary = '📢 Діють екстрені відключення (Укренерго)';
-                } else {
-                    alertSummary = '📢 Діють екстрені відключення';
-                }
-                break;
-            case 'stabilization':
-                if (isUkrEnergoAlert) {
-                    alertSummary = '📢 Діють стабілізаційні відключення (Укренерго)';
-                } else {
-                    alertSummary = '📢 Діють стабілізаційні відключення';
-                }
-                break;
-            case 'accident':
-                alertSummary = '📢 Діють аварійні відключення';
-                break;
-            case 'power_on':
-                alertSummary = '📢 Електропостачання відновлено';
-                break;
-            default:
-                alertSummary = '📢 Змінився статус відключень';
-        }
-        // Якщо тип невідомий, додаємо весь текст блоку в опис
-        if (currentInfoBlockType === 'unknown' && currentInfoBlockText) {
-            alertDescription = currentInfoBlockText;
-        } else {
-            alertDescription = currentInfoBlockText || 'Інформація про статус відключень оновлена.';
-        }
-        console.log(`📢 Виявлено зміну статусу: ${alertSummary}`);
-    }
-
-    // 2. Перевірка появи нового дня в графіку
-    if (!showAlert) { // Перевіряємо графік, тільки якщо статус не змінився, щоб уникнути дублювання
-        const currentScheduledDays = outageData.schedules.map(s => s.dayTimestamp);
-        const newDays = currentScheduledDays.filter(day => !previousState.lastScheduledDays.includes(day));
+        const tomorrow = new Date();
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        tomorrow.setHours(0, 0, 0, 0);
         
-        if (newDays.length > 0) {
-            showAlert = true;
-            const tomorrow = new Date();
-            tomorrow.setDate(tomorrow.getDate() + 1);
-            tomorrow.setHours(0, 0, 0, 0);
-            const tomorrowTimestamp = Math.floor(tomorrow.getTime() / 1000);
+        const isTomorrowAdded = newDays.some(ts => {
+          const newDate = new Date(ts * 1000);
+          newDate.setHours(0, 0, 0, 0);
+          return newDate.getTime() === tomorrow.getTime();
+        });
 
-            // Перевіряємо, чи є серед нових днів завтрашній
-            const isTomorrowAdded = newDays.some(ts => {
-                const newDate = new Date(ts * 1000);
-                newDate.setHours(0, 0, 0, 0);
-                return newDate.getTime() === tomorrow.getTime();
-            });
-
-            if (isTomorrowAdded) {
-                alertSummary = "📢 З'явився графік на завтра";
-            } else {
-                const newDates = newDays.map(ts => new Date(ts * 1000).toLocaleDateString('uk-UA')).join(', ');
-                alertSummary = `📢 З'явився графік на ${newDates}`;
-            }
-            alertDescription = `Додано розклад відключень на нові дати.`;
-            console.log(`📢 Виявлено новий графік: ${alertSummary}`);
-        }
+        alertSummary = isTomorrowAdded 
+          ? "📢 З'явився графік на завтра" 
+          : `📢 З'явився графік на ${newDays.map(ts => new Date(ts * 1000).toLocaleDateString('uk-UA')).join(', ')}`;
+        alertDescription = `Додано розклад відключень на нові дати.`;
+        console.log(`📢 Новий графік: ${alertSummary}`);
+      }
     }
 
-    // Зберігаємо поточний стан для наступного запуску
     saveCurrentState(currentInfoBlockType, outageData.schedules.map(s => s.dayTimestamp), currentModalAlert);
 
-
-    // --- 4. ГЕНЕРАЦІЯ КАЛЕНДАРЯ ---
-    console.log('📅 Створюємо новий календар...');
+    // --- 5. ГЕНЕРАЦІЯ КАЛЕНДАРЯ ---
+    console.log('📅 Створюємо календар...');
     const cal = ical({ 
-        name: '⚡️Відключення світла',
-        timezone: 'Europe/Kyiv'
+      name: '⚡️Відключення світла',
+      timezone: 'Europe/Kyiv'
     });
 
-    // Форматуємо час оновлення, якщо він є
     let updateTimeString = '';
     if (outageData.updateTime) {
-        const { hour, minute } = outageData.updateTime;
-        updateTimeString = ` ⟲ ${String(hour).padStart(2, '0')}:${String(minute).padStart(2, '0')}`;
+      const { hour, minute } = outageData.updateTime;
+      updateTimeString = ` ⟲ ${String(hour).padStart(2, '0')}:${String(minute).padStart(2, '0')}`;
     }
 
-    // Визначаємо назву типу відключення на основі спливаючого вікна або інформаційного блоку
     let outageTypeName = 'Стабілізаційне відключення';
-    let eventDescription = '';
-    
-    // Пріоритет має тип зі спливаючого вікна, потім з інформаційного блоку
     const effectiveOutageType = modalAlertType || outageData.infoBlockType;
     
     switch (effectiveOutageType) {
-        case 'emergency':
-            outageTypeName = 'Екстрене відключення';
-            break;
-        case 'accident':
-            outageTypeName = 'Аварійне відключення';
-            break;
-        case 'stabilization':
-            outageTypeName = 'Стабілізаційне відключення';
-            break;
-        case 'unknown':
-            outageTypeName = 'Відключення';
-            eventDescription = outageData.infoBlockText || '';
-            break;
-        default:
-            outageTypeName = 'Стабілізаційне відключення';
+      case 'emergency': outageTypeName = 'Екстрене відключення'; break;
+      case 'accident': outageTypeName = 'Аварійне відключення'; break;
+      case 'stabilization': outageTypeName = 'Стабілізаційне відключення'; break;
+      case 'unknown': outageTypeName = 'Відключення'; break;
     }
     
-    // Додаємо суфікс про Укренерго якщо є (з правильним типом)
     let ukrEnergoSuffix = '';
     if (isUkrEnergoAlert) {
-        const ukrType = modalAlertType === 'emergency' ? 'екстрені' : 'стабілізаційні';
-        ukrEnergoSuffix = ` (Укренерго: ${ukrType} відключення)`;
+      const ukrType = modalAlertType === 'emergency' ? 'екстрені' : 'стабілізаційні';
+      ukrEnergoSuffix = ` (Укренерго: ${ukrType} відключення)`;
     }
     
-    // Примітка: "Поточне відключення" не додаємо окремо, бо воно вже є в графіку таблиці.
-    // Інформація з інформаційного блоку додається в опис сьогоднішніх подій.
-
-    // Обробляємо графіки відключень
     const allEvents = [];
     const today = new Date();
     today.setHours(0, 0, 0, 0);
     const todayTimestamp = today.getTime();
     
     outageData.schedules.forEach(sched => {
-        const date = new Date(sched.dayTimestamp * 1000);
-        const year = date.getFullYear();
-        const month = date.getMonth();
-        const day = date.getDate();
-        
-        // Перевіряємо чи це сьогоднішній день
-        const eventDate = new Date(year, month, day);
+      const date = new Date(sched.dayTimestamp * 1000);
+      const year = date.getFullYear();
+      const month = date.getMonth();
+      const day = date.getDate();
+      
+      const eventDate = new Date(year, month, day);
+      eventDate.setHours(0, 0, 0, 0);
+      const isToday = eventDate.getTime() === todayTimestamp;
+      
+      const eventSummary = isToday 
+        ? `${outageTypeName}${ukrEnergoSuffix}${updateTimeString}`
+        : `Стабілізаційне відключення${updateTimeString}`;
+      const eventDesc = isToday 
+        ? (outageData.infoBlockText || `Планове відключення за графіком.`)
+        : `Планове відключення за графіком.`;
+
+      let startSlot = null;
+      for (let i = 0; i < sched.schedule.length; i++) {
+        const currentSlot = sched.schedule[i];
+        const isOutage = currentSlot.status !== 'light';
+
+        if (isOutage && startSlot === null) {
+          startSlot = currentSlot;
+        } else if (!isOutage && startSlot !== null) {
+          allEvents.push({
+            start: new Date(year, month, day, startSlot.hour, 0),
+            end: new Date(year, month, day, currentSlot.hour, 0),
+            summary: eventSummary,
+            description: eventDesc
+          });
+          startSlot = null;
+        }
+      }
+      if (startSlot !== null) {
+        allEvents.push({
+          start: new Date(year, month, day, startSlot.hour, 0),
+          end: new Date(year, month, day, 24, 0),
+          summary: eventSummary,
+          description: eventDesc
+        });
+      }
+    });
+
+    allEvents.sort((a, b) => a.start - b.start);
+
+    const powerOnEvents = [];
+    for (let i = 0; i < allEvents.length - 1; i++) {
+      const currentEventEnd = allEvents[i].end;
+      const nextEventStart = allEvents[i + 1].start;
+
+      if (nextEventStart > currentEventEnd) {
+        const eventDate = new Date(currentEventEnd);
         eventDate.setHours(0, 0, 0, 0);
         const isToday = eventDate.getTime() === todayTimestamp;
         
-        // Для сьогодні — поточний тип і суфікс, для майбутніх — завжди стабілізаційне
-        const eventSummary = isToday 
-            ? `${outageTypeName}${ukrEnergoSuffix}${updateTimeString}`
-            : `Стабілізаційне відключення${updateTimeString}`;
-        const eventDesc = isToday 
-            ? (outageData.infoBlockText || `Планове відключення за графіком.`)
-            : `Планове відключення за графіком.`;
-
-        let startSlot = null;
-        for (let i = 0; i < sched.schedule.length; i++) {
-            const currentSlot = sched.schedule[i];
-            const isOutage = currentSlot.status !== 'light';
-
-            if (isOutage && startSlot === null) {
-                startSlot = currentSlot;
-            } else if (!isOutage && startSlot !== null) {
-                const endHour = currentSlot.hour;
-                allEvents.push({
-                    start: new Date(year, month, day, startSlot.hour, 0),
-                    end: new Date(year, month, day, endHour, 0),
-                    summary: eventSummary,
-                    description: eventDesc
-                });
-                startSlot = null;
-            }
-        }
-        // Якщо відключення триває до кінця дня
-        if (startSlot !== null) {
-            allEvents.push({
-                start: new Date(year, month, day, startSlot.hour, 0),
-                end: new Date(year, month, day, 24, 0),
-                summary: eventSummary,
-                description: eventDesc
-            });
-        }
-    });
-
-    // Сортуємо всі події "Немає струму" за часом початку
-    allEvents.sort((a, b) => a.start - b.start);
-
-    // Додаємо події "Є струм" між відключеннями
-    const powerOnEvents = [];
-    for (let i = 0; i < allEvents.length - 1; i++) {
-        const currentEventEnd = allEvents[i].end;
-        const nextEventStart = allEvents[i + 1].start;
-
-        // Якщо є проміжок між відключеннями, додаємо подію "Є струм"
-        if (nextEventStart > currentEventEnd) {
-            // Перевіряємо чи це сьогодні
-            const eventDate = new Date(currentEventEnd);
-            eventDate.setHours(0, 0, 0, 0);
-            const isToday = eventDate.getTime() === todayTimestamp;
-            
-            const powerOnSummary = isToday
-                ? `Є струм${ukrEnergoSuffix}${updateTimeString}`
-                : `Є струм${updateTimeString}`;
-            
-            powerOnEvents.push({
-                start: currentEventEnd,
-                end: nextEventStart,
-                summary: powerOnSummary,
-                description: `Електроенергія має бути в наявності.`
-            });
-        }
-    }
-
-    // Додаємо всі події в календар
-    [...allEvents, ...powerOnEvents].forEach(event => {
-        cal.createEvent(event);
-    });
-    
-    console.log(`✅ Додано ${allEvents.length} відключень та ${powerOnEvents.length} періодів з електроенергією.`);
-
-    // --- 5. ДОДАВАННЯ АЛЕРТУ (ЯКЩО ПОТРІБНО) ---
-    if (showAlert) {
-        console.log('✨ Створюємо алерт про оновлення...');
-        cal.createEvent({
-            start: new Date(),
-            end: new Date(new Date().getTime() + 5 * 60000), // 5 хвилин
-            summary: alertSummary,
-            description: alertDescription,
-            alarms: [
-                { type: 'display', trigger: 1 },
-                { type: 'audio', trigger: 1 }
-            ]
+        const powerOnSummary = isToday
+          ? `Є струм${ukrEnergoSuffix}${updateTimeString}`
+          : `Є струм${updateTimeString}`;
+        
+        powerOnEvents.push({
+          start: currentEventEnd,
+          end: nextEventStart,
+          summary: powerOnSummary,
+          description: `Електроенергія має бути в наявності.`
         });
+      }
+    }
+
+    [...allEvents, ...powerOnEvents].forEach(event => {
+      cal.createEvent(event);
+    });
+    
+    console.log(`✅ Додано ${allEvents.length} відключень та ${powerOnEvents.length} періодів зі світлом`);
+
+    if (showAlert) {
+      cal.createEvent({
+        start: new Date(),
+        end: new Date(new Date().getTime() + 5 * 60000),
+        summary: alertSummary,
+        description: alertDescription,
+        alarms: [
+          { type: 'display', trigger: 1 },
+          { type: 'audio', trigger: 1 }
+        ]
+      });
     }
     
-    // Зберігаємо новий календар
     fs.writeFileSync('dtek.ics', cal.toString());
-    console.log('✅ Календар збережено у файл dtek.ics');
+    console.log('✅ Календар збережено');
 
-    // --- 6. ОНОВЛЕННЯ GIT РЕПОЗИТОРІЮ ---
+    // --- 6. GIT ---
     try {
-        console.log('🔄 Перевіряємо наявність змін у файлі календаря...');
-        // Додаємо файл стану до відстеження
-        const gitStatus = execSync('git status --porcelain dtek.ics last_run_state.json').toString().trim();
+      const gitStatus = execSync('git status --porcelain dtek.ics last_run_state.json').toString().trim();
 
-        if (gitStatus) {
-            console.log('🎨 Зміни знайдено! Оновлюємо репозиторій...');
-            execSync('git config user.name "GitHub Actions Bot"');
-            execSync('git config user.email "actions@github.com"');
-            execSync('git add dtek.ics last_run_state.json');
-            execSync('git commit -m "📅 Оновлено календар відключень"');
-            
-            console.log('⏬ Синхронізуємо з віддаленим репозиторієм...');
-            execSync('git pull --rebase'); // Rebase local commit on top of remote changes
-            
-            execSync('git push');
-            console.log('✅ Репозиторій успішно оновлено!');
-        } else {
-            console.log('🧘 Змін у календарі не виявлено. Репозиторій актуальний.');
-        }
+      if (gitStatus) {
+        console.log('🔄 Оновлюємо репозиторій...');
+        execSync('git config user.name "GitHub Actions Bot"');
+        execSync('git config user.email "actions@github.com"');
+        execSync('git add dtek.ics last_run_state.json');
+        execSync('git commit -m "📅 Оновлено календар відключень"');
+        execSync('git pull --rebase');
+        execSync('git push');
+        console.log('✅ Репозиторій оновлено!');
+      } else {
+        console.log('🧘 Змін немає');
+      }
     } catch (error) {
-        console.error('❌ Помилка під час оновлення Git репозиторію:', error.message);
+      console.error('❌ Git помилка:', error.message);
     }
 
     await browser.close();
@@ -666,8 +578,6 @@ console.log(`   Будинок: ${house}\n`);
   } catch (error) {
     console.error('❌ Помилка:', error.message);
     console.error(error);
-  } finally {
     await browser.close();
-    console.log('👋 Браузер закрито');
   }
 })();
