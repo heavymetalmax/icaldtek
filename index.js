@@ -14,14 +14,15 @@ function getPreviousState() {
   } catch (e) {
     console.error('⚠️ Помилка читання файлу стану:', e.message);
   }
-  return { lastInfoBlock: null, lastScheduledDays: [] };
+  return { lastInfoBlock: null, lastScheduledDays: [], lastModalAlert: null };
 }
 
 // Функція для збереження поточного стану
-function saveCurrentState(infoBlock, scheduledDays) {
+function saveCurrentState(infoBlock, scheduledDays, modalAlert) {
   const state = {
     lastInfoBlock: infoBlock,
     lastScheduledDays: scheduledDays,
+    lastModalAlert: modalAlert,
   };
   fs.writeFileSync(STATE_FILE, JSON.stringify(state, null, 2));
 }
@@ -395,15 +396,30 @@ console.log(`   Будинок: ${house}\n`);
     let alertSummary = '';
     let alertDescription = '';
 
-    // 1. Перевірка зміни в інформаційному блоці
+    // 1. Перевірка змін у спливаючому вікні та інформаційному блоці
     const currentInfoBlockType = outageData.infoBlockType;
     const currentInfoBlockText = outageData.infoBlockText;
+    const currentModalAlert = isUkrEnergoAlert ? 'ukrenegro' : (modalAlertType || null);
     
-    if (currentInfoBlockType !== previousState.lastInfoBlock) {
+    const modalChanged = currentModalAlert !== previousState.lastModalAlert;
+    const infoBlockChanged = currentInfoBlockType !== previousState.lastInfoBlock;
+    
+    // Визначаємо найвищий пріоритет статусу (екстрене > аварійне > стабілізаційне)
+    let effectiveType = currentInfoBlockType;
+    if (isUkrEnergoAlert || modalAlertType === 'emergency') {
+        effectiveType = 'emergency';
+    }
+    
+    // Алерт показуємо якщо змінився або modal, або infoBlock
+    if (modalChanged || infoBlockChanged) {
         showAlert = true;
-        switch (currentInfoBlockType) {
+        switch (effectiveType) {
             case 'emergency':
-                alertSummary = '📢 Діють екстрені відключення';
+                if (isUkrEnergoAlert) {
+                    alertSummary = '📢 Діють екстрені відключення (Укренерго)';
+                } else {
+                    alertSummary = '📢 Діють екстрені відключення';
+                }
                 break;
             case 'accident':
                 alertSummary = '📢 Діють аварійні відключення';
@@ -457,7 +473,7 @@ console.log(`   Будинок: ${house}\n`);
     }
 
     // Зберігаємо поточний стан для наступного запуску
-    saveCurrentState(currentInfoBlockType, outageData.schedules.map(s => s.dayTimestamp));
+    saveCurrentState(currentInfoBlockType, outageData.schedules.map(s => s.dayTimestamp), currentModalAlert);
 
 
     // --- 4. ГЕНЕРАЦІЯ КАЛЕНДАРЯ ---
