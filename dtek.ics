@@ -4,75 +4,53 @@ PRODID:-//sebbo.net//ical-generator//EN
 NAME:⚡️Відключення світла
 X-WR-CALNAME:⚡️Відключення світла
 BEGIN:VEVENT
-UID:d70051df-d7f4-495e-84d4-8386f8c7efbd
+UID:a80f9a00-bd27-481d-892a-8c6beac148ec
 SEQUENCE:0
-DTSTAMP:20260131T121702Z
+DTSTAMP:20260131T122900Z
 DTSTART:20260130T220000Z
 DTEND:20260131T050000Z
 SUMMARY:Немає струму: стабілізаційне відклю
- чення (оновлено о 14:02)
+ чення (оновлено о 14:25)
 DESCRIPTION:Планове відключення за графіком.
 END:VEVENT
 BEGIN:VEVENT
-UID:67874549-96e6-443b-b9be-e3c8f7ae8161
+UID:ae7898e7-1262-417f-8700-fb7f4a2db25b
 SEQUENCE:0
-DTSTAMP:20260131T121702Z
+DTSTAMP:20260131T122900Z
 DTSTART:20260131T080000Z
 DTEND:20260131T160000Z
 SUMMARY:Немає струму: стабілізаційне відклю
- чення (оновлено о 14:02)
+ чення (оновлено о 14:25)
 DESCRIPTION:Планове відключення за графіком.
 END:VEVENT
 BEGIN:VEVENT
-UID:a5d3c4ea-87a7-40ef-ad4f-124f82b4afe2
+UID:259f6e4d-e25e-4524-9bb3-bca4f55ef589
 SEQUENCE:0
-DTSTAMP:20260131T121702Z
+DTSTAMP:20260131T122900Z
 DTSTART:20260131T190000Z
 DTEND:20260131T220000Z
 SUMMARY:Немає струму: стабілізаційне відклю
- чення (оновлено о 14:02)
+ чення (оновлено о 14:25)
 DESCRIPTION:Планове відключення за графіком.
 END:VEVENT
 BEGIN:VEVENT
-UID:e26cbc1a-e9e9-4f56-bc92-19b5c147897f
+UID:81be9a28-29bb-42f4-84fd-f4679e109e5c
 SEQUENCE:0
-DTSTAMP:20260131T121702Z
+DTSTAMP:20260131T122900Z
 DTSTART:20260131T050000Z
 DTEND:20260131T080000Z
-SUMMARY:Є струм (оновлено о 14:02)
+SUMMARY:Є струм (оновлено о 14:25)
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.
 END:VEVENT
 BEGIN:VEVENT
-UID:b3dd6288-d491-448b-a243-b6dcfd597332
+UID:50e07b76-5327-4546-aff3-efe553b10f36
 SEQUENCE:0
-DTSTAMP:20260131T121702Z
+DTSTAMP:20260131T122900Z
 DTSTART:20260131T160000Z
 DTEND:20260131T190000Z
-SUMMARY:Є струм (оновлено о 14:02)
+SUMMARY:Є струм (оновлено о 14:25)
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.
-END:VEVENT
-BEGIN:VEVENT
-UID:33f666f8-92c7-4320-b270-cb6c05ac85d6
-SEQUENCE:0
-DTSTAMP:20260131T121702Z
-DTSTART:20260131T121702Z
-DTEND:20260131T122202Z
-SUMMARY:📢 Увага! Оновлено інформацію про ві
- дключення!
-DESCRIPTION:З'явився графік на нову дату: 31.01.202
- 6\, 01.02.2026
-BEGIN:VALARM
-ACTION:DISPLAY
-TRIGGER:-PT1S
-DESCRIPTION:📢 Увага! Оновлено інформацію про 
- відключення!
-END:VALARM
-BEGIN:VALARM
-ACTION:AUDIO
-TRIGGER:-PT1S
-ATTACH;VALUE=URI:Basso
-END:VALARM
 END:VEVENT
 END:VCALENDAR
