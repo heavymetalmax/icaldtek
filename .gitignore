@@ -5,7 +5,7 @@ yarn-debug.log*
 yarn-error.log*
 
 # Generated calendar files
-dtek.ics
+# dtek.ics - потрібен для підписного календаря!
 debug-screenshot.png
 debug-output.txt
 
