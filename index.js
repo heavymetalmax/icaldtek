@@ -300,19 +300,21 @@ function generateCalendar(address, outageData, modalInfo) {
     const isToday = eventDate.getTime() === todayTimestamp;
 
     // Перетворюємо графік на масив відрізків без світла
-    // DTEK логіка: "first" = о X:30 ще немає струму (друга половина), "second" = перша половина
+    // DTEK логіка: ключ години N означає проміжок (N-1):00 - N:00
+    // "first" = перші 30 хв проміжку: (N-1):00 - (N-1):30
+    // "second" = другі 30 хв проміжку: (N-1):30 - N:00
     const outageSegments = [];
     for (const slot of sched.schedule) {
-      const hour = slot.hour;
+      const hour = slot.hour; // ключ з API = кінець проміжку
       if (slot.status === 'no-light') {
-        // Вся година без світла
-        outageSegments.push({ start: hour * 60, end: (hour + 1) * 60 });
+        // Вся година без світла: (hour-1):00 - hour:00
+        outageSegments.push({ start: (hour - 1) * 60, end: hour * 60 });
       } else if (slot.status === 'no-light-first-half') {
-        // "first" = друга половина години без світла (X:30 - (X+1):00)
-        outageSegments.push({ start: hour * 60 + 30, end: (hour + 1) * 60 });
+        // "first" = перші 30 хв проміжку: (hour-1):00 - (hour-1):30
+        outageSegments.push({ start: (hour - 1) * 60, end: (hour - 1) * 60 + 30 });
       } else if (slot.status === 'no-light-second-half') {
-        // "second" = перша половина години без світла (X:00 - X:30)
-        outageSegments.push({ start: hour * 60, end: hour * 60 + 30 });
+        // "second" = другі 30 хв проміжку: (hour-1):30 - hour:00
+        outageSegments.push({ start: (hour - 1) * 60 + 30, end: hour * 60 });
       }
     }
     
