@@ -1,56 +1,106 @@
 BEGIN:VCALENDAR
 VERSION:2.0
-PRODID:-//sebbo.net//ical-generator//EN
-NAME:⚡️Відключення світла
-X-WR-CALNAME:⚡️Відключення світла
+PRODID:-//dtekical//Scheduler//UK
+URL:https://www.dtek-krem.com.ua/ua/shutdowns
+METHOD:PUBLISH
+NAME:ДТЕК Гора
+X-WR-CALNAME:ДТЕК Гора
+X-WR-CALDESC:⚠️ УВАГА: Розклад відключень еле
+ ктроенергії для адреси: с. Гора, вул. Мост
+ ова, 21
+
+Тип: АВАРІЙНЕ/ЕКСТРЕНЕ ВІДКЛЮЧЕНН
+ Я
+Данні оновлено: 14:40 31.1.2026
+
+📋 Графіки на:
+ 
+  • 30.01.2026
+  • 31.01.2026
+TIMEZONE-ID:Europe/Kyiv
+X-WR-TIMEZONE:Europe/Kyiv
 BEGIN:VEVENT
-UID:a80f9a00-bd27-481d-892a-8c6beac148ec
+UID:7ec8e620-2cdd-4697-a05a-2f9fe5785c1e
 SEQUENCE:0
-DTSTAMP:20260131T122900Z
-DTSTART:20260130T220000Z
-DTEND:20260131T050000Z
-SUMMARY:Немає струму: стабілізаційне відклю
- чення (оновлено о 14:25)
-DESCRIPTION:Планове відключення за графіком.
+DTSTAMP:20260131T124518
+DTSTART:20260130T070000
+DTEND:20260130T100000
+SUMMARY:⚡ Є струм (7:00 - 10:00)
+LOCATION:с. Гора\, вул. Мостова\, 21
+DESCRIPTION:Електропостачання працює за граф
+ іком.\nЧас: 7:00 - 10:00
+STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
-UID:ae7898e7-1262-417f-8700-fb7f4a2db25b
+UID:6d8a70fe-4039-41c7-829b-16cf77d367f7
 SEQUENCE:0
-DTSTAMP:20260131T122900Z
-DTSTART:20260131T080000Z
-DTEND:20260131T160000Z
-SUMMARY:Немає струму: стабілізаційне відклю
- чення (оновлено о 14:25)
-DESCRIPTION:Планове відключення за графіком.
+DTSTAMP:20260131T124518
+DTSTART:20260130T180000
+DTEND:20260130T210000
+SUMMARY:⚡ Є струм (18:00 - 21:00)
+LOCATION:с. Гора\, вул. Мостова\, 21
+DESCRIPTION:Електропостачання працює за граф
+ іком.\nЧас: 18:00 - 21:00
+STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
-UID:259f6e4d-e25e-4524-9bb3-bca4f55ef589
+UID:aece7fe5-5a86-42a1-b2a1-4d6923477a82
 SEQUENCE:0
-DTSTAMP:20260131T122900Z
-DTSTART:20260131T190000Z
-DTEND:20260131T220000Z
-SUMMARY:Немає струму: стабілізаційне відклю
- чення (оновлено о 14:25)
-DESCRIPTION:Планове відключення за графіком.
+DTSTAMP:20260131T124518
+DTSTART:20260130T000000
+DTEND:20260130T070000
+SUMMARY:🚨 ЕКСТРЕНЕ ВІДКЛЮЧЕННЯ (0:00 - 7:00)
+LOCATION:с. Гора\, вул. Мостова\, 21
+DESCRIPTION:Тип: Екстрене відключення\nЧас: 0:00 
+ - 7:00\n\nДанні оновлено: 14:40 31.1.2026
+ORGANIZER;CN="ДТЕК":mailto:info@dtek.ua
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER;RELATED=END:PT1H
+DESCRIPTION:Розклад: 🚨 ЕКСТРЕНЕ ВІДКЛЮЧЕННЯ (
+ 0:00 - 7:00)
+END:VALARM
+URL;VALUE=URI:https://www.dtek-krem.com.ua/ua/shutdowns
+STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
-UID:81be9a28-29bb-42f4-84fd-f4679e109e5c
+UID:ce75a090-ce9e-4424-a72e-00ee4fdbf525
 SEQUENCE:0
-DTSTAMP:20260131T122900Z
-DTSTART:20260131T050000Z
-DTEND:20260131T080000Z
-SUMMARY:Є струм (оновлено о 14:25)
-DESCRIPTION:Електроенергія має бути в наявнос
- ті.
+DTSTAMP:20260131T124518
+DTSTART:20260130T100000
+DTEND:20260130T180000
+SUMMARY:🚨 ЕКСТРЕНЕ ВІДКЛЮЧЕННЯ (10:00 - 18:00)
+LOCATION:с. Гора\, вул. Мостова\, 21
+DESCRIPTION:Тип: Екстрене відключення\nЧас: 10:00
+  - 18:00\n\nДанні оновлено: 14:40 31.1.2026
+ORGANIZER;CN="ДТЕК":mailto:info@dtek.ua
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER;RELATED=END:PT1H
+DESCRIPTION:Розклад: 🚨 ЕКСТРЕНЕ ВІДКЛЮЧЕННЯ (
+ 10:00 - 18:00)
+END:VALARM
+URL;VALUE=URI:https://www.dtek-krem.com.ua/ua/shutdowns
+STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
-UID:50e07b76-5327-4546-aff3-efe553b10f36
+UID:769eae65-3e95-43ba-baf9-84e001efbd85
 SEQUENCE:0
-DTSTAMP:20260131T122900Z
-DTSTART:20260131T160000Z
-DTEND:20260131T190000Z
-SUMMARY:Є струм (оновлено о 14:25)
-DESCRIPTION:Електроенергія має бути в наявнос
- ті.
+DTSTAMP:20260131T124518
+DTSTART:20260130T210000
+DTEND:20260131T000000
+SUMMARY:🚨 ЕКСТРЕНЕ ВІДКЛЮЧЕННЯ (21:00 - 24:00)
+LOCATION:с. Гора\, вул. Мостова\, 21
+DESCRIPTION:Тип: Екстрене відключення\nЧас: 21:00
+  - 24:00\n\nДанні оновлено: 14:40 31.1.2026
+ORGANIZER;CN="ДТЕК":mailto:info@dtek.ua
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER;RELATED=END:PT1H
+DESCRIPTION:Розклад: 🚨 ЕКСТРЕНЕ ВІДКЛЮЧЕННЯ (
+ 21:00 - 24:00)
+END:VALARM
+URL;VALUE=URI:https://www.dtek-krem.com.ua/ua/shutdowns
+STATUS:CONFIRMED
 END:VEVENT
 END:VCALENDAR
