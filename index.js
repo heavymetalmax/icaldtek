@@ -1,6 +1,30 @@
 const { chromium } = require('playwright');
 const ical = require('ical-generator').default;
 const fs = require('fs');
+const { execSync } = require('child_process');
+
+const STATE_FILE = 'last_run_state.json';
+
+// Функція для читання стану попереднього запуску
+function getPreviousState() {
+  try {
+    if (fs.existsSync(STATE_FILE)) {
+      return JSON.parse(fs.readFileSync(STATE_FILE, 'utf8'));
+    }
+  } catch (e) {
+    console.error('⚠️ Помилка читання файлу стану:', e.message);
+  }
+  return { lastInfoBlock: null, lastScheduledDays: [] };
+}
+
+// Функція для збереження поточного стану
+function saveCurrentState(infoBlock, scheduledDays) {
+  const state = {
+    lastInfoBlock: infoBlock,
+    lastScheduledDays: scheduledDays,
+  };
+  fs.writeFileSync(STATE_FILE, JSON.stringify(state, null, 2));
+}
 
 // Функція для читання попереднього календаря
 function getPreviousCalendar() {
@@ -74,7 +98,8 @@ console.log(`   Будинок: ${house}\n`);
     await page.waitForTimeout(2000);
     
     // Спочатку читаємо текст зі спливного вікна (якщо є)
-    let initialAlertType = null;
+    let isUkrEnergoAlert = false;
+    let modalAlertType = null;
     const alertText = await page.evaluate(() => {
         // Спробуємо знайти спливне вікно
         const modal = document.querySelector('.modal, .popup, [role="dialog"], .alert, .notification');
@@ -88,13 +113,19 @@ console.log(`   Будинок: ${house}\n`);
         console.log('📢 Знайдено спливне вікно з інформацією:');
         console.log(`   ${alertText.substring(0, 100)}...`);
         
+        // Перевіряємо чи є згадка про Укренерго
+        if (alertText.toLowerCase().includes('укренерго')) {
+            isUkrEnergoAlert = true;
+            console.log('   ⚠️ Виявлено: ЕКСТРЕНІ ВІДКЛЮЧЕННЯ УКРЕНЕРГО');
+        }
+        
         // Визначаємо тип відключення з тексту вікна
-        if (alertText.includes('екстрен') || alertText.includes('аварійн')) {
-            initialAlertType = 'emergency';
-            console.log('   ⚠️ Визначено: ЕКСТРЕНЕ ВІДКЛЮЧЕННЯ');
-        } else if (alertText.includes('стабілізац')) {
-            initialAlertType = 'stabilization';
-            console.log('   ℹ️ Визначено: Стабілізаційне відключення');
+        if (alertText.toLowerCase().includes('екстрен')) {
+            modalAlertType = 'emergency';
+            console.log('   ⚠️ Тип: ЕКСТРЕНЕ ВІДКЛЮЧЕННЯ');
+        } else if (alertText.toLowerCase().includes('стабілізац')) {
+            modalAlertType = 'stabilization';
+            console.log('   ℹ️ Тип: Стабілізаційне відключення');
         }
     }
     
@@ -224,29 +255,34 @@ console.log(`   Будинок: ${house}\n`);
     // Отримуємо ВСЮ інформацію про відключення зі сторінки
     console.log('\n📊 Отримуємо інформацію про відключення...');
     
-    const allOutageData = await page.evaluate((alertType) => {
+    const allOutageData = await page.evaluate(() => {
         const data = {
             currentOutage: null,
             schedules: [],
-            isEmergency: false,
+            infoBlockText: null,
+            infoBlockType: null,
             updateTime: null
         };
         
-        // 1. Шукаємо поточне/аварійне відключення
+        // 1. Шукаємо інформаційний блок перед таблицею
         const outageDiv = document.querySelector('#showCurOutage');
         if (outageDiv) {
             const text = outageDiv.innerText;
+            data.infoBlockText = text;
             
-            // Перевіримо, чи це аварійне відключення
-            // Спочатку перевіримо інформацію з спливного вікна (якщо вона передана)
-            let isEmergency = alertType === 'emergency';
-            
-            // Якщо з вікна не було інформації, перевіримо текст на сторінці
-            if (!isEmergency) {
-                isEmergency = text.includes('аварійн') || text.includes('екстрен');
+            // Визначаємо тип відключення з інформаційного блоку
+            const textLower = text.toLowerCase();
+            if (textLower.includes('екстрен')) {
+                data.infoBlockType = 'emergency';
+            } else if (textLower.includes('аварійн')) {
+                data.infoBlockType = 'accident';
+            } else if (textLower.includes('стабілізац')) {
+                data.infoBlockType = 'stabilization';
+            } else if (textLower.includes('струм має бути') || textLower.includes('електропостачання здійснюється')) {
+                data.infoBlockType = 'power_on';
+            } else {
+                data.infoBlockType = 'unknown';
             }
-            
-            data.isEmergency = isEmergency;
             
             // Парсимо час початку
             const startMatch = text.match(/Час початку\s*–\s*(\d{1,2}):(\d{2})\s+(\d{1,2})\.(\d{1,2})\.(\d{4})/);
@@ -276,8 +312,7 @@ console.log(`   Будинок: ${house}\n`);
                     endDay: endDay,
                     endMonth: endMonth,
                     endYear: endYear,
-                    reason: reasonMatch ? reasonMatch[1].trim() : 'Стабілізаційне відключення',
-                    isEmergency: data.isEmergency
+                    reason: reasonMatch ? reasonMatch[1].trim() : ''
                 };
             }
         }
@@ -329,14 +364,16 @@ console.log(`   Будинок: ${house}\n`);
         });
         
         return data;
-    }, initialAlertType);
+    });
     
     console.log('✅ Отримана інформація зі сторінки:');
+    if (allOutageData.infoBlockType) {
+        console.log(`  📋 Тип інформаційного блоку: ${allOutageData.infoBlockType}`);
+    }
     if (allOutageData.currentOutage) {
         console.log(`  🔴 Поточне відключення: ${allOutageData.currentOutage.startHour}:${String(allOutageData.currentOutage.startMinute).padStart(2, '0')} - ${allOutageData.currentOutage.endHour}:${String(allOutageData.currentOutage.endMinute).padStart(2, '0')}`);
-        console.log(`     Причина: ${allOutageData.currentOutage.reason}`);
-        if (allOutageData.currentOutage.isEmergency) {
-            console.log('     ⚠️ АВАРІЙНЕ/ЕКСТРЕНЕ ВІДКЛЮЧЕННЯ!');
+        if (allOutageData.currentOutage.reason) {
+            console.log(`     Причина: ${allOutageData.currentOutage.reason}`);
         }
     }
     console.log(`  📅 Графіки на окремі дні: ${allOutageData.schedules.length}`);
@@ -352,370 +389,239 @@ console.log(`   Будинок: ${house}\n`);
     
     const outageData = allOutageData;
 
-    // Генеруємо календар на основі отриманих даних
-    console.log('\n📅 Генеруємо календар...');
+    // --- 3. ПЕРЕВІРКА НАЯВНОСТІ ОНОВЛЕНЬ ДЛЯ АЛЕРТУ ---
+    const previousState = getPreviousState();
+    let showAlert = false;
+    let alertSummary = '';
+    let alertDescription = '';
+
+    // 1. Перевірка зміни в інформаційному блоці
+    const currentInfoBlockType = outageData.infoBlockType;
+    const currentInfoBlockText = outageData.infoBlockText;
     
-    // Визначаємо тип відключення та опис
-    let outageType = 'Плановое відключення за графіком';
-    
-    // Перевіримо чи є поточне відключення АБО чи в спливному вікні було екстрене
-    if ((outageData.currentOutage && outageData.currentOutage.isEmergency) || outageData.isEmergency) {
-        outageType = 'АВАРІЙНЕ/ЕКСТРЕНЕ ВІДКЛЮЧЕННЯ';
+    if (currentInfoBlockType !== previousState.lastInfoBlock) {
+        showAlert = true;
+        switch (currentInfoBlockType) {
+            case 'emergency':
+                alertSummary = '📢 Діють екстрені відключення';
+                break;
+            case 'accident':
+                alertSummary = '📢 Діють аварійні відключення';
+                break;
+            case 'stabilization':
+                alertSummary = '📢 Діють стабілізаційні відключення';
+                break;
+            case 'power_on':
+                alertSummary = '📢 Електропостачання відновлено';
+                break;
+            default:
+                alertSummary = '📢 Змінився статус відключень';
+        }
+        // Якщо тип невідомий, додаємо весь текст блоку в опис
+        if (currentInfoBlockType === 'unknown' && currentInfoBlockText) {
+            alertDescription = currentInfoBlockText;
+        } else {
+            alertDescription = currentInfoBlockText || 'Інформація про статус відключень оновлена.';
+        }
+        console.log(`📢 Виявлено зміну статусу: ${alertSummary}`);
     }
-    
-    // Формуємо основний опис календаря
-    let calendarDescription = `Розклад відключень електроенергії для адреси: ${city}, ${street}, ${house}\n\nТип: ${outageType}`;
+
+    // 2. Перевірка появи нового дня в графіку
+    if (!showAlert) { // Перевіряємо графік, тільки якщо статус не змінився, щоб уникнути дублювання
+        const currentScheduledDays = outageData.schedules.map(s => s.dayTimestamp);
+        const newDays = currentScheduledDays.filter(day => !previousState.lastScheduledDays.includes(day));
+        
+        if (newDays.length > 0) {
+            showAlert = true;
+            const tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            tomorrow.setHours(0, 0, 0, 0);
+            const tomorrowTimestamp = Math.floor(tomorrow.getTime() / 1000);
+
+            // Перевіряємо, чи є серед нових днів завтрашній
+            const isTomorrowAdded = newDays.some(ts => {
+                const newDate = new Date(ts * 1000);
+                newDate.setHours(0, 0, 0, 0);
+                return newDate.getTime() === tomorrow.getTime();
+            });
+
+            if (isTomorrowAdded) {
+                alertSummary = "📢 З'явився графік на завтра";
+            } else {
+                const newDates = newDays.map(ts => new Date(ts * 1000).toLocaleDateString('uk-UA')).join(', ');
+                alertSummary = `📢 З'явився графік на ${newDates}`;
+            }
+            alertDescription = `Додано розклад відключень на нові дати.`;
+            console.log(`📢 Виявлено новий графік: ${alertSummary}`);
+        }
+    }
+
+    // Зберігаємо поточний стан для наступного запуску
+    saveCurrentState(currentInfoBlockType, outageData.schedules.map(s => s.dayTimestamp));
+
+
+    // --- 4. ГЕНЕРАЦІЯ КАЛЕНДАРЯ ---
+    console.log('📅 Створюємо новий календар...');
+    const cal = ical({ name: '⚡️Відключення світла' });
+
+    // Форматуємо час оновлення, якщо він є
+    let updateTimeString = '';
     if (outageData.updateTime) {
-        calendarDescription += `\nДанні оновлено: ${outageData.updateTime.hour}:${String(outageData.updateTime.minute).padStart(2, '0')} ${outageData.updateTime.day}.${outageData.updateTime.month}.${outageData.updateTime.year}`;
+        const { hour, minute } = outageData.updateTime;
+        updateTimeString = ` ⟲ ${String(hour).padStart(2, '0')}:${String(minute).padStart(2, '0')}`;
     }
-    
-    // Якщо це екстрене відключення, додамо попередження
-    if (outageType.includes('АВАРІЙНЕ')) {
-        calendarDescription = '⚠️ УВАГА: ' + calendarDescription;
-    }
-    
-    if (outageData.schedules && outageData.schedules.length > 1) {
-        calendarDescription += '\n\n📋 Графіки на:';
-        outageData.schedules.forEach((sched) => {
-            const date = new Date(sched.dayTimestamp * 1000);
-            calendarDescription += `\n  • ${date.toLocaleDateString('uk-UA')}`;
-        });
-    }
-    
-    const calendar = ical({ 
-        name: 'ДТЕК Гора',
-        description: calendarDescription,
-        url: 'https://www.dtek-krem.com.ua/ua/shutdowns',
-        prodId: '//dtekical//Scheduler//UK',
-        method: 'PUBLISH',
-        timezone: 'Europe/Kyiv',
-        calscale: 'GREGORIAN'
-    });
 
-    // 1. Додаємо поточне/аварійне відключення (якщо є)
+    // Визначаємо назву типу відключення та суфікс Укренерго
+    let outageTypeName = 'Стабілізаційне відключення';
+    let eventDescription = '';
+    
+    switch (outageData.infoBlockType) {
+        case 'emergency':
+            outageTypeName = 'Екстрене відключення';
+            break;
+        case 'accident':
+            outageTypeName = 'Аварійне відключення';
+            break;
+        case 'stabilization':
+            outageTypeName = 'Стабілізаційне відключення';
+            break;
+        case 'unknown':
+            outageTypeName = 'Відключення';
+            eventDescription = outageData.infoBlockText || '';
+            break;
+        default:
+            outageTypeName = 'Стабілізаційне відключення';
+    }
+    
+    // Додаємо суфікс про Укренерго якщо є
+    const ukrEnergoSuffix = isUkrEnergoAlert ? ' (Увага: діють екстрені відключення Укренерго)' : '';
+    
+    // Додаємо поточне відключення, якщо є
     if (outageData.currentOutage) {
-        const startDate = new Date(
-            outageData.currentOutage.startYear,
-            outageData.currentOutage.startMonth - 1,
-            outageData.currentOutage.startDay,
-            outageData.currentOutage.startHour,
-            outageData.currentOutage.startMinute,
-            0
-        );
-
-        const endDate = new Date(
-            outageData.currentOutage.endYear,
-            outageData.currentOutage.endMonth - 1,
-            outageData.currentOutage.endDay,
-            outageData.currentOutage.endHour,
-            outageData.currentOutage.endMinute,
-            0
-        );
-
-        let summary = '🚫 Відключення струму (ДТЕК)';
-        if (outageData.currentOutage.isEmergency) {
-            summary = '🚨 АВАРІЙНЕ ВІДКЛЮЧЕННЯ (ДТЕК)';
-        }
-
-        let description = `Тип: ${outageData.currentOutage.reason}\n`;
-        description += `Початок: ${outageData.currentOutage.startHour}:${String(outageData.currentOutage.startMinute).padStart(2, '0')} ${outageData.currentOutage.startDay}.${outageData.currentOutage.startMonth}.${outageData.currentOutage.startYear}\n`;
-        description += `Орієнтовне відновлення: ${outageData.currentOutage.endHour}:${String(outageData.currentOutage.endMinute).padStart(2, '0')}`;
+        const { startYear, startMonth, startDay, startHour, startMinute, endYear, endMonth, endDay, endHour, endMinute, reason } = outageData.currentOutage;
         
-        // Якщо аварійне відключення, дата може бути іншою
-        if (outageData.currentOutage.isEmergency || 
-            (outageData.currentOutage.endDay !== outageData.currentOutage.startDay ||
-             outageData.currentOutage.endMonth !== outageData.currentOutage.startMonth ||
-             outageData.currentOutage.endYear !== outageData.currentOutage.startYear)) {
-            description += ` ${outageData.currentOutage.endDay}.${outageData.currentOutage.endMonth}.${outageData.currentOutage.endYear}`;
-        }
-        
-        if (outageData.updateTime) {
-            description += `\n\nДанні оновлено: ${outageData.updateTime.hour}:${String(outageData.updateTime.minute).padStart(2, '0')} ${outageData.updateTime.day}.${outageData.updateTime.month}.${outageData.updateTime.year}`;
-        }
+        const summary = `${outageTypeName}${ukrEnergoSuffix}${updateTimeString}`;
+        const description = eventDescription || reason || '';
 
-        calendar.createEvent({
-            start: startDate,
-            end: endDate,
+        cal.createEvent({
+            start: new Date(startYear, startMonth - 1, startDay, startHour, startMinute),
+            end: new Date(endYear, endMonth - 1, endDay, endHour, endMinute),
             summary: summary,
             description: description,
-            location: `${city}, ${street}, ${house}`,
-            organizer: {
-                name: 'ДТЕК',
-                email: 'info@dtek.ua'
-            },
-            url: 'https://www.dtek-krem.com.ua/ua/shutdowns',
-            status: outageData.currentOutage.isEmergency ? 'CONFIRMED' : 'CONFIRMED',
-            transp: 'TRANSPARENT'
         });
-        
-        console.log('✅ Поточне/аварійне відключення додано');
+        console.log(`🔥 Додано поточне відключення: ${summary}`);
     }
 
-    // 2. Додаємо графіки відключень з таблиць (за графіком)
-    if (outageData.schedules && outageData.schedules.length > 0) {
-        let scheduleCount = 0;
-        
-        outageData.schedules.forEach((schedule, idx) => {
-            const dayDate = new Date(schedule.dayTimestamp * 1000);
-            const dayString = dayDate.toLocaleDateString('uk-UA');
-            
-            // Знаходимо періоди без світла в цей день
-            const noLightPeriods = [];
-            let currentPeriodStart = null;
-            
-            schedule.schedule.forEach((hour, hourIdx) => {
-                const hasLight = hour.status === 'light';
-                
-                if (!hasLight && currentPeriodStart === null) {
-                    // Почало періоду без світла
-                    currentPeriodStart = hourIdx;
-                } else if (hasLight && currentPeriodStart !== null) {
-                    // Кінець періоду без світла
-                    noLightPeriods.push({
-                        startHour: currentPeriodStart,
-                        endHour: hourIdx
-                    });
-                    currentPeriodStart = null;
-                }
+    // Обробляємо графіки відключень
+    const allEvents = [];
+    outageData.schedules.forEach(sched => {
+        const date = new Date(sched.dayTimestamp * 1000);
+        const year = date.getFullYear();
+        const month = date.getMonth();
+        const day = date.getDate();
+
+        let startSlot = null;
+        for (let i = 0; i < sched.schedule.length; i++) {
+            const currentSlot = sched.schedule[i];
+            const isOutage = currentSlot.status !== 'light';
+
+            if (isOutage && startSlot === null) {
+                startSlot = currentSlot;
+            } else if (!isOutage && startSlot !== null) {
+                const endHour = currentSlot.hour;
+                allEvents.push({
+                    start: new Date(year, month, day, startSlot.hour, 0),
+                    end: new Date(year, month, day, endHour, 0),
+                    summary: `${outageTypeName}${ukrEnergoSuffix}${updateTimeString}`,
+                    description: eventDescription || `Планове відключення за графіком.`
+                });
+                startSlot = null;
+            }
+        }
+        // Якщо відключення триває до кінця дня
+        if (startSlot !== null) {
+            allEvents.push({
+                start: new Date(year, month, day, startSlot.hour, 0),
+                end: new Date(year, month, day, 24, 0),
+                summary: `${outageTypeName}${ukrEnergoSuffix}${updateTimeString}`,
+                description: eventDescription || `Планове відключення за графіком.`
             });
-            
-            // Якщо період без світла закінчується в кінці дня
-            if (currentPeriodStart !== null) {
-                noLightPeriods.push({
-                    startHour: currentPeriodStart,
-                    endHour: 24
-                });
-            }
-            
-            // Знаходимо періоди коли СТРУМ Є (між відключеннями)
-            const lightPeriods = [];
-            let lastEndHour = 0;
-            
-            noLightPeriods.forEach((period) => {
-                if (period.startHour > lastEndHour) {
-                    lightPeriods.push({
-                        startHour: lastEndHour,
-                        endHour: period.startHour
-                    });
-                }
-                lastEndHour = period.endHour;
+        }
+    });
+
+    // Сортуємо всі події "Немає струму" за часом початку
+    allEvents.sort((a, b) => a.start - b.start);
+
+    // Додаємо події "Є струм" між відключеннями
+    const powerOnEvents = [];
+    for (let i = 0; i < allEvents.length - 1; i++) {
+        const currentEventEnd = allEvents[i].end;
+        const nextEventStart = allEvents[i + 1].start;
+
+        // Якщо є проміжок між відключеннями, додаємо подію "Є струм"
+        if (nextEventStart > currentEventEnd) {
+            powerOnEvents.push({
+                start: currentEventEnd,
+                end: nextEventStart,
+                summary: `Є струм${ukrEnergoSuffix}${updateTimeString}`,
+                description: `Електроенергія має бути в наявності.`
             });
-            
-            // Якщо після останнього відключення ще є струм до кінця дня
-            if (lastEndHour < 24 && noLightPeriods.length > 0) {
-                lightPeriods.push({
-                    startHour: lastEndHour,
-                    endHour: 24
-                });
-            }
-            
-            // Додаємо кожен період як подію в календар ТІЛЬКИ якщо він має периоди без світла
-            if (noLightPeriods.length > 0) {
-                // Спочатку додаємо періоди коли СТРУМ Є
-                lightPeriods.forEach((period) => {
-                    const startDate = new Date(
-                        dayDate.getFullYear(),
-                        dayDate.getMonth(),
-                        dayDate.getDate(),
-                        period.startHour,
-                        0,
-                        0
-                    );
-                    
-                    const endDate = new Date(
-                        dayDate.getFullYear(),
-                        dayDate.getMonth(),
-                        dayDate.getDate(),
-                        period.endHour,
-                        0,
-                        0
-                    );
-                    
-                    calendar.createEvent({
-                        start: startDate,
-                        end: endDate,
-                        summary: `⚡ Є струм (${period.startHour}:00 - ${period.endHour}:00)`,
-                        description: `Електропостачання працює за графіком.\nЧас: ${period.startHour}:00 - ${period.endHour}:00`,
-                        location: `${city}, ${street}, ${house}`,
-                        status: 'CONFIRMED',
-                        transp: 'TRANSPARENT'
-                    });
-                });
-                
-                // Потім додаємо періоди відключень
-                noLightPeriods.forEach((period) => {
-                    const startDate = new Date(
-                        dayDate.getFullYear(),
-                        dayDate.getMonth(),
-                        dayDate.getDate(),
-                        period.startHour,
-                        0,
-                        0
-                    );
-                    
-                    const endDate = new Date(
-                        dayDate.getFullYear(),
-                        dayDate.getMonth(),
-                        dayDate.getDate(),
-                        period.endHour,
-                        0,
-                        0
-                    );
-
-                    let summary = `📊 Плановое відключення (${period.startHour}:00 - ${period.endHour}:00)`;
-                    
-                    // Якщо це екстрене, змінимо summary
-                    if (outageData.isEmergency) {
-                        summary = `🚨 ЕКСТРЕНЕ ВІДКЛЮЧЕННЯ (${period.startHour}:00 - ${period.endHour}:00)`;
-                    }
-
-                    let description = `Тип: ${outageData.isEmergency ? 'Екстрене відключення' : 'Плановое відключення за графіком'}\nЧас: ${period.startHour}:00 - ${period.endHour}:00`;
-                    
-                    // Додаємо інформацію про наступні дні з відключеннями
-                    const nextSchedulesWithOutages = [];
-                    for (let i = idx + 1; i < outageData.schedules.length; i++) {
-                        const nextSchedule = outageData.schedules[i];
-                        const nextDate = new Date(nextSchedule.dayTimestamp * 1000);
-
-                        const nextHoursWithoutLight = nextSchedule.schedule.filter(s => s.status !== 'light').length;
-                        if (nextHoursWithoutLight > 0) {
-                            nextSchedulesWithOutages.push({
-                                date: nextDate.toLocaleDateString('uk-UA'),
-                                hours: nextHoursWithoutLight
-                            });
-                        }
-                    }
-                    
-                    if (nextSchedulesWithOutages.length > 0) {
-                        description += '\n\n📋 Графіки на наступні дні:';
-                        nextSchedulesWithOutages.forEach((sched) => {
-                            description += `\n  • ${sched.date} (${sched.hours} г.)`;
-                        });
-                    }
-                    
-                    if (outageData.updateTime) {
-                        description += `\n\nДанні оновлено: ${outageData.updateTime.hour}:${String(outageData.updateTime.minute).padStart(2, '0')} ${outageData.updateTime.day}.${outageData.updateTime.month}.${outageData.updateTime.year}`;
-                    }
-
-                    calendar.createEvent({
-                        start: startDate,
-                        end: endDate,
-                        summary: summary,
-                        description: description,
-                        location: `${city}, ${street}, ${house}`,
-                        organizer: {
-                            name: 'ДТЕК',
-                            email: 'info@dtek.ua'
-                        },
-                        url: 'https://www.dtek-krem.com.ua/ua/shutdowns',
-                        status: 'CONFIRMED',
-                        transp: 'TRANSPARENT',
-                        alarms: [
-                            {
-                                type: 'display',
-                                trigger: -60 * 60,
-                                description: `Розклад: ${summary}`
-                            }
-                        ]
-                    });
-                });
-                
-                console.log(`✅ Графік на ${dayString} додано (${noLightPeriods.length} період${noLightPeriods.length !== 1 ? 'ів' : ''})`);
-                
-                // Показуємо інформацію про наступні дні з відключеннями
-                const nextSchedulesWithOutages = [];
-                for (let i = idx + 1; i < outageData.schedules.length; i++) {
-                    const nextSchedule = outageData.schedules[i];
-                    const nextDate = new Date(nextSchedule.dayTimestamp * 1000);
-                    const nextHoursWithoutLight = nextSchedule.schedule.filter(s => s.status !== 'light').length;
-                    if (nextHoursWithoutLight > 0) {
-                        nextSchedulesWithOutages.push({ date: nextDate, hours: nextHoursWithoutLight });
-                    }
-                }
-                if (nextSchedulesWithOutages.length > 0) {
-                    console.log(`   📋 Графіки на наступні дні:`);
-                    nextSchedulesWithOutages.forEach(sched => {
-                        console.log(`      • ${sched.date.toLocaleDateString('uk-UA')}: ${sched.hours} годин без світла`);
-                    });
-                }
-                scheduleCount++;
-            } else {
-                console.log(`⏼ Графік на ${dayString}: світло цілий день (не додано)`);
-            }
-        });
-        
-        if (scheduleCount === 0) {
-            console.log('⏼ Жодного графіку з відключеннями не додано');
         }
     }
 
-    // 3. Якщо немає жодної інформації
-    if (!outageData.currentOutage && (!outageData.schedules || outageData.schedules.length === 0)) {
-        console.log('⚠️ Немає інформації про відключення для цієї адреси');
-        console.log('   Можливі причини:');
-        console.log('   • На цю адресу немає планованих відключень');
-        console.log('   • Адреса введена неправильно');
-        
-        // Все одно збережемо календар з інформацією
-        if (outageData.updateTime) {
-            calendar.createEvent({
-                start: new Date(),
-                end: new Date(new Date().getTime() + 60*60*1000),
-                summary: '📊 Немає даних про відключення',
-                description: `На дату ${new Date().toLocaleDateString('uk-UA')} немає даних про планові відключення. Перевірте сайт ДТЕК.`,
-                location: `${city}, ${street}, ${house}`,
-                status: 'TENTATIVE',
-                transp: 'TRANSPARENT'
-            });
-        }
-    }
+    // Додаємо всі події в календар
+    [...allEvents, ...powerOnEvents].forEach(event => {
+        cal.createEvent(event);
+    });
     
-    // Збережемо календар у файл
-    const calendarContent = calendar.toString();
-    fs.writeFileSync('dtek.ics', calendarContent);
-    const icsLines = calendarContent.split('\n').length;
-    
-    // Перевіримо чи є нові дані
-    const oldCalendar = getPreviousCalendar();
-    const hasNewData = checkForNewDates(oldCalendar, calendarContent);
-    
-    if (hasNewData) {
-        console.log('\n🔔 ОНОВЛЕНА ІНФОРМАЦІЯ!');
-        console.log('   • З\'явилися нові дати розкладу');
-        console.log('   • АБО оновилась інформація про екстрене відключення');
-        
-        // Додаємо алерт-подію про оновлення
-        const now = new Date();
-        const alertEnd = new Date(now.getTime() + 5*60*1000); // 5 хвилин
-        
-        calendar.createEvent({
-            start: now,
-            end: alertEnd,
-            summary: '🔔 ОНОВЛЕНО: Новий розклад відключень',
-            description: 'На сайті ДТЕК з\'явилась оновлена інформація про розклад відключень для вашої адреси.',
-            location: `${city}, ${street}, ${house}`,
-            status: 'CONFIRMED',
-            transp: 'TRANSPARENT',
+    console.log(`✅ Додано ${allEvents.length} відключень та ${powerOnEvents.length} періодів з електроенергією.`);
+
+    // --- 5. ДОДАВАННЯ АЛЕРТУ (ЯКЩО ПОТРІБНО) ---
+    if (showAlert) {
+        console.log('✨ Створюємо алерт про оновлення...');
+        cal.createEvent({
+            start: new Date(),
+            end: new Date(new Date().getTime() + 5 * 60000), // 5 хвилин
+            summary: alertSummary,
+            description: alertDescription,
             alarms: [
-                {
-                    type: 'display',
-                    trigger: 0,
-                    description: '🔔 ОНОВЛЕНО: Новий розклад відключень!'
-                },
-                {
-                    type: 'audio',
-                    trigger: 0
-                }
+                { type: 'display', trigger: 1 },
+                { type: 'audio', trigger: 1 }
             ]
         });
-        
-        // Перезаписуємо календар з новою подією про оновлення
-        const updatedCalendarContent = calendar.toString();
-        fs.writeFileSync('dtek.ics', updatedCalendarContent);
     }
     
-    console.log(`\n📄 Файл dtek.ics створено (${icsLines} рядків)`);
-    console.log('🎉 Успіх!');
+    // Зберігаємо новий календар
+    fs.writeFileSync('dtek.ics', cal.toString());
+    console.log('✅ Календар збережено у файл dtek.ics');
+
+    // --- 6. ОНОВЛЕННЯ GIT РЕПОЗИТОРІЮ ---
+    try {
+        console.log('🔄 Перевіряємо наявність змін у файлі календаря...');
+        // Додаємо файл стану до відстеження
+        const gitStatus = execSync('git status --porcelain dtek.ics last_run_state.json').toString().trim();
+
+        if (gitStatus) {
+            console.log('🎨 Зміни знайдено! Оновлюємо репозиторій...');
+            execSync('git config user.name "GitHub Actions Bot"');
+            execSync('git config user.email "actions@github.com"');
+            execSync('git add dtek.ics last_run_state.json');
+            execSync('git commit -m "📅 Оновлено календар відключень"');
+            
+            console.log('⏬ Синхронізуємо з віддаленим репозиторієм...');
+            execSync('git pull --rebase'); // Rebase local commit on top of remote changes
+            
+            execSync('git push');
+            console.log('✅ Репозиторій успішно оновлено!');
+        } else {
+            console.log('🧘 Змін у календарі не виявлено. Репозиторій актуальний.');
+        }
+    } catch (error) {
+        console.error('❌ Помилка під час оновлення Git репозиторію:', error.message);
+    }
+
+    await browser.close();
+    console.log('🎉 Готово!');
 
   } catch (error) {
     console.error('❌ Помилка:', error.message);
