@@ -236,7 +236,27 @@ function generateCalendar(address, outageData, modalInfo) {
   }
   
   // Функція для визначення чи подія є поточною (зараз в цьому проміжку)
-  const isCurrentEvent = (start, end) => now >= start && now < end;
+  // Використовуємо kyivNow для правильного порівняння на GitHub Actions (UTC)
+  const isCurrentEvent = (start, end) => {
+    // start і end мають години в Київському часі, порівнюємо з kyivNow
+    const kyivHour = kyivNow.getHours();
+    const kyivMinute = kyivNow.getMinutes();
+    const startHour = start.getHours();
+    const startMinute = start.getMinutes();
+    const endHour = end.getHours();
+    const endMinute = end.getMinutes();
+    
+    const currentMinutes = kyivHour * 60 + kyivMinute;
+    const startMinutes = startHour * 60 + startMinute;
+    const endMinutes = endHour * 60 + endMinute;
+    
+    // Перевіряємо що це той самий день
+    const isSameDay = kyivNow.getDate() === start.getDate() && 
+                      kyivNow.getMonth() === start.getMonth() &&
+                      kyivNow.getFullYear() === start.getFullYear();
+    
+    return isSameDay && currentMinutes >= startMinutes && currentMinutes < endMinutes;
+  };
   
   // Якщо є поточне відключення з точним часом - використовуємо його
   if (outageData.currentOutage) {
