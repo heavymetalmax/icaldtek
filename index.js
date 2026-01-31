@@ -46,29 +46,46 @@ console.log('');
 async function fetchAddressData(page, address, sessionData) {
   const { city, street, house } = address;
   
-  const apiResponse = await page.evaluate(async (params) => {
-    const formData = new URLSearchParams();
-    formData.append('method', 'getHomeNum');
-    formData.append('data[0][name]', 'city');
-    formData.append('data[0][value]', params.city);
-    formData.append('data[1][name]', 'street');
-    formData.append('data[1][value]', params.street);
-    formData.append('data[2][name]', 'house_num');
-    formData.append('data[2][value]', params.house);
-    
-    const csrfMeta = document.querySelector('meta[name="csrf-token"]');
-    const csrfParam = document.querySelector('meta[name="csrf-param"]');
-    if (csrfMeta && csrfParam) {
-      formData.append(csrfParam.content, csrfMeta.content);
-    }
-    
-    const response = await fetch('/ua/ajax', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded', 'X-Requested-With': 'XMLHttpRequest' },
-      body: formData.toString()
-    });
-    return response.json();
-  }, { city, street, house });
+  let apiResponse;
+  try {
+    apiResponse = await page.evaluate(async (params) => {
+      const formData = new URLSearchParams();
+      formData.append('method', 'getHomeNum');
+      formData.append('data[0][name]', 'city');
+      formData.append('data[0][value]', params.city);
+      formData.append('data[1][name]', 'street');
+      formData.append('data[1][value]', params.street);
+      formData.append('data[2][name]', 'house_num');
+      formData.append('data[2][value]', params.house);
+      
+      const csrfMeta = document.querySelector('meta[name="csrf-token"]');
+      const csrfParam = document.querySelector('meta[name="csrf-param"]');
+      if (csrfMeta && csrfParam) {
+        formData.append(csrfParam.content, csrfMeta.content);
+      }
+      
+      const response = await fetch('/ua/ajax', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded', 'X-Requested-With': 'XMLHttpRequest' },
+        body: formData.toString()
+      });
+      
+      const text = await response.text();
+      try {
+        return JSON.parse(text);
+      } catch (e) {
+        return { error: text.substring(0, 100) };
+      }
+    }, { city, street, house });
+  } catch (error) {
+    console.log('   ❌ Помилка запиту:', error.message);
+    return { currentOutage: null, schedules: [], infoBlockText: null, infoBlockType: null, updateTime: null };
+  }
+  
+  if (apiResponse.error) {
+    console.log('   ❌ Помилка API:', apiResponse.error);
+    return { currentOutage: null, schedules: [], infoBlockText: null, infoBlockType: null, updateTime: null };
+  }
   
   let outageData = { currentOutage: null, schedules: [], infoBlockText: null, infoBlockType: null, updateTime: null };
   
@@ -154,6 +171,7 @@ function generateCalendar(address, outageData, modalInfo) {
   }
   
   const allEvents = [];
+  const now = new Date();
   const today = new Date(); today.setHours(0, 0, 0, 0);
   const todayTimestamp = today.getTime();
   
@@ -162,6 +180,9 @@ function generateCalendar(address, outageData, modalInfo) {
   if (alertText) {
     eventDesc = alertText.trim();
   }
+  
+  // Функція для визначення чи подія є поточною (зараз в цьому проміжку)
+  const isCurrentEvent = (start, end) => now >= start && now < end;
   
   // Якщо є поточне відключення з точним часом - використовуємо його
   if (outageData.currentOutage) {
@@ -180,9 +201,6 @@ function generateCalendar(address, outageData, modalInfo) {
     const year = date.getFullYear(), month = date.getMonth(), day = date.getDate();
     const eventDate = new Date(year, month, day); eventDate.setHours(0, 0, 0, 0);
     const isToday = eventDate.getTime() === todayTimestamp;
-    
-    // Графік черг завжди показує стабілізаційні відключення
-    const eventSummary = '🔴 Стабілізаційне відключення' + updateTimeString;
 
     let startSlot = null;
     for (let i = 0; i < sched.schedule.length; i++) {
@@ -204,6 +222,12 @@ function generateCalendar(address, outageData, modalInfo) {
           }
         }
         
+        // Для поточного проміжку показуємо статус з попапу, для майбутніх - стабілізаційне
+        const isCurrent = isCurrentEvent(eventStart, eventEnd);
+        const eventSummary = (isCurrent && isUkrEnergoAlert)
+          ? '🔴 ' + outageTypeName + ukrEnergoSuffix + updateTimeString
+          : '🔴 Стабілізаційне відключення' + updateTimeString;
+        
         allEvents.push({ start: eventStart, end: eventEnd, summary: eventSummary, description: eventDesc });
         startSlot = null;
       }
@@ -222,6 +246,11 @@ function generateCalendar(address, outageData, modalInfo) {
         }
       }
       if (!skip) {
+        // Для поточного проміжку показуємо статус з попапу
+        const isCurrent = isCurrentEvent(eventStart, eventEnd);
+        const eventSummary = (isCurrent && isUkrEnergoAlert)
+          ? '🔴 ' + outageTypeName + ukrEnergoSuffix + updateTimeString
+          : '🔴 Стабілізаційне відключення' + updateTimeString;
         allEvents.push({ start: eventStart, end: eventEnd, summary: eventSummary, description: eventDesc });
       }
     }
@@ -232,9 +261,16 @@ function generateCalendar(address, outageData, modalInfo) {
   const powerOnEvents = [];
   for (let i = 0; i < allEvents.length - 1; i++) {
     if (allEvents[i + 1].start > allEvents[i].end) {
+      const powerStart = allEvents[i].end;
+      const powerEnd = allEvents[i + 1].start;
+      // Статус екстрених показуємо тільки для ПОТОЧНОГО проміжку часу
+      const isCurrent = isCurrentEvent(powerStart, powerEnd);
+      const powerSummary = (isCurrent && isUkrEnergoAlert)
+        ? '🟢 Є струм (діють екстрені відключення)' + updateTimeString
+        : '🟢 Є струм' + updateTimeString;
       powerOnEvents.push({
-        start: allEvents[i].end, end: allEvents[i + 1].start,
-        summary: '🟢 Є струм' + updateTimeString,
+        start: powerStart, end: powerEnd,
+        summary: powerSummary,
         description: 'Електроенергія має бути в наявності.'
       });
     }
@@ -281,6 +317,10 @@ function generateCalendar(address, outageData, modalInfo) {
 
     for (const address of addresses) {
       console.log('\n📍 Обробляємо: ' + address.name + ' (' + address.city + ', ' + address.street + ', ' + address.house + ')');
+      
+      // Затримка між адресами щоб уникнути rate limiting
+      await page.waitForTimeout(2000);
+      
       const outageData = await fetchAddressData(page, address, sessionData);
       
       console.log('   📋 Тип: ' + (outageData.infoBlockType || 'невідомо'));
