@@ -487,8 +487,62 @@ console.log(`   Будинок: ${house}\n`);
                 });
             }
             
+            // Знаходимо періоди коли СТРУМ Є (між відключеннями)
+            const lightPeriods = [];
+            let lastEndHour = 0;
+            
+            noLightPeriods.forEach((period) => {
+                if (period.startHour > lastEndHour) {
+                    lightPeriods.push({
+                        startHour: lastEndHour,
+                        endHour: period.startHour
+                    });
+                }
+                lastEndHour = period.endHour;
+            });
+            
+            // Якщо після останнього відключення ще є струм до кінця дня
+            if (lastEndHour < 24 && noLightPeriods.length > 0) {
+                lightPeriods.push({
+                    startHour: lastEndHour,
+                    endHour: 24
+                });
+            }
+            
             // Додаємо кожен період як подію в календар ТІЛЬКИ якщо він має периоди без світла
             if (noLightPeriods.length > 0) {
+                // Спочатку додаємо періоди коли СТРУМ Є
+                lightPeriods.forEach((period) => {
+                    const startDate = new Date(
+                        dayDate.getFullYear(),
+                        dayDate.getMonth(),
+                        dayDate.getDate(),
+                        period.startHour,
+                        0,
+                        0
+                    );
+                    
+                    const endDate = new Date(
+                        dayDate.getFullYear(),
+                        dayDate.getMonth(),
+                        dayDate.getDate(),
+                        period.endHour,
+                        0,
+                        0
+                    );
+                    
+                    calendar.createEvent({
+                        start: startDate,
+                        end: endDate,
+                        summary: `⚡ Є струм (${period.startHour}:00 - ${period.endHour}:00)`,
+                        description: `Електропостачання працює за графіком.\nЧас: ${period.startHour}:00 - ${period.endHour}:00`,
+                        location: `${city}, ${street}, ${house}`,
+                        status: 'CONFIRMED',
+                        transp: 'TRANSPARENT'
+                    });
+                });
+                
+                // Потім додаємо періоди відключень
                 noLightPeriods.forEach((period) => {
                     const startDate = new Date(
                         dayDate.getFullYear(),
