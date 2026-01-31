@@ -15,7 +15,8 @@
       "city": "с. Петропавлівська Борщагівка",
       "street": "вул. Борщагівська",
       "house": "30А",
-      "queue": "GPV4.2",
+      "queue": "GPV5.1",
+      "forceQueue": true,
       "filename": "dtek-borshchahivka.ics"
     }
   ]

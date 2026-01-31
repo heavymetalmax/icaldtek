@@ -44,7 +44,7 @@ addresses.forEach((addr, i) => {
 console.log('');
 
 async function fetchAddressData(page, address, sessionData) {
-  const { city, street, house, queue: configQueue } = address;
+  const { city, street, house, queue: configQueue, forceQueue } = address;
   
   let apiResponse;
   let htmlQueue = null; // Черга з HTML (div#group-name)
@@ -150,24 +150,30 @@ async function fetchAddressData(page, address, sessionData) {
   // Також парсимо графік черг для майбутніх днів
   const factData = apiResponse.fact || sessionData.fact;
   if (factData && factData.data) {
-    // Пріоритет черги: API (sub_type_reason) → HTML (div#group-name) → config.json
+    // Пріоритет черги: forceQueue з конфігу → API (sub_type_reason) → HTML (div#group-name) → config.json
     let queueKey = null;
     let queueSource = null;
     
-    if (apiResponse.data) {
-      const houseData = apiResponse.data[house] || Object.values(apiResponse.data)[0];
-      queueKey = houseData?.sub_type_reason?.[0];
-      if (queueKey) queueSource = 'API';
-    }
-    // Fallback на чергу з HTML
-    if (!queueKey && htmlQueue) {
-      queueKey = htmlQueue;
-      queueSource = 'HTML';
-    }
-    // Fallback на чергу з конфігу
-    if (!queueKey && configQueue) {
+    // Якщо forceQueue - використовуємо тільки з конфігу
+    if (forceQueue && configQueue) {
       queueKey = configQueue;
-      queueSource = 'config';
+      queueSource = 'config (forced)';
+    } else {
+      if (apiResponse.data) {
+        const houseData = apiResponse.data[house] || Object.values(apiResponse.data)[0];
+        queueKey = houseData?.sub_type_reason?.[0];
+        if (queueKey) queueSource = 'API';
+      }
+      // Fallback на чергу з HTML
+      if (!queueKey && htmlQueue) {
+        queueKey = htmlQueue;
+        queueSource = 'HTML';
+      }
+      // Fallback на чергу з конфігу
+      if (!queueKey && configQueue) {
+        queueKey = configQueue;
+        queueSource = 'config';
+      }
     }
     
     if (queueKey) {
