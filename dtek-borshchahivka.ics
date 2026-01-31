@@ -6,9 +6,9 @@ X-WR-CALNAME:⚡️Борщагівка
 TIMEZONE-ID:Europe/Kyiv
 X-WR-TIMEZONE:Europe/Kyiv
 BEGIN:VEVENT
-UID:26acf94a-9baf-47d9-9ebd-4300eb820fd4
+UID:07438a16-1f80-43fe-b2bc-bf8ed6c5467d
 SEQUENCE:0
-DTSTAMP:20260131T203959
+DTSTAMP:20260131T184349
 DTSTART;TZID=Europe/Kyiv:20260131T010000
 DTEND;TZID=Europe/Kyiv:20260131T080000
 SUMMARY:🔴 Стабілізаційне відключення ⟲ 20:38
@@ -21,9 +21,9 @@ DESCRIPTION:Шановні клієнти!\n\nЗа наказом НЕК
  nДякуємо за ваше розуміння!
 END:VEVENT
 BEGIN:VEVENT
-UID:55eae0f6-1f27-4d1e-b001-8805c15caaf2
+UID:7c9f47c0-a748-4e0a-a422-145a0142192f
 SEQUENCE:0
-DTSTAMP:20260131T203959
+DTSTAMP:20260131T184349
 DTSTART;TZID=Europe/Kyiv:20260131T113000
 DTEND;TZID=Europe/Kyiv:20260131T183000
 SUMMARY:🔴 Стабілізаційне відключення ⟲ 20:38
@@ -36,9 +36,9 @@ DESCRIPTION:Шановні клієнти!\n\nЗа наказом НЕК
  nДякуємо за ваше розуміння!
 END:VEVENT
 BEGIN:VEVENT
-UID:9134bffd-e0f7-4faf-a5a2-dfae6adf1167
+UID:d52f1bbb-173b-4327-8792-1ab3c7efb454
 SEQUENCE:0
-DTSTAMP:20260131T203959
+DTSTAMP:20260131T184349
 DTSTART;TZID=Europe/Kyiv:20260131T220000
 DTEND;TZID=Europe/Kyiv:20260201T000000
 SUMMARY:🔴 Стабілізаційне відключення ⟲ 20:38
@@ -51,9 +51,9 @@ DESCRIPTION:Шановні клієнти!\n\nЗа наказом НЕК
  nДякуємо за ваше розуміння!
 END:VEVENT
 BEGIN:VEVENT
-UID:4a74392f-474f-4ee1-9c47-4b794e811149
+UID:8ebfae6b-7f64-4fdc-8d5c-50ef48ff9588
 SEQUENCE:0
-DTSTAMP:20260131T203959
+DTSTAMP:20260131T184349
 DTSTART;TZID=Europe/Kyiv:20260131T080000
 DTEND;TZID=Europe/Kyiv:20260131T113000
 SUMMARY:🟢 Є струм ⟲ 20:38
@@ -61,9 +61,9 @@ DESCRIPTION:Електроенергія має бути в наявнос
  ті.
 END:VEVENT
 BEGIN:VEVENT
-UID:9e6c89db-4790-4165-b003-d71b07776a3e
+UID:d32efdcf-8e89-4a2d-874b-a5f8d4535a02
 SEQUENCE:0
-DTSTAMP:20260131T203959
+DTSTAMP:20260131T184349
 DTSTART;TZID=Europe/Kyiv:20260131T183000
 DTEND;TZID=Europe/Kyiv:20260131T220000
 SUMMARY:🟢 Є струм (діють екстрені відключен
