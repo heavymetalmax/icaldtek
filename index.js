@@ -117,7 +117,7 @@ async function fetchAddressData(page, address, sessionData) {
 }
 
 function generateCalendar(address, outageData, modalInfo) {
-  const { isUkrEnergoAlert, modalAlertType } = modalInfo;
+  const { isUkrEnergoAlert, modalAlertType, alertText } = modalInfo;
   const cal = ical({ name: '⚡️' + address.name, timezone: 'Europe/Kyiv' });
 
   let updateTimeString = '';
@@ -147,7 +147,12 @@ function generateCalendar(address, outageData, modalInfo) {
     const isToday = eventDate.getTime() === todayTimestamp;
     
     const eventSummary = isToday ? outageTypeName + ukrEnergoSuffix + updateTimeString : 'Стабілізаційне відключення' + updateTimeString;
-    const eventDesc = isToday ? (outageData.infoBlockText || 'Планове відключення за графіком.') : 'Планове відключення за графіком.';
+    
+    // Формуємо опис з інфовікна та попапу Укренерго
+    let eventDesc = outageData.infoBlockText || 'Планове відключення за графіком.';
+    if (isToday && alertText) {
+      eventDesc = alertText.trim();
+    }
 
     let startSlot = null;
     for (let i = 0; i < sched.schedule.length; i++) {
@@ -208,7 +213,7 @@ function generateCalendar(address, outageData, modalInfo) {
       else if (alertText.toLowerCase().includes('екстрен')) modalAlertType = 'emergency';
     }
 
-    const modalInfo = { isUkrEnergoAlert, modalAlertType };
+    const modalInfo = { isUkrEnergoAlert, modalAlertType, alertText };
     const sessionData = await page.evaluate(() => ({
       fact: typeof DisconSchedule !== 'undefined' ? DisconSchedule.fact : null,
     }));
