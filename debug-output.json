@@ -1,0 +1,56 @@
+{
+  "globalFact": {
+    "keys": [
+      "streets",
+      "selectelem",
+      "finded_count",
+      "preset",
+      "fact",
+      "showCurOutage",
+      "showCurSchedule",
+      "showTableSchedule",
+      "showTablePlan",
+      "showTableFact",
+      "showUserGroup",
+      "updateTimestamp",
+      "currentWeekDayIndex",
+      "timeoutUpdateData",
+      "timeoutNotUse",
+      "timeoutUpdateCheck",
+      "limitUpdateTime",
+      "limitNotUseTime",
+      "limitUpdateCheck",
+      "timerCheck",
+      "messages",
+      "form",
+      "group",
+      "multiGroup",
+      "onload",
+      "init",
+      "bind",
+      "checkTimeout",
+      "checkUpdateTimeout",
+      "autocomplete",
+      "listopen_input",
+      "listopen",
+      "tableHidden",
+      "disableWrapper",
+      "enableWrapper",
+      "alertMessageBlock",
+      "tableRender",
+      "ajax"
+    ],
+    "factKeys": [
+      "1769810400",
+      "1769896800"
+    ]
+  },
+  "apiResponse": {
+    "result": false,
+    "error": [
+      "Method is not set!"
+    ],
+    "post": [],
+    "files": []
+  }
+}

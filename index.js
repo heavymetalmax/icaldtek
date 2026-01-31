@@ -44,7 +44,7 @@ addresses.forEach((addr, i) => {
 console.log('');
 
 async function fetchAddressData(page, address, sessionData) {
-  const { city, street, house } = address;
+  const { city, street, house, queue: configQueue } = address;
   
   let apiResponse;
   try {
@@ -125,9 +125,17 @@ async function fetchAddressData(page, address, sessionData) {
   
   // Також парсимо графік черг для майбутніх днів
   const factData = apiResponse.fact || sessionData.fact;
-  if (factData && factData.data && apiResponse.data) {
-    const houseData = apiResponse.data[house] || Object.values(apiResponse.data)[0];
-    const queueKey = houseData?.sub_type_reason?.[0];
+  if (factData && factData.data) {
+    // Спочатку пробуємо отримати чергу з API, якщо немає - з конфігу
+    let queueKey = null;
+    if (apiResponse.data) {
+      const houseData = apiResponse.data[house] || Object.values(apiResponse.data)[0];
+      queueKey = houseData?.sub_type_reason?.[0];
+    }
+    // Fallback на чергу з конфігу
+    if (!queueKey && configQueue) {
+      queueKey = configQueue;
+    }
     
     if (queueKey && factData.data) {
       Object.entries(factData.data).forEach(([dayTimestamp, dayData]) => {
