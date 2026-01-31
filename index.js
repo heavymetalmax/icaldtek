@@ -2,6 +2,29 @@ const { chromium } = require('playwright');
 const ical = require('ical-generator').default;
 const fs = require('fs');
 
+// Функція для читання попереднього календаря
+function getPreviousCalendar() {
+  try {
+    if (fs.existsSync('dtek.ics')) {
+      return fs.readFileSync('dtek.ics', 'utf8');
+    }
+  } catch (e) {}
+  return null;
+}
+
+// Функція для перевірки чи є нові дати в календарі
+function checkForNewDates(oldCal, newCal) {
+  if (!oldCal) return true;
+  
+  // Витягаємо дати з календарів
+  const oldDates = (oldCal.match(/DTSTART:(\d{8})/g) || []).map(d => d.replace('DTSTART:', ''));
+  const newDates = (newCal.match(/DTSTART:(\d{8})/g) || []).map(d => d.replace('DTSTART:', ''));
+  
+  // Перевіряємо чи є нові дати
+  const newItems = newDates.filter(d => !oldDates.includes(d));
+  return newItems.length > 0;
+}
+
 // Читаємо конфігурацію
 let config;
 try {
@@ -532,7 +555,14 @@ console.log(`   Будинок: ${house}\n`);
                         },
                         url: 'https://www.dtek-krem.com.ua/ua/shutdowns',
                         status: 'CONFIRMED',
-                        transp: 'TRANSPARENT'
+                        transp: 'TRANSPARENT',
+                        alarms: [
+                            {
+                                type: 'display',
+                                trigger: { minutes: 60 },
+                                description: `Розклад: ${summary}`
+                            }
+                        ]
                     });
                 });
                 
@@ -587,9 +617,49 @@ console.log(`   Будинок: ${house}\n`);
     }
     
     // Збережемо календар у файл
-    fs.writeFileSync('dtek.ics', calendar.toString());
-    const icsContent = fs.readFileSync('dtek.ics', 'utf8');
-    const icsLines = icsContent.split('\n').length;
+    const calendarContent = calendar.toString();
+    fs.writeFileSync('dtek.ics', calendarContent);
+    const icsLines = calendarContent.split('\n').length;
+    
+    // Перевіримо чи є нові дані
+    const oldCalendar = getPreviousCalendar();
+    const hasNewData = checkForNewDates(oldCalendar, calendarContent);
+    
+    if (hasNewData) {
+        console.log('\n🔔 ОНОВЛЕНА ІНФОРМАЦІЯ!');
+        console.log('   • З\'явилися нові дати розкладу');
+        console.log('   • АБО оновилась інформація про екстрене відключення');
+        
+        // Додаємо алерт-подію про оновлення
+        const now = new Date();
+        const alertEnd = new Date(now.getTime() + 5*60*1000); // 5 хвилин
+        
+        calendar.createEvent({
+            start: now,
+            end: alertEnd,
+            summary: '🔔 ОНОВЛЕНО: Новий розклад відключень',
+            description: 'На сайті ДТЕК з\'явилась оновлена інформація про розклад відключень для вашої адреси.',
+            location: `${city}, ${street}, ${house}`,
+            status: 'CONFIRMED',
+            transp: 'TRANSPARENT',
+            alarms: [
+                {
+                    type: 'display',
+                    trigger: { minutes: 0 },
+                    description: '🔔 ОНОВЛЕНО: Новий розклад відключень!'
+                },
+                {
+                    type: 'audio',
+                    trigger: { minutes: 0 }
+                }
+            ]
+        });
+        
+        // Перезаписуємо календар з новою подією про оновлення
+        const updatedCalendarContent = calendar.toString();
+        fs.writeFileSync('dtek.ics', updatedCalendarContent);
+    }
+    
     console.log(`\n📄 Файл dtek.ics створено (${icsLines} рядків)`);
     console.log('🎉 Успіх!');
 
