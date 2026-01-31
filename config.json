@@ -1,7 +1,20 @@
 {
-  "address": {
-    "city": "с. Гора",
-    "street": "вул. Мостова",
-    "house": "21"
-  }
+  "addresses": [
+    {
+      "id": "gora",
+      "name": "Гора",
+      "city": "с. Гора",
+      "street": "вул. Мостова",
+      "house": "21",
+      "filename": "dtek.ics"
+    },
+    {
+      "id": "borshchahivka",
+      "name": "Борщагівка",
+      "city": "с. Петропавлівська Борщагівка",
+      "street": "вул. Борщагівська",
+      "house": "30А",
+      "filename": "dtek-borshchahivka.ics"
+    }
+  ]
 }
