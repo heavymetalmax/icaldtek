@@ -87,9 +87,26 @@ async function fetchAddressData(page, address, sessionData) {
       else if (subTypeLower.includes('аварійн')) outageData.infoBlockType = 'accident';
       else if (subTypeLower.includes('стабілізац') || subTypeLower.includes('планов')) outageData.infoBlockType = 'stabilization';
       outageData.infoBlockText = houseData.sub_type;
+      
+      // Парсимо реальний час відключення з start_date/end_date
+      if (houseData.start_date && houseData.end_date) {
+        const parseDateTime = (str) => {
+          const match = str.match(/(\d{1,2}):(\d{2})\s+(\d{1,2})\.(\d{1,2})\.(\d{4})/);
+          if (match) {
+            return new Date(parseInt(match[5]), parseInt(match[4]) - 1, parseInt(match[3]), parseInt(match[1]), parseInt(match[2]));
+          }
+          return null;
+        };
+        const startTime = parseDateTime(houseData.start_date);
+        const endTime = parseDateTime(houseData.end_date);
+        if (startTime && endTime) {
+          outageData.currentOutage = { start: startTime, end: endTime };
+        }
+      }
     }
   }
   
+  // Також парсимо графік черг для майбутніх днів
   const factData = apiResponse.fact || sessionData.fact;
   if (factData && factData.data && apiResponse.data) {
     const houseData = apiResponse.data[house] || Object.values(apiResponse.data)[0];
@@ -140,19 +157,34 @@ function generateCalendar(address, outageData, modalInfo) {
   const today = new Date(); today.setHours(0, 0, 0, 0);
   const todayTimestamp = today.getTime();
   
+  // Формуємо опис з інфовікна та попапу Укренерго
+  let eventDesc = outageData.infoBlockText || 'Планове відключення за графіком.';
+  if (alertText) {
+    eventDesc = alertText.trim();
+  }
+  
+  // Якщо є поточне відключення з точним часом - використовуємо його
+  if (outageData.currentOutage) {
+    const { start, end } = outageData.currentOutage;
+    allEvents.push({
+      start: start,
+      end: end,
+      summary: outageTypeName + ukrEnergoSuffix + updateTimeString,
+      description: eventDesc
+    });
+  }
+  
+  // Також додаємо графік черг для майбутніх днів (не сьогодні, якщо є currentOutage)
   outageData.schedules.forEach(sched => {
     const date = new Date(sched.dayTimestamp * 1000);
     const year = date.getFullYear(), month = date.getMonth(), day = date.getDate();
     const eventDate = new Date(year, month, day); eventDate.setHours(0, 0, 0, 0);
     const isToday = eventDate.getTime() === todayTimestamp;
     
-    const eventSummary = isToday ? outageTypeName + ukrEnergoSuffix + updateTimeString : 'Стабілізаційне відключення' + updateTimeString;
+    // Якщо сьогодні і є currentOutage - пропускаємо графік черг для сьогодні
+    if (isToday && outageData.currentOutage) return;
     
-    // Формуємо опис з інфовікна та попапу Укренерго
-    let eventDesc = outageData.infoBlockText || 'Планове відключення за графіком.';
-    if (isToday && alertText) {
-      eventDesc = alertText.trim();
-    }
+    const eventSummary = isToday ? outageTypeName + ukrEnergoSuffix + updateTimeString : 'Стабілізаційне відключення' + updateTimeString;
 
     let startSlot = null;
     for (let i = 0; i < sched.schedule.length; i++) {
