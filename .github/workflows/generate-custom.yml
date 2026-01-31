@@ -33,6 +33,9 @@ jobs:
       - name: 🔧 Встановити залежності
         run: npm ci
       
+      - name: 🎭 Встановити Playwright браузери
+        run: npx playwright install --with-deps chromium
+      
       - name: ⚙️ Налаштувати конфіг
         run: |
           cat > config.json << EOF
