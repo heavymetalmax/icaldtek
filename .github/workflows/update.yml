@@ -24,10 +24,20 @@ jobs:
           node-version: '18'
           cache: 'npm'
       
+      - name: 💾 Кешувати Playwright браузери
+        uses: actions/cache@v4
+        id: playwright-cache
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-playwright-
+      
       - name: 🔧 Встановити залежності
         run: npm ci
       
-      - name: � Встановити Playwright браузери
+      - name: 🎭 Встановити Playwright браузери
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
         run: npx playwright install chromium chromium-headless-shell --with-deps
       
       - name: �🎬 Запустити скрипт
