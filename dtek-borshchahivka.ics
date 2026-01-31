@@ -6,9 +6,9 @@ X-WR-CALNAME:⚡️Борщагівка
 TIMEZONE-ID:Europe/Kyiv
 X-WR-TIMEZONE:Europe/Kyiv
 BEGIN:VEVENT
-UID:f67298e3-2bf5-4aa3-8afb-f5496516c312
+UID:b0ae93d8-483a-47c5-b363-d73e69735fab
 SEQUENCE:0
-DTSTAMP:20260131T182810
+DTSTAMP:20260131T183435
 DTSTART;TZID=Europe/Kyiv:20260131T010000
 DTEND;TZID=Europe/Kyiv:20260131T020000
 SUMMARY:🔴 Стабілізаційне відключення ⟲ 18:18
@@ -21,9 +21,9 @@ DESCRIPTION:Шановні клієнти!\n\nЗа наказом НЕК
  nДякуємо за ваше розуміння!
 END:VEVENT
 BEGIN:VEVENT
-UID:87290d72-f664-40fc-b846-266969474a72
+UID:fefd0e59-8d38-4a88-9981-2aa145760d11
 SEQUENCE:0
-DTSTAMP:20260131T182810
+DTSTAMP:20260131T183435
 DTSTART;TZID=Europe/Kyiv:20260131T090000
 DTEND;TZID=Europe/Kyiv:20260131T160000
 SUMMARY:🔴 Стабілізаційне відключення ⟲ 18:18
@@ -36,10 +36,25 @@ DESCRIPTION:Шановні клієнти!\n\nЗа наказом НЕК
  nДякуємо за ваше розуміння!
 END:VEVENT
 BEGIN:VEVENT
-UID:f3cfde64-2e41-45e2-bc99-73539c63e0d9
+UID:8b5d5d1e-0157-46b0-8a2c-2cd2f2b23ff6
 SEQUENCE:0
-DTSTAMP:20260131T182810
-DTSTART;TZID=Europe/Kyiv:20260131T193000
+DTSTAMP:20260131T183435
+DTSTART;TZID=Europe/Kyiv:20260131T190000
+DTEND;TZID=Europe/Kyiv:20260131T193000
+SUMMARY:🔴 Стабілізаційне відключення ⟲ 18:18
+DESCRIPTION:Шановні клієнти!\n\nЗа наказом НЕК 
+ Укренерго введені екстрені відключенн
+ я електроенергії.\n\nГрафіки відключень п
+ ри цьому не діють.  Будь ласка\, економте 
+ електроенергію\, якщо вона у вас наразі є
+ \, щоб допомогти стабілізувати систему.\n\
+ nДякуємо за ваше розуміння!
+END:VEVENT
+BEGIN:VEVENT
+UID:f1d5fef3-a0d9-45ec-a0b2-9a16d7b3981c
+SEQUENCE:0
+DTSTAMP:20260131T183435
+DTSTART;TZID=Europe/Kyiv:20260131T200000
 DTEND;TZID=Europe/Kyiv:20260201T010000
 SUMMARY:🔴 Стабілізаційне відключення ⟲ 18:18
 DESCRIPTION:Шановні клієнти!\n\nЗа наказом НЕК 
@@ -51,9 +66,9 @@ DESCRIPTION:Шановні клієнти!\n\nЗа наказом НЕК
  nДякуємо за ваше розуміння!
 END:VEVENT
 BEGIN:VEVENT
-UID:9e622617-b421-4c0b-88bc-ada1a44578cd
+UID:fec67d76-2ef4-4e83-9728-6b66795c991b
 SEQUENCE:0
-DTSTAMP:20260131T182810
+DTSTAMP:20260131T183435
 DTSTART;TZID=Europe/Kyiv:20260131T020000
 DTEND;TZID=Europe/Kyiv:20260131T090000
 SUMMARY:🟢 Є струм ⟲ 18:18
@@ -61,30 +76,24 @@ DESCRIPTION:Електроенергія має бути в наявнос
  ті.
 END:VEVENT
 BEGIN:VEVENT
-UID:1c77096e-da4e-4f1e-8e36-c9ecf0a1b2d1
+UID:ff902c35-9c7a-4905-ab10-525429802649
 SEQUENCE:0
-DTSTAMP:20260131T182810
+DTSTAMP:20260131T183435
 DTSTART;TZID=Europe/Kyiv:20260131T160000
-DTEND;TZID=Europe/Kyiv:20260131T193000
+DTEND;TZID=Europe/Kyiv:20260131T190000
 SUMMARY:🟢 Є струм (діють екстрені відключен
  ня) ⟲ 18:18
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.
 END:VEVENT
 BEGIN:VEVENT
-UID:9b3c3561-d1e9-43be-b22a-b85fb4e8ac31
+UID:a86719f5-e2c5-4d41-820b-f9c09b5daf9a
 SEQUENCE:0
-DTSTAMP:20260131T182810
-DTSTART:20260131T182810
-DTEND:20260131T183310
-SUMMARY:📢 Діють екстрені відключення (Укре
- нерго)
-DESCRIPTION:Інформація оновлена.
-BEGIN:VALARM
-ACTION:DISPLAY
-TRIGGER:-PT1S
-DESCRIPTION:📢 Діють екстрені відключення (Ук
- ренерго)
-END:VALARM
+DTSTAMP:20260131T183435
+DTSTART;TZID=Europe/Kyiv:20260131T193000
+DTEND;TZID=Europe/Kyiv:20260131T200000
+SUMMARY:🟢 Є струм ⟲ 18:18
+DESCRIPTION:Електроенергія має бути в наявнос
+ ті.
 END:VEVENT
 END:VCALENDAR

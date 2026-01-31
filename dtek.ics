@@ -6,9 +6,9 @@ X-WR-CALNAME:⚡️Гора
 TIMEZONE-ID:Europe/Kyiv
 X-WR-TIMEZONE:Europe/Kyiv
 BEGIN:VEVENT
-UID:4ca1d05a-57d1-48c5-bfe2-57f8ede9c800
+UID:f297a796-a1f1-4e04-b826-aa8153ce9935
 SEQUENCE:0
-DTSTAMP:20260131T182808
+DTSTAMP:20260131T183433
 DTSTART;TZID=Europe/Kyiv:20260131T020000
 DTEND;TZID=Europe/Kyiv:20260131T090000
 SUMMARY:🔴 Стабілізаційне відключення ⟲ 18:18
@@ -21,11 +21,11 @@ DESCRIPTION:Шановні клієнти!\n\nЗа наказом НЕК
  nДякуємо за ваше розуміння!
 END:VEVENT
 BEGIN:VEVENT
-UID:d548691e-cf81-4d84-9291-8deec4a88ae5
+UID:b4907d75-96c8-4221-8960-b18710e29599
 SEQUENCE:0
-DTSTAMP:20260131T182808
-DTSTART;TZID=Europe/Kyiv:20260131T123000
-DTEND;TZID=Europe/Kyiv:20260131T150000
+DTSTAMP:20260131T183433
+DTSTART;TZID=Europe/Kyiv:20260131T120000
+DTEND;TZID=Europe/Kyiv:20260131T123000
 SUMMARY:🔴 Стабілізаційне відключення ⟲ 18:18
 DESCRIPTION:Шановні клієнти!\n\nЗа наказом НЕК 
  Укренерго введені екстрені відключенн
@@ -36,11 +36,11 @@ DESCRIPTION:Шановні клієнти!\n\nЗа наказом НЕК
  nДякуємо за ваше розуміння!
 END:VEVENT
 BEGIN:VEVENT
-UID:0754a5bc-e548-4af9-855b-72e4458743e5
+UID:86cbcae6-8c9e-4022-8e2f-7f8aec56446d
 SEQUENCE:0
-DTSTAMP:20260131T182808
-DTSTART;TZID=Europe/Kyiv:20260131T150000
-DTEND;TZID=Europe/Kyiv:20260131T183000
+DTSTAMP:20260131T183433
+DTSTART;TZID=Europe/Kyiv:20260131T130000
+DTEND;TZID=Europe/Kyiv:20260131T190000
 SUMMARY:🔴 Екстрене відключення (Укренерго: 
  екстрені відключення) ⟲ 18:18
 DESCRIPTION:Шановні клієнти!\n\nЗа наказом НЕК 
@@ -52,11 +52,11 @@ DESCRIPTION:Шановні клієнти!\n\nЗа наказом НЕК
  nДякуємо за ваше розуміння!
 END:VEVENT
 BEGIN:VEVENT
-UID:66af44d4-7d23-4a42-848c-1926cca48d38
+UID:5dff2943-eb9f-443c-af05-2845cec22eb2
 SEQUENCE:0
-DTSTAMP:20260131T182808
-DTSTART;TZID=Europe/Kyiv:20260131T183000
-DTEND;TZID=Europe/Kyiv:20260131T193000
+DTSTAMP:20260131T183433
+DTSTART;TZID=Europe/Kyiv:20260131T193000
+DTEND;TZID=Europe/Kyiv:20260131T200000
 SUMMARY:🔴 Стабілізаційне відключення ⟲ 18:18
 DESCRIPTION:Шановні клієнти!\n\nЗа наказом НЕК 
  Укренерго введені екстрені відключенн
@@ -67,9 +67,9 @@ DESCRIPTION:Шановні клієнти!\n\nЗа наказом НЕК
  nДякуємо за ваше розуміння!
 END:VEVENT
 BEGIN:VEVENT
-UID:cfae5bdc-83fd-454c-98c0-e65d166e6296
+UID:623ce5f4-b44b-4d3f-ba21-b1650c56a638
 SEQUENCE:0
-DTSTAMP:20260131T182808
+DTSTAMP:20260131T183433
 DTSTART;TZID=Europe/Kyiv:20260131T230000
 DTEND;TZID=Europe/Kyiv:20260201T010000
 SUMMARY:🔴 Стабілізаційне відключення ⟲ 18:18
@@ -82,35 +82,54 @@ DESCRIPTION:Шановні клієнти!\n\nЗа наказом НЕК
  nДякуємо за ваше розуміння!
 END:VEVENT
 BEGIN:VEVENT
-UID:6c89a457-e70a-4dc3-952e-2b6e0e702f6c
+UID:d438d61a-eb2e-4dce-98c5-341ced098bee
 SEQUENCE:0
-DTSTAMP:20260131T182808
+DTSTAMP:20260131T183433
 DTSTART;TZID=Europe/Kyiv:20260131T090000
-DTEND;TZID=Europe/Kyiv:20260131T123000
+DTEND;TZID=Europe/Kyiv:20260131T120000
 SUMMARY:🟢 Є струм ⟲ 18:18
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.
 END:VEVENT
 BEGIN:VEVENT
-UID:b226ed8a-6101-4838-aa53-cbf48428ee37
+UID:f8cd1bcd-2645-4b5f-93a3-ad0cb7eec447
 SEQUENCE:0
-DTSTAMP:20260131T182808
-DTSTART;TZID=Europe/Kyiv:20260131T193000
+DTSTAMP:20260131T183433
+DTSTART;TZID=Europe/Kyiv:20260131T123000
+DTEND;TZID=Europe/Kyiv:20260131T130000
+SUMMARY:🟢 Є струм ⟲ 18:18
+DESCRIPTION:Електроенергія має бути в наявнос
+ ті.
+END:VEVENT
+BEGIN:VEVENT
+UID:4aeea70e-cdb3-40bf-9e76-e8aa1c43d9d5
+SEQUENCE:0
+DTSTAMP:20260131T183433
+DTSTART;TZID=Europe/Kyiv:20260131T190000
+DTEND;TZID=Europe/Kyiv:20260131T193000
+SUMMARY:🟢 Є струм ⟲ 18:18
+DESCRIPTION:Електроенергія має бути в наявнос
+ ті.
+END:VEVENT
+BEGIN:VEVENT
+UID:5c8cfb51-576e-4cce-adba-4278f4cca948
+SEQUENCE:0
+DTSTAMP:20260131T183433
+DTSTART;TZID=Europe/Kyiv:20260131T200000
 DTEND;TZID=Europe/Kyiv:20260131T230000
 SUMMARY:🟢 Є струм ⟲ 18:18
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.
 END:VEVENT
 BEGIN:VEVENT
-UID:fa8707dc-7fce-4835-a0a3-494c23ae3c31
+UID:31637fa7-3a34-46dd-9f0f-5187ac28e0b9
 SEQUENCE:0
-DTSTAMP:20260131T182808
-DTSTART:20260131T182808
-DTEND:20260131T183308
+DTSTAMP:20260131T183433
+DTSTART:20260131T183433
+DTEND:20260131T183933
 SUMMARY:📢 Діють екстрені відключення (Укре
  нерго)
-DESCRIPTION:Стабілізаційне відключення (Згід
- но графіку погодинних відключень)
+DESCRIPTION:Інформація оновлена.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT1S
