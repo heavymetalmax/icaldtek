@@ -6,9 +6,9 @@ X-WR-CALNAME:⚡️Борщагівка
 TIMEZONE-ID:Europe/Kyiv
 X-WR-TIMEZONE:Europe/Kyiv
 BEGIN:VEVENT
-UID:1b2c346c-64da-4764-b24a-66527841c2ac
+UID:3535b586-6575-48e8-961f-1f001c029bc4
 SEQUENCE:0
-DTSTAMP:20260131T180935
+DTSTAMP:20260131T181638
 DTSTART;TZID=Europe/Kyiv:20260131T010000
 DTEND;TZID=Europe/Kyiv:20260131T020000
 SUMMARY:🔴 Стабілізаційне відключення ⟲ 17:56
@@ -21,9 +21,9 @@ DESCRIPTION:Шановні клієнти!\n\nЗа наказом НЕК
  nДякуємо за ваше розуміння!
 END:VEVENT
 BEGIN:VEVENT
-UID:e6d00ae4-2ce6-438e-88d5-dd64ac75dd10
+UID:ffc52563-b135-40ce-84ba-a11d0ec2e964
 SEQUENCE:0
-DTSTAMP:20260131T180935
+DTSTAMP:20260131T181638
 DTSTART;TZID=Europe/Kyiv:20260131T090000
 DTEND;TZID=Europe/Kyiv:20260131T160000
 SUMMARY:🔴 Стабілізаційне відключення ⟲ 17:56
@@ -36,9 +36,9 @@ DESCRIPTION:Шановні клієнти!\n\nЗа наказом НЕК
  nДякуємо за ваше розуміння!
 END:VEVENT
 BEGIN:VEVENT
-UID:097f5cd3-b65b-41c9-bb5a-265c905f68a3
+UID:a5034e96-07b7-47a3-9d6b-972bcd36fd77
 SEQUENCE:0
-DTSTAMP:20260131T180935
+DTSTAMP:20260131T181638
 DTSTART;TZID=Europe/Kyiv:20260131T190000
 DTEND;TZID=Europe/Kyiv:20260201T000000
 SUMMARY:🔴 Стабілізаційне відключення ⟲ 17:56
@@ -51,9 +51,9 @@ DESCRIPTION:Шановні клієнти!\n\nЗа наказом НЕК
  nДякуємо за ваше розуміння!
 END:VEVENT
 BEGIN:VEVENT
-UID:873eff7a-5cb2-4217-8fd7-eaf5add3f825
+UID:3ab5d2b4-45e5-4ba4-9d89-2d9cd803d190
 SEQUENCE:0
-DTSTAMP:20260131T180935
+DTSTAMP:20260131T181638
 DTSTART;TZID=Europe/Kyiv:20260131T020000
 DTEND;TZID=Europe/Kyiv:20260131T090000
 SUMMARY:🟢 Є струм ⟲ 17:56
@@ -61,30 +61,14 @@ DESCRIPTION:Електроенергія має бути в наявнос
  ті.
 END:VEVENT
 BEGIN:VEVENT
-UID:e3e27180-ce2d-48cf-bc05-2eb7d36d2580
+UID:901b530d-9af8-4b9e-8c21-5d472906a781
 SEQUENCE:0
-DTSTAMP:20260131T180935
+DTSTAMP:20260131T181638
 DTSTART;TZID=Europe/Kyiv:20260131T160000
 DTEND;TZID=Europe/Kyiv:20260131T190000
 SUMMARY:🟢 Є струм (діють екстрені відключен
  ня) ⟲ 17:56
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.
-END:VEVENT
-BEGIN:VEVENT
-UID:ef9f0eb4-0651-4862-bb2e-6e8f6b53e8f4
-SEQUENCE:0
-DTSTAMP:20260131T180935
-DTSTART:20260131T180935
-DTEND:20260131T181435
-SUMMARY:📢 Діють екстрені відключення (Укре
- нерго)
-DESCRIPTION:Інформація оновлена.
-BEGIN:VALARM
-ACTION:DISPLAY
-TRIGGER:-PT1S
-DESCRIPTION:📢 Діють екстрені відключення (Ук
- ренерго)
-END:VALARM
 END:VEVENT
 END:VCALENDAR
