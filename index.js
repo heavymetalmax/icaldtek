@@ -300,7 +300,7 @@ function generateCalendar(address, outageData, modalInfo) {
     const isToday = eventDate.getTime() === todayTimestamp;
 
     // Перетворюємо графік на масив відрізків без світла
-    // Враховуємо half-hour статуси: first = 0:00-0:30, second = 0:30-1:00
+    // DTEK логіка: "first" = о X:30 ще немає струму (друга половина), "second" = перша половина
     const outageSegments = [];
     for (const slot of sched.schedule) {
       const hour = slot.hour;
@@ -308,11 +308,11 @@ function generateCalendar(address, outageData, modalInfo) {
         // Вся година без світла
         outageSegments.push({ start: hour * 60, end: (hour + 1) * 60 });
       } else if (slot.status === 'no-light-first-half') {
-        // Перша половина години без світла (0-30 хв)
-        outageSegments.push({ start: hour * 60, end: hour * 60 + 30 });
-      } else if (slot.status === 'no-light-second-half') {
-        // Друга половина години без світла (30-60 хв)
+        // "first" = друга половина години без світла (X:30 - (X+1):00)
         outageSegments.push({ start: hour * 60 + 30, end: (hour + 1) * 60 });
+      } else if (slot.status === 'no-light-second-half') {
+        // "second" = перша половина години без світла (X:00 - X:30)
+        outageSegments.push({ start: hour * 60, end: hour * 60 + 30 });
       }
     }
     
