@@ -169,7 +169,7 @@ function generateCalendar(address, outageData, modalInfo) {
     allEvents.push({
       start: start,
       end: end,
-      summary: outageTypeName + ukrEnergoSuffix + updateTimeString,
+      summary: '🔴 ' + outageTypeName + ukrEnergoSuffix + updateTimeString,
       description: eventDesc
     });
   }
@@ -181,7 +181,7 @@ function generateCalendar(address, outageData, modalInfo) {
     const eventDate = new Date(year, month, day); eventDate.setHours(0, 0, 0, 0);
     const isToday = eventDate.getTime() === todayTimestamp;
     
-    const eventSummary = isToday ? outageTypeName + ukrEnergoSuffix + updateTimeString : 'Стабілізаційне відключення' + updateTimeString;
+    const eventSummary = '🔴 ' + (isToday ? outageTypeName + ukrEnergoSuffix + updateTimeString : 'Стабілізаційне відключення' + updateTimeString);
 
     let startSlot = null;
     for (let i = 0; i < sched.schedule.length; i++) {
@@ -235,7 +235,7 @@ function generateCalendar(address, outageData, modalInfo) {
       const isToday = eventDate.getTime() === todayTimestamp;
       powerOnEvents.push({
         start: allEvents[i].end, end: allEvents[i + 1].start,
-        summary: (isToday ? 'Є струм' + ukrEnergoSuffix : 'Є струм') + updateTimeString,
+        summary: '🟢 ' + (isToday ? 'Є струм' + ukrEnergoSuffix : 'Є струм') + updateTimeString,
         description: 'Електроенергія має бути в наявності.'
       });
     }
