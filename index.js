@@ -241,63 +241,106 @@ function generateCalendar(address, outageData, modalInfo) {
   }
   
   // Також додаємо графік черг для майбутніх відключень (завжди стабілізаційні)
+  // Функція для додавання події з урахуванням перетину з currentOutage
+  const addScheduleEvent = (eventStart, eventEnd, isToday) => {
+    if (isToday && outageData.currentOutage) {
+      const coStart = outageData.currentOutage.start.getTime();
+      const coEnd = outageData.currentOutage.end.getTime();
+      const evStart = eventStart.getTime();
+      const evEnd = eventEnd.getTime();
+      
+      // Якщо повністю всередині currentOutage - пропускаємо
+      if (evStart >= coStart && evEnd <= coEnd) {
+        return;
+      }
+      
+      // Якщо не перетинається - додаємо як є
+      if (evEnd <= coStart || evStart >= coEnd) {
+        const isCurrent = isCurrentEvent(eventStart, eventEnd);
+        const eventSummary = (isCurrent && isUkrEnergoAlert)
+          ? '🔴 ' + outageTypeName + ukrEnergoSuffix + updateTimeString
+          : '🔴 Стабілізаційне відключення' + updateTimeString;
+        allEvents.push({ start: eventStart, end: eventEnd, summary: eventSummary, description: eventDesc });
+        return;
+      }
+      
+      // Якщо перетинається частково - вирізаємо currentOutage
+      // Частина ДО currentOutage
+      if (evStart < coStart) {
+        const partEnd = new Date(coStart);
+        const isCurrent = isCurrentEvent(eventStart, partEnd);
+        const eventSummary = (isCurrent && isUkrEnergoAlert)
+          ? '🔴 ' + outageTypeName + ukrEnergoSuffix + updateTimeString
+          : '🔴 Стабілізаційне відключення' + updateTimeString;
+        allEvents.push({ start: eventStart, end: partEnd, summary: eventSummary, description: eventDesc });
+      }
+      // Частина ПІСЛЯ currentOutage
+      if (evEnd > coEnd) {
+        const partStart = new Date(coEnd);
+        const isCurrent = isCurrentEvent(partStart, eventEnd);
+        const eventSummary = (isCurrent && isUkrEnergoAlert)
+          ? '🔴 ' + outageTypeName + ukrEnergoSuffix + updateTimeString
+          : '🔴 Стабілізаційне відключення' + updateTimeString;
+        allEvents.push({ start: partStart, end: eventEnd, summary: eventSummary, description: eventDesc });
+      }
+    } else {
+      // Не сьогодні або немає currentOutage - просто додаємо
+      const isCurrent = isCurrentEvent(eventStart, eventEnd);
+      const eventSummary = (isCurrent && isUkrEnergoAlert)
+        ? '🔴 ' + outageTypeName + ukrEnergoSuffix + updateTimeString
+        : '🔴 Стабілізаційне відключення' + updateTimeString;
+      allEvents.push({ start: eventStart, end: eventEnd, summary: eventSummary, description: eventDesc });
+    }
+  };
+  
   outageData.schedules.forEach(sched => {
     const date = new Date(sched.dayTimestamp * 1000);
     const year = date.getFullYear(), month = date.getMonth(), day = date.getDate();
     const eventDate = new Date(year, month, day); eventDate.setHours(0, 0, 0, 0);
     const isToday = eventDate.getTime() === todayTimestamp;
 
-    let startSlot = null;
-    for (let i = 0; i < sched.schedule.length; i++) {
-      const currentSlot = sched.schedule[i];
-      const isOutage = currentSlot.status !== 'light';
-      if (isOutage && startSlot === null) startSlot = currentSlot;
-      else if (!isOutage && startSlot !== null) {
-        const eventStart = new Date(year, month, day, startSlot.hour, 0);
-        const eventEnd = new Date(year, month, day, currentSlot.hour, 0);
-        
-        // Якщо сьогодні і є currentOutage - пропускаємо події що перетинаються з поточним відключенням
-        if (isToday && outageData.currentOutage) {
-          const coStart = outageData.currentOutage.start.getTime();
-          const coEnd = outageData.currentOutage.end.getTime();
-          // Пропускаємо якщо перетинається
-          if (!(eventEnd.getTime() <= coStart || eventStart.getTime() >= coEnd)) {
-            startSlot = null;
-            continue;
-          }
-        }
-        
-        // Для поточного проміжку показуємо статус з попапу, для майбутніх - стабілізаційне
-        const isCurrent = isCurrentEvent(eventStart, eventEnd);
-        const eventSummary = (isCurrent && isUkrEnergoAlert)
-          ? '🔴 ' + outageTypeName + ukrEnergoSuffix + updateTimeString
-          : '🔴 Стабілізаційне відключення' + updateTimeString;
-        
-        allEvents.push({ start: eventStart, end: eventEnd, summary: eventSummary, description: eventDesc });
-        startSlot = null;
+    // Перетворюємо графік на масив відрізків без світла
+    // Враховуємо half-hour статуси: first = 0:00-0:30, second = 0:30-1:00
+    const outageSegments = [];
+    for (const slot of sched.schedule) {
+      const hour = slot.hour;
+      if (slot.status === 'no-light') {
+        // Вся година без світла
+        outageSegments.push({ start: hour * 60, end: (hour + 1) * 60 });
+      } else if (slot.status === 'no-light-first-half') {
+        // Перша половина години без світла (0-30 хв)
+        outageSegments.push({ start: hour * 60, end: hour * 60 + 30 });
+      } else if (slot.status === 'no-light-second-half') {
+        // Друга половина години без світла (30-60 хв)
+        outageSegments.push({ start: hour * 60 + 30, end: (hour + 1) * 60 });
       }
     }
-    if (startSlot !== null) {
-      const eventStart = new Date(year, month, day, startSlot.hour, 0);
-      const eventEnd = new Date(year, month, day, 24, 0);
-      
-      // Перевіряємо перетин з currentOutage
-      let skip = false;
-      if (isToday && outageData.currentOutage) {
-        const coStart = outageData.currentOutage.start.getTime();
-        const coEnd = outageData.currentOutage.end.getTime();
-        if (!(eventEnd.getTime() <= coStart || eventStart.getTime() >= coEnd)) {
-          skip = true;
+    
+    // Об'єднуємо сусідні відрізки
+    const mergedSegments = [];
+    for (const seg of outageSegments.sort((a, b) => a.start - b.start)) {
+      if (mergedSegments.length === 0) {
+        mergedSegments.push({ ...seg });
+      } else {
+        const last = mergedSegments[mergedSegments.length - 1];
+        if (seg.start <= last.end) {
+          last.end = Math.max(last.end, seg.end);
+        } else {
+          mergedSegments.push({ ...seg });
         }
       }
-      if (!skip) {
-        // Для поточного проміжку показуємо статус з попапу
-        const isCurrent = isCurrentEvent(eventStart, eventEnd);
-        const eventSummary = (isCurrent && isUkrEnergoAlert)
-          ? '🔴 ' + outageTypeName + ukrEnergoSuffix + updateTimeString
-          : '🔴 Стабілізаційне відключення' + updateTimeString;
-        allEvents.push({ start: eventStart, end: eventEnd, summary: eventSummary, description: eventDesc });
-      }
+    }
+    
+    // Створюємо події для кожного відрізка
+    for (const seg of mergedSegments) {
+      const startHour = Math.floor(seg.start / 60);
+      const startMin = seg.start % 60;
+      const endHour = Math.floor(seg.end / 60);
+      const endMin = seg.end % 60;
+      
+      const eventStart = new Date(year, month, day, startHour, startMin);
+      const eventEnd = new Date(year, month, day, endHour, endMin);
+      addScheduleEvent(eventStart, eventEnd, isToday);
     }
   });
 
