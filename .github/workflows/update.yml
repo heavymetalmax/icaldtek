@@ -42,37 +42,25 @@ jobs:
         if: steps.playwright-cache.outputs.cache-hit != 'true'
         run: npx playwright install chromium chromium-headless-shell --with-deps
       
-      - name: �🎬 Запустити скрипт
+      - name: 🎬 Запустити скрипт
         run: node index.js
+        # Скрипт сам керує git: комітить та пушить всі зміни
+        # (dtek.ics, dtek-borshchahivka.ics, last_run_state.json)
       
-      - name: 📊 Перевірити зміни
-        id: check_changes
-        run: |
-          if git diff --quiet; then
-            echo "has_changes=false" >> $GITHUB_OUTPUT
-          else
-            echo "has_changes=true" >> $GITHUB_OUTPUT
-          fi
-      
-      - name: ✅ Закомітити та push оновлення
-        if: steps.check_changes.outputs.has_changes == 'true'
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add dtek.ics
-          git commit -m "🔄 Автоматичне оновлення календаря на $(date +'%d.%m.%Y %H:%M')"
-          git push
-      
-      - name: 📤 Завантажити календар як артефакт
+      - name: 📤 Завантажити календарі як артефакт
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: dtek-calendar
-          path: dtek.ics
+          name: dtek-calendars
+          path: |
+            dtek.ics
+            dtek-borshchahivka.ics
+            last_run_state.json
           retention-days: 30
       
       - name: 📝 Показати результат
         run: |
-          echo "✅ Календар оновлено!"
-          echo "Розмір: $(wc -c < dtek.ics) bytes"
-          echo "Рядків: $(wc -l < dtek.ics)"
+          echo "✅ Календарі оновлено!"
+          for f in dtek*.ics; do
+            echo "$f: $(wc -c < $f) bytes, $(wc -l < $f) рядків"
+          done
