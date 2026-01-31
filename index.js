@@ -613,7 +613,7 @@ console.log(`   Будинок: ${house}\n`);
                         alarms: [
                             {
                                 type: 'display',
-                                trigger: { minutes: 60 },
+                                trigger: -60 * 60,
                                 description: `Розклад: ${summary}`
                             }
                         ]
@@ -699,12 +699,12 @@ console.log(`   Будинок: ${house}\n`);
             alarms: [
                 {
                     type: 'display',
-                    trigger: { minutes: 0 },
+                    trigger: 0,
                     description: '🔔 ОНОВЛЕНО: Новий розклад відключень!'
                 },
                 {
                     type: 'audio',
-                    trigger: { minutes: 0 }
+                    trigger: 0
                 }
             ]
         });
