@@ -276,7 +276,7 @@ function generateCalendar(address, outageData, modalInfo) {
     }
   }
 
-  [...allEvents, ...powerOnEvents].forEach(event => cal.createEvent(event));
+  [...allEvents, ...powerOnEvents].forEach(event => cal.createEvent({ ...event, timezone: 'Europe/Kyiv' }));
   return { cal, outageCount: allEvents.length, powerOnCount: powerOnEvents.length };
 }
 
