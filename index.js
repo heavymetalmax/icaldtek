@@ -217,7 +217,10 @@ function generateCalendar(address, outageData, modalInfo) {
   
   const allEvents = [];
   const now = new Date();
-  const today = new Date(); today.setHours(0, 0, 0, 0);
+  
+  // Визначаємо "сьогодні" в Київському часі (важливо для GitHub Actions який працює в UTC)
+  const kyivNow = new Date(now.toLocaleString('en-US', { timeZone: 'Europe/Kyiv' }));
+  const today = new Date(kyivNow.getFullYear(), kyivNow.getMonth(), kyivNow.getDate());
   const todayTimestamp = today.getTime();
   
   // Формуємо опис з інфовікна та попапу Укренерго
@@ -294,8 +297,12 @@ function generateCalendar(address, outageData, modalInfo) {
   };
   
   outageData.schedules.forEach(sched => {
-    const date = new Date(sched.dayTimestamp * 1000);
-    const year = date.getFullYear(), month = date.getMonth(), day = date.getDate();
+    // Timestamp з API - це початок дня в Київському часі
+    // Конвертуємо правильно для створення подій
+    const utcDate = new Date(sched.dayTimestamp * 1000);
+    const kyivDateStr = utcDate.toLocaleString('en-US', { timeZone: 'Europe/Kyiv' });
+    const kyivDate = new Date(kyivDateStr);
+    const year = kyivDate.getFullYear(), month = kyivDate.getMonth(), day = kyivDate.getDate();
     const eventDate = new Date(year, month, day); eventDate.setHours(0, 0, 0, 0);
     const isToday = eventDate.getTime() === todayTimestamp;
 
