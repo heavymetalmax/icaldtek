@@ -523,21 +523,8 @@ console.log(`   Будинок: ${house}\n`);
         ukrEnergoSuffix = ` (Укренерго: ${ukrType} відключення)`;
     }
     
-    // Додаємо поточне відключення, якщо є
-    if (outageData.currentOutage) {
-        const { startYear, startMonth, startDay, startHour, startMinute, endYear, endMonth, endDay, endHour, endMinute, reason } = outageData.currentOutage;
-        
-        const summary = `${outageTypeName}${ukrEnergoSuffix}${updateTimeString}`;
-        const description = eventDescription || reason || '';
-
-        cal.createEvent({
-            start: new Date(startYear, startMonth - 1, startDay, startHour, startMinute),
-            end: new Date(endYear, endMonth - 1, endDay, endHour, endMinute),
-            summary: summary,
-            description: description,
-        });
-        console.log(`🔥 Додано поточне відключення: ${summary}`);
-    }
+    // Примітка: "Поточне відключення" не додаємо окремо, бо воно вже є в графіку таблиці.
+    // Інформація з інформаційного блоку додається в опис сьогоднішніх подій.
 
     // Обробляємо графіки відключень
     const allEvents = [];
