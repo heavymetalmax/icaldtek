@@ -114,19 +114,19 @@ console.log(`   Будинок: ${house}\n`);
         console.log('📢 Знайдено спливне вікно з інформацією:');
         console.log(`   ${alertText.substring(0, 100)}...`);
         
-        // Перевіряємо чи є згадка про Укренерго
+        // Перевіряємо чи є згадка про Укренерго (це лише маркер, не визначає тип)
         if (alertText.toLowerCase().includes('укренерго')) {
             isUkrEnergoAlert = true;
-            console.log('   ⚠️ Виявлено: ЕКСТРЕНІ ВІДКЛЮЧЕННЯ УКРЕНЕРГО');
+            console.log('   ℹ️ Виявлено: відключення від УКРЕНЕРГО');
         }
         
-        // Визначаємо тип відключення з тексту вікна
-        if (alertText.toLowerCase().includes('екстрен')) {
-            modalAlertType = 'emergency';
-            console.log('   ⚠️ Тип: ЕКСТРЕНЕ ВІДКЛЮЧЕННЯ');
-        } else if (alertText.toLowerCase().includes('стабілізац')) {
+        // Визначаємо тип відключення з тексту вікна (пріоритет: стабілізаційне перевіряємо першим)
+        if (alertText.toLowerCase().includes('стабілізац')) {
             modalAlertType = 'stabilization';
             console.log('   ℹ️ Тип: Стабілізаційне відключення');
+        } else if (alertText.toLowerCase().includes('екстрен')) {
+            modalAlertType = 'emergency';
+            console.log('   ⚠️ Тип: ЕКСТРЕНЕ ВІДКЛЮЧЕННЯ');
         }
     }
     
@@ -399,16 +399,13 @@ console.log(`   Будинок: ${house}\n`);
     // 1. Перевірка змін у спливаючому вікні та інформаційному блоці
     const currentInfoBlockType = outageData.infoBlockType;
     const currentInfoBlockText = outageData.infoBlockText;
-    const currentModalAlert = isUkrEnergoAlert ? 'ukrenegro' : (modalAlertType || null);
+    const currentModalAlert = isUkrEnergoAlert ? `ukrenegro_${modalAlertType || 'unknown'}` : (modalAlertType || null);
     
     const modalChanged = currentModalAlert !== previousState.lastModalAlert;
     const infoBlockChanged = currentInfoBlockType !== previousState.lastInfoBlock;
     
-    // Визначаємо найвищий пріоритет статусу (екстрене > аварійне > стабілізаційне)
-    let effectiveType = currentInfoBlockType;
-    if (isUkrEnergoAlert || modalAlertType === 'emergency') {
-        effectiveType = 'emergency';
-    }
+    // Визначаємо ефективний тип: пріоритет має спливаюче вікно, потім інформаційний блок
+    let effectiveType = modalAlertType || currentInfoBlockType;
     
     // Алерт показуємо якщо змінився або modal, або infoBlock
     if (modalChanged || infoBlockChanged) {
@@ -421,11 +418,15 @@ console.log(`   Будинок: ${house}\n`);
                     alertSummary = '📢 Діють екстрені відключення';
                 }
                 break;
+            case 'stabilization':
+                if (isUkrEnergoAlert) {
+                    alertSummary = '📢 Діють стабілізаційні відключення (Укренерго)';
+                } else {
+                    alertSummary = '📢 Діють стабілізаційні відключення';
+                }
+                break;
             case 'accident':
                 alertSummary = '📢 Діють аварійні відключення';
-                break;
-            case 'stabilization':
-                alertSummary = '📢 Діють стабілізаційні відключення';
                 break;
             case 'power_on':
                 alertSummary = '📢 Електропостачання відновлено';
@@ -490,11 +491,14 @@ console.log(`   Будинок: ${house}\n`);
         updateTimeString = ` ⟲ ${String(hour).padStart(2, '0')}:${String(minute).padStart(2, '0')}`;
     }
 
-    // Визначаємо назву типу відключення та суфікс Укренерго
+    // Визначаємо назву типу відключення на основі спливаючого вікна або інформаційного блоку
     let outageTypeName = 'Стабілізаційне відключення';
     let eventDescription = '';
     
-    switch (outageData.infoBlockType) {
+    // Пріоритет має тип зі спливаючого вікна, потім з інформаційного блоку
+    const effectiveOutageType = modalAlertType || outageData.infoBlockType;
+    
+    switch (effectiveOutageType) {
         case 'emergency':
             outageTypeName = 'Екстрене відключення';
             break;
@@ -512,8 +516,12 @@ console.log(`   Будинок: ${house}\n`);
             outageTypeName = 'Стабілізаційне відключення';
     }
     
-    // Додаємо суфікс про Укренерго якщо є
-    const ukrEnergoSuffix = isUkrEnergoAlert ? ' (Увага: діють екстрені відключення Укренерго)' : '';
+    // Додаємо суфікс про Укренерго якщо є (з правильним типом)
+    let ukrEnergoSuffix = '';
+    if (isUkrEnergoAlert) {
+        const ukrType = modalAlertType === 'emergency' ? 'екстрені' : 'стабілізаційні';
+        ukrEnergoSuffix = ` (Укренерго: ${ukrType} відключення)`;
+    }
     
     // Додаємо поточне відключення, якщо є
     if (outageData.currentOutage) {
@@ -533,11 +541,28 @@ console.log(`   Будинок: ${house}\n`);
 
     // Обробляємо графіки відключень
     const allEvents = [];
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const todayTimestamp = today.getTime();
+    
     outageData.schedules.forEach(sched => {
         const date = new Date(sched.dayTimestamp * 1000);
         const year = date.getFullYear();
         const month = date.getMonth();
         const day = date.getDate();
+        
+        // Перевіряємо чи це сьогоднішній день
+        const eventDate = new Date(year, month, day);
+        eventDate.setHours(0, 0, 0, 0);
+        const isToday = eventDate.getTime() === todayTimestamp;
+        
+        // Для сьогодні — поточний тип і суфікс, для майбутніх — завжди стабілізаційне
+        const eventSummary = isToday 
+            ? `${outageTypeName}${ukrEnergoSuffix}${updateTimeString}`
+            : `Стабілізаційне відключення${updateTimeString}`;
+        const eventDesc = isToday 
+            ? (outageData.infoBlockText || `Планове відключення за графіком.`)
+            : `Планове відключення за графіком.`;
 
         let startSlot = null;
         for (let i = 0; i < sched.schedule.length; i++) {
@@ -551,8 +576,8 @@ console.log(`   Будинок: ${house}\n`);
                 allEvents.push({
                     start: new Date(year, month, day, startSlot.hour, 0),
                     end: new Date(year, month, day, endHour, 0),
-                    summary: `${outageTypeName}${ukrEnergoSuffix}${updateTimeString}`,
-                    description: eventDescription || `Планове відключення за графіком.`
+                    summary: eventSummary,
+                    description: eventDesc
                 });
                 startSlot = null;
             }
@@ -562,8 +587,8 @@ console.log(`   Будинок: ${house}\n`);
             allEvents.push({
                 start: new Date(year, month, day, startSlot.hour, 0),
                 end: new Date(year, month, day, 24, 0),
-                summary: `${outageTypeName}${ukrEnergoSuffix}${updateTimeString}`,
-                description: eventDescription || `Планове відключення за графіком.`
+                summary: eventSummary,
+                description: eventDesc
             });
         }
     });
@@ -579,10 +604,19 @@ console.log(`   Будинок: ${house}\n`);
 
         // Якщо є проміжок між відключеннями, додаємо подію "Є струм"
         if (nextEventStart > currentEventEnd) {
+            // Перевіряємо чи це сьогодні
+            const eventDate = new Date(currentEventEnd);
+            eventDate.setHours(0, 0, 0, 0);
+            const isToday = eventDate.getTime() === todayTimestamp;
+            
+            const powerOnSummary = isToday
+                ? `Є струм${ukrEnergoSuffix}${updateTimeString}`
+                : `Є струм${updateTimeString}`;
+            
             powerOnEvents.push({
                 start: currentEventEnd,
                 end: nextEventStart,
-                summary: `Є струм${ukrEnergoSuffix}${updateTimeString}`,
+                summary: powerOnSummary,
                 description: `Електроенергія має бути в наявності.`
             });
         }
