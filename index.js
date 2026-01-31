@@ -47,7 +47,10 @@ async function fetchAddressData(page, address, sessionData) {
   const { city, street, house, queue: configQueue } = address;
   
   let apiResponse;
+  let htmlQueue = null; // Черга з HTML (div#group-name)
+  
   try {
+    // Виконуємо API запит
     apiResponse = await page.evaluate(async (params) => {
       const formData = new URLSearchParams();
       formData.append('method', 'getHomeNum');
@@ -77,6 +80,27 @@ async function fetchAddressData(page, address, sessionData) {
         return { error: text.substring(0, 100) };
       }
     }, { city, street, house });
+    
+    // Парсимо чергу з HTML (div#group-name містить "Черга X.X")
+    // Чекаємо трохи, щоб DOM оновився після API виклику
+    await page.waitForTimeout(500);
+    htmlQueue = await page.evaluate(() => {
+      const groupNameEl = document.querySelector('#group-name span, #group-name');
+      if (groupNameEl) {
+        const text = groupNameEl.textContent || '';
+        // Черга 5.1 -> GPV5.1
+        const match = text.match(/[Чч]ерга\s*(\d+\.?\d*)/);
+        if (match) {
+          return 'GPV' + match[1];
+        }
+      }
+      return null;
+    });
+    
+    if (htmlQueue) {
+      console.log('   🔍 Черга з HTML: ' + htmlQueue);
+    }
+    
   } catch (error) {
     console.log('   ❌ Помилка запиту:', error.message);
     return { currentOutage: null, schedules: [], infoBlockText: null, infoBlockType: null, updateTime: null };
@@ -126,15 +150,28 @@ async function fetchAddressData(page, address, sessionData) {
   // Також парсимо графік черг для майбутніх днів
   const factData = apiResponse.fact || sessionData.fact;
   if (factData && factData.data) {
-    // Спочатку пробуємо отримати чергу з API, якщо немає - з конфігу
+    // Пріоритет черги: API (sub_type_reason) → HTML (div#group-name) → config.json
     let queueKey = null;
+    let queueSource = null;
+    
     if (apiResponse.data) {
       const houseData = apiResponse.data[house] || Object.values(apiResponse.data)[0];
       queueKey = houseData?.sub_type_reason?.[0];
+      if (queueKey) queueSource = 'API';
+    }
+    // Fallback на чергу з HTML
+    if (!queueKey && htmlQueue) {
+      queueKey = htmlQueue;
+      queueSource = 'HTML';
     }
     // Fallback на чергу з конфігу
     if (!queueKey && configQueue) {
       queueKey = configQueue;
+      queueSource = 'config';
+    }
+    
+    if (queueKey) {
+      console.log('   ⚡ Використовую чергу: ' + queueKey + ' (джерело: ' + queueSource + ')');
     }
     
     if (queueKey && factData.data) {
