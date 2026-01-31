@@ -1,0 +1,109 @@
+# ✅ ПРОЕКТ ГОТОВИЙ ДО GITHUB!
+
+## 🎉 Що було зроблено
+
+### ✅ GitHub Actions Workflows
+
+```
+.github/workflows/
+├── update.yml              (автоматичне оновлення кожні 15 хвилин)
+└── generate-custom.yml     (запуск вручну з адресою)
+```
+
+### ✅ Документація для GitHub
+
+```
+GITHUB_READY.md        ← ПОЧНІТЬ ЗВІДСИ!
+GITHUB_SETUP.md        ← Детальне налаштування
+GITHUB_FOR_USERS.md    ← Розповсюдження для інших
+```
+
+### ✅ Оновлено
+
+```
+README.md              ← Додана інформація про GitHub Actions
+START_HERE.md          ← Посилання на GITHUB_READY.md
+```
+
+---
+
+## 🚀 Як розповсюджувати
+
+### 1. На GitHub
+
+```bash
+# Створіть репозиторій на github.com/new
+git remote add origin https://github.com/ВАШ_НІКНЕЙМ/dtek-calendar
+git branch -M main
+git push -u origin main
+```
+
+### 2. Включіть Actions
+
+1. Settings → Actions → General
+2. "Allow all actions and reusable workflows"
+3. Save
+
+### 3. Готово!
+
+**Календар буде оновлюватися автоматично на GitHub.**
+
+---
+
+## 📊 Що відбувається
+
+### Workflow: `update.yml`
+- ⏰ Запускається кожні 15 хвилин
+- 🌐 Отримує дані з ДТЕК
+- 📅 Генерує календар
+- 💾 Комітить оновлення
+- 📤 Зберігає артефакт
+
+### Workflow: `generate-custom.yml`
+- 🎯 Запускається вручну
+- 📍 Користувач вводить адресу через GitHub UI
+- 📅 Генерується календар для цієї адреси
+- 📥 Завантажується як артефакт
+
+---
+
+## 👥 Для користувачів
+
+1. **Fork репозиторію**
+2. **Settings → Actions → Дозволити**
+3. **Змінити config.json на свою адресу**
+4. **Commit & Push**
+5. **Календар оновлюватиметься автоматично!**
+
+---
+
+## 📝 Файли для GitHub
+
+```
+dtek-calendar/
+├── .github/workflows/
+│   ├── update.yml
+│   └── generate-custom.yml
+├── config.json              (адреса)
+├── config.example.json      (приклад)
+├── index.js                 (скрипт)
+├── package.json             (залежності)
+├── .gitignore              (виключення)
+├── README.md               (основна інформація)
+├── GITHUB_READY.md         (швидкий старт)
+├── GITHUB_SETUP.md         (деталі Actions)
+└── GITHUB_FOR_USERS.md     (розповсюдження)
+```
+
+---
+
+## 🎯 Наступні кроки
+
+1. ✅ Залийте на GitHub
+2. ✅ Включіть Actions
+3. ✅ Тестуйте (Actions → переглянути запуски)
+4. ✅ Поділіться посиланням!
+
+---
+
+**Дякую! Проект готовий до використання на GitHub.** ⚡

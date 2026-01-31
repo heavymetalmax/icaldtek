@@ -1,0 +1,63 @@
+name: 📅 Generate Calendar (Custom)
+
+on:
+  workflow_dispatch:
+    inputs:
+      city:
+        description: 'Населений пункт (місто/село)'
+        required: true
+        default: 'с. Гора'
+      street:
+        description: 'Вулиця'
+        required: true
+        default: 'вул. Мостова'
+      house:
+        description: 'Номер будинку'
+        required: true
+        default: '21'
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 📥 Завантажити код
+        uses: actions/checkout@v4
+      
+      - name: 📦 Встановити Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+      
+      - name: 🔧 Встановити залежності
+        run: npm ci
+      
+      - name: ⚙️ Налаштувати конфіг
+        run: |
+          cat > config.json << EOF
+          {
+            "address": {
+              "city": "${{ github.event.inputs.city }}",
+              "street": "${{ github.event.inputs.street }}",
+              "house": "${{ github.event.inputs.house }}"
+            }
+          }
+          EOF
+          cat config.json
+      
+      - name: 🎬 Запустити скрипт
+        run: node index.js
+      
+      - name: 📤 Завантажити результат
+        uses: actions/upload-artifact@v4
+        with:
+          name: dtek-calendar-custom
+          path: dtek.ics
+          retention-days: 7
+      
+      - name: ✅ Готово!
+        run: |
+          echo "✅ Календар для адреси успішно згенерований!"
+          echo "Адреса: ${{ github.event.inputs.city }}, ${{ github.event.inputs.street }}, ${{ github.event.inputs.house }}"
+          echo "Файл: dtek.ics"

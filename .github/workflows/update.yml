@@ -1,0 +1,63 @@
+name: 🔄 Update DTEK Calendar
+
+on:
+  schedule:
+    # Запускати кожні 15 хвилин
+    - cron: '*/15 * * * *'
+  
+  # Дозволити запуск вручну
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 📥 Завантажити код
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      
+      - name: 📦 Встановити Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+      
+      - name: 🔧 Встановити залежності
+        run: npm ci
+      
+      - name: 🎬 Запустити скрипт
+        run: node index.js
+      
+      - name: 📊 Перевірити зміни
+        id: check_changes
+        run: |
+          if git diff --quiet; then
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+          else
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+          fi
+      
+      - name: ✅ Закомітити та push оновлення
+        if: steps.check_changes.outputs.has_changes == 'true'
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add dtek.ics
+          git commit -m "🔄 Автоматичне оновлення календаря на $(date +'%d.%m.%Y %H:%M')"
+          git push
+      
+      - name: 📤 Завантажити календар як артефакт
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dtek-calendar
+          path: dtek.ics
+          retention-days: 30
+      
+      - name: 📝 Показати результат
+        run: |
+          echo "✅ Календар оновлено!"
+          echo "Розмір: $(wc -c < dtek.ics) bytes"
+          echo "Рядків: $(wc -l < dtek.ics)"
