@@ -174,15 +174,12 @@ function generateCalendar(address, outageData, modalInfo) {
     });
   }
   
-  // Також додаємо графік черг для майбутніх днів (не сьогодні, якщо є currentOutage)
+  // Також додаємо графік черг для майбутніх відключень
   outageData.schedules.forEach(sched => {
     const date = new Date(sched.dayTimestamp * 1000);
     const year = date.getFullYear(), month = date.getMonth(), day = date.getDate();
     const eventDate = new Date(year, month, day); eventDate.setHours(0, 0, 0, 0);
     const isToday = eventDate.getTime() === todayTimestamp;
-    
-    // Якщо сьогодні і є currentOutage - пропускаємо графік черг для сьогодні
-    if (isToday && outageData.currentOutage) return;
     
     const eventSummary = isToday ? outageTypeName + ukrEnergoSuffix + updateTimeString : 'Стабілізаційне відключення' + updateTimeString;
 
@@ -192,12 +189,40 @@ function generateCalendar(address, outageData, modalInfo) {
       const isOutage = currentSlot.status !== 'light';
       if (isOutage && startSlot === null) startSlot = currentSlot;
       else if (!isOutage && startSlot !== null) {
-        allEvents.push({ start: new Date(year, month, day, startSlot.hour, 0), end: new Date(year, month, day, currentSlot.hour, 0), summary: eventSummary, description: eventDesc });
+        const eventStart = new Date(year, month, day, startSlot.hour, 0);
+        const eventEnd = new Date(year, month, day, currentSlot.hour, 0);
+        
+        // Якщо сьогодні і є currentOutage - пропускаємо події що перетинаються з поточним відключенням
+        if (isToday && outageData.currentOutage) {
+          const coStart = outageData.currentOutage.start.getTime();
+          const coEnd = outageData.currentOutage.end.getTime();
+          // Пропускаємо якщо перетинається
+          if (!(eventEnd.getTime() <= coStart || eventStart.getTime() >= coEnd)) {
+            startSlot = null;
+            continue;
+          }
+        }
+        
+        allEvents.push({ start: eventStart, end: eventEnd, summary: eventSummary, description: eventDesc });
         startSlot = null;
       }
     }
     if (startSlot !== null) {
-      allEvents.push({ start: new Date(year, month, day, startSlot.hour, 0), end: new Date(year, month, day, 24, 0), summary: eventSummary, description: eventDesc });
+      const eventStart = new Date(year, month, day, startSlot.hour, 0);
+      const eventEnd = new Date(year, month, day, 24, 0);
+      
+      // Перевіряємо перетин з currentOutage
+      let skip = false;
+      if (isToday && outageData.currentOutage) {
+        const coStart = outageData.currentOutage.start.getTime();
+        const coEnd = outageData.currentOutage.end.getTime();
+        if (!(eventEnd.getTime() <= coStart || eventStart.getTime() >= coEnd)) {
+          skip = true;
+        }
+      }
+      if (!skip) {
+        allEvents.push({ start: eventStart, end: eventEnd, summary: eventSummary, description: eventDesc });
+      }
     }
   });
 
