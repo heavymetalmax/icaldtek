@@ -410,7 +410,11 @@ function generateCalendar(address, outageData, modalInfo, changeInfo) {
     }
   }
 
-  [...allEvents, ...powerOnEvents].forEach(event => cal.createEvent({ ...event, timezone: 'Europe/Kyiv' }));
+  [...allEvents, ...powerOnEvents].forEach(event => cal.createEvent({ 
+    ...event, 
+    timezone: 'Europe/Kyiv',
+    alarms: [{ type: 'display', trigger: 30 * 60 }] // 30 хвилин до події
+  }));
   return { cal, outageCount: allEvents.length, powerOnCount: powerOnEvents.length };
 }
 
