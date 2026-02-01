@@ -56,15 +56,15 @@ async function fetchAddressData(page, address, sessionData) {
     }, { city, street, house });
   } catch (error) {
     console.log('   ❌ Помилка запиту:', error.message);
-    return { schedules: [], infoBlockType: null, updateTime: null };
+    return { schedules: [], infoBlockType: null, infoBlockText: null, updateTime: null };
   }
   
   if (apiResponse.error) {
     console.log('   ❌ Помилка API:', apiResponse.error);
-    return { schedules: [], infoBlockType: null, updateTime: null };
+    return { schedules: [], infoBlockType: null, infoBlockText: null, updateTime: null };
   }
   
-  let outageData = { schedules: [], infoBlockType: null, updateTime: null };
+  let outageData = { schedules: [], infoBlockType: null, infoBlockText: null, updateTime: null };
   
   // Час оновлення
   if (apiResponse.updateTimestamp) {
@@ -78,6 +78,7 @@ async function fetchAddressData(page, address, sessionData) {
   if (apiResponse.data) {
     const houseData = apiResponse.data[house] || Object.values(apiResponse.data)[0];
     if (houseData?.sub_type) {
+      outageData.infoBlockText = houseData.sub_type;
       const subType = houseData.sub_type.toLowerCase();
       if (subType.includes('екстрен')) outageData.infoBlockType = 'emergency';
       else if (subType.includes('аварійн')) outageData.infoBlockType = 'accident';
@@ -137,6 +138,9 @@ function generateCalendar(address, outageData, modalInfo) {
   // Додаємо суфікс Укренерго якщо є
   const suffix = modalInfo.isUkrEnergoAlert ? ' (Укренерго)' : '';
   
+  // Опис події з інфо-блоку
+  const eventDescription = outageData.infoBlockText || (outageType + ' відключення за графіком.');
+  
   const allEvents = [];
   
   // Обробляємо графік
@@ -183,7 +187,7 @@ function generateCalendar(address, outageData, modalInfo) {
         start: new Date(year, month, day, startH, startM),
         end: new Date(year, month, day, endH, endM),
         summary: '🔴 ' + outageType + suffix + updateTimeStr,
-        description: outageType + ' відключення за графіком.'
+        description: eventDescription
       });
     }
   });
