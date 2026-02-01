@@ -329,7 +329,7 @@ function generateCalendar(address, outageData, modalInfo) {
         start: lastEvent.end,
         end: endOfDay,
         summary: '🟢 Є струм' + updateTimeStr + adjustedSuffix,
-        description: hasAdjustedEvent ? 'Час скориговано згідно інформації на сайті.' : 'Електроенергія має бути в наявності.'
+        description: eventDescription
       });
     }
     
