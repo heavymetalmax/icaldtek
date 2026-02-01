@@ -313,6 +313,12 @@ function generateCalendar(address, outageData, modalInfo) {
 
       const { cal, outageCount, powerOnCount } = generateCalendar(address, outageData, modalInfo);
       
+      // Не записуємо порожній календар
+      if (outageCount === 0 && powerOnCount === 0) {
+        console.log('   ⚠️ Порожній календар - пропускаємо запис ' + address.filename + '\n');
+        continue;
+      }
+      
       fs.writeFileSync(address.filename, cal.toString());
       generatedFiles.push(address.filename);
       console.log('   ✅ ' + address.filename + ' (' + outageCount + ' відкл., ' + powerOnCount + ' світла)\n');
