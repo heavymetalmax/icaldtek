@@ -6,9 +6,9 @@ X-WR-CALNAME:⚡️Борщагівка
 TIMEZONE-ID:Europe/Kyiv
 X-WR-TIMEZONE:Europe/Kyiv
 BEGIN:VEVENT
-UID:ede2c3b0-b5f0-4fda-b76a-5b3458d37069
+UID:a5e2f902-812a-456b-87c1-f0118a83d35e
 SEQUENCE:0
-DTSTAMP:20260201T065205
+DTSTAMP:20260201T085407
 DTSTART;TZID=Europe/Kyiv:20260201T000000
 DTEND;TZID=Europe/Kyiv:20260201T013000
 SUMMARY:🔴 Стабілізаційне відключення ⟲ 08:51
@@ -21,9 +21,9 @@ DESCRIPTION:Шановні клієнти!\n\nЗа наказом НЕК
  у!
 END:VEVENT
 BEGIN:VEVENT
-UID:baa4a1c5-9ea4-4d4c-b00d-6c696b92627d
+UID:cfe90b95-682c-4b51-bae8-9d5a51a75836
 SEQUENCE:0
-DTSTAMP:20260201T065205
+DTSTAMP:20260201T085407
 DTSTART;TZID=Europe/Kyiv:20260201T083000
 DTEND;TZID=Europe/Kyiv:20260201T153000
 SUMMARY:🔴 Стабілізаційне відключення (Укре
@@ -37,9 +37,9 @@ DESCRIPTION:Шановні клієнти!\n\nЗа наказом НЕК
  у!
 END:VEVENT
 BEGIN:VEVENT
-UID:7e21a39a-103b-4c90-a917-917cf5aec968
+UID:a692ee55-97e3-4d6d-8db9-ee56571a03dc
 SEQUENCE:0
-DTSTAMP:20260201T065205
+DTSTAMP:20260201T085407
 DTSTART;TZID=Europe/Kyiv:20260201T190000
 DTEND;TZID=Europe/Kyiv:20260202T000000
 SUMMARY:🔴 Стабілізаційне відключення ⟲ 08:51
@@ -52,9 +52,9 @@ DESCRIPTION:Шановні клієнти!\n\nЗа наказом НЕК
  у!
 END:VEVENT
 BEGIN:VEVENT
-UID:c641d0d3-5114-4b0e-8de4-171bcdd47d4e
+UID:f0a1d80a-0d55-4cb2-80a7-9b45f5adce52
 SEQUENCE:0
-DTSTAMP:20260201T065205
+DTSTAMP:20260201T085407
 DTSTART;TZID=Europe/Kyiv:20260201T013000
 DTEND;TZID=Europe/Kyiv:20260201T083000
 SUMMARY:🟢 Є струм ⟲ 08:51
@@ -62,30 +62,13 @@ DESCRIPTION:Електроенергія має бути в наявнос
  ті.
 END:VEVENT
 BEGIN:VEVENT
-UID:c1aeb779-68a4-4e58-b444-bf3af795c50f
+UID:dab9e6e6-4e66-4cb9-baa0-ccfb0e3c4e07
 SEQUENCE:0
-DTSTAMP:20260201T065205
+DTSTAMP:20260201T085407
 DTSTART;TZID=Europe/Kyiv:20260201T153000
 DTEND;TZID=Europe/Kyiv:20260201T190000
 SUMMARY:🟢 Є струм ⟲ 08:51
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.
-END:VEVENT
-BEGIN:VEVENT
-UID:d3740d7e-d3a6-49c2-b8a9-10a2ebdcfa32
-SEQUENCE:0
-DTSTAMP:20260201T065205
-DTSTART:20260201T065205
-DTEND:20260201T065705
-SUMMARY:📢 Діють стабілізаційні відключенн
- я (Укренерго)
-DESCRIPTION:Стабілізаційне відключення (Згід
- но графіку погодинних відключень)
-BEGIN:VALARM
-ACTION:DISPLAY
-TRIGGER:-PT1S
-DESCRIPTION:📢 Діють стабілізаційні відключе
- ння (Укренерго)
-END:VALARM
 END:VEVENT
 END:VCALENDAR
