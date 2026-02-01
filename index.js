@@ -201,8 +201,9 @@ async function fetchAddressData(page, address, sessionData) {
   return outageData;
 }
 
-function generateCalendar(address, outageData, modalInfo) {
+function generateCalendar(address, outageData, modalInfo, changeInfo) {
   const { isUkrEnergoAlert, modalAlertType, alertText } = modalInfo;
+  const { hasChange, changeSummary, changeTime } = changeInfo || {};
   const cal = ical({ name: '⚡️' + address.name, timezone: 'Europe/Kyiv' });
 
   let updateTimeString = '';
@@ -258,6 +259,15 @@ function generateCalendar(address, outageData, modalInfo) {
     return isSameDay && currentMinutes >= startMinutes && currentMinutes < endMinutes;
   };
   
+  // Функція для додавання інфо про зміну в опис поточної події
+  const getDescriptionWithChange = (baseDesc, start, end) => {
+    if (hasChange && isCurrentEvent(start, end)) {
+      const timeStr = changeTime ? ' о ' + changeTime : '';
+      return baseDesc + '\n\n📢 ' + changeSummary + timeStr;
+    }
+    return baseDesc;
+  };
+  
   // Якщо є поточне відключення з точним часом - використовуємо його
   if (outageData.currentOutage) {
     const { start, end } = outageData.currentOutage;
@@ -265,7 +275,7 @@ function generateCalendar(address, outageData, modalInfo) {
       start: start,
       end: end,
       summary: '🔴 ' + outageTypeName + ukrEnergoSuffix + updateTimeString,
-      description: eventDesc
+      description: getDescriptionWithChange(eventDesc, start, end)
     });
   }
   
@@ -289,7 +299,7 @@ function generateCalendar(address, outageData, modalInfo) {
         const eventSummary = (isCurrent && isUkrEnergoAlert)
           ? '🔴 ' + outageTypeName + ukrEnergoSuffix + updateTimeString
           : '🔴 Стабілізаційне відключення' + updateTimeString;
-        allEvents.push({ start: eventStart, end: eventEnd, summary: eventSummary, description: eventDesc });
+        allEvents.push({ start: eventStart, end: eventEnd, summary: eventSummary, description: getDescriptionWithChange(eventDesc, eventStart, eventEnd) });
         return;
       }
       
@@ -301,7 +311,7 @@ function generateCalendar(address, outageData, modalInfo) {
         const eventSummary = (isCurrent && isUkrEnergoAlert)
           ? '🔴 ' + outageTypeName + ukrEnergoSuffix + updateTimeString
           : '🔴 Стабілізаційне відключення' + updateTimeString;
-        allEvents.push({ start: eventStart, end: partEnd, summary: eventSummary, description: eventDesc });
+        allEvents.push({ start: eventStart, end: partEnd, summary: eventSummary, description: getDescriptionWithChange(eventDesc, eventStart, partEnd) });
       }
       // Частина ПІСЛЯ currentOutage
       if (evEnd > coEnd) {
@@ -310,7 +320,7 @@ function generateCalendar(address, outageData, modalInfo) {
         const eventSummary = (isCurrent && isUkrEnergoAlert)
           ? '🔴 ' + outageTypeName + ukrEnergoSuffix + updateTimeString
           : '🔴 Стабілізаційне відключення' + updateTimeString;
-        allEvents.push({ start: partStart, end: eventEnd, summary: eventSummary, description: eventDesc });
+        allEvents.push({ start: partStart, end: eventEnd, summary: eventSummary, description: getDescriptionWithChange(eventDesc, partStart, eventEnd) });
       }
     } else {
       // Не сьогодні або немає currentOutage - просто додаємо
@@ -318,7 +328,7 @@ function generateCalendar(address, outageData, modalInfo) {
       const eventSummary = (isCurrent && isUkrEnergoAlert)
         ? '🔴 ' + outageTypeName + ukrEnergoSuffix + updateTimeString
         : '🔴 Стабілізаційне відключення' + updateTimeString;
-      allEvents.push({ start: eventStart, end: eventEnd, summary: eventSummary, description: eventDesc });
+      allEvents.push({ start: eventStart, end: eventEnd, summary: eventSummary, description: getDescriptionWithChange(eventDesc, eventStart, eventEnd) });
     }
   };
   
@@ -391,10 +401,11 @@ function generateCalendar(address, outageData, modalInfo) {
       const powerSummary = (isCurrent && isUkrEnergoAlert)
         ? '🟢 Є струм (діють екстрені відключення)' + updateTimeString
         : '🟢 Є струм' + updateTimeString;
+      const powerDesc = getDescriptionWithChange('Електроенергія має бути в наявності.', powerStart, powerEnd);
       powerOnEvents.push({
         start: powerStart, end: powerEnd,
         summary: powerSummary,
-        description: 'Електроенергія має бути в наявності.'
+        description: powerDesc
       });
     }
   }
@@ -486,10 +497,12 @@ function generateCalendar(address, outageData, modalInfo) {
 
       newState[address.id] = { lastInfoBlock: currentInfoBlockType, lastScheduledDays: outageData.schedules.map(s => s.dayTimestamp), lastModalAlert: currentModalAlert };
 
-      const { cal, outageCount, powerOnCount } = generateCalendar(address, outageData, modalInfo);
-      if (showAlert) {
-        cal.createEvent({ start: new Date(), end: new Date(Date.now() + 5 * 60000), summary: alertSummary, description: alertDescription, alarms: [{ type: 'display', trigger: 1 }] });
-      }
+      // Формуємо changeInfo для додавання в опис поточної події
+      const kyivNow = new Date(new Date().toLocaleString('en-US', { timeZone: 'Europe/Kyiv' }));
+      const changeTime = String(kyivNow.getHours()).padStart(2, '0') + ':' + String(kyivNow.getMinutes()).padStart(2, '0');
+      const changeInfo = showAlert ? { hasChange: true, changeSummary: alertSummary, changeTime } : null;
+
+      const { cal, outageCount, powerOnCount } = generateCalendar(address, outageData, modalInfo, changeInfo);
       
       fs.writeFileSync(address.filename, cal.toString());
       generatedFiles.push(address.filename);
