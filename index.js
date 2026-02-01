@@ -74,11 +74,17 @@ async function fetchAddressData(page, address, sessionData) {
     }
   }
   
-  // Тип відключення
+  // Тип відключення та повний текст інфо-вікна
   if (apiResponse.data) {
     const houseData = apiResponse.data[house] || Object.values(apiResponse.data)[0];
     if (houseData?.sub_type) {
-      outageData.infoBlockText = houseData.sub_type;
+      // Збираємо повний текст: sub_type + sub_type_info (якщо є)
+      let fullText = houseData.sub_type;
+      if (houseData.sub_type_info) {
+        fullText += '\n\n' + houseData.sub_type_info;
+      }
+      outageData.infoBlockText = fullText;
+      
       const subType = houseData.sub_type.toLowerCase();
       if (subType.includes('екстрен')) outageData.infoBlockType = 'emergency';
       else if (subType.includes('аварійн')) outageData.infoBlockType = 'accident';
@@ -195,18 +201,55 @@ function generateCalendar(address, outageData, modalInfo) {
   // Сортуємо
   allEvents.sort((a, b) => a.start - b.start);
   
-  // Додаємо періоди зі світлом між відключеннями
+  // Додаємо періоди зі світлом
   const powerOnEvents = [];
-  for (let i = 0; i < allEvents.length - 1; i++) {
-    if (allEvents[i + 1].start > allEvents[i].end) {
+  
+  // Групуємо події по днях
+  const eventsByDay = {};
+  allEvents.forEach(event => {
+    const dayKey = event.start.toDateString();
+    if (!eventsByDay[dayKey]) eventsByDay[dayKey] = [];
+    eventsByDay[dayKey].push(event);
+  });
+  
+  // Для кожного дня додаємо періоди зі світлом
+  Object.values(eventsByDay).forEach(dayEvents => {
+    // Між відключеннями
+    for (let i = 0; i < dayEvents.length - 1; i++) {
+      if (dayEvents[i + 1].start > dayEvents[i].end) {
+        powerOnEvents.push({
+          start: dayEvents[i].end,
+          end: dayEvents[i + 1].start,
+          summary: '🟢 Є струм' + updateTimeStr,
+          description: 'Електроенергія має бути в наявності.'
+        });
+      }
+    }
+    
+    // Після останнього відключення дня до 23:59
+    const lastEvent = dayEvents[dayEvents.length - 1];
+    const endOfDay = new Date(lastEvent.end.getFullYear(), lastEvent.end.getMonth(), lastEvent.end.getDate(), 23, 59);
+    if (lastEvent.end < endOfDay) {
       powerOnEvents.push({
-        start: allEvents[i].end,
-        end: allEvents[i + 1].start,
+        start: lastEvent.end,
+        end: endOfDay,
         summary: '🟢 Є струм' + updateTimeStr,
         description: 'Електроенергія має бути в наявності.'
       });
     }
-  }
+    
+    // Перед першим відключенням дня від 00:00
+    const firstEvent = dayEvents[0];
+    const startOfDay = new Date(firstEvent.start.getFullYear(), firstEvent.start.getMonth(), firstEvent.start.getDate(), 0, 0);
+    if (firstEvent.start > startOfDay) {
+      powerOnEvents.push({
+        start: startOfDay,
+        end: firstEvent.start,
+        summary: '🟢 Є струм' + updateTimeStr,
+        description: 'Електроенергія має бути в наявності.'
+      });
+    }
+  });
   
   // Додаємо всі події в календар з нагадуванням за 30 хв
   [...allEvents, ...powerOnEvents].forEach(event => {
