@@ -6,9 +6,9 @@ X-WR-CALNAME:⚡️Гора
 TIMEZONE-ID:Europe/Kyiv
 X-WR-TIMEZONE:Europe/Kyiv
 BEGIN:VEVENT
-UID:cdf0a521-94da-4adf-9e35-520cafe54438
+UID:914459e0-a279-484e-b7b7-d9f3659f1f48
 SEQUENCE:0
-DTSTAMP:20260201T103654
+DTSTAMP:20260201T103734
 DTSTART;TZID=Europe/Kyiv:20260201T000000
 DTEND;TZID=Europe/Kyiv:20260201T013000
 SUMMARY:🔴 Стабілізаційне відключення ⟲ 10:20
@@ -27,9 +27,9 @@ DESCRIPTION:🔴 Стабілізаційне відключення ⟲ 1
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:37f12022-ac8c-4072-9543-60c4704e4e83
+UID:44d961f1-defa-4087-81e5-e5db345db6ea
 SEQUENCE:0
-DTSTAMP:20260201T103654
+DTSTAMP:20260201T103734
 DTSTART;TZID=Europe/Kyiv:20260201T083000
 DTEND;TZID=Europe/Kyiv:20260201T163000
 SUMMARY:🔴 Стабілізаційне відключення (Укре
@@ -40,8 +40,7 @@ DESCRIPTION:Шановні клієнти!\n\nЗа наказом НЕК
  во користуватися електроенергією. Кожен
   кіловат — це внесок у спільну стійкість
  .\n\nДякуємо за ваше розуміння та підтримк
- у!\n\n📢 📢 Діють стабілізаційні відключе
- ння (Укренерго) о 10:36
+ у!
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT30M
@@ -51,9 +50,9 @@ DESCRIPTION:🔴 Стабілізаційне відключення (Ук
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:a4c9d17c-d213-4807-932a-085b902ae1b8
+UID:5770c573-f6d5-45de-8665-ef7d53c67e51
 SEQUENCE:0
-DTSTAMP:20260201T103654
+DTSTAMP:20260201T103734
 DTSTART;TZID=Europe/Kyiv:20260201T190000
 DTEND;TZID=Europe/Kyiv:20260201T223000
 SUMMARY:🔴 Стабілізаційне відключення ⟲ 10:20
@@ -72,9 +71,9 @@ DESCRIPTION:🔴 Стабілізаційне відключення ⟲ 1
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:9df0854f-a6b6-44a3-9a24-442a870756e8
+UID:5ad6525b-28a0-4bf8-8417-946c64506cfe
 SEQUENCE:0
-DTSTAMP:20260201T103654
+DTSTAMP:20260201T103734
 DTSTART;TZID=Europe/Kyiv:20260201T013000
 DTEND;TZID=Europe/Kyiv:20260201T083000
 SUMMARY:🟢 Є струм ⟲ 10:20
@@ -87,9 +86,9 @@ DESCRIPTION:🟢 Є струм ⟲ 10:20
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:3ff4a3e1-9de6-499a-8186-b6ecc95e6829
+UID:9e3c7ead-ad61-4934-b67b-0a77bed769ea
 SEQUENCE:0
-DTSTAMP:20260201T103654
+DTSTAMP:20260201T103734
 DTSTART;TZID=Europe/Kyiv:20260201T163000
 DTEND;TZID=Europe/Kyiv:20260201T190000
 SUMMARY:🟢 Є струм ⟲ 10:20
