@@ -110,10 +110,10 @@ async function fetchAddressData(page, address, sessionData) {
   
   if (apiResponse.error) {
     console.log('   ❌ Помилка API:', apiResponse.error);
-    return { schedules: [], infoBlockType: null, infoBlockText: null, updateTime: null };
+    return { schedules: [], infoBlockType: null, infoBlockText: null, updateTime: null, currentOutage: null };
   }
   
-  let outageData = { schedules: [], infoBlockType: null, infoBlockText: null, updateTime: null };
+  let outageData = { schedules: [], infoBlockType: null, infoBlockText: null, updateTime: null, currentOutage: null };
   
   // Час оновлення
   if (apiResponse.updateTimestamp) {
@@ -139,6 +139,14 @@ async function fetchAddressData(page, address, sessionData) {
         fullText += '\n\n' + houseData.sub_type_info;
       }
       outageData.infoBlockText = fullText;
+      
+      // Зберігаємо поточне відключення з реальними часами
+      if (houseData.start_date && houseData.end_date) {
+        outageData.currentOutage = {
+          startDate: houseData.start_date,
+          endDate: houseData.end_date
+        };
+      }
       
       const subType = houseData.sub_type.toLowerCase();
       if (subType.includes('екстрен')) outageData.infoBlockType = 'emergency';
@@ -255,6 +263,30 @@ function generateCalendar(address, outageData, modalInfo) {
   
   // Сортуємо
   allEvents.sort((a, b) => a.start - b.start);
+  
+  // Коригуємо час останнього відключення згідно end_date з API (якщо є)
+  if (outageData.currentOutage?.endDate && allEvents.length > 0) {
+    // Парсимо end_date формату "16:30 01.02.2026"
+    const match = outageData.currentOutage.endDate.match(/(\d{1,2}):(\d{2})\s+(\d{2})\.(\d{2})\.(\d{4})/);
+    if (match) {
+      const [, hours, minutes, day, month, year] = match;
+      const apiEndTime = new Date(parseInt(year), parseInt(month) - 1, parseInt(day), parseInt(hours), parseInt(minutes));
+      
+      // Знаходимо поточне відключення (яке зараз активне або найближче)
+      const now = new Date();
+      for (let i = allEvents.length - 1; i >= 0; i--) {
+        const event = allEvents[i];
+        // Якщо подія ще не закінчилась і API каже що закінчиться пізніше
+        if (event.end <= now || (event.start <= now && event.end < apiEndTime)) {
+          if (apiEndTime > event.end) {
+            console.log('   📝 Коригуємо час: ' + event.end.toLocaleTimeString('uk-UA', {hour: '2-digit', minute: '2-digit'}) + ' → ' + apiEndTime.toLocaleTimeString('uk-UA', {hour: '2-digit', minute: '2-digit'}));
+            event.end = apiEndTime;
+          }
+          break;
+        }
+      }
+    }
+  }
   
   // Додаємо періоди зі світлом
   const powerOnEvents = [];
