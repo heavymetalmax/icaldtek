@@ -6,14 +6,14 @@ X-WR-CALNAME:⚡️Борщагівка
 TIMEZONE-ID:Europe/Kyiv
 X-WR-TIMEZONE:Europe/Kyiv
 BEGIN:VEVENT
-UID:0da84763-6917-4eeb-9416-a3ad5814ec87
+UID:8be04076-86ee-47a3-86de-dd3b6f71e19a
 SEQUENCE:0
-DTSTAMP:20260201T104323
+DTSTAMP:20260201T104643
 DTSTART;TZID=Europe/Kyiv:20260201T000000
 DTEND;TZID=Europe/Kyiv:20260201T013000
 SUMMARY:🔴 Стабілізаційне (Укренерго) ⟲ 10:37
-DESCRIPTION:Стабілізаційне відключення за гр
- афіком.
+DESCRIPTION:Стабілізаційне відключення (Згід
+ но графіку погодинних відключень)
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT30M
@@ -22,14 +22,14 @@ DESCRIPTION:🔴 Стабілізаційне (Укренерго) ⟲ 10:
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:4418456e-907a-4b6e-88c6-4718deb916b9
+UID:85df23cf-a1d4-4e92-8141-5592b977e8dc
 SEQUENCE:0
-DTSTAMP:20260201T104323
+DTSTAMP:20260201T104643
 DTSTART;TZID=Europe/Kyiv:20260201T083000
 DTEND;TZID=Europe/Kyiv:20260201T153000
 SUMMARY:🔴 Стабілізаційне (Укренерго) ⟲ 10:37
-DESCRIPTION:Стабілізаційне відключення за гр
- афіком.
+DESCRIPTION:Стабілізаційне відключення (Згід
+ но графіку погодинних відключень)
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT30M
@@ -38,14 +38,14 @@ DESCRIPTION:🔴 Стабілізаційне (Укренерго) ⟲ 10:
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:4553e1fe-5bfd-4ef6-aff1-f736f99cc3aa
+UID:354ea52d-0ada-4d59-8a93-cb3e8f6fc8d2
 SEQUENCE:0
-DTSTAMP:20260201T104323
+DTSTAMP:20260201T104643
 DTSTART;TZID=Europe/Kyiv:20260201T190000
 DTEND;TZID=Europe/Kyiv:20260201T223000
 SUMMARY:🔴 Стабілізаційне (Укренерго) ⟲ 10:37
-DESCRIPTION:Стабілізаційне відключення за гр
- афіком.
+DESCRIPTION:Стабілізаційне відключення (Згід
+ но графіку погодинних відключень)
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT30M
@@ -54,9 +54,9 @@ DESCRIPTION:🔴 Стабілізаційне (Укренерго) ⟲ 10:
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:ba129170-6728-41b2-9e52-65941d2b0aa8
+UID:e01e9ddd-babd-4bce-98b1-355ba0733fdb
 SEQUENCE:0
-DTSTAMP:20260201T104323
+DTSTAMP:20260201T104643
 DTSTART;TZID=Europe/Kyiv:20260201T013000
 DTEND;TZID=Europe/Kyiv:20260201T083000
 SUMMARY:🟢 Є струм ⟲ 10:37
@@ -69,9 +69,9 @@ DESCRIPTION:🟢 Є струм ⟲ 10:37
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:ff67126e-a6e3-4e79-b110-c2c7e5fd924f
+UID:5628f62c-1be3-442a-a16a-29a7b9afed20
 SEQUENCE:0
-DTSTAMP:20260201T104323
+DTSTAMP:20260201T104643
 DTSTART;TZID=Europe/Kyiv:20260201T153000
 DTEND;TZID=Europe/Kyiv:20260201T190000
 SUMMARY:🟢 Є струм ⟲ 10:37
