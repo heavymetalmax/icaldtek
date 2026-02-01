@@ -3,6 +3,31 @@ const ical = require('ical-generator').default;
 const fs = require('fs');
 const { execSync } = require('child_process');
 
+async function evaluateWithRetry(page, fn, args = undefined, options = {}) {
+  const maxRetries = options.maxRetries || 3;
+  const label = options.label || 'evaluate';
+  for (let attempt = 1; attempt <= maxRetries; attempt++) {
+    try {
+      return await page.evaluate(fn, args);
+    } catch (error) {
+      const message = error?.message || String(error);
+      console.log(`   ⚠️ ${label}: спроба ${attempt}/${maxRetries} - ${message}`);
+      if (attempt === maxRetries) throw error;
+      try {
+        await page.waitForLoadState('networkidle', { timeout: 60000 });
+      } catch (e) {
+        // ignore
+      }
+      try {
+        await page.reload({ waitUntil: 'networkidle', timeout: 60000 });
+      } catch (e) {
+        // ignore
+      }
+      await page.waitForTimeout(1500);
+    }
+  }
+}
+
 // Читаємо конфіг
 let config;
 try {
@@ -29,6 +54,7 @@ async function fetchAddressData(page, address, sessionData) {
   const { city, street, house, queue: configQueue, forceQueue } = address;
   
   let apiResponse;
+  let freshSessionData = sessionData;
   const maxRetries = 3;
   
   for (let attempt = 1; attempt <= maxRetries; attempt++) {
@@ -40,6 +66,10 @@ async function fetchAddressData(page, address, sessionData) {
         console.log('   🔄 Сторінка втрачена, перезавантажуємо...');
         await page.goto('https://www.dtek-krem.com.ua/ua/shutdowns', { waitUntil: 'networkidle', timeout: 60000 });
         await page.waitForTimeout(2000);
+        // Оновлюємо sessionData після перезавантаження
+        freshSessionData = await page.evaluate(() => ({
+          fact: typeof DisconSchedule !== 'undefined' ? DisconSchedule.fact : null,
+        }));
       }
       
       apiResponse = await page.evaluate(async (params) => {
@@ -118,7 +148,7 @@ async function fetchAddressData(page, address, sessionData) {
   }
   
   // Графік
-  const factData = apiResponse.fact || sessionData.fact;
+  const factData = apiResponse.fact || freshSessionData.fact;
   if (factData?.data) {
     let queueKey = null;
     
@@ -302,10 +332,15 @@ function generateCalendar(address, outageData, modalInfo) {
 
     // Перевіряємо спливне вікно
     let isUkrEnergoAlert = false, modalAlertType = null;
-    const alertText = await page.evaluate(() => {
-      const modal = document.querySelector('.modal, .popup, [role="dialog"], .alert, .notification');
-      return modal ? modal.innerText : null;
-    });
+    const alertText = await evaluateWithRetry(
+      page,
+      () => {
+        const modal = document.querySelector('.modal, .popup, [role="dialog"], .alert, .notification');
+        return modal ? modal.innerText : null;
+      },
+      undefined,
+      { label: 'modal evaluate' }
+    );
     
     if (alertText) {
       console.log('📢 Попап:', alertText.substring(0, 60) + '...');
@@ -315,9 +350,14 @@ function generateCalendar(address, outageData, modalInfo) {
     }
 
     const modalInfo = { isUkrEnergoAlert, modalAlertType };
-    const sessionData = await page.evaluate(() => ({
-      fact: typeof DisconSchedule !== 'undefined' ? DisconSchedule.fact : null,
-    }));
+    const sessionData = await evaluateWithRetry(
+      page,
+      () => ({
+        fact: typeof DisconSchedule !== 'undefined' ? DisconSchedule.fact : null,
+      }),
+      undefined,
+      { label: 'session evaluate' }
+    );
     console.log('✅ Сесія отримана\n');
 
     const generatedFiles = [];
