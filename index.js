@@ -265,6 +265,8 @@ function generateCalendar(address, outageData, modalInfo) {
   allEvents.sort((a, b) => a.start - b.start);
   
   // Коригуємо час останнього відключення згідно end_date з API (якщо є)
+  let wasAdjusted = false;
+  let adjustedEndTime = null;
   if (outageData.currentOutage?.endDate && allEvents.length > 0) {
     // Парсимо end_date формату "16:30 01.02.2026"
     const match = outageData.currentOutage.endDate.match(/(\d{1,2}):(\d{2})\s+(\d{2})\.(\d{2})\.(\d{4})/);
@@ -281,6 +283,9 @@ function generateCalendar(address, outageData, modalInfo) {
           if (apiEndTime > event.end) {
             console.log('   📝 Коригуємо час: ' + event.end.toLocaleTimeString('uk-UA', {hour: '2-digit', minute: '2-digit'}) + ' → ' + apiEndTime.toLocaleTimeString('uk-UA', {hour: '2-digit', minute: '2-digit'}));
             event.end = apiEndTime;
+            event.wasAdjusted = true; // Позначаємо подію як скориговану
+            wasAdjusted = true;
+            adjustedEndTime = apiEndTime;
           }
           break;
         }
@@ -317,11 +322,14 @@ function generateCalendar(address, outageData, modalInfo) {
     const lastEvent = dayEvents[dayEvents.length - 1];
     const endOfDay = new Date(lastEvent.end.getFullYear(), lastEvent.end.getMonth(), lastEvent.end.getDate() + 1, 0, 0);
     if (lastEvent.end < endOfDay) {
+      // Перевіряємо чи будь-яка подія в цьому дні була скоригована
+      const hasAdjustedEvent = dayEvents.some(e => e.wasAdjusted === true);
+      const adjustedSuffix = hasAdjustedEvent ? ' (скориговано)' : '';
       powerOnEvents.push({
         start: lastEvent.end,
         end: endOfDay,
-        summary: '🟢 Є струм' + updateTimeStr,
-        description: 'Електроенергія має бути в наявності.'
+        summary: '🟢 Є струм' + updateTimeStr + adjustedSuffix,
+        description: hasAdjustedEvent ? 'Час скориговано згідно інформації на сайті.' : 'Електроенергія має бути в наявності.'
       });
     }
     
