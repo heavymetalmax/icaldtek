@@ -97,8 +97,14 @@ async function fetchAddressData(page, address, sessionData) {
   if (apiResponse.data) {
     const houseData = apiResponse.data[house] || Object.values(apiResponse.data)[0];
     if (houseData?.sub_type) {
-      // Збираємо повний текст: sub_type + sub_type_info (якщо є)
-      let fullText = houseData.sub_type;
+      // Збираємо повний текст як на сайті
+      let fullText = 'Причина: ' + houseData.sub_type;
+      if (houseData.start_date) {
+        fullText += '\nЧас початку – ' + houseData.start_date;
+      }
+      if (houseData.end_date) {
+        fullText += '\nОрієнтовний час відновлення – до ' + houseData.end_date;
+      }
       if (houseData.sub_type_info) {
         fullText += '\n\n' + houseData.sub_type_info;
       }
@@ -245,9 +251,9 @@ function generateCalendar(address, outageData, modalInfo) {
       }
     }
     
-    // Після останнього відключення дня до 23:59
+    // Після останнього відключення дня до 00:00 наступного дня
     const lastEvent = dayEvents[dayEvents.length - 1];
-    const endOfDay = new Date(lastEvent.end.getFullYear(), lastEvent.end.getMonth(), lastEvent.end.getDate(), 23, 59);
+    const endOfDay = new Date(lastEvent.end.getFullYear(), lastEvent.end.getMonth(), lastEvent.end.getDate() + 1, 0, 0);
     if (lastEvent.end < endOfDay) {
       powerOnEvents.push({
         start: lastEvent.end,
