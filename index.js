@@ -29,34 +29,53 @@ async function fetchAddressData(page, address, sessionData) {
   const { city, street, house, queue: configQueue, forceQueue } = address;
   
   let apiResponse;
-  try {
-    apiResponse = await page.evaluate(async (params) => {
-      const formData = new URLSearchParams();
-      formData.append('method', 'getHomeNum');
-      formData.append('data[0][name]', 'city');
-      formData.append('data[0][value]', params.city);
-      formData.append('data[1][name]', 'street');
-      formData.append('data[1][value]', params.street);
-      formData.append('data[2][name]', 'house_num');
-      formData.append('data[2][value]', params.house);
-      
-      const csrfMeta = document.querySelector('meta[name="csrf-token"]');
-      const csrfParam = document.querySelector('meta[name="csrf-param"]');
-      if (csrfMeta && csrfParam) {
-        formData.append(csrfParam.content, csrfMeta.content);
+  const maxRetries = 3;
+  
+  for (let attempt = 1; attempt <= maxRetries; attempt++) {
+    try {
+      // Перевіряємо чи сторінка ще активна, якщо ні - перезавантажуємо
+      try {
+        await page.evaluate(() => document.readyState);
+      } catch (e) {
+        console.log('   🔄 Сторінка втрачена, перезавантажуємо...');
+        await page.goto('https://www.dtek-krem.com.ua/ua/shutdowns', { waitUntil: 'networkidle', timeout: 60000 });
+        await page.waitForTimeout(2000);
       }
       
-      const response = await fetch('/ua/ajax', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded', 'X-Requested-With': 'XMLHttpRequest' },
-        body: formData.toString()
-      });
+      apiResponse = await page.evaluate(async (params) => {
+        const formData = new URLSearchParams();
+        formData.append('method', 'getHomeNum');
+        formData.append('data[0][name]', 'city');
+        formData.append('data[0][value]', params.city);
+        formData.append('data[1][name]', 'street');
+        formData.append('data[1][value]', params.street);
+        formData.append('data[2][name]', 'house_num');
+        formData.append('data[2][value]', params.house);
+        
+        const csrfMeta = document.querySelector('meta[name="csrf-token"]');
+        const csrfParam = document.querySelector('meta[name="csrf-param"]');
+        if (csrfMeta && csrfParam) {
+          formData.append(csrfParam.content, csrfMeta.content);
+        }
+        
+        const response = await fetch('/ua/ajax', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded', 'X-Requested-With': 'XMLHttpRequest' },
+          body: formData.toString()
+        });
+        
+        return response.json();
+      }, { city, street, house });
       
-      return response.json();
-    }, { city, street, house });
-  } catch (error) {
-    console.log('   ❌ Помилка запиту:', error.message);
-    return { schedules: [], infoBlockType: null, infoBlockText: null, updateTime: null };
+      break; // Успішно - виходимо з циклу
+    } catch (error) {
+      console.log('   ⚠️ Спроба ' + attempt + '/' + maxRetries + ' - ' + error.message);
+      if (attempt === maxRetries) {
+        console.log('   ❌ Всі спроби вичерпано');
+        return { schedules: [], infoBlockType: null, infoBlockText: null, updateTime: null };
+      }
+      await page.waitForTimeout(2000);
+    }
   }
   
   if (apiResponse.error) {
