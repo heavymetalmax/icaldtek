@@ -6,96 +6,96 @@ X-WR-CALNAME:⚡️Борщагівка
 TIMEZONE-ID:Europe/Kyiv
 X-WR-TIMEZONE:Europe/Kyiv
 BEGIN:VEVENT
-UID:81f565de-cb64-4f8e-8fc3-eb101aabafd2
+UID:21b00393-a7fc-4125-a6de-eed3eab9dade
 SEQUENCE:0
-DTSTAMP:20260201T142020
+DTSTAMP:20260201T143630
 DTSTART;TZID=Europe/Kyiv:20260201T000000
 DTEND;TZID=Europe/Kyiv:20260201T013000
-SUMMARY:🔴 Стабілізаційне (Укренерго) ⟲ 16:07
+SUMMARY:🔴 Стабілізаційне (Укренерго) ⟲ 16:36
 DESCRIPTION:Стабілізаційне відключення за гр
  афіком.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT30M
 DESCRIPTION:🔴 Стабілізаційне (Укренерго) ⟲ 16:
- 07
+ 36
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:bb52f1e9-72fc-4e92-8060-b388ab4f40ce
+UID:cd70c971-813f-49d3-8fa9-f0efbc7abcc2
 SEQUENCE:0
-DTSTAMP:20260201T142020
+DTSTAMP:20260201T143630
 DTSTART;TZID=Europe/Kyiv:20260201T083000
 DTEND;TZID=Europe/Kyiv:20260201T153000
-SUMMARY:🔴 Стабілізаційне (Укренерго) ⟲ 16:07
+SUMMARY:🔴 Стабілізаційне (Укренерго) ⟲ 16:36
 DESCRIPTION:Стабілізаційне відключення за гр
  афіком.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT30M
 DESCRIPTION:🔴 Стабілізаційне (Укренерго) ⟲ 16:
- 07
+ 36
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:97f1c770-1a64-466f-8f11-e13cd14efbfd
+UID:b2e35604-1c64-4e3e-9f41-cb698a434a60
 SEQUENCE:0
-DTSTAMP:20260201T142020
+DTSTAMP:20260201T143630
 DTSTART;TZID=Europe/Kyiv:20260201T190000
 DTEND;TZID=Europe/Kyiv:20260201T223000
-SUMMARY:🔴 Стабілізаційне (Укренерго) ⟲ 16:07
+SUMMARY:🔴 Стабілізаційне (Укренерго) ⟲ 16:36
 DESCRIPTION:Стабілізаційне відключення за гр
  афіком.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT30M
 DESCRIPTION:🔴 Стабілізаційне (Укренерго) ⟲ 16:
- 07
+ 36
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:15c841ac-c6b2-40e9-bc03-9248eb8d7d42
+UID:92008ad6-d4c3-4e2c-9187-2a97b9a3ea6b
 SEQUENCE:0
-DTSTAMP:20260201T142020
+DTSTAMP:20260201T143630
 DTSTART;TZID=Europe/Kyiv:20260201T013000
 DTEND;TZID=Europe/Kyiv:20260201T083000
-SUMMARY:🟢 Є струм ⟲ 16:07
+SUMMARY:🟢 Є струм ⟲ 16:36
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT30M
-DESCRIPTION:🟢 Є струм ⟲ 16:07
+DESCRIPTION:🟢 Є струм ⟲ 16:36
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:b0da1156-37b0-4079-bdab-1551c08395c5
+UID:45cef495-81df-4d7b-9b03-bfec8e64ad49
 SEQUENCE:0
-DTSTAMP:20260201T142020
+DTSTAMP:20260201T143630
 DTSTART;TZID=Europe/Kyiv:20260201T153000
 DTEND;TZID=Europe/Kyiv:20260201T190000
-SUMMARY:🟢 Є струм ⟲ 16:07
+SUMMARY:🟢 Є струм ⟲ 16:36
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT30M
-DESCRIPTION:🟢 Є струм ⟲ 16:07
+DESCRIPTION:🟢 Є струм ⟲ 16:36
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:4fbae57f-69c6-46cb-9599-ac9914ba0677
+UID:51a9d34f-700e-4001-a95e-a90c54b72edd
 SEQUENCE:0
-DTSTAMP:20260201T142020
+DTSTAMP:20260201T143630
 DTSTART;TZID=Europe/Kyiv:20260201T223000
 DTEND;TZID=Europe/Kyiv:20260202T000000
-SUMMARY:🟢 Є струм ⟲ 16:07
+SUMMARY:🟢 Є струм ⟲ 16:36
 DESCRIPTION:Стабілізаційне відключення за гр
  афіком.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT30M
-DESCRIPTION:🟢 Є струм ⟲ 16:07
+DESCRIPTION:🟢 Є струм ⟲ 16:36
 END:VALARM
 END:VEVENT
 END:VCALENDAR
