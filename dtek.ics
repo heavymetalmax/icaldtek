@@ -6,12 +6,12 @@ X-WR-CALNAME:⚡️Гора
 TIMEZONE-ID:Europe/Kyiv
 X-WR-TIMEZONE:Europe/Kyiv
 BEGIN:VEVENT
-UID:8df1c7e9-e35c-4fa6-949c-c95f0691d4fe
+UID:f765757c-f297-4a85-9809-13ce0af33ca3
 SEQUENCE:0
-DTSTAMP:20260201T190826
+DTSTAMP:20260201T192125
 DTSTART;TZID=Europe/Kyiv:20260201T000000
 DTEND;TZID=Europe/Kyiv:20260201T013000
-SUMMARY:🔴 Стабілізаційне (Укренерго) ⟲ 21:08
+SUMMARY:🔴 Стабілізаційне ⟲ 21:08
 DESCRIPTION:Причина: Стабілізаційне відключе
  ння (Згідно графіку погодинних відключе
  нь)\nЧас початку – 19:00 01.02.2026\nОрієнтовний 
@@ -19,17 +19,16 @@ DESCRIPTION:Причина: Стабілізаційне відключе
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT30M
-DESCRIPTION:🔴 Стабілізаційне (Укренерго) ⟲ 21:
- 08
+DESCRIPTION:🔴 Стабілізаційне ⟲ 21:08
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:a0405784-9420-462a-8a17-5a90dc118542
+UID:e57285a5-8044-4f90-a771-cb5b9dd38d3e
 SEQUENCE:0
-DTSTAMP:20260201T190826
+DTSTAMP:20260201T192125
 DTSTART;TZID=Europe/Kyiv:20260201T083000
 DTEND;TZID=Europe/Kyiv:20260201T153000
-SUMMARY:🔴 Стабілізаційне (Укренерго) ⟲ 21:08
+SUMMARY:🔴 Стабілізаційне ⟲ 21:08
 DESCRIPTION:Причина: Стабілізаційне відключе
  ння (Згідно графіку погодинних відключе
  нь)\nЧас початку – 19:00 01.02.2026\nОрієнтовний 
@@ -37,17 +36,16 @@ DESCRIPTION:Причина: Стабілізаційне відключе
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT30M
-DESCRIPTION:🔴 Стабілізаційне (Укренерго) ⟲ 21:
- 08
+DESCRIPTION:🔴 Стабілізаційне ⟲ 21:08
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:ce3f37e2-bb49-4e63-b6ee-12d9cded9bbb
+UID:25b49cd8-460d-41ab-85b0-64b5a49e46d8
 SEQUENCE:0
-DTSTAMP:20260201T190826
+DTSTAMP:20260201T192125
 DTSTART;TZID=Europe/Kyiv:20260201T190000
 DTEND;TZID=Europe/Kyiv:20260202T030000
-SUMMARY:🔴 Стабілізаційне (Укренерго) ⟲ 21:08
+SUMMARY:🔴 Стабілізаційне ⟲ 21:08
 DESCRIPTION:Причина: Стабілізаційне відключе
  ння (Згідно графіку погодинних відключе
  нь)\nЧас початку – 19:00 01.02.2026\nОрієнтовний 
@@ -55,14 +53,13 @@ DESCRIPTION:Причина: Стабілізаційне відключе
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT30M
-DESCRIPTION:🔴 Стабілізаційне (Укренерго) ⟲ 21:
- 08
+DESCRIPTION:🔴 Стабілізаційне ⟲ 21:08
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:aa3b0a50-6827-47e1-9cec-60e528cdb416
+UID:1b5ac541-fa3e-4682-a761-c16f22fa3ca7
 SEQUENCE:0
-DTSTAMP:20260201T190826
+DTSTAMP:20260201T192125
 DTSTART;TZID=Europe/Kyiv:20260201T013000
 DTEND;TZID=Europe/Kyiv:20260201T083000
 SUMMARY:🟢 Є струм ⟲ 21:08
@@ -75,9 +72,9 @@ DESCRIPTION:🟢 Є струм ⟲ 21:08
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:65fd9163-0465-4d68-8f1e-e3eadb95202d
+UID:2ab17fff-0240-4d0e-bcec-7fc97261cbe9
 SEQUENCE:0
-DTSTAMP:20260201T190826
+DTSTAMP:20260201T192125
 DTSTART;TZID=Europe/Kyiv:20260201T153000
 DTEND;TZID=Europe/Kyiv:20260201T190000
 SUMMARY:🟢 Є струм ⟲ 21:08
