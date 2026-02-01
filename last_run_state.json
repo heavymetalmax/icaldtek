@@ -1,12 +1,18 @@
 {
   "gora": {
     "lastInfoBlock": "stabilization",
-    "lastScheduledDays": [],
-    "lastModalAlert": null
+    "lastScheduledDays": [
+      1769896800,
+      1769983200
+    ],
+    "lastModalAlert": "ukrenegro_stabilization"
   },
   "borshchahivka": {
     "lastInfoBlock": "stabilization",
-    "lastScheduledDays": [],
-    "lastModalAlert": null
+    "lastScheduledDays": [
+      1769896800,
+      1769983200
+    ],
+    "lastModalAlert": "ukrenegro_stabilization"
   }
 }
