@@ -6,86 +6,80 @@ X-WR-CALNAME:⚡️Борщагівка
 TIMEZONE-ID:Europe/Kyiv
 X-WR-TIMEZONE:Europe/Kyiv
 BEGIN:VEVENT
-UID:8089a38d-698b-406a-b701-3297572f7269
+UID:395a1618-e23e-48f9-aec3-780a96ed0b58
 SEQUENCE:0
-DTSTAMP:20260201T224817
+DTSTAMP:20260201T225839
 DTSTART;TZID=Europe/Kyiv:20260202T053000
 DTEND;TZID=Europe/Kyiv:20260202T123000
-SUMMARY:🔴 Стабілізаційне (Укренерго) ⟲ 00:34
-DESCRIPTION:Причина: Стабілізаційне відключе
- ння (Згідно графіку погодинних відключе
- нь)\nЧас початку – 19:00 01.02.2026\nОрієнтовний 
- час відновлення – до 02:00 02.02.2026
+SUMMARY:🔴 Стабілізаційне (Укренерго) ⟲ 00:48
+DESCRIPTION:Стабілізаційне відключення за гр
+ афіком.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT30M
 DESCRIPTION:🔴 Стабілізаційне (Укренерго) ⟲ 00:
- 34
+ 48
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:4aa042fd-646c-4c20-9ad5-3204eda370b7
+UID:5035beec-b483-4e8c-a0f9-097e22e4dc8b
 SEQUENCE:0
-DTSTAMP:20260201T224817
+DTSTAMP:20260201T225839
 DTSTART;TZID=Europe/Kyiv:20260202T160000
 DTEND;TZID=Europe/Kyiv:20260202T193000
-SUMMARY:🔴 Стабілізаційне (Укренерго) ⟲ 00:34
-DESCRIPTION:Причина: Стабілізаційне відключе
- ння (Згідно графіку погодинних відключе
- нь)\nЧас початку – 19:00 01.02.2026\nОрієнтовний 
- час відновлення – до 02:00 02.02.2026
+SUMMARY:🔴 Стабілізаційне (Укренерго) ⟲ 00:48
+DESCRIPTION:Стабілізаційне відключення за гр
+ афіком.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT30M
 DESCRIPTION:🔴 Стабілізаційне (Укренерго) ⟲ 00:
- 34
+ 48
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:4deed897-2f50-46fb-bc56-1d913619cb37
+UID:471d6bda-3bed-46a0-8a02-b0592a418173
 SEQUENCE:0
-DTSTAMP:20260201T224817
+DTSTAMP:20260201T225839
 DTSTART;TZID=Europe/Kyiv:20260202T123000
 DTEND;TZID=Europe/Kyiv:20260202T160000
-SUMMARY:🟢 Є струм ⟲ 00:34
+SUMMARY:🟢 Є струм ⟲ 00:48
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT30M
-DESCRIPTION:🟢 Є струм ⟲ 00:34
+DESCRIPTION:🟢 Є струм ⟲ 00:48
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:99de0194-b738-4d0e-9451-4bc22f0efd4b
+UID:86aa7b77-9330-4259-a700-07fe7047403e
 SEQUENCE:0
-DTSTAMP:20260201T224817
+DTSTAMP:20260201T225839
 DTSTART;TZID=Europe/Kyiv:20260202T193000
 DTEND;TZID=Europe/Kyiv:20260203T000000
-SUMMARY:🟢 Є струм ⟲ 00:34
-DESCRIPTION:Причина: Стабілізаційне відключе
- ння (Згідно графіку погодинних відключе
- нь)\nЧас початку – 19:00 01.02.2026\nОрієнтовний 
- час відновлення – до 02:00 02.02.2026
+SUMMARY:🟢 Є струм ⟲ 00:48
+DESCRIPTION:Стабілізаційне відключення за гр
+ афіком.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT30M
-DESCRIPTION:🟢 Є струм ⟲ 00:34
+DESCRIPTION:🟢 Є струм ⟲ 00:48
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:1f2c39a1-81fa-4359-9821-788d54e43c17
+UID:f9853e11-7841-4c6a-91ff-1fe32272bdd3
 SEQUENCE:0
-DTSTAMP:20260201T224817
+DTSTAMP:20260201T225839
 DTSTART;TZID=Europe/Kyiv:20260202T000000
 DTEND;TZID=Europe/Kyiv:20260202T053000
-SUMMARY:🟢 Є струм ⟲ 00:34
+SUMMARY:🟢 Є струм ⟲ 00:48
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT30M
-DESCRIPTION:🟢 Є струм ⟲ 00:34
+DESCRIPTION:🟢 Є струм ⟲ 00:48
 END:VALARM
 END:VEVENT
 END:VCALENDAR
