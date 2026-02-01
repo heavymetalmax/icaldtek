@@ -264,6 +264,31 @@ function generateCalendar(address, outageData, modalInfo) {
   // Сортуємо
   allEvents.sort((a, b) => a.start - b.start);
   
+  // Видаляємо накладання подій (об'єднуємо перетинаючіся)
+  const mergedEvents = [];
+  for (const event of allEvents) {
+    if (mergedEvents.length === 0) {
+      mergedEvents.push({ ...event });
+    } else {
+      const last = mergedEvents[mergedEvents.length - 1];
+      // Якщо події перетинаються або стикаються
+      if (event.start <= last.end) {
+        // Об'єднуємо: розширюємо кінець останньої події
+        if (event.end > last.end) {
+          last.end = event.end;
+        }
+        // Зберігаємо wasAdjusted якщо будь-яка з подій була скоригована
+        if (event.wasAdjusted) last.wasAdjusted = true;
+      } else {
+        mergedEvents.push({ ...event });
+      }
+    }
+  }
+  
+  // Замінюємо allEvents на об'єднані
+  allEvents.length = 0;
+  allEvents.push(...mergedEvents);
+  
   // Коригуємо час останнього відключення згідно end_date з API (якщо є)
   let wasAdjusted = false;
   let adjustedEndTime = null;
@@ -321,7 +346,15 @@ function generateCalendar(address, outageData, modalInfo) {
     // Після останнього відключення дня до 00:00 наступного дня
     const lastEvent = dayEvents[dayEvents.length - 1];
     const endOfDay = new Date(lastEvent.end.getFullYear(), lastEvent.end.getMonth(), lastEvent.end.getDate() + 1, 0, 0);
-    if (lastEvent.end < endOfDay) {
+    
+    // Не створюємо "Є струм" якщо це кінець відключення що перейшло з попереднього дня
+    // і в цей день немає власних подій (лише продовження)
+    const dayHasOwnStart = dayEvents.some(e => {
+      const eventDay = e.start.toDateString();
+      return eventDay === lastEvent.end.toDateString();
+    });
+    
+    if (lastEvent.end < endOfDay && dayHasOwnStart) {
       // Перевіряємо чи будь-яка подія в цьому дні була скоригована
       const hasAdjustedEvent = dayEvents.some(e => e.wasAdjusted === true);
       const adjustedSuffix = hasAdjustedEvent ? ' (скориговано)' : '';
