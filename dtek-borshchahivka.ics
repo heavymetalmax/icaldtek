@@ -6,50 +6,50 @@ X-WR-CALNAME:⚡️Борщагівка
 TIMEZONE-ID:Europe/Kyiv
 X-WR-TIMEZONE:Europe/Kyiv
 BEGIN:VEVENT
-UID:9b473888-b13c-49a2-8a53-181bfd493663
+UID:7f422413-91c0-45be-99cf-26f454846ff4
 SEQUENCE:0
-DTSTAMP:20260202T131756
+DTSTAMP:20260202T142814
 DTSTART;TZID=Europe/Kyiv:20260202T160000
-DTEND;TZID=Europe/Kyiv:20260202T193000
-SUMMARY:🔴 Немає струму ⟲ 15:08
-DESCRIPTION:Екстренне відключення за графіко
- м.
+DTEND;TZID=Europe/Kyiv:20260202T230000
+SUMMARY:🔴 Немає струму ⟲ 16:22
+DESCRIPTION:Стабілізаційне відключення за гр
+ афіком.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT30M
-DESCRIPTION:🔴 Немає струму ⟲ 15:08
+DESCRIPTION:🔴 Немає струму ⟲ 16:22
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:212c05f9-f77f-406c-8dac-da8673a309d4
+UID:f6d87854-95eb-4528-aa6b-18f01ddf9512
 SEQUENCE:0
-DTSTAMP:20260202T131756
+DTSTAMP:20260202T142814
 DTSTART;TZID=Europe/Kyiv:20260202T123000
 DTEND;TZID=Europe/Kyiv:20260202T160000
-SUMMARY:📢 Є струм (Увага\, діють екстрені ві
- дключення!) ⟲ 15:08
-DESCRIPTION:Електроенергія має бути в наявнос
- ті.
+SUMMARY:🟢 Є струм ⟲ 16:22
+DESCRIPTION:Причина: Стабілізаційне відключе
+ ння (Згідно графіку погодинних відключе
+ нь)\nЧас початку – 16:00 02.02.2026\nОрієнтовний 
+ час відновлення – до 23:00 02.02.2026
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT30M
-DESCRIPTION:📢 Є струм (Увага\, діють екстрені 
- відключення!) ⟲ 15:08
+DESCRIPTION:🟢 Є струм ⟲ 16:22
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:dc2ca90f-2e96-4556-97a6-14a739eed3c2
+UID:e78bd0b5-99c3-49b9-a169-df4c89069bfc
 SEQUENCE:0
-DTSTAMP:20260202T131756
-DTSTART;TZID=Europe/Kyiv:20260202T193000
+DTSTAMP:20260202T142814
+DTSTART;TZID=Europe/Kyiv:20260202T230000
 DTEND;TZID=Europe/Kyiv:20260203T000000
-SUMMARY:🟢 Є струм ⟲ 15:08
+SUMMARY:🟢 Є струм ⟲ 16:22
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT30M
-DESCRIPTION:🟢 Є струм ⟲ 15:08
+DESCRIPTION:🟢 Є струм ⟲ 16:22
 END:VALARM
 END:VEVENT
 END:VCALENDAR
