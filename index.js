@@ -400,7 +400,8 @@ function generateCalendar(address, outageData, modalInfo) {
   });
   
   // Додаємо всі події в календар з нагадуванням за 30 хв
-  const now = new Date();
+  // Використовуємо київський час для порівняння
+  const now = new Date(new Date().toLocaleString('en-US', { timeZone: 'Europe/Kyiv' }));
   [...allEvents, ...powerOnEvents].forEach(event => {
     // Пропускаємо минулі події (не додаємо в календар)
     if (event.end <= now) {
