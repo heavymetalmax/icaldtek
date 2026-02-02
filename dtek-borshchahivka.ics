@@ -6,75 +6,88 @@ X-WR-CALNAME:⚡️Борщагівка
 TIMEZONE-ID:Europe/Kyiv
 X-WR-TIMEZONE:Europe/Kyiv
 BEGIN:VEVENT
-UID:33414879-9798-49f6-bece-15a589582ab3
+UID:65434788-3827-4b63-a6c2-001571293da2
 SEQUENCE:0
-DTSTAMP:20260202T105919
+DTSTAMP:20260202T112153
 DTSTART;TZID=Europe/Kyiv:20260202T053000
 DTEND;TZID=Europe/Kyiv:20260202T123000
-SUMMARY:🔴 Екстрене (Укренерго) ⟲ 12:54
-DESCRIPTION:Екстрене відключення за графіком.
+SUMMARY:⚠️ Немає струму (Екстренне відключ
+ ення) ⟲ 13:11
+DESCRIPTION:Екстренне відключення за графіко
+ м.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT30M
-DESCRIPTION:🔴 Екстрене (Укренерго) ⟲ 12:54
+DESCRIPTION:⚠️ Немає струму (Екстренне відкл
+ ючення) ⟲ 13:11
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:c33cef79-1b88-4bbf-a442-ed448c38c9a4
+UID:7d083e8c-c427-49e6-b258-29045ff24f17
 SEQUENCE:0
-DTSTAMP:20260202T105919
+DTSTAMP:20260202T112153
 DTSTART;TZID=Europe/Kyiv:20260202T160000
 DTEND;TZID=Europe/Kyiv:20260202T193000
-SUMMARY:🔴 Екстрене (Укренерго) ⟲ 12:54
-DESCRIPTION:Екстрене відключення за графіком.
+SUMMARY:⚠️ Немає струму (Екстренне відключ
+ ення) ⟲ 13:11
+DESCRIPTION:Екстренне відключення за графіко
+ м.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT30M
-DESCRIPTION:🔴 Екстрене (Укренерго) ⟲ 12:54
+DESCRIPTION:⚠️ Немає струму (Екстренне відкл
+ ючення) ⟲ 13:11
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:8931df3e-aca1-4480-aed8-8b02b71cee50
+UID:c646c732-c378-4073-afc5-c046162b2951
 SEQUENCE:0
-DTSTAMP:20260202T105919
+DTSTAMP:20260202T112153
 DTSTART;TZID=Europe/Kyiv:20260202T123000
 DTEND;TZID=Europe/Kyiv:20260202T160000
-SUMMARY:🟢 Є струм ⟲ 12:54
+SUMMARY:📢 Є струм (Увага\, діють екстрені ві
+ дключення!) ⟲ 13:11
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT30M
-DESCRIPTION:🟢 Є струм ⟲ 12:54
+DESCRIPTION:📢 Є струм (Увага\, діють екстрені 
+ відключення!) ⟲ 13:11
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:0ab7beaf-83ab-46a7-8d7d-3cb180c4f912
+UID:7718dc27-bdf6-4356-ad8b-c2a260fe9991
 SEQUENCE:0
-DTSTAMP:20260202T105919
+DTSTAMP:20260202T112153
 DTSTART;TZID=Europe/Kyiv:20260202T193000
 DTEND;TZID=Europe/Kyiv:20260203T000000
-SUMMARY:🟢 Є струм ⟲ 12:54
-DESCRIPTION:Екстрене відключення за графіком.
-BEGIN:VALARM
-ACTION:DISPLAY
-TRIGGER:-PT30M
-DESCRIPTION:🟢 Є струм ⟲ 12:54
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:151d1e09-5bc9-42de-9b7a-3debbe244425
-SEQUENCE:0
-DTSTAMP:20260202T105919
-DTSTART;TZID=Europe/Kyiv:20260202T000000
-DTEND;TZID=Europe/Kyiv:20260202T053000
-SUMMARY:🟢 Є струм ⟲ 12:54
+SUMMARY:📢 Є струм (Увага\, діють екстрені ві
+ дключення!) ⟲ 13:11
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT30M
-DESCRIPTION:🟢 Є струм ⟲ 12:54
+DESCRIPTION:📢 Є струм (Увага\, діють екстрені 
+ відключення!) ⟲ 13:11
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:b9c4cd92-5d2c-4930-957e-a357ff93bfcd
+SEQUENCE:0
+DTSTAMP:20260202T112153
+DTSTART;TZID=Europe/Kyiv:20260202T000000
+DTEND;TZID=Europe/Kyiv:20260202T053000
+SUMMARY:📢 Є струм (Увага\, діють екстрені ві
+ дключення!) ⟲ 13:11
+DESCRIPTION:Електроенергія має бути в наявнос
+ ті.
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT30M
+DESCRIPTION:📢 Є струм (Увага\, діють екстрені 
+ відключення!) ⟲ 13:11
 END:VALARM
 END:VEVENT
 END:VCALENDAR
