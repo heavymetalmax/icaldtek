@@ -6,50 +6,48 @@ X-WR-CALNAME:⚡️Гора
 TIMEZONE-ID:Europe/Kyiv
 X-WR-TIMEZONE:Europe/Kyiv
 BEGIN:VEVENT
-UID:03f1bf4a-e572-42ac-b736-9c69b45aa544
+UID:a780266a-0a11-4246-9319-95dea3badd89
 SEQUENCE:0
-DTSTAMP:20260202T131755
+DTSTAMP:20260202T134606
 DTSTART;TZID=Europe/Kyiv:20260202T160000
 DTEND;TZID=Europe/Kyiv:20260202T193000
-SUMMARY:🔴 Немає струму ⟲ 15:08
-DESCRIPTION:Екстренне відключення за графіко
- м.
+SUMMARY:🔴 Немає струму ⟲ 15:38
+DESCRIPTION:Стабілізаційне відключення за гр
+ афіком.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT30M
-DESCRIPTION:🔴 Немає струму ⟲ 15:08
+DESCRIPTION:🔴 Немає струму ⟲ 15:38
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:53147d73-9c7f-4999-b5db-17abed208d07
+UID:ecd7637b-fc37-4c1e-acf1-e6d4e7e1e158
 SEQUENCE:0
-DTSTAMP:20260202T131755
+DTSTAMP:20260202T134606
 DTSTART;TZID=Europe/Kyiv:20260202T123000
 DTEND;TZID=Europe/Kyiv:20260202T160000
-SUMMARY:📢 Є струм (Увага\, діють екстрені ві
- дключення!) ⟲ 15:08
+SUMMARY:🟢 Є струм ⟲ 15:38
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT30M
-DESCRIPTION:📢 Є струм (Увага\, діють екстрені 
- відключення!) ⟲ 15:08
+DESCRIPTION:🟢 Є струм ⟲ 15:38
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:20eceedd-000c-41bb-9222-deec6f7075d5
+UID:6e614657-9ee9-4774-99ab-0face9b5f604
 SEQUENCE:0
-DTSTAMP:20260202T131755
+DTSTAMP:20260202T134606
 DTSTART;TZID=Europe/Kyiv:20260202T193000
 DTEND;TZID=Europe/Kyiv:20260203T000000
-SUMMARY:🟢 Є струм ⟲ 15:08
+SUMMARY:🟢 Є струм ⟲ 15:38
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT30M
-DESCRIPTION:🟢 Є струм ⟲ 15:08
+DESCRIPTION:🟢 Є струм ⟲ 15:38
 END:VALARM
 END:VEVENT
 END:VCALENDAR
