@@ -402,16 +402,32 @@ function generateCalendar(address, outageData, modalInfo) {
   // Додаємо всі події в календар з нагадуванням за 30 хв
   const now = new Date();
   [...allEvents, ...powerOnEvents].forEach(event => {
-    // Додаємо помітку (скориговано) до summary скоригованого відключення
-    let eventSummary = event.wasAdjusted ? event.summary + ' (скориговано)' : event.summary;
+    // Пропускаємо минулі події (не додаємо в календар)
+    if (event.end <= now) {
+      return;
+    }
     
-    // Визначаємо чи подія актуальна (зараз активна)
+    // Визначаємо чи подія актуальна (зараз активна) чи майбутня
     const isCurrentEvent = event.start <= now && event.end > now;
+    const isFutureEvent = event.start > now;
     
-    // Опис: інфо-вікно тільки для актуальних подій
-    let eventDescription = event.description;
-    if (isCurrentEvent && infoBlockDescription) {
-      eventDescription = infoBlockDescription;
+    // Для актуальних подій - повний формат з деталями
+    // Для майбутніх - простий формат без деталей
+    let eventSummary;
+    let eventDescription;
+    
+    if (isCurrentEvent) {
+      // Актуальна подія - повний формат
+      eventSummary = event.wasAdjusted ? event.summary + ' (скориговано)' : event.summary;
+      eventDescription = infoBlockDescription || event.description;
+    } else {
+      // Майбутня подія - простий формат
+      if (event.isOutage) {
+        eventSummary = '🔴 Немає струму' + updateTimeStr;
+      } else {
+        eventSummary = '🟢 Є струм' + updateTimeStr;
+      }
+      eventDescription = event.description;
     }
     
     cal.createEvent({
