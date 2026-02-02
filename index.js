@@ -198,17 +198,25 @@ function generateCalendar(address, outageData, modalInfo) {
   
   const updateTimeStr = outageData.updateTime ? ' ⟲ ' + outageData.updateTime : '';
   
-  // Визначаємо тип відключення
-  let outageType = 'Стабілізаційне';
+  // Визначаємо тип відключення з емодзі
+  let outageReason = 'Стабілізаційне відключення';
+  let outageEmoji = '🔴';
   const effectiveType = modalInfo.modalAlertType || outageData.infoBlockType;
-  if (effectiveType === 'emergency') outageType = 'Екстрене';
-  else if (effectiveType === 'accident') outageType = 'Аварійне';
+  if (effectiveType === 'emergency') {
+    outageReason = 'Екстренне відключення';
+    outageEmoji = '⚠️';
+  } else if (effectiveType === 'accident') {
+    outageReason = 'Аварійне відключення';
+    outageEmoji = '‼️';
+  }
   
-  // Додаємо суфікс Укренерго якщо є
-  const suffix = modalInfo.isUkrEnergoAlert ? ' (Укренерго)' : '';
+  // Чи діють екстрені відключення
+  const isEmergency = effectiveType === 'emergency';
   
-  // Опис події з інфо-блоку
-  const eventDescription = outageData.infoBlockText || (outageType + ' відключення за графіком.');
+  // Опис події з інфо-блоку (для актуальних подій)
+  const infoBlockDescription = outageData.infoBlockText;
+  const defaultDescription = 'Електроенергія має бути в наявності.';
+  const defaultOutageDescription = outageReason + ' за графіком.';
   
   const allEvents = [];
   
@@ -255,8 +263,9 @@ function generateCalendar(address, outageData, modalInfo) {
       allEvents.push({
         start: new Date(year, month, day, startH, startM),
         end: new Date(year, month, day, endH, endM),
-        summary: '🔴 ' + outageType + suffix + updateTimeStr,
-        description: eventDescription
+        summary: outageEmoji + ' Немає струму (' + outageReason + ')' + updateTimeStr,
+        description: defaultOutageDescription,
+        isOutage: true
       });
     }
   });
@@ -289,30 +298,35 @@ function generateCalendar(address, outageData, modalInfo) {
   allEvents.length = 0;
   allEvents.push(...mergedEvents);
   
-  // Коригуємо час останнього відключення згідно end_date з API (якщо є)
+  // Коригуємо час відключення згідно start_date/end_date з API (якщо є)
   let wasAdjusted = false;
   let adjustedEndTime = null;
-  if (outageData.currentOutage?.endDate && allEvents.length > 0) {
-    // Парсимо end_date формату "16:30 01.02.2026"
-    const match = outageData.currentOutage.endDate.match(/(\d{1,2}):(\d{2})\s+(\d{2})\.(\d{2})\.(\d{4})/);
-    if (match) {
-      const [, hours, minutes, day, month, year] = match;
-      const apiEndTime = new Date(parseInt(year), parseInt(month) - 1, parseInt(day), parseInt(hours), parseInt(minutes));
-      
-      // Знаходимо поточне відключення (яке зараз активне або найближче)
-      const now = new Date();
-      for (let i = allEvents.length - 1; i >= 0; i--) {
-        const event = allEvents[i];
-        // Якщо подія ще не закінчилась і API каже що закінчиться пізніше
-        if (event.end <= now || (event.start <= now && event.end < apiEndTime)) {
-          if (apiEndTime > event.end) {
-            console.log('   📝 Коригуємо час: ' + event.end.toLocaleTimeString('uk-UA', {hour: '2-digit', minute: '2-digit'}) + ' → ' + apiEndTime.toLocaleTimeString('uk-UA', {hour: '2-digit', minute: '2-digit'}));
-            event.end = apiEndTime;
-            event.wasAdjusted = true; // Позначаємо подію як скориговану
-            wasAdjusted = true;
-            adjustedEndTime = apiEndTime;
-          }
-          break;
+  if (outageData.currentOutage?.startDate && outageData.currentOutage?.endDate && allEvents.length > 0) {
+    // Парсимо start_date і end_date формату "16:30 01.02.2026"
+    const parseDateTime = (str) => {
+      const match = str.match(/(\d{1,2}):(\d{2})\s+(\d{2})\.(\d{2})\.(\d{4})/);
+      if (match) {
+        const [, hours, minutes, day, month, year] = match;
+        return new Date(parseInt(year), parseInt(month) - 1, parseInt(day), parseInt(hours), parseInt(minutes));
+      }
+      return null;
+    };
+    
+    const apiStartTime = parseDateTime(outageData.currentOutage.startDate);
+    const apiEndTime = parseDateTime(outageData.currentOutage.endDate);
+    
+    if (apiStartTime && apiEndTime) {
+      // Шукаємо подію, яка перетинається з часовим проміжком з API
+      for (const event of allEvents) {
+        // Подія перетинається якщо: event.start < apiEndTime AND event.end > apiStartTime
+        const overlaps = event.start < apiEndTime && event.end > apiStartTime;
+        if (overlaps && apiEndTime > event.end) {
+          console.log('   📝 Коригуємо час: ' + event.end.toLocaleTimeString('uk-UA', {hour: '2-digit', minute: '2-digit'}) + ' → ' + apiEndTime.toLocaleTimeString('uk-UA', {hour: '2-digit', minute: '2-digit'}));
+          event.end = apiEndTime;
+          event.wasAdjusted = true; // Позначаємо подію як скориговану
+          wasAdjusted = true;
+          adjustedEndTime = apiEndTime;
+          break; // Коригуємо лише першу відповідну подію
         }
       }
     }
@@ -334,11 +348,14 @@ function generateCalendar(address, outageData, modalInfo) {
     // Між відключеннями
     for (let i = 0; i < dayEvents.length - 1; i++) {
       if (dayEvents[i + 1].start > dayEvents[i].end) {
+        const emoji = isEmergency ? '📢' : '🟢';
+        const emergencyWarning = isEmergency ? ' (Увага, діють екстрені відключення!)' : '';
         powerOnEvents.push({
           start: dayEvents[i].end,
           end: dayEvents[i + 1].start,
-          summary: '🟢 Є струм' + updateTimeStr,
-          description: 'Електроенергія має бути в наявності.'
+          summary: emoji + ' Є струм' + emergencyWarning + updateTimeStr,
+          description: defaultDescription,
+          isOutage: false
         });
       }
     }
@@ -355,14 +372,14 @@ function generateCalendar(address, outageData, modalInfo) {
     });
     
     if (lastEvent.end < endOfDay && dayHasOwnStart) {
-      // Перевіряємо чи будь-яка подія в цьому дні була скоригована
-      const hasAdjustedEvent = dayEvents.some(e => e.wasAdjusted === true);
-      const adjustedSuffix = hasAdjustedEvent ? ' (скориговано)' : '';
+      const emoji = isEmergency ? '📢' : '🟢';
+      const emergencyWarning = isEmergency ? ' (Увага, діють екстрені відключення!)' : '';
       powerOnEvents.push({
         start: lastEvent.end,
         end: endOfDay,
-        summary: '🟢 Є струм' + updateTimeStr + adjustedSuffix,
-        description: eventDescription
+        summary: emoji + ' Є струм' + emergencyWarning + updateTimeStr,
+        description: defaultDescription,
+        isOutage: false
       });
     }
     
@@ -370,19 +387,38 @@ function generateCalendar(address, outageData, modalInfo) {
     const firstEvent = dayEvents[0];
     const startOfDay = new Date(firstEvent.start.getFullYear(), firstEvent.start.getMonth(), firstEvent.start.getDate(), 0, 0);
     if (firstEvent.start > startOfDay) {
+      const emoji = isEmergency ? '📢' : '🟢';
+      const emergencyWarning = isEmergency ? ' (Увага, діють екстрені відключення!)' : '';
       powerOnEvents.push({
         start: startOfDay,
         end: firstEvent.start,
-        summary: '🟢 Є струм' + updateTimeStr,
-        description: 'Електроенергія має бути в наявності.'
+        summary: emoji + ' Є струм' + emergencyWarning + updateTimeStr,
+        description: defaultDescription,
+        isOutage: false
       });
     }
   });
   
   // Додаємо всі події в календар з нагадуванням за 30 хв
+  const now = new Date();
   [...allEvents, ...powerOnEvents].forEach(event => {
+    // Додаємо помітку (скориговано) до summary скоригованого відключення
+    let eventSummary = event.wasAdjusted ? event.summary + ' (скориговано)' : event.summary;
+    
+    // Визначаємо чи подія актуальна (зараз активна)
+    const isCurrentEvent = event.start <= now && event.end > now;
+    
+    // Опис: інфо-вікно тільки для актуальних подій
+    let eventDescription = event.description;
+    if (isCurrentEvent && infoBlockDescription) {
+      eventDescription = infoBlockDescription;
+    }
+    
     cal.createEvent({
-      ...event,
+      start: event.start,
+      end: event.end,
+      summary: eventSummary,
+      description: eventDescription,
       timezone: 'Europe/Kyiv',
       alarms: [{ type: 'display', trigger: 30 * 60 }]
     });
