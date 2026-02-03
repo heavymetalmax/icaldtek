@@ -6,13 +6,13 @@ X-WR-CALNAME:⚡️Борщагівка
 TIMEZONE-ID:Europe/Kyiv
 X-WR-TIMEZONE:Europe/Kyiv
 BEGIN:VEVENT
-UID:fe83df79-f6d8-4aee-b247-870eb17d28b0
+UID:0f5d7f3c-f143-4d92-b89f-e72980ad20f7
 SEQUENCE:0
-DTSTAMP:20260203T143738
+DTSTAMP:20260203T154701
 DTSTART;TZID=Europe/Kyiv:20260203T130000
 DTEND;TZID=Europe/Kyiv:20260203T200000
 SUMMARY:🔴 Немає струму (📅 Стабілізаційне в
- ідключення) ⟲ 16:37
+ ідключення) ⟲ 17:40
 DESCRIPTION:Причина: Стабілізаційне відключе
  ння (Згідно графіку погодинних відключе
  нь)\nЧас початку – 12:55 03.02.2026\nОрієнтовний 
@@ -21,37 +21,37 @@ BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT30M
 DESCRIPTION:🔴 Немає струму (📅 Стабілізаційн
- е відключення) ⟲ 16:37
+ е відключення) ⟲ 17:40
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:a70badd7-5968-4a27-8725-b84fb846be88
+UID:295ca5c8-70e3-4f80-84e1-837f3c2961f1
 SEQUENCE:0
-DTSTAMP:20260203T143738
+DTSTAMP:20260203T154701
 DTSTART;TZID=Europe/Kyiv:20260203T233000
 DTEND;TZID=Europe/Kyiv:20260204T000000
-SUMMARY:🔴 Немає струму ⟲ 16:37
+SUMMARY:🔴 Немає струму ⟲ 17:40
 DESCRIPTION:📅 Стабілізаційне відключення за 
  графіком.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT30M
-DESCRIPTION:🔴 Немає струму ⟲ 16:37
+DESCRIPTION:🔴 Немає струму ⟲ 17:40
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:56894183-4148-4e9d-8ba4-ba8d43249631
+UID:6f291e54-7bbd-457e-bd63-7a52e5667287
 SEQUENCE:0
-DTSTAMP:20260203T143738
+DTSTAMP:20260203T154701
 DTSTART;TZID=Europe/Kyiv:20260203T200000
 DTEND;TZID=Europe/Kyiv:20260203T233000
-SUMMARY:🟢 Є струм ⟲ 16:37
+SUMMARY:🟢 Є струм ⟲ 17:40
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT30M
-DESCRIPTION:🟢 Є струм ⟲ 16:37
+DESCRIPTION:🟢 Є струм ⟲ 17:40
 END:VALARM
 END:VEVENT
 END:VCALENDAR
