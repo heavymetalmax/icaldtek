@@ -6,123 +6,123 @@ X-WR-CALNAME:⚡️Гора
 TIMEZONE-ID:Europe/Kyiv
 X-WR-TIMEZONE:Europe/Kyiv
 BEGIN:VEVENT
-UID:9b6268da-656c-4f5a-9597-2d3d6ec62cc8
+UID:e4ca74c7-3829-4ac4-a29a-b414774ba684
 SEQUENCE:0
-DTSTAMP:20260203T192852
+DTSTAMP:20260203T194907
 DTSTART;TZID=Europe/Kyiv:20260203T233000
 DTEND;TZID=Europe/Kyiv:20260204T030000
-SUMMARY:🔴 Немає струму ⟲ 21:23
+SUMMARY:🔴 Немає струму ⟲ 21:36
 DESCRIPTION:📅 Стабілізаційне відключення за 
  графіком.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT30M
-DESCRIPTION:🔴 Немає струму ⟲ 21:23
+DESCRIPTION:🔴 Немає струму ⟲ 21:36
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:a0252749-4810-431c-afb9-b4e7a90864c5
+UID:9d1a6e80-4598-4606-aad1-d5c40d04313e
 SEQUENCE:0
-DTSTAMP:20260203T192852
+DTSTAMP:20260203T194907
 DTSTART;TZID=Europe/Kyiv:20260204T060000
 DTEND;TZID=Europe/Kyiv:20260204T063000
-SUMMARY:🔴 Немає струму ⟲ 21:23
+SUMMARY:🔴 Немає струму ⟲ 21:36
 DESCRIPTION:📅 Стабілізаційне відключення за 
  графіком.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT30M
-DESCRIPTION:🔴 Немає струму ⟲ 21:23
+DESCRIPTION:🔴 Немає струму ⟲ 21:36
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:ea281ffb-de76-4885-bcf5-076fb7105c79
+UID:beedcabd-9712-45ee-824d-d230ccf44ca3
 SEQUENCE:0
-DTSTAMP:20260203T192852
+DTSTAMP:20260203T194907
 DTSTART;TZID=Europe/Kyiv:20260204T100000
 DTEND;TZID=Europe/Kyiv:20260204T170000
-SUMMARY:🔴 Немає струму ⟲ 21:23
+SUMMARY:🔴 Немає струму ⟲ 21:36
 DESCRIPTION:📅 Стабілізаційне відключення за 
  графіком.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT30M
-DESCRIPTION:🔴 Немає струму ⟲ 21:23
+DESCRIPTION:🔴 Немає струму ⟲ 21:36
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:c5b493db-6618-40e2-ae1b-6a5523d7346a
+UID:48df4c46-fe60-4a5c-b766-a7ba860f5161
 SEQUENCE:0
-DTSTAMP:20260203T192852
+DTSTAMP:20260203T194907
 DTSTART;TZID=Europe/Kyiv:20260204T203000
 DTEND;TZID=Europe/Kyiv:20260205T000000
-SUMMARY:🔴 Немає струму ⟲ 21:23
+SUMMARY:🔴 Немає струму ⟲ 21:36
 DESCRIPTION:📅 Стабілізаційне відключення за 
  графіком.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT30M
-DESCRIPTION:🔴 Немає струму ⟲ 21:23
+DESCRIPTION:🔴 Немає струму ⟲ 21:36
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:41d562af-6838-4ea2-be4f-15b8ce6101c2
+UID:e2b09486-dd70-452a-8318-56400830e893
 SEQUENCE:0
-DTSTAMP:20260203T192852
+DTSTAMP:20260203T194907
 DTSTART;TZID=Europe/Kyiv:20260203T200000
 DTEND;TZID=Europe/Kyiv:20260203T233000
-SUMMARY:🟢 Є струм ⟲ 21:23
+SUMMARY:🟢 Є струм ⟲ 21:36
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT30M
-DESCRIPTION:🟢 Є струм ⟲ 21:23
+DESCRIPTION:🟢 Є струм ⟲ 21:36
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:6edaa72e-85de-419e-bed3-5728a4e64baf
+UID:13a73667-0363-4082-8188-613aa93d6446
 SEQUENCE:0
-DTSTAMP:20260203T192852
+DTSTAMP:20260203T194907
 DTSTART;TZID=Europe/Kyiv:20260204T063000
 DTEND;TZID=Europe/Kyiv:20260204T100000
-SUMMARY:🟢 Є струм ⟲ 21:23
+SUMMARY:🟢 Є струм ⟲ 21:36
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT30M
-DESCRIPTION:🟢 Є струм ⟲ 21:23
+DESCRIPTION:🟢 Є струм ⟲ 21:36
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:f93702f9-709e-44dc-9954-0e3b1b199f12
+UID:b92fb7ae-f971-4174-b68d-f15f6b520919
 SEQUENCE:0
-DTSTAMP:20260203T192852
+DTSTAMP:20260203T194907
 DTSTART;TZID=Europe/Kyiv:20260204T170000
 DTEND;TZID=Europe/Kyiv:20260204T203000
-SUMMARY:🟢 Є струм ⟲ 21:23
+SUMMARY:🟢 Є струм ⟲ 21:36
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT30M
-DESCRIPTION:🟢 Є струм ⟲ 21:23
+DESCRIPTION:🟢 Є струм ⟲ 21:36
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:5f6d2089-c76c-4b65-b35f-4ab4251d4fe5
+UID:6e9404ca-41d1-4f9c-b6ac-46eefd685eed
 SEQUENCE:0
-DTSTAMP:20260203T192852
+DTSTAMP:20260203T194907
 DTSTART;TZID=Europe/Kyiv:20260204T000000
 DTEND;TZID=Europe/Kyiv:20260204T060000
-SUMMARY:🟢 Є струм ⟲ 21:23
+SUMMARY:🟢 Є струм ⟲ 21:36
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT30M
-DESCRIPTION:🟢 Є струм ⟲ 21:23
+DESCRIPTION:🟢 Є струм ⟲ 21:36
 END:VALARM
 END:VEVENT
 END:VCALENDAR
