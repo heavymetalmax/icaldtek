@@ -6,9 +6,9 @@ X-WR-CALNAME:⚡️Гора
 TIMEZONE-ID:Europe/Kyiv
 X-WR-TIMEZONE:Europe/Kyiv
 BEGIN:VEVENT
-UID:e828faa8-7761-48be-9bc7-0b8a668efb3b
+UID:3a1be854-47b8-4808-a867-47f47725a520
 SEQUENCE:0
-DTSTAMP:20260203T100122
+DTSTAMP:20260203T100328
 DTSTART;TZID=Europe/Kyiv:20260203T130000
 DTEND;TZID=Europe/Kyiv:20260203T163000
 SUMMARY:🔴 Немає струму (⚠️ Увага\, діють ек
@@ -23,9 +23,9 @@ DESCRIPTION:🔴 Немає струму (⚠️ Увага\, діють
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:7dac5dc3-b603-4a5d-82f9-77d371f2a7aa
+UID:619c8520-472f-4724-ae05-5cfcac5c59c5
 SEQUENCE:0
-DTSTAMP:20260203T100122
+DTSTAMP:20260203T100328
 DTSTART;TZID=Europe/Kyiv:20260203T233000
 DTEND;TZID=Europe/Kyiv:20260204T000000
 SUMMARY:🔴 Немає струму (⚠️ Увага\, діють ек
@@ -40,9 +40,9 @@ DESCRIPTION:🔴 Немає струму (⚠️ Увага\, діють
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:9e78eaec-76d2-46a5-8246-92cd56bee1d0
+UID:5ee039cb-d125-41f5-a1bf-48f118693e98
 SEQUENCE:0
-DTSTAMP:20260203T100122
+DTSTAMP:20260203T100328
 DTSTART;TZID=Europe/Kyiv:20260203T093000
 DTEND;TZID=Europe/Kyiv:20260203T130000
 SUMMARY:🟢 Є струм (⚠️ Увага\, діють екстрен
@@ -57,9 +57,9 @@ DESCRIPTION:🟢 Є струм (⚠️ Увага\, діють екстр
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:876a00d6-3498-4b56-ba42-0ca2a4552da2
+UID:a455a9ce-ad78-436a-a1a8-423832bee160
 SEQUENCE:0
-DTSTAMP:20260203T100122
+DTSTAMP:20260203T100328
 DTSTART;TZID=Europe/Kyiv:20260203T163000
 DTEND;TZID=Europe/Kyiv:20260203T233000
 SUMMARY:🟢 Є струм (⚠️ Увага\, діють екстрен
