@@ -6,9 +6,9 @@ X-WR-CALNAME:⚡️Борщагівка
 TIMEZONE-ID:Europe/Kyiv
 X-WR-TIMEZONE:Europe/Kyiv
 BEGIN:VEVENT
-UID:a8fb0e35-040b-47a1-9cca-2af959c2f8eb
+UID:852b240a-b439-486a-9078-c970a2675804
 SEQUENCE:0
-DTSTAMP:20260203T100043
+DTSTAMP:20260203T100123
 DTSTART;TZID=Europe/Kyiv:20260203T130000
 DTEND;TZID=Europe/Kyiv:20260203T163000
 SUMMARY:🔴 Немає струму (⚠️ Увага\, діють ек
@@ -23,9 +23,9 @@ DESCRIPTION:🔴 Немає струму (⚠️ Увага\, діють
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:faf9930d-0618-4a14-9d85-06c16ae221bf
+UID:0932fda8-f358-4556-8915-0a4894369459
 SEQUENCE:0
-DTSTAMP:20260203T100043
+DTSTAMP:20260203T100123
 DTSTART;TZID=Europe/Kyiv:20260203T233000
 DTEND;TZID=Europe/Kyiv:20260204T000000
 SUMMARY:🔴 Немає струму (⚠️ Увага\, діють ек
@@ -40,9 +40,9 @@ DESCRIPTION:🔴 Немає струму (⚠️ Увага\, діють
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:5be63f37-1962-4482-9970-e14bc20910a1
+UID:22354cf2-bbba-4db1-97ec-71194fac503e
 SEQUENCE:0
-DTSTAMP:20260203T100043
+DTSTAMP:20260203T100123
 DTSTART;TZID=Europe/Kyiv:20260203T093000
 DTEND;TZID=Europe/Kyiv:20260203T130000
 SUMMARY:🟢 Є струм (⚠️ Увага\, діють екстрен
@@ -57,9 +57,9 @@ DESCRIPTION:🟢 Є струм (⚠️ Увага\, діють екстр
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:85e6ac47-d66c-44b2-b51d-333674424d51
+UID:dd69573d-a8bb-4076-8acc-a2bfb60b37a6
 SEQUENCE:0
-DTSTAMP:20260203T100043
+DTSTAMP:20260203T100123
 DTSTART;TZID=Europe/Kyiv:20260203T163000
 DTEND;TZID=Europe/Kyiv:20260203T233000
 SUMMARY:🟢 Є струм (⚠️ Увага\, діють екстрен
