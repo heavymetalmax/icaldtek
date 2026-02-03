@@ -6,63 +6,63 @@ X-WR-CALNAME:⚡️Гора
 TIMEZONE-ID:Europe/Kyiv
 X-WR-TIMEZONE:Europe/Kyiv
 BEGIN:VEVENT
-UID:e6a741d2-c1c3-4139-b93d-e71d0acb4186
+UID:a98a6d34-7dcf-46ca-b256-9b9a10a7e035
 SEQUENCE:0
-DTSTAMP:20260203T093327
+DTSTAMP:20260203T095712
 DTSTART;TZID=Europe/Kyiv:20260203T130000
 DTEND;TZID=Europe/Kyiv:20260203T163000
-SUMMARY:🔴 Немає струму ⟲ 11:21
+SUMMARY:🔴 Немає струму ⟲ 11:39
 DESCRIPTION:📅 Стабілізаційне відключення за 
  графіком.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT30M
-DESCRIPTION:🔴 Немає струму ⟲ 11:21
+DESCRIPTION:🔴 Немає струму ⟲ 11:39
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:e06f421d-dc66-49db-88da-75b8afd425d6
+UID:b8d2fa91-8f81-4a2c-b1d7-1cd512a85738
 SEQUENCE:0
-DTSTAMP:20260203T093327
+DTSTAMP:20260203T095712
 DTSTART;TZID=Europe/Kyiv:20260203T233000
 DTEND;TZID=Europe/Kyiv:20260204T000000
-SUMMARY:🔴 Немає струму ⟲ 11:21
+SUMMARY:🔴 Немає струму ⟲ 11:39
 DESCRIPTION:📅 Стабілізаційне відключення за 
  графіком.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT30M
-DESCRIPTION:🔴 Немає струму ⟲ 11:21
+DESCRIPTION:🔴 Немає струму ⟲ 11:39
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:fd333305-bde7-46f2-9518-3a3a10a8e3b6
+UID:4c18d24e-a837-4eee-93c8-89ec6b959596
 SEQUENCE:0
-DTSTAMP:20260203T093327
+DTSTAMP:20260203T095712
 DTSTART;TZID=Europe/Kyiv:20260203T093000
 DTEND;TZID=Europe/Kyiv:20260203T130000
-SUMMARY:🟢 Є струм ⟲ 11:21
+SUMMARY:🟢 Є струм ⟲ 11:39
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT30M
-DESCRIPTION:🟢 Є струм ⟲ 11:21
+DESCRIPTION:🟢 Є струм ⟲ 11:39
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:43ace898-3b64-42da-ab72-972162455fd0
+UID:ffa20439-3d7c-42cb-813c-4f4b0bd43301
 SEQUENCE:0
-DTSTAMP:20260203T093327
+DTSTAMP:20260203T095712
 DTSTART;TZID=Europe/Kyiv:20260203T163000
 DTEND;TZID=Europe/Kyiv:20260203T233000
-SUMMARY:🟢 Є струм ⟲ 11:21
+SUMMARY:🟢 Є струм ⟲ 11:39
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT30M
-DESCRIPTION:🟢 Є струм ⟲ 11:21
+DESCRIPTION:🟢 Є струм ⟲ 11:39
 END:VALARM
 END:VEVENT
 END:VCALENDAR
