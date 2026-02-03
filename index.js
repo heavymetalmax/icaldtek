@@ -464,10 +464,18 @@ function generateCalendar(address, outageData, modalInfo) {
     );
     
     if (alertText) {
-      console.log('📢 Попап:', alertText.substring(0, 60) + '...');
+      console.log('📢 Попап:', alertText.substring(0, 120) + '...');
       if (alertText.toLowerCase().includes('укренерго')) isUkrEnergoAlert = true;
-      if (alertText.toLowerCase().includes('екстрен')) modalAlertType = 'emergency';
-      else if (alertText.toLowerCase().includes('стабілізац')) modalAlertType = 'stabilization';
+      // Визначаємо тип за ключовими фразами (нормалізуємо пробіли та переноси)
+      const lowerText = alertText.toLowerCase().replace(/\s+/g, ' ');
+      if (lowerText.includes('стабілізаційні відключення') || lowerText.includes('стабілізаційні графіки')) {
+        modalAlertType = 'stabilization';
+      } else if (lowerText.includes('екстрені відключення') || lowerText.includes('екстренні відключення')) {
+        modalAlertType = 'emergency';
+      } else if (lowerText.includes('аварійн')) {
+        modalAlertType = 'accident';
+      }
+      console.log('   📋 Тип попапу:', modalAlertType || 'не визначено');
     }
 
     const modalInfo = { isUkrEnergoAlert, modalAlertType };
