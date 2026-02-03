@@ -6,24 +6,26 @@ X-WR-CALNAME:⚡️Борщагівка
 TIMEZONE-ID:Europe/Kyiv
 X-WR-TIMEZONE:Europe/Kyiv
 BEGIN:VEVENT
-UID:411b15b8-35e0-4350-8d3b-920b2f0dfeb1
+UID:272ad211-a3f1-4fb7-9db6-a68331ace501
 SEQUENCE:0
-DTSTAMP:20260203T105819
+DTSTAMP:20260203T111904
 DTSTART;TZID=Europe/Kyiv:20260203T130000
 DTEND;TZID=Europe/Kyiv:20260203T163000
-SUMMARY:🔴 Немає струму ⟲ 11:39
+SUMMARY:🔴 Немає струму (📅 Стабілізаційне в
+ ідключення) ⟲ 11:39
 DESCRIPTION:📅 Стабілізаційне відключення за 
  графіком.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT30M
-DESCRIPTION:🔴 Немає струму ⟲ 11:39
+DESCRIPTION:🔴 Немає струму (📅 Стабілізаційн
+ е відключення) ⟲ 11:39
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:00b0e53a-ba80-4048-bd3e-e15865d47ab2
+UID:7d12d1be-c4e3-45a9-b273-3e6a9e8eb3c3
 SEQUENCE:0
-DTSTAMP:20260203T105819
+DTSTAMP:20260203T111904
 DTSTART;TZID=Europe/Kyiv:20260203T233000
 DTEND;TZID=Europe/Kyiv:20260204T000000
 SUMMARY:🔴 Немає струму ⟲ 11:39
@@ -36,24 +38,9 @@ DESCRIPTION:🔴 Немає струму ⟲ 11:39
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:6f1fda7f-a36c-4ca9-a35a-4898a4748825
+UID:ff52e9ba-2d8b-4ee4-bf68-10e6e72b6f1e
 SEQUENCE:0
-DTSTAMP:20260203T105819
-DTSTART;TZID=Europe/Kyiv:20260203T093000
-DTEND;TZID=Europe/Kyiv:20260203T130000
-SUMMARY:🟢 Є струм ⟲ 11:39
-DESCRIPTION:Електроенергія має бути в наявнос
- ті.
-BEGIN:VALARM
-ACTION:DISPLAY
-TRIGGER:-PT30M
-DESCRIPTION:🟢 Є струм ⟲ 11:39
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:cd6829ee-625c-470c-a892-0d4c44789d84
-SEQUENCE:0
-DTSTAMP:20260203T105819
+DTSTAMP:20260203T111904
 DTSTART;TZID=Europe/Kyiv:20260203T163000
 DTEND;TZID=Europe/Kyiv:20260203T233000
 SUMMARY:🟢 Є струм ⟲ 11:39
