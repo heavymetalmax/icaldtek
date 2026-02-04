@@ -6,63 +6,63 @@ X-WR-CALNAME:⚡️Борщагівка
 TIMEZONE-ID:Europe/Kyiv
 X-WR-TIMEZONE:Europe/Kyiv
 BEGIN:VEVENT
-UID:77957106-234e-4697-8a0a-4ca4344b9424
+UID:1949ec95-72dc-466e-a725-85ce30419119
 SEQUENCE:0
-DTSTAMP:20260204T045404
+DTSTAMP:20260204T052052
 DTSTART;TZID=Europe/Kyiv:20260204T100000
 DTEND;TZID=Europe/Kyiv:20260204T170000
-SUMMARY:🔴 Немає струму ⟲ 06:50
+SUMMARY:🔴 Немає струму ⟲ 07:06
 DESCRIPTION:📅 Стабілізаційне відключення за 
  графіком.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT30M
-DESCRIPTION:🔴 Немає струму ⟲ 06:50
+DESCRIPTION:🔴 Немає струму ⟲ 07:06
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:43926346-5539-4072-adfd-4db363e240b9
+UID:7cd0e44a-ca40-4b4e-a60a-33d31bedd911
 SEQUENCE:0
-DTSTAMP:20260204T045404
+DTSTAMP:20260204T052052
 DTSTART;TZID=Europe/Kyiv:20260204T203000
 DTEND;TZID=Europe/Kyiv:20260205T000000
-SUMMARY:🔴 Немає струму ⟲ 06:50
+SUMMARY:🔴 Немає струму ⟲ 07:06
 DESCRIPTION:📅 Стабілізаційне відключення за 
  графіком.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT30M
-DESCRIPTION:🔴 Немає струму ⟲ 06:50
+DESCRIPTION:🔴 Немає струму ⟲ 07:06
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:e9346083-47cd-4505-bfde-10d633436dad
+UID:74ec9371-2362-4204-8327-7b322db0a918
 SEQUENCE:0
-DTSTAMP:20260204T045404
+DTSTAMP:20260204T052052
 DTSTART;TZID=Europe/Kyiv:20260204T063000
 DTEND;TZID=Europe/Kyiv:20260204T100000
-SUMMARY:🟢 Є струм ⟲ 06:50
+SUMMARY:🟢 Є струм ⟲ 07:06
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT30M
-DESCRIPTION:🟢 Є струм ⟲ 06:50
+DESCRIPTION:🟢 Є струм ⟲ 07:06
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:8845149b-49ca-46f1-aa27-face1875b09d
+UID:fbf512bd-0379-4b8d-81ef-3b07cdc49553
 SEQUENCE:0
-DTSTAMP:20260204T045404
+DTSTAMP:20260204T052052
 DTSTART;TZID=Europe/Kyiv:20260204T170000
 DTEND;TZID=Europe/Kyiv:20260204T203000
-SUMMARY:🟢 Є струм ⟲ 06:50
+SUMMARY:🟢 Є струм ⟲ 07:06
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT30M
-DESCRIPTION:🟢 Є струм ⟲ 06:50
+DESCRIPTION:🟢 Є струм ⟲ 07:06
 END:VALARM
 END:VEVENT
 END:VCALENDAR
