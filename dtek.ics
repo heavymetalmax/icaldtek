@@ -6,12 +6,12 @@ X-WR-CALNAME:⚡️Гора
 TIMEZONE-ID:Europe/Kyiv
 X-WR-TIMEZONE:Europe/Kyiv
 BEGIN:VEVENT
-UID:4f70d8e1-9f33-4e7a-aec2-94abe26ba556
+UID:de652268-b778-4413-85ca-fa0ae7c312b4
 SEQUENCE:0
-DTSTAMP:20260204T142937
+DTSTAMP:20260204T145119
 DTSTART;TZID=Europe/Kyiv:20260204T100000
 DTEND;TZID=Europe/Kyiv:20260204T170000
-SUMMARY:🔴 Немає струму ⟲ 16:22 | ⚠️ Екстрені 
+SUMMARY:🔴 Немає струму ⟲ 16:36 | ⚠️ Екстрені 
  відключення
 DESCRIPTION:Причина: Екстренні відключення (А
  варійне без застосування графіку погоди
@@ -21,41 +21,41 @@ DESCRIPTION:Причина: Екстренні відключення (А
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:🔴 Немає струму ⟲ 16:22 | ⚠️ Екстрен
+DESCRIPTION:🔴 Немає струму ⟲ 16:36 | ⚠️ Екстрен
  і відключення
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:132214c5-9ba3-454b-b808-5388fba5f433
+UID:10db00af-2c66-42f2-9e4e-9a01a179078a
 SEQUENCE:0
-DTSTAMP:20260204T142937
+DTSTAMP:20260204T145119
 DTSTART;TZID=Europe/Kyiv:20260204T183000
 DTEND;TZID=Europe/Kyiv:20260205T000000
-SUMMARY:🔴 Немає струму ⟲ 16:22 | ⚠️ Екстрені 
+SUMMARY:🔴 Немає струму ⟲ 16:36 | ⚠️ Екстрені 
  відключення
 DESCRIPTION:⚠️ Екстрені відключення за графі
  ком.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:🔴 Немає струму ⟲ 16:22 | ⚠️ Екстрен
+DESCRIPTION:🔴 Немає струму ⟲ 16:36 | ⚠️ Екстрен
  і відключення
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:72edaf8e-e42f-4ee6-a2d3-46ff28af241b
+UID:003be70f-0aa2-43da-b0fd-880ac016898f
 SEQUENCE:0
-DTSTAMP:20260204T142937
+DTSTAMP:20260204T145119
 DTSTART;TZID=Europe/Kyiv:20260204T170000
 DTEND;TZID=Europe/Kyiv:20260204T183000
-SUMMARY:🟢 Є струм ⟲ 16:22 | ⚠️ Екстрені відкл
+SUMMARY:🟢 Є струм ⟲ 16:36 | ⚠️ Екстрені відкл
  ючення
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:🟢 Є струм ⟲ 16:22 | ⚠️ Екстрені від
+DESCRIPTION:🟢 Є струм ⟲ 16:36 | ⚠️ Екстрені від
  ключення
 END:VALARM
 END:VEVENT
