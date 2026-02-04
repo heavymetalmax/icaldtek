@@ -6,63 +6,63 @@ X-WR-CALNAME:⚡️Гора
 TIMEZONE-ID:Europe/Kyiv
 X-WR-TIMEZONE:Europe/Kyiv
 BEGIN:VEVENT
-UID:20706737-b755-476c-9d4e-6b34af156aac
+UID:a1387ad6-007c-4681-b5f0-a5ee8991503d
 SEQUENCE:0
-DTSTAMP:20260204T062918
+DTSTAMP:20260204T065208
 DTSTART;TZID=Europe/Kyiv:20260204T100000
-DTEND;TZID=Europe/Kyiv:20260204T170000
-SUMMARY:🔴 Немає струму ⟲ 08:21
+DTEND;TZID=Europe/Kyiv:20260204T183000
+SUMMARY:🔴 Немає струму ⟲ 08:37
 DESCRIPTION:📅 Стабілізаційне відключення за 
  графіком.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT30M
-DESCRIPTION:🔴 Немає струму ⟲ 08:21
+DESCRIPTION:🔴 Немає струму ⟲ 08:37
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:7bfa9150-04c8-4c0a-9979-495b0ccd5e1a
+UID:3426decf-3cd2-4269-bf62-361ec9733527
 SEQUENCE:0
-DTSTAMP:20260204T062918
+DTSTAMP:20260204T065208
 DTSTART;TZID=Europe/Kyiv:20260204T203000
 DTEND;TZID=Europe/Kyiv:20260205T000000
-SUMMARY:🔴 Немає струму ⟲ 08:21
+SUMMARY:🔴 Немає струму ⟲ 08:37
 DESCRIPTION:📅 Стабілізаційне відключення за 
  графіком.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT30M
-DESCRIPTION:🔴 Немає струму ⟲ 08:21
+DESCRIPTION:🔴 Немає струму ⟲ 08:37
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:b926e71a-8080-4be4-9812-274ca91979ca
+UID:48569408-be08-4ffd-bf79-244ed50ae804
 SEQUENCE:0
-DTSTAMP:20260204T062918
+DTSTAMP:20260204T065208
 DTSTART;TZID=Europe/Kyiv:20260204T063000
 DTEND;TZID=Europe/Kyiv:20260204T100000
-SUMMARY:🟢 Є струм ⟲ 08:21
+SUMMARY:🟢 Є струм ⟲ 08:37
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT30M
-DESCRIPTION:🟢 Є струм ⟲ 08:21
+DESCRIPTION:🟢 Є струм ⟲ 08:37
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:e31b4f77-5ab7-4a2c-bf96-16fe6f50fb67
+UID:34598f8e-d8d7-446c-8024-740f1261bac0
 SEQUENCE:0
-DTSTAMP:20260204T062918
-DTSTART;TZID=Europe/Kyiv:20260204T170000
+DTSTAMP:20260204T065208
+DTSTART;TZID=Europe/Kyiv:20260204T183000
 DTEND;TZID=Europe/Kyiv:20260204T203000
-SUMMARY:🟢 Є струм ⟲ 08:21
+SUMMARY:🟢 Є струм ⟲ 08:37
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT30M
-DESCRIPTION:🟢 Є струм ⟲ 08:21
+DESCRIPTION:🟢 Є струм ⟲ 08:37
 END:VALARM
 END:VEVENT
 END:VCALENDAR
