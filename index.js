@@ -336,15 +336,34 @@ function generateCalendar(address, outageData, modalInfo) {
     
     if (apiStartTime && apiEndTime) {
       // Шукаємо подію, яка перетинається з часовим проміжком з API
-      for (const event of allEvents) {
+      for (let i = 0; i < allEvents.length; i++) {
+        const event = allEvents[i];
         // Подія перетинається якщо: event.start < apiEndTime AND event.end > apiStartTime
         const overlaps = event.start < apiEndTime && event.end > apiStartTime;
-        if (overlaps && apiEndTime > event.end) {
-          console.log('   📝 Коригуємо час: ' + event.end.toLocaleTimeString('uk-UA', {hour: '2-digit', minute: '2-digit'}) + ' → ' + apiEndTime.toLocaleTimeString('uk-UA', {hour: '2-digit', minute: '2-digit'}));
-          event.end = apiEndTime;
-          event.wasAdjusted = true; // Позначаємо подію як скориговану
-          wasAdjusted = true;
-          adjustedEndTime = apiEndTime;
+        
+        if (overlaps) {
+          if (apiEndTime > event.end) {
+            // API каже що відключення триватиме довше - подовжуємо
+            console.log('   📝 Подовжуємо відключення: ' + event.end.toLocaleTimeString('uk-UA', {hour: '2-digit', minute: '2-digit'}) + ' → ' + apiEndTime.toLocaleTimeString('uk-UA', {hour: '2-digit', minute: '2-digit'}));
+            event.end = apiEndTime;
+            event.wasAdjusted = true;
+            wasAdjusted = true;
+            adjustedEndTime = apiEndTime;
+          } else if (apiEndTime < event.end) {
+            // API каже що відключення закінчиться раніше - скорочуємо
+            console.log('   📝 Скорочуємо відключення: ' + event.end.toLocaleTimeString('uk-UA', {hour: '2-digit', minute: '2-digit'}) + ' → ' + apiEndTime.toLocaleTimeString('uk-UA', {hour: '2-digit', minute: '2-digit'}));
+            const originalEnd = new Date(event.end);
+            event.end = apiEndTime;
+            event.wasAdjusted = true;
+            wasAdjusted = true;
+            adjustedEndTime = apiEndTime;
+            
+            // Шукаємо наступну подію відключення
+            const nextOutageEvent = allEvents.slice(i + 1).find(e => e.isOutage && e.start >= apiEndTime);
+            
+            // Якщо є проміжок до наступного відключення - зʼявиться світло
+            // Цей проміжок буде створений автоматично в секції powerOnEvents
+          }
           break; // Коригуємо лише першу відповідну подію
         }
       }
