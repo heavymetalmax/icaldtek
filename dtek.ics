@@ -6,36 +6,36 @@ X-WR-CALNAME:⚡️Гора
 TIMEZONE-ID:Europe/Kyiv
 X-WR-TIMEZONE:Europe/Kyiv
 BEGIN:VEVENT
-UID:91bcdf42-970c-42a3-9aee-1eaf9cd23692
+UID:ec85a8f3-52a4-4af6-a993-1565577b5d71
 SEQUENCE:0
-DTSTAMP:20260204T153330
+DTSTAMP:20260204T155708
 DTSTART;TZID=Europe/Kyiv:20260204T183000
 DTEND;TZID=Europe/Kyiv:20260205T000000
-SUMMARY:🔴 Немає струму ⟲ 17:25 | ⚠️ Екстрені 
+SUMMARY:🔴 Немає струму ⟲ 17:53 | ⚠️ Екстрені 
  графіки
 DESCRIPTION:📅 Стабілізаційне відключення за 
  графіком.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:🔴 Немає струму ⟲ 17:25 | ⚠️ Екстрен
+DESCRIPTION:🔴 Немає струму ⟲ 17:53 | ⚠️ Екстрен
  і графіки
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:02910f3a-c9d0-476f-b24f-be4bec446518
+UID:8bf7b7a6-5226-413a-b6fd-2fe696566c9d
 SEQUENCE:0
-DTSTAMP:20260204T153330
+DTSTAMP:20260204T155708
 DTSTART;TZID=Europe/Kyiv:20260204T170000
 DTEND;TZID=Europe/Kyiv:20260204T183000
-SUMMARY:🟢 Є струм ⟲ 17:25 | ⚠️ Екстрені графі
+SUMMARY:🟢 Є струм ⟲ 17:53 | ⚠️ Екстрені графі
  ки
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:🟢 Є струм ⟲ 17:25 | ⚠️ Екстрені гра
+DESCRIPTION:🟢 Є струм ⟲ 17:53 | ⚠️ Екстрені гра
  фіки
 END:VALARM
 END:VEVENT
