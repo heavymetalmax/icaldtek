@@ -6,10 +6,10 @@ X-WR-CALNAME:⚡️Гора
 TIMEZONE-ID:Europe/Kyiv
 X-WR-TIMEZONE:Europe/Kyiv
 BEGIN:VEVENT
-UID:b6616cc1-73ba-4cf4-a1de-bc8e83f00711
+UID:173e51c7-c438-4ae8-89f6-7777d122f113
 SEQUENCE:0
-DTSTAMP:20260204T215631
-DTSTART;TZID=Europe/Kyiv:20260204T183000
+DTSTAMP:20260204T220803
+DTSTART;TZID=Europe/Kyiv:20260205T000000
 DTEND;TZID=Europe/Kyiv:20260205T033000
 SUMMARY:🔴 Немає струму ⟲ 23:51 | 📅 Стабілізац
  ійне | ⚠️ Екстрені графіки
@@ -25,9 +25,9 @@ DESCRIPTION:🔴 Немає струму ⟲ 23:51 | 📅 Стабіліз
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:a463fac8-ba4d-4dbc-9187-66f173b3d598
+UID:095502ca-a3a9-41e5-9174-261c5767e6a9
 SEQUENCE:0
-DTSTAMP:20260204T215631
+DTSTAMP:20260204T220803
 DTSTART;TZID=Europe/Kyiv:20260205T070000
 DTEND;TZID=Europe/Kyiv:20260205T140000
 SUMMARY:🔴 Немає струму ⟲ 23:51 | 📅 Стабілізац
@@ -41,9 +41,9 @@ DESCRIPTION:🔴 Немає струму ⟲ 23:51 | 📅 Стабіліз
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:59743bbb-7661-4085-8e9a-941f91558dc2
+UID:caff196d-4ee5-480c-9522-3c9e27d874b5
 SEQUENCE:0
-DTSTAMP:20260204T215631
+DTSTAMP:20260204T220803
 DTSTART;TZID=Europe/Kyiv:20260205T153000
 DTEND;TZID=Europe/Kyiv:20260206T000000
 SUMMARY:🔴 Немає струму ⟲ 23:51 | 📅 Стабілізац
@@ -57,11 +57,11 @@ DESCRIPTION:🔴 Немає струму ⟲ 23:51 | 📅 Стабіліз
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:5f624472-75d4-440b-9214-022d216ea91a
+UID:95c30340-1123-44d7-bef0-3f57e30e18a6
 SEQUENCE:0
-DTSTAMP:20260204T215631
-DTSTART;TZID=Europe/Kyiv:20260205T140000
-DTEND;TZID=Europe/Kyiv:20260205T153000
+DTSTAMP:20260204T220803
+DTSTART;TZID=Europe/Kyiv:20260205T033000
+DTEND;TZID=Europe/Kyiv:20260205T070000
 SUMMARY:🟢 Є струм ⟲ 23:51 | 📅 Стабілізаційне |
   ⚠️ Екстрені графіки
 DESCRIPTION:Електроенергія має бути в наявнос
@@ -74,11 +74,11 @@ DESCRIPTION:🟢 Є струм ⟲ 23:51 | 📅 Стабілізаційн
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:7f58c4e0-5238-412c-ad2a-cfdcb6d01c3e
+UID:67f21baa-ebf0-41a7-981f-0abc74d5c0a4
 SEQUENCE:0
-DTSTAMP:20260204T215631
-DTSTART;TZID=Europe/Kyiv:20260205T000000
-DTEND;TZID=Europe/Kyiv:20260205T070000
+DTSTAMP:20260204T220803
+DTSTART;TZID=Europe/Kyiv:20260205T140000
+DTEND;TZID=Europe/Kyiv:20260205T153000
 SUMMARY:🟢 Є струм ⟲ 23:51 | 📅 Стабілізаційне |
   ⚠️ Екстрені графіки
 DESCRIPTION:Електроенергія має бути в наявнос

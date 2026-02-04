@@ -6,10 +6,10 @@ X-WR-CALNAME:⚡️Борщагівка
 TIMEZONE-ID:Europe/Kyiv
 X-WR-TIMEZONE:Europe/Kyiv
 BEGIN:VEVENT
-UID:8070dbca-9a3e-4305-9792-76e1fd4294cd
+UID:cdef8ab8-bf16-40a7-afac-ed82a0a7f062
 SEQUENCE:0
-DTSTAMP:20260204T215632
-DTSTART;TZID=Europe/Kyiv:20260204T183000
+DTSTAMP:20260204T220804
+DTSTART;TZID=Europe/Kyiv:20260205T000000
 DTEND;TZID=Europe/Kyiv:20260205T030000
 SUMMARY:🔴 Немає струму ⟲ 23:51 | ⚠️ Екстрені 
  відключення (скориговано)
@@ -26,9 +26,9 @@ DESCRIPTION:🔴 Немає струму ⟲ 23:51 | ⚠️ Екстрен
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:9993c0de-2caf-46c8-b6cf-f5b100223561
+UID:781f2a11-71d2-4dba-9458-0e021fbd974b
 SEQUENCE:0
-DTSTAMP:20260204T215632
+DTSTAMP:20260204T220804
 DTSTART;TZID=Europe/Kyiv:20260205T070000
 DTEND;TZID=Europe/Kyiv:20260205T140000
 SUMMARY:🔴 Немає струму ⟲ 23:51 | ⚠️ Екстрені 
@@ -43,9 +43,9 @@ DESCRIPTION:🔴 Немає струму ⟲ 23:51 | ⚠️ Екстрен
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:f9896e7f-7c17-4d1f-8174-7834fa44d8ed
+UID:dea9706b-eac5-4e34-a1df-62a765e3a0ab
 SEQUENCE:0
-DTSTAMP:20260204T215632
+DTSTAMP:20260204T220804
 DTSTART;TZID=Europe/Kyiv:20260205T153000
 DTEND;TZID=Europe/Kyiv:20260206T000000
 SUMMARY:🔴 Немає струму ⟲ 23:51 | ⚠️ Екстрені 
@@ -60,11 +60,11 @@ DESCRIPTION:🔴 Немає струму ⟲ 23:51 | ⚠️ Екстрен
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:0976f046-8b45-4d24-a08a-0349a3f8f443
+UID:3a8644ec-27f8-4aee-bef2-54765fd700ca
 SEQUENCE:0
-DTSTAMP:20260204T215632
-DTSTART;TZID=Europe/Kyiv:20260205T140000
-DTEND;TZID=Europe/Kyiv:20260205T153000
+DTSTAMP:20260204T220804
+DTSTART;TZID=Europe/Kyiv:20260205T030000
+DTEND;TZID=Europe/Kyiv:20260205T070000
 SUMMARY:🟢 Є струм ⟲ 23:51 | ⚠️ Екстрені відкл
  ючення
 DESCRIPTION:Електроенергія має бути в наявнос
@@ -77,11 +77,11 @@ DESCRIPTION:🟢 Є струм ⟲ 23:51 | ⚠️ Екстрені від
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:930faed4-b563-45f3-ae67-de68ad338162
+UID:580473fd-b3ff-4d91-8d87-c780fee17f99
 SEQUENCE:0
-DTSTAMP:20260204T215632
-DTSTART;TZID=Europe/Kyiv:20260205T000000
-DTEND;TZID=Europe/Kyiv:20260205T070000
+DTSTAMP:20260204T220804
+DTSTART;TZID=Europe/Kyiv:20260205T140000
+DTEND;TZID=Europe/Kyiv:20260205T153000
 SUMMARY:🟢 Є струм ⟲ 23:51 | ⚠️ Екстрені відкл
  ючення
 DESCRIPTION:Електроенергія має бути в наявнос
