@@ -6,12 +6,12 @@ X-WR-CALNAME:⚡️Борщагівка
 TIMEZONE-ID:Europe/Kyiv
 X-WR-TIMEZONE:Europe/Kyiv
 BEGIN:VEVENT
-UID:b790148a-5a70-49b2-8fe8-20cbbbf60850
+UID:4747f87a-c7c1-457b-bf4a-0cf9ce08060e
 SEQUENCE:0
-DTSTAMP:20260204T200145
+DTSTAMP:20260204T201910
 DTSTART;TZID=Europe/Kyiv:20260204T183000
 DTEND;TZID=Europe/Kyiv:20260204T230000
-SUMMARY:🔴 Немає струму ⟲ 21:52 | ⚠️ Екстрені 
+SUMMARY:🔴 Немає струму ⟲ 22:07 | ⚠️ Екстрені 
  відключення (скориговано)
 DESCRIPTION:Причина: Екстренні відключення (А
  варійне без застосування графіку погоди
@@ -21,58 +21,92 @@ DESCRIPTION:Причина: Екстренні відключення (А
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:🔴 Немає струму ⟲ 21:52 | ⚠️ Екстрен
+DESCRIPTION:🔴 Немає струму ⟲ 22:07 | ⚠️ Екстрен
  і відключення (скориговано)
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:ce41445e-dd39-43da-a4ef-bd3d044b11c4
+UID:4793effd-69b3-4f51-a9ed-d88407151b2c
 SEQUENCE:0
-DTSTAMP:20260204T200145
+DTSTAMP:20260204T201910
 DTSTART;TZID=Europe/Kyiv:20260205T070000
-DTEND;TZID=Europe/Kyiv:20260206T000000
-SUMMARY:🔴 Немає струму ⟲ 21:52 | ⚠️ Екстрені 
+DTEND;TZID=Europe/Kyiv:20260205T140000
+SUMMARY:🔴 Немає струму ⟲ 22:07 | ⚠️ Екстрені 
  відключення
 DESCRIPTION:⚠️ Екстрені відключення за графі
  ком.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:🔴 Немає струму ⟲ 21:52 | ⚠️ Екстрен
+DESCRIPTION:🔴 Немає струму ⟲ 22:07 | ⚠️ Екстрен
  і відключення
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:64016dd6-4cc7-4b82-b2c5-bc535426c0af
+UID:bcafc280-32ea-4ec3-9c2b-49f0b61abfb9
 SEQUENCE:0
-DTSTAMP:20260204T200145
+DTSTAMP:20260204T201910
+DTSTART;TZID=Europe/Kyiv:20260205T153000
+DTEND;TZID=Europe/Kyiv:20260206T000000
+SUMMARY:🔴 Немає струму ⟲ 22:07 | ⚠️ Екстрені 
+ відключення
+DESCRIPTION:⚠️ Екстрені відключення за графі
+ ком.
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT15M
+DESCRIPTION:🔴 Немає струму ⟲ 22:07 | ⚠️ Екстрен
+ і відключення
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:fb6240cd-113c-4eac-9942-45681331ba59
+SEQUENCE:0
+DTSTAMP:20260204T201910
 DTSTART;TZID=Europe/Kyiv:20260204T230000
 DTEND;TZID=Europe/Kyiv:20260205T000000
-SUMMARY:🟢 Є струм ⟲ 21:52 | ⚠️ Екстрені відкл
+SUMMARY:🟢 Є струм ⟲ 22:07 | ⚠️ Екстрені відкл
  ючення
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:🟢 Є струм ⟲ 21:52 | ⚠️ Екстрені від
+DESCRIPTION:🟢 Є струм ⟲ 22:07 | ⚠️ Екстрені від
  ключення
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:601c2418-8a76-4765-9cc5-8c99f3bbb461
+UID:5853f342-edba-4da9-ba4e-b8039775b321
 SEQUENCE:0
-DTSTAMP:20260204T200145
-DTSTART;TZID=Europe/Kyiv:20260205T000000
-DTEND;TZID=Europe/Kyiv:20260205T070000
-SUMMARY:🟢 Є струм ⟲ 21:52 | ⚠️ Екстрені відкл
+DTSTAMP:20260204T201910
+DTSTART;TZID=Europe/Kyiv:20260205T140000
+DTEND;TZID=Europe/Kyiv:20260205T153000
+SUMMARY:🟢 Є струм ⟲ 22:07 | ⚠️ Екстрені відкл
  ючення
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:🟢 Є струм ⟲ 21:52 | ⚠️ Екстрені від
+DESCRIPTION:🟢 Є струм ⟲ 22:07 | ⚠️ Екстрені від
+ ключення
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:a3d889dc-811f-4dec-854a-17d52b050754
+SEQUENCE:0
+DTSTAMP:20260204T201910
+DTSTART;TZID=Europe/Kyiv:20260205T000000
+DTEND;TZID=Europe/Kyiv:20260205T070000
+SUMMARY:🟢 Є струм ⟲ 22:07 | ⚠️ Екстрені відкл
+ ючення
+DESCRIPTION:Електроенергія має бути в наявнос
+ ті.
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT15M
+DESCRIPTION:🟢 Є струм ⟲ 22:07 | ⚠️ Екстрені від
  ключення
 END:VALARM
 END:VEVENT
