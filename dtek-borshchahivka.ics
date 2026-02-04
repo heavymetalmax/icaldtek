@@ -6,12 +6,12 @@ X-WR-CALNAME:⚡️Борщагівка
 TIMEZONE-ID:Europe/Kyiv
 X-WR-TIMEZONE:Europe/Kyiv
 BEGIN:VEVENT
-UID:c892d3a8-0345-45ad-b968-1ab94ed0428f
+UID:1f9bd42e-2baf-47eb-8937-0ba2b92192f1
 SEQUENCE:0
-DTSTAMP:20260204T112232
+DTSTAMP:20260204T114319
 DTSTART;TZID=Europe/Kyiv:20260204T100000
 DTEND;TZID=Europe/Kyiv:20260204T170000
-SUMMARY:🔴 Немає струму ⟲ 13:22 | 📅 Стабілізац
+SUMMARY:🔴 Немає струму ⟲ 13:38 | 📅 Стабілізац
  ійне | 📅 Стабілізаційні графіки
 DESCRIPTION:Причина: Стабілізаційне відключе
  ння (Згідно графіку погодинних відключе
@@ -20,39 +20,39 @@ DESCRIPTION:Причина: Стабілізаційне відключе
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:🔴 Немає струму ⟲ 13:22 | 📅 Стабіліз
+DESCRIPTION:🔴 Немає струму ⟲ 13:38 | 📅 Стабіліз
  аційне | 📅 Стабілізаційні графіки
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:ddb6b5db-f4dc-4b95-916b-0005b4fbdbde
+UID:cbfa9f8a-46cb-47f0-a5e8-9a89460e9add
 SEQUENCE:0
-DTSTAMP:20260204T112232
+DTSTAMP:20260204T114319
 DTSTART;TZID=Europe/Kyiv:20260204T203000
 DTEND;TZID=Europe/Kyiv:20260205T000000
-SUMMARY:🔴 Немає струму ⟲ 13:22 | 📅 Стабілізац
+SUMMARY:🔴 Немає струму ⟲ 13:38 | 📅 Стабілізац
  ійне | 📅 Стабілізаційні графіки
 DESCRIPTION:📅 Стабілізаційне за графіком.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:🔴 Немає струму ⟲ 13:22 | 📅 Стабіліз
+DESCRIPTION:🔴 Немає струму ⟲ 13:38 | 📅 Стабіліз
  аційне | 📅 Стабілізаційні графіки
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:01cc4523-72d0-4cf7-8c78-fa6d81cab09d
+UID:d7e1cfd5-0a38-42c2-8673-364eec5d9834
 SEQUENCE:0
-DTSTAMP:20260204T112232
+DTSTAMP:20260204T114319
 DTSTART;TZID=Europe/Kyiv:20260204T170000
 DTEND;TZID=Europe/Kyiv:20260204T203000
-SUMMARY:🟢 Є струм ⟲ 13:22
+SUMMARY:🟢 Є струм ⟲ 13:38
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:🟢 Є струм ⟲ 13:22
+DESCRIPTION:🟢 Є струм ⟲ 13:38
 END:VALARM
 END:VEVENT
 END:VCALENDAR
