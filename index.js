@@ -432,7 +432,7 @@ function generateCalendar(address, outageData, modalInfo) {
       summary: eventSummary,
       description: eventDescription,
       timezone: 'Europe/Kyiv',
-      alarms: [{ type: 'display', trigger: 30 * 60 }]
+      alarms: [{ type: 'display', trigger: 15 * 60 }]
     });
   });
   
