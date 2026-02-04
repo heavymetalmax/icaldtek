@@ -6,9 +6,9 @@ X-WR-CALNAME:⚡️Гора
 TIMEZONE-ID:Europe/Kyiv
 X-WR-TIMEZONE:Europe/Kyiv
 BEGIN:VEVENT
-UID:6234fdb6-5691-4b3a-b287-df9608a46145
+UID:cdfb0f62-bc78-4b56-a5ec-8c6fd4312eac
 SEQUENCE:0
-DTSTAMP:20260204T205339
+DTSTAMP:20260204T210941
 DTSTART;TZID=Europe/Kyiv:20260204T183000
 DTEND;TZID=Europe/Kyiv:20260205T033000
 SUMMARY:🔴 Немає струму ⟲ 22:50 | 📅 Стабілізац
@@ -26,9 +26,9 @@ DESCRIPTION:🔴 Немає струму ⟲ 22:50 | 📅 Стабіліз
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:9567af81-8e64-45de-b5fc-d3e9779ac1c4
+UID:a07e6e0d-e2e0-46c8-b2fb-b1b8de846006
 SEQUENCE:0
-DTSTAMP:20260204T205339
+DTSTAMP:20260204T210941
 DTSTART;TZID=Europe/Kyiv:20260205T070000
 DTEND;TZID=Europe/Kyiv:20260205T140000
 SUMMARY:🔴 Немає струму ⟲ 22:50 | 📅 Стабілізац
@@ -42,9 +42,9 @@ DESCRIPTION:🔴 Немає струму ⟲ 22:50 | 📅 Стабіліз
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:906ec658-aab9-4dbb-9d42-c1d445cd5983
+UID:cdbc2dd6-841f-4cfa-8587-24c46d3b205d
 SEQUENCE:0
-DTSTAMP:20260204T205339
+DTSTAMP:20260204T210941
 DTSTART;TZID=Europe/Kyiv:20260205T153000
 DTEND;TZID=Europe/Kyiv:20260206T000000
 SUMMARY:🔴 Немає струму ⟲ 22:50 | 📅 Стабілізац
@@ -58,9 +58,9 @@ DESCRIPTION:🔴 Немає струму ⟲ 22:50 | 📅 Стабіліз
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:fece1c5a-806d-45b6-a7b7-6e625b8083b0
+UID:7c1e2952-9395-4a91-892c-58c6f5517acc
 SEQUENCE:0
-DTSTAMP:20260204T205339
+DTSTAMP:20260204T210941
 DTSTART;TZID=Europe/Kyiv:20260205T140000
 DTEND;TZID=Europe/Kyiv:20260205T153000
 SUMMARY:🟢 Є струм ⟲ 22:50 | 📅 Стабілізаційне |
@@ -75,9 +75,9 @@ DESCRIPTION:🟢 Є струм ⟲ 22:50 | 📅 Стабілізаційн
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:7b868e11-c4e4-46c5-9fea-df51235ce55b
+UID:72837d35-49d9-42d8-8500-1b1dee240218
 SEQUENCE:0
-DTSTAMP:20260204T205339
+DTSTAMP:20260204T210941
 DTSTART;TZID=Europe/Kyiv:20260205T000000
 DTEND;TZID=Europe/Kyiv:20260205T070000
 SUMMARY:🟢 Є струм ⟲ 22:50 | 📅 Стабілізаційне |
