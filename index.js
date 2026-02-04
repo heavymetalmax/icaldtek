@@ -219,13 +219,40 @@ function generateCalendar(address, outageData, modalInfo) {
     generalReason = '📅 Стабілізаційні графіки';
   }
   
-  // Формуємо суфікс для заголовка: конкретна | загальна (якщо різні)
+  // Функція для перевірки чи причини по суті однакові (щоб уникнути дублювання)
+  function areSimilarReasons(reason1, reason2) {
+    if (!reason1 || !reason2) return false;
+    if (reason1 === reason2) return true;
+    
+    // Нормалізуємо для порівняння: прибираємо емодзі та приводимо до нижнього регістру
+    const normalize = (str) => str.replace(/[📅⚠️🚨]/g, '').toLowerCase().trim();
+    const n1 = normalize(reason1);
+    const n2 = normalize(reason2);
+    
+    // Перевіряємо чи один містить основу іншого
+    // "стабілізаційне" vs "стабілізаційні графіки" - схожі
+    // "екстрені відключення" vs "екстрені графіки" - схожі
+    // "аварійне відключення" vs "аварія в мережі" - схожі
+    const getRoot = (str) => {
+      if (str.includes('стабіліз')) return 'stabilization';
+      if (str.includes('екстрен')) return 'emergency';
+      if (str.includes('аварі')) return 'accident';
+      return str;
+    };
+    
+    return getRoot(n1) === getRoot(n2);
+  }
+  
+  // Формуємо суфікс для заголовка: конкретна | загальна (тільки якщо різні за змістом)
   let reasonSuffix = '';
-  if (specificReason && generalReason && specificReason !== generalReason) {
+  if (specificReason && generalReason && !areSimilarReasons(specificReason, generalReason)) {
+    // Причини різні - показуємо обидві
     reasonSuffix = ' | ' + specificReason + ' | ' + generalReason;
   } else if (specificReason) {
+    // Є тільки конкретна, або обидві схожі - показуємо конкретну
     reasonSuffix = ' | ' + specificReason;
   } else if (generalReason) {
+    // Є тільки загальна
     reasonSuffix = ' | ' + generalReason;
   }
   
