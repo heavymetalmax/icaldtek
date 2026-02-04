@@ -6,12 +6,12 @@ X-WR-CALNAME:⚡️Гора
 TIMEZONE-ID:Europe/Kyiv
 X-WR-TIMEZONE:Europe/Kyiv
 BEGIN:VEVENT
-UID:ada05237-18a3-4f07-b01d-3453b5cae326
+UID:2ff22bf5-5367-470d-8d09-387c763fd8dc
 SEQUENCE:0
-DTSTAMP:20260204T124709
+DTSTAMP:20260204T131743
 DTSTART;TZID=Europe/Kyiv:20260204T100000
 DTEND;TZID=Europe/Kyiv:20260204T183000
-SUMMARY:🔴 Немає струму ⟲ 14:38 | 📅 Стабілізац
+SUMMARY:🔴 Немає струму ⟲ 15:10 | 📅 Стабілізац
  ійне (скориговано)
 DESCRIPTION:Причина: Стабілізаційне відключе
  ння (Згідно графіку погодинних відключе
@@ -20,39 +20,39 @@ DESCRIPTION:Причина: Стабілізаційне відключе
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:🔴 Немає струму ⟲ 14:38 | 📅 Стабіліз
+DESCRIPTION:🔴 Немає струму ⟲ 15:10 | 📅 Стабіліз
  аційне (скориговано)
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:7c4c9e01-756a-4e2a-bc60-2ebe5b948c0b
+UID:ed4e15b5-e72b-4da4-9b07-06b122ce06bf
 SEQUENCE:0
-DTSTAMP:20260204T124709
+DTSTAMP:20260204T131743
 DTSTART;TZID=Europe/Kyiv:20260204T203000
 DTEND;TZID=Europe/Kyiv:20260205T000000
-SUMMARY:🔴 Немає струму ⟲ 14:38 | 📅 Стабілізац
+SUMMARY:🔴 Немає струму ⟲ 15:10 | 📅 Стабілізац
  ійне
 DESCRIPTION:📅 Стабілізаційне за графіком.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:🔴 Немає струму ⟲ 14:38 | 📅 Стабіліз
+DESCRIPTION:🔴 Немає струму ⟲ 15:10 | 📅 Стабіліз
  аційне
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:8d3d9847-9722-4ea2-a1b4-80d7fd99db8d
+UID:70727af1-a66e-43bf-b04d-6bbe2ee7dc8e
 SEQUENCE:0
-DTSTAMP:20260204T124709
+DTSTAMP:20260204T131743
 DTSTART;TZID=Europe/Kyiv:20260204T183000
 DTEND;TZID=Europe/Kyiv:20260204T203000
-SUMMARY:🟢 Є струм ⟲ 14:38
+SUMMARY:🟢 Є струм ⟲ 15:10
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:🟢 Є струм ⟲ 14:38
+DESCRIPTION:🟢 Є струм ⟲ 15:10
 END:VALARM
 END:VEVENT
 END:VCALENDAR
