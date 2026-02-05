@@ -6,70 +6,53 @@ X-WR-CALNAME:⚡️Гора
 TIMEZONE-ID:Europe/Kyiv
 X-WR-TIMEZONE:Europe/Kyiv
 BEGIN:VEVENT
-UID:47539fce-cf75-48f9-996a-12ad0b963a99
+UID:d3d3387a-c3bd-4e57-937a-e25259e1220c
 SEQUENCE:0
-DTSTAMP:20260205T042805
+DTSTAMP:20260205T050520
 DTSTART;TZID=Europe/Kyiv:20260205T070000
 DTEND;TZID=Europe/Kyiv:20260205T140000
-SUMMARY:🔴 Немає струму ⟲ 06:22 | ⚠️ Екстрені 
+SUMMARY:🔴 Немає струму ⟲ 06:50 | ⚠️ Екстрені 
  графіки
 DESCRIPTION:📅 Стабілізаційне відключення за 
  графіком.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:🔴 Немає струму ⟲ 06:22 | ⚠️ Екстрен
+DESCRIPTION:🔴 Немає струму ⟲ 06:50 | ⚠️ Екстрен
  і графіки
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:203b97cf-378c-41a6-9014-a2dd774e07fd
+UID:322c78bf-5cbf-4bea-b971-c255ff069bee
 SEQUENCE:0
-DTSTAMP:20260205T042805
+DTSTAMP:20260205T050520
 DTSTART;TZID=Europe/Kyiv:20260205T153000
 DTEND;TZID=Europe/Kyiv:20260206T000000
-SUMMARY:🔴 Немає струму ⟲ 06:22 | ⚠️ Екстрені 
+SUMMARY:🔴 Немає струму ⟲ 06:50 | ⚠️ Екстрені 
  графіки
 DESCRIPTION:📅 Стабілізаційне відключення за 
  графіком.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:🔴 Немає струму ⟲ 06:22 | ⚠️ Екстрен
+DESCRIPTION:🔴 Немає струму ⟲ 06:50 | ⚠️ Екстрен
  і графіки
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:3397d7e2-4fef-42a4-9349-a39b5948962f
+UID:da80e521-064d-4685-aba7-ff752c56032f
 SEQUENCE:0
-DTSTAMP:20260205T042805
-DTSTART;TZID=Europe/Kyiv:20260205T033000
-DTEND;TZID=Europe/Kyiv:20260205T070000
-SUMMARY:🟢 Є струм ⟲ 06:22 | ⚠️ Екстрені графі
- ки
-DESCRIPTION:Електроенергія має бути в наявнос
- ті.
-BEGIN:VALARM
-ACTION:DISPLAY
-TRIGGER:-PT15M
-DESCRIPTION:🟢 Є струм ⟲ 06:22 | ⚠️ Екстрені гра
- фіки
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:0619e586-cbc2-4e3d-875f-19186f70748c
-SEQUENCE:0
-DTSTAMP:20260205T042805
+DTSTAMP:20260205T050520
 DTSTART;TZID=Europe/Kyiv:20260205T140000
 DTEND;TZID=Europe/Kyiv:20260205T153000
-SUMMARY:🟢 Є струм ⟲ 06:22 | ⚠️ Екстрені графі
+SUMMARY:🟢 Є струм ⟲ 06:50 | ⚠️ Екстрені графі
  ки
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:🟢 Є струм ⟲ 06:22 | ⚠️ Екстрені гра
+DESCRIPTION:🟢 Є струм ⟲ 06:50 | ⚠️ Екстрені гра
  фіки
 END:VALARM
 END:VEVENT
