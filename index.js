@@ -149,8 +149,9 @@ async function fetchAddressData(page, address, sessionData) {
       }
       
       const subType = houseData.sub_type.toLowerCase();
-      if (subType.includes('екстрен')) outageData.infoBlockType = 'emergency';
-      else if (subType.includes('аварійн')) outageData.infoBlockType = 'accident';
+      // Спочатку перевіряємо 'аварійн', бо текст може бути "Екстренні відключення (Аварійне...)"
+      if (subType.includes('аварійн')) outageData.infoBlockType = 'accident';
+      else if (subType.includes('екстрен')) outageData.infoBlockType = 'emergency';
       else outageData.infoBlockType = 'stabilization';
     }
   }
@@ -309,7 +310,7 @@ function generateCalendar(address, outageData, modalInfo) {
       allEvents.push({
         start: new Date(year, month, day, startH, startM),
         end: new Date(year, month, day, endH, endM),
-        summary: '🔴 Немає струму' + updateTimeStr + reasonSuffix,
+        summary: '🔴 Немає струму' + reasonSuffix + updateTimeStr,
         description: defaultOutageDescription,
         isOutage: true
       });
@@ -419,7 +420,7 @@ function generateCalendar(address, outageData, modalInfo) {
         powerOnEvents.push({
           start: dayEvents[i].end,
           end: dayEvents[i + 1].start,
-          summary: '🟢 Є струм' + updateTimeStr + powerOnSuffix,
+          summary: '🟢 Є струм' + powerOnSuffix + updateTimeStr,
           description: defaultDescription,
           isOutage: false
         });
@@ -441,7 +442,7 @@ function generateCalendar(address, outageData, modalInfo) {
       powerOnEvents.push({
         start: lastEvent.end,
         end: endOfDay,
-        summary: '🟢 Є струм' + updateTimeStr + powerOnSuffix,
+        summary: '🟢 Є струм' + powerOnSuffix + updateTimeStr,
         description: defaultDescription,
         isOutage: false
       });
@@ -454,7 +455,7 @@ function generateCalendar(address, outageData, modalInfo) {
       powerOnEvents.push({
         start: startOfDay,
         end: firstEvent.start,
-        summary: '🟢 Є струм' + updateTimeStr + powerOnSuffix,
+        summary: '🟢 Є струм' + powerOnSuffix + updateTimeStr,
         description: defaultDescription,
         isOutage: false
       });
@@ -486,9 +487,9 @@ function generateCalendar(address, outageData, modalInfo) {
     } else {
       // Майбутня подія - простий формат з причинами
       if (event.isOutage) {
-        eventSummary = '🔴 Немає струму' + updateTimeStr + reasonSuffix;
+        eventSummary = '🔴 Немає струму' + reasonSuffix + updateTimeStr;
       } else {
-        eventSummary = '🟢 Є струм' + updateTimeStr + powerOnSuffix;
+        eventSummary = '🟢 Є струм' + powerOnSuffix + updateTimeStr;
       }
       eventDescription = event.description;
     }
