@@ -6,36 +6,36 @@ X-WR-CALNAME:⚡️Борщагівка
 TIMEZONE-ID:Europe/Kyiv
 X-WR-TIMEZONE:Europe/Kyiv
 BEGIN:VEVENT
-UID:db2411b8-6541-4ec9-98e1-7d2442430424
+UID:b263833b-1c4a-4158-a117-4985178ad678
 SEQUENCE:0
-DTSTAMP:20260205T131823
+DTSTAMP:20260205T134829
 DTSTART;TZID=Europe/Kyiv:20260205T160000
 DTEND;TZID=Europe/Kyiv:20260206T000000
-SUMMARY:🔴 Немає струму ⟲ 15:10 | ⚠️ Екстрені 
+SUMMARY:🔴 Немає струму ⟲ 15:37 | ⚠️ Екстрені 
  графіки
 DESCRIPTION:📅 Стабілізаційне відключення за 
  графіком.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:🔴 Немає струму ⟲ 15:10 | ⚠️ Екстрен
+DESCRIPTION:🔴 Немає струму ⟲ 15:37 | ⚠️ Екстрен
  і графіки
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:fe339529-d15f-49ef-959a-328d98adbf89
+UID:cc28043c-f067-49ea-bb9e-201f5efdcb32
 SEQUENCE:0
-DTSTAMP:20260205T131823
+DTSTAMP:20260205T134829
 DTSTART;TZID=Europe/Kyiv:20260205T140000
 DTEND;TZID=Europe/Kyiv:20260205T160000
-SUMMARY:🟢 Є струм ⟲ 15:10 | ⚠️ Екстрені графі
+SUMMARY:🟢 Є струм ⟲ 15:37 | ⚠️ Екстрені графі
  ки
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:🟢 Є струм ⟲ 15:10 | ⚠️ Екстрені гра
+DESCRIPTION:🟢 Є струм ⟲ 15:37 | ⚠️ Екстрені гра
  фіки
 END:VALARM
 END:VEVENT
