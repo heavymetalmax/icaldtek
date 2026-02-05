@@ -6,12 +6,12 @@ X-WR-CALNAME:⚡️Гора
 TIMEZONE-ID:Europe/Kyiv
 X-WR-TIMEZONE:Europe/Kyiv
 BEGIN:VEVENT
-UID:95bf4ef4-fb9f-447b-b506-3d0d44922694
+UID:2f3b503e-26b9-4f18-8361-55c38ebbf484
 SEQUENCE:0
-DTSTAMP:20260205T053445
+DTSTAMP:20260205T060030
 DTSTART;TZID=Europe/Kyiv:20260205T070000
 DTEND;TZID=Europe/Kyiv:20260205T110000
-SUMMARY:🔴 Немає струму ⟲ 07:22 | ⚠️ Екстрені 
+SUMMARY:🔴 Немає струму ⟲ 07:54 | ⚠️ Екстрені 
  відключення (скориговано)
 DESCRIPTION:Причина: Екстренні відключення (А
  варійне без застосування графіку погоди
@@ -21,41 +21,41 @@ DESCRIPTION:Причина: Екстренні відключення (А
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:🔴 Немає струму ⟲ 07:22 | ⚠️ Екстрен
+DESCRIPTION:🔴 Немає струму ⟲ 07:54 | ⚠️ Екстрен
  і відключення (скориговано)
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:7de689eb-3fff-4a68-aa52-af8a6fd636f7
+UID:6f2d1b1a-7d6d-4ccf-8671-aa98e9b4fa1a
 SEQUENCE:0
-DTSTAMP:20260205T053445
-DTSTART;TZID=Europe/Kyiv:20260205T153000
+DTSTAMP:20260205T060030
+DTSTART;TZID=Europe/Kyiv:20260205T160000
 DTEND;TZID=Europe/Kyiv:20260206T000000
-SUMMARY:🔴 Немає струму ⟲ 07:22 | ⚠️ Екстрені 
+SUMMARY:🔴 Немає струму ⟲ 07:54 | ⚠️ Екстрені 
  відключення
 DESCRIPTION:⚠️ Екстрені відключення за графі
  ком.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:🔴 Немає струму ⟲ 07:22 | ⚠️ Екстрен
+DESCRIPTION:🔴 Немає струму ⟲ 07:54 | ⚠️ Екстрен
  і відключення
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:57f737f7-1b1a-4af4-9794-3ac6e4dc68a5
+UID:921eff13-8eaa-447d-864e-6ba168c372cb
 SEQUENCE:0
-DTSTAMP:20260205T053445
+DTSTAMP:20260205T060030
 DTSTART;TZID=Europe/Kyiv:20260205T110000
-DTEND;TZID=Europe/Kyiv:20260205T153000
-SUMMARY:🟢 Є струм ⟲ 07:22 | ⚠️ Екстрені відкл
+DTEND;TZID=Europe/Kyiv:20260205T160000
+SUMMARY:🟢 Є струм ⟲ 07:54 | ⚠️ Екстрені відкл
  ючення
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:🟢 Є струм ⟲ 07:22 | ⚠️ Екстрені від
+DESCRIPTION:🟢 Є струм ⟲ 07:54 | ⚠️ Екстрені від
  ключення
 END:VALARM
 END:VEVENT
