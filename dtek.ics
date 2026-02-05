@@ -6,71 +6,63 @@ X-WR-CALNAME:⚡️Гора
 TIMEZONE-ID:Europe/Kyiv
 X-WR-TIMEZONE:Europe/Kyiv
 BEGIN:VEVENT
-UID:817edc86-aaf3-4d62-b5a4-0de6c009faa5
+UID:4dd82fa9-29c5-425e-8738-f21a51dea890
 SEQUENCE:0
-DTSTAMP:20260205T024730
+DTSTAMP:20260205T034129
 DTSTART;TZID=Europe/Kyiv:20260205T070000
 DTEND;TZID=Europe/Kyiv:20260205T140000
-SUMMARY:🔴 Немає струму ⟲ 04:36 | ⚠️ Екстрені 
- графіки
+SUMMARY:🔴 Немає струму ⟲ 05:37
 DESCRIPTION:📅 Стабілізаційне відключення за 
  графіком.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:🔴 Немає струму ⟲ 04:36 | ⚠️ Екстрен
- і графіки
+DESCRIPTION:🔴 Немає струму ⟲ 05:37
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:39fe8551-25e4-41a7-a0a9-8d871e6cc796
+UID:7d5d91d8-e91d-4066-967f-377d1ee213b2
 SEQUENCE:0
-DTSTAMP:20260205T024730
+DTSTAMP:20260205T034129
 DTSTART;TZID=Europe/Kyiv:20260205T153000
 DTEND;TZID=Europe/Kyiv:20260206T000000
-SUMMARY:🔴 Немає струму ⟲ 04:36 | ⚠️ Екстрені 
- графіки
+SUMMARY:🔴 Немає струму ⟲ 05:37
 DESCRIPTION:📅 Стабілізаційне відключення за 
  графіком.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:🔴 Немає струму ⟲ 04:36 | ⚠️ Екстрен
- і графіки
+DESCRIPTION:🔴 Немає струму ⟲ 05:37
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:abcda3e7-ab8c-4d28-832b-566d7dcc86c8
+UID:c99d2321-22a5-41a6-b31c-c38dc2765f52
 SEQUENCE:0
-DTSTAMP:20260205T024730
+DTSTAMP:20260205T034129
 DTSTART;TZID=Europe/Kyiv:20260205T033000
 DTEND;TZID=Europe/Kyiv:20260205T070000
-SUMMARY:🟢 Є струм ⟲ 04:36 | ⚠️ Екстрені графі
- ки
+SUMMARY:🟢 Є струм ⟲ 05:37
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:🟢 Є струм ⟲ 04:36 | ⚠️ Екстрені гра
- фіки
+DESCRIPTION:🟢 Є струм ⟲ 05:37
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:838a0a57-b894-4e90-83d2-bf4a149b886c
+UID:d333746e-04ce-4cb9-acf0-cbd3550f40cf
 SEQUENCE:0
-DTSTAMP:20260205T024730
+DTSTAMP:20260205T034129
 DTSTART;TZID=Europe/Kyiv:20260205T140000
 DTEND;TZID=Europe/Kyiv:20260205T153000
-SUMMARY:🟢 Є струм ⟲ 04:36 | ⚠️ Екстрені графі
- ки
+SUMMARY:🟢 Є струм ⟲ 05:37
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:🟢 Є струм ⟲ 04:36 | ⚠️ Екстрені гра
- фіки
+DESCRIPTION:🟢 Є струм ⟲ 05:37
 END:VALARM
 END:VEVENT
 END:VCALENDAR
