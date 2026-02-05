@@ -6,70 +6,70 @@ X-WR-CALNAME:⚡️Борщагівка
 TIMEZONE-ID:Europe/Kyiv
 X-WR-TIMEZONE:Europe/Kyiv
 BEGIN:VEVENT
-UID:00ea337f-7833-41c4-aa36-72a53e23df92
+UID:70ad6cfc-b134-49f3-8e73-6bc1f2a5fad1
 SEQUENCE:0
-DTSTAMP:20260205T024732
+DTSTAMP:20260205T042806
 DTSTART;TZID=Europe/Kyiv:20260205T070000
 DTEND;TZID=Europe/Kyiv:20260205T140000
-SUMMARY:🔴 Немає струму ⟲ 04:36 | ⚠️ Екстрені 
+SUMMARY:🔴 Немає струму ⟲ 06:22 | ⚠️ Екстрені 
  графіки
 DESCRIPTION:📅 Стабілізаційне відключення за 
  графіком.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:🔴 Немає струму ⟲ 04:36 | ⚠️ Екстрен
+DESCRIPTION:🔴 Немає струму ⟲ 06:22 | ⚠️ Екстрен
  і графіки
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:b4ea2e87-3b94-42f4-8ac8-ddf0426ff03b
+UID:e78673b6-be51-4ebc-b50d-0f7a034720f3
 SEQUENCE:0
-DTSTAMP:20260205T024732
+DTSTAMP:20260205T042806
 DTSTART;TZID=Europe/Kyiv:20260205T153000
 DTEND;TZID=Europe/Kyiv:20260206T000000
-SUMMARY:🔴 Немає струму ⟲ 04:36 | ⚠️ Екстрені 
+SUMMARY:🔴 Немає струму ⟲ 06:22 | ⚠️ Екстрені 
  графіки
 DESCRIPTION:📅 Стабілізаційне відключення за 
  графіком.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:🔴 Немає струму ⟲ 04:36 | ⚠️ Екстрен
+DESCRIPTION:🔴 Немає струму ⟲ 06:22 | ⚠️ Екстрен
  і графіки
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:5d95728e-7fa1-4343-88b7-ab0c6bbf040e
+UID:522fc313-0d72-4d92-8ae9-e735e5b77c5e
 SEQUENCE:0
-DTSTAMP:20260205T024732
+DTSTAMP:20260205T042806
 DTSTART;TZID=Europe/Kyiv:20260205T033000
 DTEND;TZID=Europe/Kyiv:20260205T070000
-SUMMARY:🟢 Є струм ⟲ 04:36 | ⚠️ Екстрені графі
+SUMMARY:🟢 Є струм ⟲ 06:22 | ⚠️ Екстрені графі
  ки
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:🟢 Є струм ⟲ 04:36 | ⚠️ Екстрені гра
+DESCRIPTION:🟢 Є струм ⟲ 06:22 | ⚠️ Екстрені гра
  фіки
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:8f2cb11e-cae9-4995-a95e-8f743ba8ac7d
+UID:04774fb9-2cd8-4811-9360-a9685d43c5ed
 SEQUENCE:0
-DTSTAMP:20260205T024732
+DTSTAMP:20260205T042806
 DTSTART;TZID=Europe/Kyiv:20260205T140000
 DTEND;TZID=Europe/Kyiv:20260205T153000
-SUMMARY:🟢 Є струм ⟲ 04:36 | ⚠️ Екстрені графі
+SUMMARY:🟢 Є струм ⟲ 06:22 | ⚠️ Екстрені графі
  ки
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:🟢 Є струм ⟲ 04:36 | ⚠️ Екстрені гра
+DESCRIPTION:🟢 Є струм ⟲ 06:22 | ⚠️ Екстрені гра
  фіки
 END:VALARM
 END:VEVENT
