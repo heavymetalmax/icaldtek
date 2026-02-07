@@ -451,16 +451,13 @@ function generateCalendar(address, outageData, modalInfo) {
     const isCurrentEvent = event.start <= now && event.end > now;
     const isFutureEvent = event.start > now;
     
-    // Для актуальної події - якщо є інфовікно, то додаємо час відновлення ідентично до off
+    // Для актуальної події - якщо є інфовікно, то для on беремо час з графіка (event.end)
     let infoSuffix = '';
     if (outageData.infoBlockText) {
       let infoText = outageData.infoBlockText
         .replace(/\n/g, ' ')
         .replace(/\s*Орієнтовний час відновлення[^|]*/i, '');
-      if (recoveryTimeStr) {
-        infoSuffix = ' ⏻ ' + recoveryTimeStr + infoSuffix;
-      }
-      infoSuffix += ' | ' + infoText.trim();
+      infoSuffix = ' | ' + infoText.trim();
     }
     
     // Для майбутніх подій - без інфовікна
@@ -468,8 +465,17 @@ function generateCalendar(address, outageData, modalInfo) {
     let eventDescription = event.description;
     
     if (isCurrentEvent) {
-      // Актуальна подія - додаємо інфо з інфовікна (і час відновлення для on)
-      eventSummary = event.summary.replace(/(⏻ on ⚠️)(.*)/, '$1') + infoSuffix;
+      // Актуальна подія - додаємо інфо з інфовікна (і час відновлення для on з графіка)
+      if (event.summary.startsWith('⏻ on ⚠️')) {
+        // Час до кінця події (графік)
+        const endH = String(event.end.getHours()).padStart(2, '0');
+        const endM = String(event.end.getMinutes()).padStart(2, '0');
+        const endD = String(event.end.getDate()).padStart(2, '0');
+        const endMo = String(event.end.getMonth() + 1).padStart(2, '0');
+        eventSummary = '⏻ on ⚠️ ⏻ до ' + endH + ':' + endM + ' ' + endD + '.' + endMo + infoSuffix;
+      } else {
+        eventSummary = event.summary + infoSuffix;
+      }
       eventDescription = event.description;
     } else {
       // Майбутня подія - без інфовікна
