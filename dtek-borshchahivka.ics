@@ -6,23 +6,29 @@ X-WR-CALNAME:⚡️Борщагівка
 TIMEZONE-ID:Europe/Kyiv
 X-WR-TIMEZONE:Europe/Kyiv
 BEGIN:VEVENT
-UID:75b2ec88-d320-4111-857c-15e34bda1d86
+UID:43498071-fa4b-4c9e-91e0-e7309fb3e40a
 SEQUENCE:0
-DTSTAMP:20260207T112938
+DTSTAMP:20260207T094241
 DTSTART;TZID=Europe/Kyiv:20260207T113000
 DTEND;TZID=Europe/Kyiv:20260207T183000
-SUMMARY:⏼ off ⚠️
+SUMMARY:⏼ off ⚠️ ⏻ до 18:30 07.02 | Причина: Екстре
+ нні відключення (Аварійне без застосува
+ ння графіку погодинних відключень) Час п
+ очатку – 11:09 07.02.2026
 DESCRIPTION:Відключення за графіком.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:⏼ off ⚠️
+DESCRIPTION:⏼ off ⚠️ ⏻ до 18:30 07.02 | Причина: Екст
+ ренні відключення (Аварійне без застосу
+ вання графіку погодинних відключень) Ча
+ с початку – 11:09 07.02.2026
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:08263be1-8947-4e6a-a2f9-c6cf19de9a23
+UID:ec1cb765-ec46-45fc-9a0b-05fca6a7df41
 SEQUENCE:0
-DTSTAMP:20260207T112938
+DTSTAMP:20260207T094241
 DTSTART;TZID=Europe/Kyiv:20260207T203000
 DTEND;TZID=Europe/Kyiv:20260208T000000
 SUMMARY:⏼ off ⚠️
@@ -34,30 +40,9 @@ DESCRIPTION:⏼ off ⚠️
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:1cd09500-6e42-459e-b257-4f47697ed2d2
+UID:c439ed69-bba6-44b1-8630-fac1be591d20
 SEQUENCE:0
-DTSTAMP:20260207T112938
-DTSTART;TZID=Europe/Kyiv:20260207T080000
-DTEND;TZID=Europe/Kyiv:20260207T113000
-SUMMARY:⏻ on ⚠️ ⏻ до 11:30 07.02 | Причина: Екстре
- нні відключення (Аварійне без застосува
- ння графіку погодинних відключень) Час п
- очатку – 11:09 07.02.2026
-DESCRIPTION:Електроенергія має бути в наявнос
- ті.
-BEGIN:VALARM
-ACTION:DISPLAY
-TRIGGER:-PT15M
-DESCRIPTION:⏻ on ⚠️ ⏻ до 11:30 07.02 | Причина: Екст
- ренні відключення (Аварійне без застосу
- вання графіку погодинних відключень) Ча
- с початку – 11:09 07.02.2026
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:fa131a4a-dc3c-4a4c-a04a-a27153190335
-SEQUENCE:0
-DTSTAMP:20260207T112938
+DTSTAMP:20260207T094241
 DTSTART;TZID=Europe/Kyiv:20260207T183000
 DTEND;TZID=Europe/Kyiv:20260207T203000
 SUMMARY:⏻ on ⚠️
