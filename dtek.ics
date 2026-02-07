@@ -6,23 +6,65 @@ X-WR-CALNAME:⚡️Гора
 TIMEZONE-ID:Europe/Kyiv
 X-WR-TIMEZONE:Europe/Kyiv
 BEGIN:VEVENT
-UID:f09979ec-4226-4050-b6f5-f2cf12ca7753
+UID:08359000-0d6a-4b54-9351-397a62d2e51d
 SEQUENCE:0
-DTSTAMP:20260205T141205
-DTSTART;TZID=Europe/Kyiv:20260205T160000
-DTEND;TZID=Europe/Kyiv:20260206T010000
-SUMMARY:🔴 Немає струму ⟲ 16:08 | 📅 Стабілізац
- ійне | ⚠️ Екстрені графіки (скориговано)
-DESCRIPTION:Причина: Стабілізаційне відключе
- ння (Згідно графіку погодинних відключе
- нь)\nЧас початку – 16:00 05.02.2026\nОрієнтовний 
- час відновлення – до 01:00 06.02.2026
+DTSTAMP:20260207T095637
+DTSTART;TZID=Europe/Kyiv:20260207T100000
+DTEND;TZID=Europe/Kyiv:20260207T133400
+SUMMARY:⏼ off ⚠️
+DESCRIPTION:⏻ 13:34\n⟲ 09:54\nПричина: Аварійні рем
+ онтні роботи\nЧас початку – 09:34 07.02.2026\nОр
+ ієнтовний час відновлення – до 13:34 07.02.2026
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:🔴 Немає струму ⟲ 16:08 | 📅 Стабіліз
- аційне | ⚠️ Екстрені графіки (скоригова
- но)
+DESCRIPTION:⏼ off ⚠️
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:efc5812e-6393-4d18-98e1-55196d4aa653
+SEQUENCE:0
+DTSTAMP:20260207T095637
+DTSTART;TZID=Europe/Kyiv:20260207T203000
+DTEND;TZID=Europe/Kyiv:20260208T000000
+SUMMARY:⏼ off ⚠️
+DESCRIPTION:⏻ 13:34\n⟲ 09:54\nПричина: Аварійні рем
+ онтні роботи\nЧас початку – 09:34 07.02.2026\nОр
+ ієнтовний час відновлення – до 13:34 07.02.2026
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT15M
+DESCRIPTION:⏼ off ⚠️
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:72ccd02e-180b-4b95-9a45-c53a6e5b03f2
+SEQUENCE:0
+DTSTAMP:20260207T095637
+DTSTART;TZID=Europe/Kyiv:20260207T080000
+DTEND;TZID=Europe/Kyiv:20260207T100000
+SUMMARY:⏻ on ⚠️
+DESCRIPTION:Електроенергія має бути в наявнос
+ ті.
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT15M
+DESCRIPTION:⏻ on ⚠️
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:88462d61-12e4-45c4-b798-b5fe0c6a2704
+SEQUENCE:0
+DTSTAMP:20260207T095637
+DTSTART;TZID=Europe/Kyiv:20260207T133400
+DTEND;TZID=Europe/Kyiv:20260207T203000
+SUMMARY:⏻ on ⚠️
+DESCRIPTION:Електроенергія має бути в наявнос
+ ті.
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT15M
+DESCRIPTION:⏻ on ⚠️
 END:VALARM
 END:VEVENT
 END:VCALENDAR
