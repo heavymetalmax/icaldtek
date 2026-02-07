@@ -215,8 +215,8 @@ function generateCalendar(address, outageData, modalInfo) {
   }
   
   // Формуємо заголовки
-  // OFF: ⏼ off ⚠️ ⏻ до 13:34 07.02 ⟲ 09:54 + текст з інфовікна
-  // ON: ⏻ on ⚠️ ⟲ 09:54
+  // OFF: ⏼ off ⚠️ ⏻ до 13:34 07.02 ⟲ 09:54 | Причина: ...
+  // ON: ⏻ on ⚠️ ⟲ 09:54 | Причина: ... (теж показуємо інфо, бо графік недійсний)
   let urgentOffSummary = '⏼ off ⚠️';
   let urgentOnSummary = '⏻ on ⚠️';
   
@@ -225,12 +225,13 @@ function generateCalendar(address, outageData, modalInfo) {
     urgentOffSummary += ' ' + updateTimeStr;
     urgentOnSummary += ' ' + updateTimeStr;
   }
-  // Додаємо текст інфовікна в заголовок OFF (без "Орієнтовний час відновлення" - це дублікат)
+  // Додаємо текст інфовікна (без "Орієнтовний час відновлення" - це дублікат)
   if (outageData.infoBlockText) {
     let infoText = outageData.infoBlockText
       .replace(/\n/g, ' ')
       .replace(/\s*Орієнтовний час відновлення[^|]*/i, '');
     urgentOffSummary += ' | ' + infoText.trim();
+    urgentOnSummary += ' | ' + infoText.trim();
   }
   
   // Опис події
