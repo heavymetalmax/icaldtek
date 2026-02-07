@@ -204,28 +204,35 @@ function generateCalendar(address, outageData, modalInfo) {
   const isAccident = outageData.infoBlockType === 'accident' || modalInfo.modalAlertType === 'accident';
   const isUrgent = isEmergency || isAccident;
   
-  // Парсимо час відновлення з API
-  let recoveryTime = null;
+  // Парсимо час відновлення з API (формат: "до 13:34 07.02")
+  let recoveryTimeStr = null;
   if (outageData.currentOutage?.endDate) {
-    const match = outageData.currentOutage.endDate.match(/(\d{1,2}):(\d{2})/);
+    const match = outageData.currentOutage.endDate.match(/(\d{1,2}):(\d{2})\s+(\d{2})\.(\d{2})/);
     if (match) {
-      recoveryTime = String(match[1]).padStart(2, '0') + ':' + match[2];
+      const [, hours, minutes, day, month] = match;
+      recoveryTimeStr = 'до ' + String(hours).padStart(2, '0') + ':' + minutes + ' ' + day + '.' + month;
     }
   }
   
-  // Формуємо опис для екстрених відключень
-  function buildUrgentDescription() {
-    const parts = [];
-    if (recoveryTime) parts.push('⏻ ' + recoveryTime);
-    if (updateTimeStr) parts.push(updateTimeStr);
-    if (outageData.infoBlockText) parts.push(outageData.infoBlockText);
-    return parts.join('\n');
+  // Формуємо заголовки
+  // OFF: ⏼ off ⚠️ ⏻ до 13:34 07.02 ⟲ 09:54 + текст з інфовікна
+  // ON: ⏻ on ⚠️ ⟲ 09:54
+  let urgentOffSummary = '⏼ off ⚠️';
+  let urgentOnSummary = '⏻ on ⚠️';
+  
+  if (recoveryTimeStr) urgentOffSummary += ' ⏻ ' + recoveryTimeStr;
+  if (updateTimeStr) {
+    urgentOffSummary += ' ' + updateTimeStr;
+    urgentOnSummary += ' ' + updateTimeStr;
+  }
+  // Додаємо текст інфовікна в заголовок OFF
+  if (outageData.infoBlockText) {
+    urgentOffSummary += ' | ' + outageData.infoBlockText.replace(/\n/g, ' ');
   }
   
   // Опис події
   const defaultDescription = 'Електроенергія має бути в наявності.';
   const defaultOutageDescription = 'Відключення за графіком.';
-  const urgentDescription = buildUrgentDescription();
   
   const allEvents = [];
   
@@ -272,8 +279,8 @@ function generateCalendar(address, outageData, modalInfo) {
       allEvents.push({
         start: new Date(year, month, day, startH, startM),
         end: new Date(year, month, day, endH, endM),
-        summary: isUrgent ? '⏼ off ⚠️' : '⏼ off',
-        description: isUrgent ? urgentDescription : defaultOutageDescription,
+        summary: isUrgent ? urgentOffSummary : '⏼ off',
+        description: defaultOutageDescription,
         isOutage: true
       });
     }
@@ -379,7 +386,7 @@ function generateCalendar(address, outageData, modalInfo) {
         powerOnEvents.push({
           start: dayEvents[i].end,
           end: dayEvents[i + 1].start,
-          summary: isUrgent ? '⏻ on ⚠️' : '⏻ on',
+          summary: isUrgent ? urgentOnSummary : '⏻ on',
           description: defaultDescription,
           isOutage: false
         });
@@ -401,7 +408,7 @@ function generateCalendar(address, outageData, modalInfo) {
       powerOnEvents.push({
         start: lastEvent.end,
         end: endOfDay,
-        summary: isUrgent ? '⏻ on ⚠️' : '⏻ on',
+        summary: isUrgent ? urgentOnSummary : '⏻ on',
         description: defaultDescription,
         isOutage: false
       });
@@ -414,7 +421,7 @@ function generateCalendar(address, outageData, modalInfo) {
       powerOnEvents.push({
         start: startOfDay,
         end: firstEvent.start,
-        summary: isUrgent ? '⏻ on ⚠️' : '⏻ on',
+        summary: isUrgent ? urgentOnSummary : '⏻ on',
         description: defaultDescription,
         isOutage: false
       });
