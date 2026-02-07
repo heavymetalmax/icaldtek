@@ -289,7 +289,7 @@ function generateCalendar(address, outageData, modalInfo) {
       allEvents.push({
         start: new Date(year, month, day, startH, startM),
         end: new Date(year, month, day, endH, endM),
-        summary: isUrgent ? urgentOffSummary : '⏼ off',
+        summary: isUrgent ? '⏼ off ⚠️' : '⏼ off',
         description: defaultOutageDescription,
         isOutage: true
       });
@@ -396,7 +396,7 @@ function generateCalendar(address, outageData, modalInfo) {
         powerOnEvents.push({
           start: dayEvents[i].end,
           end: dayEvents[i + 1].start,
-          summary: isUrgent ? urgentOnSummary : '⏻ on',
+          summary: isUrgent ? '⏻ on ⚠️' : '⏻ on',
           description: defaultDescription,
           isOutage: false
         });
@@ -418,7 +418,7 @@ function generateCalendar(address, outageData, modalInfo) {
       powerOnEvents.push({
         start: lastEvent.end,
         end: endOfDay,
-        summary: isUrgent ? urgentOnSummary : '⏻ on',
+        summary: isUrgent ? '⏻ on ⚠️' : '⏻ on',
         description: defaultDescription,
         isOutage: false
       });
@@ -431,7 +431,7 @@ function generateCalendar(address, outageData, modalInfo) {
       powerOnEvents.push({
         start: startOfDay,
         end: firstEvent.start,
-        summary: isUrgent ? urgentOnSummary : '⏻ on',
+        summary: isUrgent ? '⏻ on ⚠️' : '⏻ on',
         description: defaultDescription,
         isOutage: false
       });
@@ -473,12 +473,19 @@ function generateCalendar(address, outageData, modalInfo) {
         const endD = String(event.end.getDate()).padStart(2, '0');
         const endMo = String(event.end.getMonth() + 1).padStart(2, '0');
         eventSummary = '⏻ on ⚠️ ⏻ до ' + endH + ':' + endM + ' ' + endD + '.' + endMo + infoSuffix;
+      } else if (event.summary.startsWith('⏼ off ⚠️')) {
+        // Час до кінця події (графік)
+        const endH = String(event.end.getHours()).padStart(2, '0');
+        const endM = String(event.end.getMinutes()).padStart(2, '0');
+        const endD = String(event.end.getDate()).padStart(2, '0');
+        const endMo = String(event.end.getMonth() + 1).padStart(2, '0');
+        eventSummary = '⏼ off ⚠️ ⏻ до ' + endH + ':' + endM + ' ' + endD + '.' + endMo + infoSuffix;
       } else {
-        eventSummary = event.summary + infoSuffix;
+        eventSummary = event.summary;
       }
       eventDescription = event.description;
     } else {
-      // Майбутня подія - без інфовікна
+      // Майбутня подія - тільки ⏻ on ⚠️ або ⏼ off ⚠️
       eventSummary = event.summary;
       eventDescription = event.description;
     }
