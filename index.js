@@ -409,10 +409,11 @@ function generateCalendar(address, outageData, modalInfo) {
       infoSuffix = ' | ' + infoText.trim();
     }
     
-    // Для майбутніх подій - без інфовікна
+    // Додаємо час оновлення (⟲ ...) у заголовок події
     let eventSummary = event.summary;
     let eventDescription = event.description;
-    
+    const updateTimeStr = outageData.updateTime ? '⟲ ' + outageData.updateTime : '';
+
     if (isCurrentEvent) {
       // Актуальна подія - додаємо інфо з інфовікна (і час відновлення для on з графіка)
       if (event.summary.startsWith('⏻ on ⚠️')) {
@@ -421,21 +422,21 @@ function generateCalendar(address, outageData, modalInfo) {
         const endM = String(event.end.getMinutes()).padStart(2, '0');
         const endD = String(event.end.getDate()).padStart(2, '0');
         const endMo = String(event.end.getMonth() + 1).padStart(2, '0');
-        eventSummary = '⏻ on ⚠️ ⏻ до ' + endH + ':' + endM + ' ' + endD + '.' + endMo + infoSuffix;
+        eventSummary = '⏻ on ⚠️ ⏻ до ' + endH + ':' + endM + ' ' + endD + '.' + endMo + (updateTimeStr ? ' ' + updateTimeStr : '') + infoSuffix;
       } else if (event.summary.startsWith('⏼ off ⚠️')) {
         // Час до кінця події (графік)
         const endH = String(event.end.getHours()).padStart(2, '0');
         const endM = String(event.end.getMinutes()).padStart(2, '0');
         const endD = String(event.end.getDate()).padStart(2, '0');
         const endMo = String(event.end.getMonth() + 1).padStart(2, '0');
-        eventSummary = '⏼ off ⚠️ ⏻ до ' + endH + ':' + endM + ' ' + endD + '.' + endMo + infoSuffix;
+        eventSummary = '⏼ off ⚠️ ⏻ до ' + endH + ':' + endM + ' ' + endD + '.' + endMo + (updateTimeStr ? ' ' + updateTimeStr : '') + infoSuffix;
       } else {
-        eventSummary = event.summary;
+        eventSummary = event.summary + (updateTimeStr ? ' ' + updateTimeStr : '');
       }
       eventDescription = event.description;
     } else {
       // Майбутня подія - тільки ⏻ on ⚠️ або ⏼ off ⚠️
-      eventSummary = event.summary;
+      eventSummary = event.summary + (updateTimeStr ? ' ' + updateTimeStr : '');
       eventDescription = event.description;
     }
     
