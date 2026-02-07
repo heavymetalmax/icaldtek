@@ -6,12 +6,12 @@ X-WR-CALNAME:⚡️Гора
 TIMEZONE-ID:Europe/Kyiv
 X-WR-TIMEZONE:Europe/Kyiv
 BEGIN:VEVENT
-UID:ef8d85bf-b840-4605-8e2c-ac4a6eb5f962
+UID:cc8a1755-cd43-4433-9db0-1b4a78e9cff3
 SEQUENCE:0
-DTSTAMP:20260207T203401
+DTSTAMP:20260207T204836
 DTSTART;TZID=Europe/Kyiv:20260207T200000
 DTEND;TZID=Europe/Kyiv:20260208T000000
-SUMMARY:⏼ off ⚠️ ⏻ до 00:00 08.02 ⟲ 22:24 | Причина: С
+SUMMARY:⏼ off ⚠️ ⏻ до 00:00 08.02 ⟲ 22:37 | Причина: С
  табілізаційне відключення (Згідно графі
  ку погодинних відключень) Час початку – 
  20:00 07.02.2026
@@ -19,7 +19,7 @@ DESCRIPTION:Відключення за графіком.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:⏼ off ⚠️ ⏻ до 00:00 08.02 ⟲ 22:24 | Причина
+DESCRIPTION:⏼ off ⚠️ ⏻ до 00:00 08.02 ⟲ 22:37 | Причина
  : Стабілізаційне відключення (Згідно гра
  фіку погодинних відключень) Час початку 
  – 20:00 07.02.2026
