@@ -6,12 +6,12 @@ X-WR-CALNAME:⚡️Борщагівка
 TIMEZONE-ID:Europe/Kyiv
 X-WR-TIMEZONE:Europe/Kyiv
 BEGIN:VEVENT
-UID:9151dbba-51f9-4abf-b97b-d8b192929941
+UID:a0dd1b9b-0fe6-4594-b6ab-9a4e055d516f
 SEQUENCE:0
-DTSTAMP:20260207T182202
+DTSTAMP:20260207T184519
 DTSTART;TZID=Europe/Kyiv:20260207T200000
 DTEND;TZID=Europe/Kyiv:20260208T000000
-SUMMARY:⏼ off ⚠️ ⏻ до 00:00 08.02 ⟲ 20:08 | Причина: С
+SUMMARY:⏼ off ⚠️ ⏻ до 00:00 08.02 ⟲ 20:37 | Причина: С
  табілізаційне відключення (Згідно графі
  ку погодинних відключень) Час початку – 
  20:00 07.02.2026
@@ -19,7 +19,7 @@ DESCRIPTION:Відключення за графіком.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:⏼ off ⚠️ ⏻ до 00:00 08.02 ⟲ 20:08 | Причина
+DESCRIPTION:⏼ off ⚠️ ⏻ до 00:00 08.02 ⟲ 20:37 | Причина
  : Стабілізаційне відключення (Згідно гра
  фіку погодинних відключень) Час початку 
  – 20:00 07.02.2026
