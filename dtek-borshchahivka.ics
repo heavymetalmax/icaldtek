@@ -6,52 +6,52 @@ X-WR-CALNAME:⚡️Борщагівка
 TIMEZONE-ID:Europe/Kyiv
 X-WR-TIMEZONE:Europe/Kyiv
 BEGIN:VEVENT
-UID:43498071-fa4b-4c9e-91e0-e7309fb3e40a
+UID:b5ee44b6-e211-4cea-a775-505c8e06797e
 SEQUENCE:0
-DTSTAMP:20260207T094241
+DTSTAMP:20260207T134828
 DTSTART;TZID=Europe/Kyiv:20260207T113000
 DTEND;TZID=Europe/Kyiv:20260207T183000
-SUMMARY:⏼ off ⚠️ ⏻ до 18:30 07.02 | Причина: Екстре
- нні відключення (Аварійне без застосува
- ння графіку погодинних відключень) Час п
- очатку – 11:09 07.02.2026
+SUMMARY:⏼ off ⚠️ ⏻ до 18:30 07.02 ⟲ 13:40 | Причина: Е
+ кстренні відключення (Аварійне без заст
+ осування графіку погодинних відключень)
+  Час початку – 11:09 07.02.2026
 DESCRIPTION:Відключення за графіком.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:⏼ off ⚠️ ⏻ до 18:30 07.02 | Причина: Екст
- ренні відключення (Аварійне без застосу
- вання графіку погодинних відключень) Ча
- с початку – 11:09 07.02.2026
+DESCRIPTION:⏼ off ⚠️ ⏻ до 18:30 07.02 ⟲ 13:40 | Причина
+ : Екстренні відключення (Аварійне без за
+ стосування графіку погодинних відключе
+ нь) Час початку – 11:09 07.02.2026
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:ec1cb765-ec46-45fc-9a0b-05fca6a7df41
+UID:c77e85d2-bec4-4787-b6fd-44dfaabb1a38
 SEQUENCE:0
-DTSTAMP:20260207T094241
+DTSTAMP:20260207T134828
 DTSTART;TZID=Europe/Kyiv:20260207T203000
 DTEND;TZID=Europe/Kyiv:20260208T000000
-SUMMARY:⏼ off ⚠️
+SUMMARY:⏼ off ⚠️ ⟲ 13:40
 DESCRIPTION:Відключення за графіком.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:⏼ off ⚠️
+DESCRIPTION:⏼ off ⚠️ ⟲ 13:40
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:c439ed69-bba6-44b1-8630-fac1be591d20
+UID:8ffccdc4-3d27-4075-ad0c-738309496730
 SEQUENCE:0
-DTSTAMP:20260207T094241
+DTSTAMP:20260207T134828
 DTSTART;TZID=Europe/Kyiv:20260207T183000
 DTEND;TZID=Europe/Kyiv:20260207T203000
-SUMMARY:⏻ on ⚠️
+SUMMARY:⏻ on ⚠️ ⟲ 13:40
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:⏻ on ⚠️
+DESCRIPTION:⏻ on ⚠️ ⟲ 13:40
 END:VALARM
 END:VEVENT
 END:VCALENDAR
