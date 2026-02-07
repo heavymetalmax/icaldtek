@@ -197,73 +197,35 @@ async function fetchAddressData(page, address, sessionData) {
 function generateCalendar(address, outageData, modalInfo) {
   const cal = ical({ name: '⚡️' + address.name, timezone: 'Europe/Kyiv' });
   
-  const updateTimeStr = outageData.updateTime ? ' ⟲ ' + outageData.updateTime : '';
+  const updateTimeStr = outageData.updateTime ? '⟲ ' + outageData.updateTime : '';
   
-  // Формуємо причини відключення:
-  // specificReason - конкретна причина з API для адреси
-  // generalReason - загальна ситуація з попапу
-  let specificReason = null;
-  if (outageData.infoBlockType === 'emergency') {
-    specificReason = '⚠️ Екстрені відключення';
-  } else if (outageData.infoBlockType === 'accident') {
-    specificReason = '🚨 Аварійне відключення';
-  } else if (outageData.infoBlockType === 'stabilization') {
-    specificReason = '📅 Стабілізаційне';
-  }
-  
-  let generalReason = null;
-  if (modalInfo.modalAlertType === 'emergency') {
-    generalReason = '⚠️ Екстрені графіки';
-  } else if (modalInfo.modalAlertType === 'accident') {
-    generalReason = '🚨 Аварія в мережі';
-  } else if (modalInfo.modalAlertType === 'stabilization') {
-    generalReason = '📅 Стабілізаційні графіки';
-  }
-  
-  // Функція для перевірки чи причини по суті однакові (щоб уникнути дублювання)
-  function areSimilarReasons(reason1, reason2) {
-    if (!reason1 || !reason2) return false;
-    if (reason1 === reason2) return true;
-    
-    // Нормалізуємо для порівняння: прибираємо емодзі та приводимо до нижнього регістру
-    const normalize = (str) => str.replace(/[📅⚠️🚨]/g, '').toLowerCase().trim();
-    const n1 = normalize(reason1);
-    const n2 = normalize(reason2);
-    
-    // Перевіряємо чи один містить основу іншого
-    // "стабілізаційне" vs "стабілізаційні графіки" - схожі
-    // "екстрені відключення" vs "екстрені графіки" - схожі
-    // "аварійне відключення" vs "аварія в мережі" - схожі
-    const getRoot = (str) => {
-      if (str.includes('стабіліз')) return 'stabilization';
-      if (str.includes('екстрен')) return 'emergency';
-      if (str.includes('аварі')) return 'accident';
-      return str;
-    };
-    
-    return getRoot(n1) === getRoot(n2);
-  }
-  
-  // Формуємо суфікс для заголовка: конкретна | загальна (тільки якщо різні за змістом)
-  let reasonSuffix = '';
-  if (specificReason && generalReason && !areSimilarReasons(specificReason, generalReason)) {
-    // Причини різні - показуємо обидві
-    reasonSuffix = ' | ' + specificReason + ' | ' + generalReason;
-  } else if (specificReason) {
-    // Є тільки конкретна, або обидві схожі - показуємо конкретну
-    reasonSuffix = ' | ' + specificReason;
-  } else if (generalReason) {
-    // Є тільки загальна
-    reasonSuffix = ' | ' + generalReason;
-  }
-  
-  // Чи діють екстрені відключення (з будь-якого джерела)
+  // Чи діють екстрені/аварійні відключення
   const isEmergency = outageData.infoBlockType === 'emergency' || modalInfo.modalAlertType === 'emergency';
+  const isAccident = outageData.infoBlockType === 'accident' || modalInfo.modalAlertType === 'accident';
+  const isUrgent = isEmergency || isAccident;
   
-  // Опис події з інфо-блоку (для актуальних подій)
-  const infoBlockDescription = outageData.infoBlockText;
+  // Парсимо час відновлення з API
+  let recoveryTime = null;
+  if (outageData.currentOutage?.endDate) {
+    const match = outageData.currentOutage.endDate.match(/(\d{1,2}):(\d{2})/);
+    if (match) {
+      recoveryTime = String(match[1]).padStart(2, '0') + ':' + match[2];
+    }
+  }
+  
+  // Формуємо опис для екстрених відключень
+  function buildUrgentDescription() {
+    const parts = [];
+    if (recoveryTime) parts.push('⏻ ' + recoveryTime);
+    if (updateTimeStr) parts.push(updateTimeStr);
+    if (outageData.infoBlockText) parts.push(outageData.infoBlockText);
+    return parts.join('\n');
+  }
+  
+  // Опис події
   const defaultDescription = 'Електроенергія має бути в наявності.';
-  const defaultOutageDescription = (specificReason || '📅 Стабілізаційне відключення') + ' за графіком.';
+  const defaultOutageDescription = 'Відключення за графіком.';
+  const urgentDescription = buildUrgentDescription();
   
   const allEvents = [];
   
@@ -310,8 +272,8 @@ function generateCalendar(address, outageData, modalInfo) {
       allEvents.push({
         start: new Date(year, month, day, startH, startM),
         end: new Date(year, month, day, endH, endM),
-        summary: '🔴 Немає струму' + reasonSuffix + updateTimeStr,
-        description: defaultOutageDescription,
+        summary: isUrgent ? '⏼ off ⚠️' : '⏼ off',
+        description: isUrgent ? urgentDescription : defaultOutageDescription,
         isOutage: true
       });
     }
@@ -409,9 +371,6 @@ function generateCalendar(address, outageData, modalInfo) {
     eventsByDay[dayKey].push(event);
   });
   
-  // Суфікс для подій "Є струм" - показуємо тільки екстрені/аварійні попередження
-  const powerOnSuffix = isEmergency ? reasonSuffix : '';
-  
   // Для кожного дня додаємо періоди зі світлом
   Object.values(eventsByDay).forEach(dayEvents => {
     // Між відключеннями
@@ -420,7 +379,7 @@ function generateCalendar(address, outageData, modalInfo) {
         powerOnEvents.push({
           start: dayEvents[i].end,
           end: dayEvents[i + 1].start,
-          summary: '🟢 Є струм' + powerOnSuffix + updateTimeStr,
+          summary: isUrgent ? '⏻ on ⚠️' : '⏻ on',
           description: defaultDescription,
           isOutage: false
         });
@@ -442,7 +401,7 @@ function generateCalendar(address, outageData, modalInfo) {
       powerOnEvents.push({
         start: lastEvent.end,
         end: endOfDay,
-        summary: '🟢 Є струм' + powerOnSuffix + updateTimeStr,
+        summary: isUrgent ? '⏻ on ⚠️' : '⏻ on',
         description: defaultDescription,
         isOutage: false
       });
@@ -455,7 +414,7 @@ function generateCalendar(address, outageData, modalInfo) {
       powerOnEvents.push({
         start: startOfDay,
         end: firstEvent.start,
-        summary: '🟢 Є струм' + powerOnSuffix + updateTimeStr,
+        summary: isUrgent ? '⏻ on ⚠️' : '⏻ on',
         description: defaultDescription,
         isOutage: false
       });
@@ -481,16 +440,12 @@ function generateCalendar(address, outageData, modalInfo) {
     let eventDescription;
     
     if (isCurrentEvent) {
-      // Актуальна подія - повний формат
-      eventSummary = event.wasAdjusted ? event.summary + ' (скориговано)' : event.summary;
-      eventDescription = infoBlockDescription || event.description;
+      // Актуальна подія
+      eventSummary = event.summary;
+      eventDescription = event.description;
     } else {
-      // Майбутня подія - простий формат з причинами
-      if (event.isOutage) {
-        eventSummary = '🔴 Немає струму' + reasonSuffix + updateTimeStr;
-      } else {
-        eventSummary = '🟢 Є струм' + powerOnSuffix + updateTimeStr;
-      }
+      // Майбутня подія
+      eventSummary = event.summary;
       eventDescription = event.description;
     }
     
