@@ -234,7 +234,10 @@ function generateCalendar(address, outageData, modalInfo) {
     let infoText = outageData.infoBlockText
       .replace(/\n/g, ' ')
       .replace(/\s*Орієнтовний час відновлення[^|]*/i, '');
-    infoSuffix = ' | ' + infoText.trim();
+    if (recoveryTimeStr) {
+      infoSuffix = ' ⏻ ' + recoveryTimeStr + infoSuffix;
+    }
+    infoSuffix += ' | ' + infoText.trim();
   }
   
   // Опис події
@@ -448,14 +451,25 @@ function generateCalendar(address, outageData, modalInfo) {
     const isCurrentEvent = event.start <= now && event.end > now;
     const isFutureEvent = event.start > now;
     
-    // Для актуальних подій - повний формат з деталями
-    // Для майбутніх - простий формат без деталей
-    let eventSummary;
-    let eventDescription;
+    // Для актуальної події - якщо є інфовікно, то додаємо час відновлення ідентично до off
+    let infoSuffix = '';
+    if (outageData.infoBlockText) {
+      let infoText = outageData.infoBlockText
+        .replace(/\n/g, ' ')
+        .replace(/\s*Орієнтовний час відновлення[^|]*/i, '');
+      if (recoveryTimeStr) {
+        infoSuffix = ' ⏻ ' + recoveryTimeStr + infoSuffix;
+      }
+      infoSuffix += ' | ' + infoText.trim();
+    }
+    
+    // Для майбутніх подій - без інфовікна
+    let eventSummary = event.summary;
+    let eventDescription = event.description;
     
     if (isCurrentEvent) {
-      // Актуальна подія - додаємо інфо з інфовікна
-      eventSummary = event.summary + infoSuffix;
+      // Актуальна подія - додаємо інфо з інфовікна (і час відновлення для on)
+      eventSummary = event.summary.replace(/(⏻ on ⚠️)(.*)/, '$1') + infoSuffix;
       eventDescription = event.description;
     } else {
       // Майбутня подія - без інфовікна
