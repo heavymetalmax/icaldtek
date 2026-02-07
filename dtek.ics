@@ -6,69 +6,73 @@ X-WR-CALNAME:⚡️Гора
 TIMEZONE-ID:Europe/Kyiv
 X-WR-TIMEZONE:Europe/Kyiv
 BEGIN:VEVENT
-UID:e9cba97d-2be4-43b5-8bf1-4fc828eb3ae2
+UID:0e0c3ee6-590e-40e9-9ad6-0c862b071284
 SEQUENCE:0
-DTSTAMP:20260207T100810
+DTSTAMP:20260207T101327
 DTSTART;TZID=Europe/Kyiv:20260207T113000
 DTEND;TZID=Europe/Kyiv:20260207T133400
-SUMMARY:⏼ off ⚠️ ⏻ до 13:34 07.02 ⟲ 09:54 | Причина: А
+SUMMARY:⏼ off ⚠️ ⏻ до 13:34 07.02 ⟲ 10:11 | Причина: А
  варійні ремонтні роботи Час початку – 09:
  34 07.02.2026
 DESCRIPTION:Відключення за графіком.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:⏼ off ⚠️ ⏻ до 13:34 07.02 ⟲ 09:54 | Причина
+DESCRIPTION:⏼ off ⚠️ ⏻ до 13:34 07.02 ⟲ 10:11 | Причина
  : Аварійні ремонтні роботи Час початку –
   09:34 07.02.2026
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:8cc0c68a-7b51-4144-97e8-c0d291a91499
+UID:6cf673b0-be03-4405-8cd6-b86c39db4850
 SEQUENCE:0
-DTSTAMP:20260207T100810
+DTSTAMP:20260207T101327
 DTSTART;TZID=Europe/Kyiv:20260207T203000
 DTEND;TZID=Europe/Kyiv:20260208T000000
-SUMMARY:⏼ off ⚠️ ⏻ до 13:34 07.02 ⟲ 09:54 | Причина: А
+SUMMARY:⏼ off ⚠️ ⏻ до 13:34 07.02 ⟲ 10:11 | Причина: А
  варійні ремонтні роботи Час початку – 09:
  34 07.02.2026
 DESCRIPTION:Відключення за графіком.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:⏼ off ⚠️ ⏻ до 13:34 07.02 ⟲ 09:54 | Причина
+DESCRIPTION:⏼ off ⚠️ ⏻ до 13:34 07.02 ⟲ 10:11 | Причина
  : Аварійні ремонтні роботи Час початку –
   09:34 07.02.2026
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:86b6906f-e9e2-40ac-ba7f-cbf3f2ac2552
+UID:737c2911-74d8-433c-b74a-814dc4ffe620
 SEQUENCE:0
-DTSTAMP:20260207T100810
+DTSTAMP:20260207T101327
 DTSTART;TZID=Europe/Kyiv:20260207T080000
 DTEND;TZID=Europe/Kyiv:20260207T113000
-SUMMARY:⏻ on ⚠️ ⟲ 09:54
+SUMMARY:⏻ on ⚠️ ⟲ 10:11 | Причина: Аварійні рем
+ онтні роботи Час початку – 09:34 07.02.2026
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:⏻ on ⚠️ ⟲ 09:54
+DESCRIPTION:⏻ on ⚠️ ⟲ 10:11 | Причина: Аварійні р
+ емонтні роботи Час початку – 09:34 07.02.2026
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:a1300ff8-7607-4d86-96fa-c5f7da37d558
+UID:d12f7a6f-42be-42c6-96f8-a7bbb8082037
 SEQUENCE:0
-DTSTAMP:20260207T100810
+DTSTAMP:20260207T101327
 DTSTART;TZID=Europe/Kyiv:20260207T133400
 DTEND;TZID=Europe/Kyiv:20260207T203000
-SUMMARY:⏻ on ⚠️ ⟲ 09:54
+SUMMARY:⏻ on ⚠️ ⟲ 10:11 | Причина: Аварійні рем
+ онтні роботи Час початку – 09:34 07.02.2026
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:⏻ on ⚠️ ⟲ 09:54
+DESCRIPTION:⏻ on ⚠️ ⟲ 10:11 | Причина: Аварійні р
+ емонтні роботи Час початку – 09:34 07.02.2026
 END:VALARM
 END:VEVENT
 END:VCALENDAR
