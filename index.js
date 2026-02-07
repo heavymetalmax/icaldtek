@@ -324,58 +324,7 @@ function generateCalendar(address, outageData, modalInfo) {
   allEvents.length = 0;
   allEvents.push(...mergedEvents);
   
-  // Коригуємо час відключення згідно start_date/end_date з API (якщо є)
-  let wasAdjusted = false;
-  let adjustedEndTime = null;
-  if (outageData.currentOutage?.startDate && outageData.currentOutage?.endDate && allEvents.length > 0) {
-    // Парсимо start_date і end_date формату "16:30 01.02.2026"
-    const parseDateTime = (str) => {
-      const match = str.match(/(\d{1,2}):(\d{2})\s+(\d{2})\.(\d{2})\.(\d{4})/);
-      if (match) {
-        const [, hours, minutes, day, month, year] = match;
-        return new Date(parseInt(year), parseInt(month) - 1, parseInt(day), parseInt(hours), parseInt(minutes));
-      }
-      return null;
-    };
-    
-    const apiStartTime = parseDateTime(outageData.currentOutage.startDate);
-    const apiEndTime = parseDateTime(outageData.currentOutage.endDate);
-    
-    if (apiStartTime && apiEndTime) {
-      // Шукаємо подію, яка перетинається з часовим проміжком з API
-      for (let i = 0; i < allEvents.length; i++) {
-        const event = allEvents[i];
-        // Подія перетинається якщо: event.start < apiEndTime AND event.end > apiStartTime
-        const overlaps = event.start < apiEndTime && event.end > apiStartTime;
-        
-        if (overlaps) {
-          if (apiEndTime > event.end) {
-            // API каже що відключення триватиме довше - подовжуємо
-            console.log('   📝 Подовжуємо відключення: ' + event.end.toLocaleTimeString('uk-UA', {hour: '2-digit', minute: '2-digit'}) + ' → ' + apiEndTime.toLocaleTimeString('uk-UA', {hour: '2-digit', minute: '2-digit'}));
-            event.end = apiEndTime;
-            event.wasAdjusted = true;
-            wasAdjusted = true;
-            adjustedEndTime = apiEndTime;
-          } else if (apiEndTime < event.end) {
-            // API каже що відключення закінчиться раніше - скорочуємо
-            console.log('   📝 Скорочуємо відключення: ' + event.end.toLocaleTimeString('uk-UA', {hour: '2-digit', minute: '2-digit'}) + ' → ' + apiEndTime.toLocaleTimeString('uk-UA', {hour: '2-digit', minute: '2-digit'}));
-            const originalEnd = new Date(event.end);
-            event.end = apiEndTime;
-            event.wasAdjusted = true;
-            wasAdjusted = true;
-            adjustedEndTime = apiEndTime;
-            
-            // Шукаємо наступну подію відключення
-            const nextOutageEvent = allEvents.slice(i + 1).find(e => e.isOutage && e.start >= apiEndTime);
-            
-            // Якщо є проміжок до наступного відключення - зʼявиться світло
-            // Цей проміжок буде створений автоматично в секції powerOnEvents
-          }
-          break; // Коригуємо лише першу відповідну подію
-        }
-      }
-    }
-  }
+  // Видалено: Коригування часу відключення згідно start_date/end_date з API (події формуються виключно з outageData.schedules)
   
   // Додаємо періоди зі світлом
   const powerOnEvents = [];
