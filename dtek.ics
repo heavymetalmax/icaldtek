@@ -6,26 +6,26 @@ X-WR-CALNAME:⚡️Гора
 TIMEZONE-ID:Europe/Kyiv
 X-WR-TIMEZONE:Europe/Kyiv
 BEGIN:VEVENT
-UID:fbcefe2a-5f61-4785-a126-07e66c55b5bc
+UID:0fe1c6c2-3266-4452-b531-6ee22b3e7cf6
 SEQUENCE:0
-DTSTAMP:20260207T163625
+DTSTAMP:20260207T165150
 DTSTART;TZID=Europe/Kyiv:20260207T200000
 DTEND;TZID=Europe/Kyiv:20260208T000000
-SUMMARY:⏼ off ⚠️ ⟲ 18:24
+SUMMARY:⏼ off ⚠️ ⟲ 18:37
 DESCRIPTION:Відключення за графіком.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:⏼ off ⚠️ ⟲ 18:24
+DESCRIPTION:⏼ off ⚠️ ⟲ 18:37
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:6a36cded-77b5-4645-9f44-082d217ee104
+UID:937d1df8-c2f2-452b-a40d-88b63ba4f4c9
 SEQUENCE:0
-DTSTAMP:20260207T163625
+DTSTAMP:20260207T165150
 DTSTART;TZID=Europe/Kyiv:20260207T183000
 DTEND;TZID=Europe/Kyiv:20260207T200000
-SUMMARY:⏻ on ⚠️ ⏻ до 20:00 07.02 ⟲ 18:24 | Причина: Е
+SUMMARY:⏻ on ⚠️ ⏻ до 20:00 07.02 ⟲ 18:37 | Причина: Е
  кстренні відключення (Аварійне без заст
  осування графіку погодинних відключень)
   Час початку – 15:11 07.02.2026
@@ -34,7 +34,7 @@ DESCRIPTION:Електроенергія має бути в наявнос
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:⏻ on ⚠️ ⏻ до 20:00 07.02 ⟲ 18:24 | Причина:
+DESCRIPTION:⏻ on ⚠️ ⏻ до 20:00 07.02 ⟲ 18:37 | Причина:
   Екстренні відключення (Аварійне без зас
  тосування графіку погодинних відключен
  ь) Час початку – 15:11 07.02.2026
