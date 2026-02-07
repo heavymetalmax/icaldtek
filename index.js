@@ -225,9 +225,12 @@ function generateCalendar(address, outageData, modalInfo) {
     urgentOffSummary += ' ' + updateTimeStr;
     urgentOnSummary += ' ' + updateTimeStr;
   }
-  // Додаємо текст інфовікна в заголовок OFF
+  // Додаємо текст інфовікна в заголовок OFF (без "Орієнтовний час відновлення" - це дублікат)
   if (outageData.infoBlockText) {
-    urgentOffSummary += ' | ' + outageData.infoBlockText.replace(/\n/g, ' ');
+    let infoText = outageData.infoBlockText
+      .replace(/\n/g, ' ')
+      .replace(/\s*Орієнтовний час відновлення[^|]*/i, '');
+    urgentOffSummary += ' | ' + infoText.trim();
   }
   
   // Опис події
