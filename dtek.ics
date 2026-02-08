@@ -6,52 +6,52 @@ X-WR-CALNAME:⚡️Гора
 TIMEZONE-ID:Europe/Kyiv
 X-WR-TIMEZONE:Europe/Kyiv
 BEGIN:VEVENT
-UID:af52e580-1cb4-41df-9155-3bce2336c463
+UID:2802ea8e-a5f4-483c-b67c-57351e2cfe33
 SEQUENCE:0
-DTSTAMP:20260208T103047
+DTSTAMP:20260208T105030
 DTSTART;TZID=Europe/Kyiv:20260208T080000
 DTEND;TZID=Europe/Kyiv:20260208T173000
-SUMMARY:⏼ off ⚠️ ⏻ до 17:30 08.02 ⟲ 12:25 | Причина: Е
- кстренні відключення (Аварійне без заст
- осування графіку погодинних відключень)
-  Час початку – 08:00 08.02.2026
+SUMMARY:⏼ off ⚠️ ⏻ до 17:30 08.02 ⟲ 12:39 | Причина: С
+ табілізаційне відключення (Згідно графі
+ ку погодинних відключень) Час початку – 
+ 08:00 08.02.2026
 DESCRIPTION:Відключення за графіком.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:⏼ off ⚠️ ⏻ до 17:30 08.02 ⟲ 12:25 | Причина
- : Екстренні відключення (Аварійне без за
- стосування графіку погодинних відключе
- нь) Час початку – 08:00 08.02.2026
+DESCRIPTION:⏼ off ⚠️ ⏻ до 17:30 08.02 ⟲ 12:39 | Причина
+ : Стабілізаційне відключення (Згідно гра
+ фіку погодинних відключень) Час початку 
+ – 08:00 08.02.2026
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:d00dbfa6-daac-4809-b8e4-72885a3a087d
+UID:30f98dc0-bcc0-42a5-97d5-a567df1f535c
 SEQUENCE:0
-DTSTAMP:20260208T103047
+DTSTAMP:20260208T105030
 DTSTART;TZID=Europe/Kyiv:20260208T190000
 DTEND;TZID=Europe/Kyiv:20260209T000000
-SUMMARY:⏼ off ⚠️ ⟲ 12:25
+SUMMARY:⏼ off ⚠️ ⟲ 12:39
 DESCRIPTION:Відключення за графіком.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:⏼ off ⚠️ ⟲ 12:25
+DESCRIPTION:⏼ off ⚠️ ⟲ 12:39
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:95839ee0-60f9-40da-9905-c7acec113d03
+UID:0df75996-f9b0-40a8-8d1d-40371ba15bd7
 SEQUENCE:0
-DTSTAMP:20260208T103047
+DTSTAMP:20260208T105030
 DTSTART;TZID=Europe/Kyiv:20260208T173000
 DTEND;TZID=Europe/Kyiv:20260208T190000
-SUMMARY:⏻ on ⚠️ ⟲ 12:25
+SUMMARY:⏻ on ⚠️ ⟲ 12:39
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:⏻ on ⚠️ ⟲ 12:25
+DESCRIPTION:⏻ on ⚠️ ⟲ 12:39
 END:VALARM
 END:VEVENT
 END:VCALENDAR
