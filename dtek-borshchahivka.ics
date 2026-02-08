@@ -6,52 +6,52 @@ X-WR-CALNAME:⚡️Борщагівка
 TIMEZONE-ID:Europe/Kyiv
 X-WR-TIMEZONE:Europe/Kyiv
 BEGIN:VEVENT
-UID:fbb366dd-9d2c-4c9b-b3ed-20a3a9f68b7b
+UID:86d9bdfb-e7b2-4922-9d5f-784fd515f0d0
 SEQUENCE:0
-DTSTAMP:20260208T094922
+DTSTAMP:20260208T095921
 DTSTART;TZID=Europe/Kyiv:20260208T080000
 DTEND;TZID=Europe/Kyiv:20260208T173000
-SUMMARY:⏼ off ⚠️ ⏻ до 17:30 08.02 ⟲ 11:39 | Причина: Е
- кстренні відключення (Аварійне без заст
- осування графіку погодинних відключень)
-  Час початку – 08:00 08.02.2026
+SUMMARY:⏼ off ⚠️ ⏻ до 17:30 08.02 ⟲ 11:56 | Причина: С
+ табілізаційне відключення (Згідно графі
+ ку погодинних відключень) Час початку – 
+ 08:00 08.02.2026
 DESCRIPTION:Відключення за графіком.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:⏼ off ⚠️ ⏻ до 17:30 08.02 ⟲ 11:39 | Причина
- : Екстренні відключення (Аварійне без за
- стосування графіку погодинних відключе
- нь) Час початку – 08:00 08.02.2026
+DESCRIPTION:⏼ off ⚠️ ⏻ до 17:30 08.02 ⟲ 11:56 | Причина
+ : Стабілізаційне відключення (Згідно гра
+ фіку погодинних відключень) Час початку 
+ – 08:00 08.02.2026
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:7d7f5777-b864-4267-bdd7-c6866ededc20
+UID:70045b74-8295-4ecc-b371-336baf4fb266
 SEQUENCE:0
-DTSTAMP:20260208T094922
+DTSTAMP:20260208T095921
 DTSTART;TZID=Europe/Kyiv:20260208T190000
 DTEND;TZID=Europe/Kyiv:20260209T000000
-SUMMARY:⏼ off ⚠️ ⟲ 11:39
+SUMMARY:⏼ off ⚠️ ⟲ 11:56
 DESCRIPTION:Відключення за графіком.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:⏼ off ⚠️ ⟲ 11:39
+DESCRIPTION:⏼ off ⚠️ ⟲ 11:56
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:f409fc68-35b8-4989-b63a-5059af471a60
+UID:1cab0f43-eaed-49b3-b963-23a98fbdad1e
 SEQUENCE:0
-DTSTAMP:20260208T094922
+DTSTAMP:20260208T095921
 DTSTART;TZID=Europe/Kyiv:20260208T173000
 DTEND;TZID=Europe/Kyiv:20260208T190000
-SUMMARY:⏻ on ⚠️ ⟲ 11:39
+SUMMARY:⏻ on ⚠️ ⟲ 11:56
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:⏻ on ⚠️ ⟲ 11:39
+DESCRIPTION:⏻ on ⚠️ ⟲ 11:56
 END:VALARM
 END:VEVENT
 END:VCALENDAR
