@@ -246,13 +246,13 @@ function generateCalendar(address, outageData, modalInfo) {
   
   const allEvents = [];
   
-  // Обробляємо графік
+  // Обробляємо графік з розділенням подій по 00:00
   outageData.schedules.forEach(sched => {
     const utcDate = new Date(sched.dayTimestamp * 1000);
     const kyivDateStr = utcDate.toLocaleString('en-US', { timeZone: 'Europe/Kyiv' });
     const kyivDate = new Date(kyivDateStr);
     const year = kyivDate.getFullYear(), month = kyivDate.getMonth(), day = kyivDate.getDate();
-    
+
     // Збираємо відрізки без світла
     const outageSegments = [];
     for (const slot of sched.schedule) {
@@ -265,7 +265,7 @@ function generateCalendar(address, outageData, modalInfo) {
         outageSegments.push({ start: (hour - 1) * 60 + 30, end: hour * 60 });
       }
     }
-    
+
     // Об'єднуємо сусідні відрізки
     const merged = [];
     for (const seg of outageSegments.sort((a, b) => a.start - b.start)) {
@@ -280,19 +280,55 @@ function generateCalendar(address, outageData, modalInfo) {
         }
       }
     }
-    
-    // Створюємо події
+
+    // Створюємо події з розділенням по 00:00
     for (const seg of merged) {
-      const startH = Math.floor(seg.start / 60), startM = seg.start % 60;
-      const endH = Math.floor(seg.end / 60), endM = seg.end % 60;
-      
-      allEvents.push({
-        start: new Date(year, month, day, startH, startM),
-        end: new Date(year, month, day, endH, endM),
-        summary: isUrgent ? '⏼ off ⚠️' : '⏼ off',
-        description: defaultOutageDescription,
-        isOutage: true
-      });
+      let startH = Math.floor(seg.start / 60), startM = seg.start % 60;
+      let endH = Math.floor(seg.end / 60), endM = seg.end % 60;
+      let eventStart = new Date(year, month, day, startH, startM);
+      let eventEnd = new Date(year, month, day, endH, endM);
+
+      // Якщо подія закінчується після 00:00 наступного дня, розбиваємо її
+      if (eventEnd.getDate() !== eventStart.getDate() || eventEnd.getHours() === 0 && eventEnd.getMinutes() === 0 && eventEnd > eventStart) {
+        // Кінець події після 00:00 наступного дня або рівно о 00:00
+        const midnight = new Date(eventStart.getFullYear(), eventStart.getMonth(), eventStart.getDate() + 1, 0, 0, 0);
+        if (eventEnd > midnight) {
+          // Перша частина: до 00:00
+          allEvents.push({
+            start: eventStart,
+            end: midnight,
+            summary: isUrgent ? '⏼ off ⚠️' : '⏼ off',
+            description: defaultOutageDescription,
+            isOutage: true
+          });
+          // Друга частина: після 00:00
+          allEvents.push({
+            start: midnight,
+            end: eventEnd,
+            summary: isUrgent ? '⏼ off ⚠️' : '⏼ off',
+            description: defaultOutageDescription,
+            isOutage: true
+          });
+        } else {
+          // Якщо подія закінчується рівно о 00:00 наступного дня
+          allEvents.push({
+            start: eventStart,
+            end: midnight,
+            summary: isUrgent ? '⏼ off ⚠️' : '⏼ off',
+            description: defaultOutageDescription,
+            isOutage: true
+          });
+        }
+      } else {
+        // Звичайна подія в межах дня
+        allEvents.push({
+          start: eventStart,
+          end: eventEnd,
+          summary: isUrgent ? '⏼ off ⚠️' : '⏼ off',
+          description: defaultOutageDescription,
+          isOutage: true
+        });
+      }
     }
   });
   
