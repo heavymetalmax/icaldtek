@@ -202,8 +202,23 @@ function generateCalendar(address, outageData, modalInfo) {
   // Чи діють екстрені/аварійні відключення
   const isEmergency = outageData.infoBlockType === 'emergency' || modalInfo.modalAlertType === 'emergency';
   const isAccident = outageData.infoBlockType === 'accident' || modalInfo.modalAlertType === 'accident';
-  const isUrgent = isEmergency || isAccident;
-  
+  let isUrgent = isEmergency || isAccident;
+  // Якщо передано urgentMark (наприклад, ‼️), то замінюємо ⚠️ на нього, або прибираємо позначку
+  let urgentOffSummary = '⏼ off';
+  let urgentOnSummary = '⏻ on';
+  if (typeof urgentMark !== 'undefined' && urgentMark !== null) {
+    if (urgentMark === '‼️') {
+      urgentOffSummary += ' ‼️';
+      urgentOnSummary += ' ‼️';
+      isUrgent = false;
+    } else if (urgentMark === '') {
+      // Без позначок
+      // залишаємо базові
+    }
+  } else if (isUrgent) {
+    urgentOffSummary += ' ⚠️';
+    urgentOnSummary += ' ⚠️';
+  }
   // Парсимо час відновлення з API (формат: "до 13:34 07.02")
   let recoveryTimeStr = null;
   if (outageData.currentOutage?.endDate) {
@@ -213,15 +228,6 @@ function generateCalendar(address, outageData, modalInfo) {
       recoveryTimeStr = 'до ' + String(hours).padStart(2, '0') + ':' + minutes + ' ' + day + '.' + month;
     }
   }
-  
-  // Формуємо заголовки
-  // Базові (для майбутніх подій):
-  // OFF: ⏼ off ⚠️ ⏻ до 13:34 07.02 ⟲ 09:54
-  // ON: ⏻ on ⚠️ ⟲ 09:54
-  // Для актуальної події додається інфо з інфовікна
-  let urgentOffSummary = '⏼ off ⚠️';
-  let urgentOnSummary = '⏻ on ⚠️';
-  
   if (recoveryTimeStr) urgentOffSummary += ' ⏻ ' + recoveryTimeStr;
   if (updateTimeStr) {
     urgentOffSummary += ' ' + updateTimeStr;
@@ -362,71 +368,12 @@ function generateCalendar(address, outageData, modalInfo) {
   
   // Видалено: Коригування часу відключення згідно start_date/end_date з API (події формуються виключно з outageData.schedules)
   
-  // Додаємо періоди зі світлом
-  const powerOnEvents = [];
-  
-  // Групуємо події по днях
-  const eventsByDay = {};
-  allEvents.forEach(event => {
-    const dayKey = event.start.toDateString();
-    if (!eventsByDay[dayKey]) eventsByDay[dayKey] = [];
-    eventsByDay[dayKey].push(event);
-  });
-  
-  // Для кожного дня додаємо періоди зі світлом
-  Object.values(eventsByDay).forEach(dayEvents => {
-    // Між відключеннями
-    for (let i = 0; i < dayEvents.length - 1; i++) {
-      if (dayEvents[i + 1].start > dayEvents[i].end) {
-        powerOnEvents.push({
-          start: dayEvents[i].end,
-          end: dayEvents[i + 1].start,
-          summary: isUrgent ? '⏻ on ⚠️' : '⏻ on',
-          description: defaultDescription,
-          isOutage: false
-        });
-      }
-    }
-    
-    // Після останнього відключення дня до 00:00 наступного дня
-    const lastEvent = dayEvents[dayEvents.length - 1];
-    const endOfDay = new Date(lastEvent.end.getFullYear(), lastEvent.end.getMonth(), lastEvent.end.getDate() + 1, 0, 0);
-    
-    // Не створюємо "Є струм" якщо це кінець відключення що перейшло з попереднього дня
-    // і в цей день немає власних подій (лише продовження)
-    const dayHasOwnStart = dayEvents.some(e => {
-      const eventDay = e.start.toDateString();
-      return eventDay === lastEvent.end.toDateString();
-    });
-    
-    if (lastEvent.end < endOfDay && dayHasOwnStart) {
-      powerOnEvents.push({
-        start: lastEvent.end,
-        end: endOfDay,
-        summary: isUrgent ? '⏻ on ⚠️' : '⏻ on',
-        description: defaultDescription,
-        isOutage: false
-      });
-    }
-    
-    // Перед першим відключенням дня від 00:00
-    const firstEvent = dayEvents[0];
-    const startOfDay = new Date(firstEvent.start.getFullYear(), firstEvent.start.getMonth(), firstEvent.start.getDate(), 0, 0);
-    if (firstEvent.start > startOfDay) {
-      powerOnEvents.push({
-        start: startOfDay,
-        end: firstEvent.start,
-        summary: isUrgent ? '⏻ on ⚠️' : '⏻ on',
-        description: defaultDescription,
-        isOutage: false
-      });
-    }
-  });
+  // ...видалено генерацію подій "on". Тепер події створюються лише згідно з даними API.
   
   // Додаємо всі події в календар з нагадуванням за 30 хв
   // Використовуємо київський час для порівняння
   const now = new Date(new Date().toLocaleString('en-US', { timeZone: 'Europe/Kyiv' }));
-  [...allEvents, ...powerOnEvents].forEach(event => {
+  allEvents.forEach(event => {
     // Пропускаємо минулі події (не додаємо в календар)
     if (event.end <= now) {
       return;
@@ -486,7 +433,7 @@ function generateCalendar(address, outageData, modalInfo) {
     });
   });
   
-  return { cal, outageCount: allEvents.length, powerOnCount: powerOnEvents.length };
+  return { cal, outageCount: allEvents.length };
 }
 
 // Головна функція
@@ -518,10 +465,10 @@ function generateCalendar(address, outageData, modalInfo) {
       if (alertText.toLowerCase().includes('укренерго')) isUkrEnergoAlert = true;
       // Визначаємо тип за ключовими фразами (нормалізуємо пробіли та переноси)
       const lowerText = alertText.toLowerCase().replace(/\s+/g, ' ');
-      if (lowerText.includes('стабілізаційні відключення') || lowerText.includes('стабілізаційні графіки')) {
-        modalAlertType = 'stabilization';
-      } else if (lowerText.includes('екстрені відключення') || lowerText.includes('екстренні відключення')) {
+      if (lowerText.includes('екстрені відключення') || lowerText.includes('екстренні відключення')) {
         modalAlertType = 'emergency';
+      } else if (lowerText.includes('стабілізаційні відключення') || lowerText.includes('стабілізаційні графіки')) {
+        modalAlertType = 'stabilization';
       } else if (lowerText.includes('аварійн')) {
         modalAlertType = 'accident';
       }
@@ -555,17 +502,29 @@ function generateCalendar(address, outageData, modalInfo) {
         console.log('      ' + (idx + 1) + '. ' + date.toLocaleDateString('uk-UA') + ': ' + hoursOff + ' год без світла');
       });
 
-      const { cal, outageCount, powerOnCount } = generateCalendar(address, outageData, modalInfo);
+      // Визначаємо, чи потрібно ставити спеціальний знак для цієї адреси
+      let urgentMark = null;
+      if (
+        modalInfo.modalAlertType === 'emergency' &&
+        /бориспільськ.{0,10}район/i.test(alertText || '')
+      ) {
+        if (address.filename === 'dtek.ics') {
+          urgentMark = '‼️';
+        } else {
+          urgentMark = '';
+        }
+      }
+      const { cal, outageCount } = generateCalendar(address, outageData, modalInfo, urgentMark);
       
       // Не записуємо порожній календар
-      if (outageCount === 0 && powerOnCount === 0) {
+      if (outageCount === 0) {
         console.log('   ⚠️ Порожній календар - пропускаємо запис ' + address.filename + '\n');
         continue;
       }
       
       fs.writeFileSync(address.filename, cal.toString());
       generatedFiles.push(address.filename);
-      console.log('   ✅ ' + address.filename + ' (' + outageCount + ' відкл., ' + powerOnCount + ' світла)\n');
+      console.log('   ✅ ' + address.filename + ' (' + outageCount + ' відкл.)\n');
     }
 
     // Git push
