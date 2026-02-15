@@ -157,7 +157,7 @@ async function fetchAddressData(page, address, sessionData) {
   }
   
   // Графік
-  const factData = apiResponse.fact || freshSessionData.fact;
+  const factData = freshSessionData.fact || apiResponse.fact;
   if (factData?.data) {
     let queueKey = null;
     
@@ -336,6 +336,68 @@ function generateCalendar(address, outageData, modalInfo) {
         });
       }
     }
+
+    // Створюємо події "on" між відключеннями
+    const onSegments = [];
+    let previousEnd = 0;
+    for (const seg of merged) {
+      if (seg.start > previousEnd) {
+        onSegments.push({ start: previousEnd, end: seg.start });
+      }
+      previousEnd = seg.end;
+    }
+    if (previousEnd < 1440) {
+      onSegments.push({ start: previousEnd, end: 1440 });
+    }
+
+    // Створюємо події on з розділенням по 00:00
+    for (const seg of onSegments) {
+      let startH = Math.floor(seg.start / 60), startM = seg.start % 60;
+      let endH = Math.floor(seg.end / 60), endM = seg.end % 60;
+      let eventStart = new Date(year, month, day, startH, startM);
+      let eventEnd = new Date(year, month, day, endH, endM);
+
+      // Якщо подія закінчується після 00:00 наступного дня, розбиваємо її
+      if (eventEnd.getDate() !== eventStart.getDate() || eventEnd.getHours() === 0 && eventEnd.getMinutes() === 0 && eventEnd > eventStart) {
+        const midnight = new Date(eventStart.getFullYear(), eventStart.getMonth(), eventStart.getDate() + 1, 0, 0, 0);
+        if (eventEnd > midnight) {
+          // Перша частина: до 00:00
+          allEvents.push({
+            start: eventStart,
+            end: midnight,
+            summary: isUrgent ? '⏻ on ⚠️' : '⏻ on',
+            description: defaultDescription,
+            isOutage: false
+          });
+          // Друга частина: після 00:00
+          allEvents.push({
+            start: midnight,
+            end: eventEnd,
+            summary: isUrgent ? '⏻ on ⚠️' : '⏻ on',
+            description: defaultDescription,
+            isOutage: false
+          });
+        } else {
+          // Якщо подія закінчується рівно о 00:00 наступного дня
+          allEvents.push({
+            start: eventStart,
+            end: midnight,
+            summary: isUrgent ? '⏻ on ⚠️' : '⏻ on',
+            description: defaultDescription,
+            isOutage: false
+          });
+        }
+      } else {
+        // Звичайна подія в межах дня
+        allEvents.push({
+          start: eventStart,
+          end: eventEnd,
+          summary: isUrgent ? '⏻ on ⚠️' : '⏻ on',
+          description: defaultDescription,
+          isOutage: false
+        });
+      }
+    }
   });
   
   // Сортуємо
@@ -348,8 +410,8 @@ function generateCalendar(address, outageData, modalInfo) {
       mergedEvents.push({ ...event });
     } else {
       const last = mergedEvents[mergedEvents.length - 1];
-      // Якщо події перетинаються або стикаються
-      if (event.start <= last.end) {
+      // Якщо події перетинаються або стикаються і того ж типу
+      if (event.start <= last.end && event.isOutage === last.isOutage) {
         // Об'єднуємо: розширюємо кінець останньої події
         if (event.end > last.end) {
           last.end = event.end;
@@ -367,8 +429,6 @@ function generateCalendar(address, outageData, modalInfo) {
   allEvents.push(...mergedEvents);
   
   // Видалено: Коригування часу відключення згідно start_date/end_date з API (події формуються виключно з outageData.schedules)
-  
-  // ...видалено генерацію подій "on". Тепер події створюються лише згідно з даними API.
   
   // Додаємо всі події в календар з нагадуванням за 30 хв
   // Використовуємо київський час для порівняння
@@ -446,7 +506,7 @@ function generateCalendar(address, outageData, modalInfo) {
 
   try {
     await page.goto('https://www.dtek-krem.com.ua/ua/shutdowns', { waitUntil: 'networkidle', timeout: 60000 });
-    await page.waitForTimeout(1500);
+    await page.waitForTimeout(5000);
 
     // Перевіряємо спливне вікно
     let isUkrEnergoAlert = false, modalAlertType = null;
@@ -500,6 +560,7 @@ function generateCalendar(address, outageData, modalInfo) {
         const date = new Date(sched.dayTimestamp * 1000);
         const hoursOff = sched.schedule.filter(s => s.status !== 'light').length;
         console.log('      ' + (idx + 1) + '. ' + date.toLocaleDateString('uk-UA') + ': ' + hoursOff + ' год без світла');
+        console.log('         Слоти:', sched.schedule.map(s => `${s.hour}: ${s.status}`).join(', '));
       });
 
       // Визначаємо, чи потрібно ставити спеціальний знак для цієї адреси
