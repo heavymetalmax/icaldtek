@@ -230,10 +230,7 @@ function generateCalendar(address, outageData, modalInfo, urgentMark = null) {
     }
   }
   if (recoveryTimeStr) urgentOffSummary += ' ⏻ ' + recoveryTimeStr;
-  if (updateTimeStr) {
-    urgentOffSummary += ' ' + updateTimeStr;
-    urgentOnSummary += ' ' + updateTimeStr;
-  }
+  // Не додаємо updateTimeStr до urgentOnSummary/urgentOffSummary — час оновлення лише з API (infoSuffix)
   
   // Текст інфовікна (без "Орієнтовний час відновлення" - це дублікат) - тільки для актуальної події
   let infoSuffix = '';
@@ -245,6 +242,11 @@ function generateCalendar(address, outageData, modalInfo, urgentMark = null) {
       infoSuffix = ' ⏻ ' + recoveryTimeStr + infoSuffix;
     }
     infoSuffix += ' | ' + infoText.trim();
+    // Remove duplicate update time if present in infoSuffix
+    if (updateTimeStr && infoSuffix.includes(updateTimeStr)) {
+      // Remove updateTimeStr from infoSuffix to avoid duplication
+      infoSuffix = infoSuffix.replace(updateTimeStr, '').replace(/\s{2,}/g, ' ').trim();
+    }
   }
   
   // Опис події
@@ -459,26 +461,41 @@ function generateCalendar(address, outageData, modalInfo, urgentMark = null) {
     const updateTimeStr = outageData.updateTime ? '⟲ ' + outageData.updateTime : '';
 
     if (isCurrentEvent) {
-      // Актуальна подія - додаємо інфо з інфовікна (і час відновлення для on з графіка)
-      const endH = String(event.end.getHours()).padStart(2, '0');
-      const endM = String(event.end.getMinutes()).padStart(2, '0');
-      const endD = String(event.end.getDate()).padStart(2, '0');
-      const endMo = String(event.end.getMonth() + 1).padStart(2, '0');
-      // Визначаємо чи це on чи off
-      if (event.summary.startsWith('⏻ on')) {
-        eventSummary = '⏻ on' + (isUrgent ? ' ⚠️' : '') + ' ⏻ до ' + endH + ':' + endM + ' ' + endD + '.' + endMo + (updateTimeStr ? ' ' + updateTimeStr : '') + infoSuffix;
-        if (!isUrgent) eventSummary = eventSummary.replace(' ⚠️', '');
-      } else if (event.summary.startsWith('⏼ off')) {
-        eventSummary = '⏼ off' + (isUrgent ? ' ⚠️' : '') + ' ⏻ до ' + endH + ':' + endM + ' ' + endD + '.' + endMo + (updateTimeStr ? ' ' + updateTimeStr : '') + infoSuffix;
-        if (!isUrgent) eventSummary = eventSummary.replace(' ⚠️', '');
-      } else {
-        eventSummary = event.summary + (updateTimeStr ? ' ' + updateTimeStr : '');
-        if (!isUrgent) eventSummary = eventSummary.replace(' ⚠️', '');
+      // Актуальна подія - тільки on/off, екстреність, час оновлення, інфо з модального (без часу відновлення)
+      // Формуємо SUMMARY у чітко заданому порядку: алерт, подія, час, опис
+      let warn = '';
+      if (typeof urgentMark !== 'undefined' && urgentMark !== null && urgentMark !== '') {
+        warn = urgentMark;
+      } else if (isUrgent) {
+        warn = '⚠️';
+      }
+      let onoff = event.isOutage ? '⏼ off' : '⏻ on';
+      let parts = [];
+      if (warn) parts.push(warn);
+      parts.push(onoff);
+      if (updateTimeStr) parts.push(updateTimeStr);
+      eventSummary = parts.join(' ');
+      if (infoSuffix.trim()) {
+        eventSummary += infoSuffix;
       }
       eventDescription = event.description;
     } else {
-      // Майбутня подія - тільки ⏻ on або ⏼ off, без ⚠️ якщо не потрібно
-      eventSummary = event.summary + (updateTimeStr ? ' ' + updateTimeStr : '');
+      // Майбутня подія - використовуємо той самий порядок: алерт, подія, час, опис
+      let warnF = '';
+      if (typeof urgentMark !== 'undefined' && urgentMark !== null && urgentMark !== '') {
+        warnF = urgentMark;
+      } else if (isUrgent) {
+        warnF = '⚠️';
+      }
+      let onoffF = event.isOutage ? '⏼ off' : '⏻ on';
+      let partsF = [];
+      if (warnF) partsF.push(warnF);
+      partsF.push(onoffF);
+      if (updateTimeStr) partsF.push(updateTimeStr);
+      eventSummary = partsF.join(' ');
+      if (infoSuffix.trim()) {
+        eventSummary += infoSuffix;
+      }
       eventDescription = event.description;
     }
     
