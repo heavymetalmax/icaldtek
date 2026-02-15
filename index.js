@@ -565,14 +565,15 @@ function generateCalendar(address, outageData, modalInfo) {
 
       // Визначаємо, чи потрібно ставити спеціальний знак для цієї адреси
       let urgentMark = null;
-      if (
-        modalInfo.modalAlertType === 'emergency' &&
-        /бориспільськ.{0,10}район/i.test(alertText || '')
-      ) {
-        if (address.filename === 'dtek.ics') {
-          urgentMark = '‼️';
+      const isEmergency = modalInfo.modalAlertType === 'emergency';
+      const isBoryspilOnly = isEmergency && /бориспільськ\w*\s+район\w*/i.test(alertText || '');
+      if (isEmergency) {
+        if (isBoryspilOnly) {
+          // Екстрені лише для Бориспільського району
+          urgentMark = (address.filename === 'dtek.ics') ? '‼️' : '';
         } else {
-          urgentMark = '';
+          // Екстрені для всіх
+          urgentMark = null; // стандартна логіка (⚠️)
         }
       }
       const { cal, outageCount } = generateCalendar(address, outageData, modalInfo, urgentMark);
