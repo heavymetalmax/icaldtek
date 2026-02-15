@@ -493,9 +493,8 @@ function generateCalendar(address, outageData, modalInfo, urgentMark = null) {
       partsF.push(onoffF);
       if (updateTimeStr) partsF.push(updateTimeStr);
       eventSummary = partsF.join(' ');
-      if (infoSuffix.trim()) {
-        eventSummary += infoSuffix;
-      }
+      // Do NOT append modal/info window text to future events' SUMMARY
+      // (modal info should appear only on the currently active event)
       eventDescription = event.description;
     }
     
