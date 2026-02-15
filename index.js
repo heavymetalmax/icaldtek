@@ -194,7 +194,7 @@ async function fetchAddressData(page, address, sessionData) {
 }
 
 // Генеруємо календар
-function generateCalendar(address, outageData, modalInfo) {
+function generateCalendar(address, outageData, modalInfo, urgentMark = null) {
   const cal = ical({ name: '⚡️' + address.name, timezone: 'Europe/Kyiv' });
   
   const updateTimeStr = outageData.updateTime ? '⟲ ' + outageData.updateTime : '';
@@ -212,8 +212,9 @@ function generateCalendar(address, outageData, modalInfo) {
       urgentOnSummary += ' ‼️';
       isUrgent = false;
     } else if (urgentMark === '') {
-      // Без позначок
-      // залишаємо базові
+      // Без позначок: не додаємо ⚠️
+      // нічого не додаємо
+      isUrgent = false;
     }
   } else if (isUrgent) {
     urgentOffSummary += ' ⚠️';
@@ -303,7 +304,7 @@ function generateCalendar(address, outageData, modalInfo) {
           allEvents.push({
             start: eventStart,
             end: midnight,
-            summary: isUrgent ? '⏼ off ⚠️' : '⏼ off',
+            summary: isUrgent ? urgentOffSummary + ' ⚠️' : urgentOffSummary,
             description: defaultOutageDescription,
             isOutage: true
           });
@@ -311,7 +312,7 @@ function generateCalendar(address, outageData, modalInfo) {
           allEvents.push({
             start: midnight,
             end: eventEnd,
-            summary: isUrgent ? '⏼ off ⚠️' : '⏼ off',
+            summary: isUrgent ? urgentOffSummary + ' ⚠️' : urgentOffSummary,
             description: defaultOutageDescription,
             isOutage: true
           });
@@ -320,7 +321,7 @@ function generateCalendar(address, outageData, modalInfo) {
           allEvents.push({
             start: eventStart,
             end: midnight,
-            summary: isUrgent ? '⏼ off ⚠️' : '⏼ off',
+            summary: isUrgent ? urgentOffSummary + ' ⚠️' : urgentOffSummary,
             description: defaultOutageDescription,
             isOutage: true
           });
@@ -330,7 +331,7 @@ function generateCalendar(address, outageData, modalInfo) {
         allEvents.push({
           start: eventStart,
           end: eventEnd,
-          summary: isUrgent ? '⏼ off ⚠️' : '⏼ off',
+            summary: isUrgent ? urgentOffSummary + ' ⚠️' : urgentOffSummary,
           description: defaultOutageDescription,
           isOutage: true
         });
@@ -365,7 +366,7 @@ function generateCalendar(address, outageData, modalInfo) {
           allEvents.push({
             start: eventStart,
             end: midnight,
-            summary: isUrgent ? '⏻ on ⚠️' : '⏻ on',
+            summary: isUrgent ? urgentOnSummary + ' ⚠️' : urgentOnSummary,
             description: defaultDescription,
             isOutage: false
           });
@@ -373,7 +374,7 @@ function generateCalendar(address, outageData, modalInfo) {
           allEvents.push({
             start: midnight,
             end: eventEnd,
-            summary: isUrgent ? '⏻ on ⚠️' : '⏻ on',
+            summary: isUrgent ? urgentOnSummary + ' ⚠️' : urgentOnSummary,
             description: defaultDescription,
             isOutage: false
           });
@@ -382,7 +383,7 @@ function generateCalendar(address, outageData, modalInfo) {
           allEvents.push({
             start: eventStart,
             end: midnight,
-            summary: isUrgent ? '⏻ on ⚠️' : '⏻ on',
+            summary: isUrgent ? urgentOnSummary + ' ⚠️' : urgentOnSummary,
             description: defaultDescription,
             isOutage: false
           });
@@ -392,7 +393,7 @@ function generateCalendar(address, outageData, modalInfo) {
         allEvents.push({
           start: eventStart,
           end: eventEnd,
-          summary: isUrgent ? '⏻ on ⚠️' : '⏻ on',
+            summary: isUrgent ? urgentOnSummary + ' ⚠️' : urgentOnSummary,
           description: defaultDescription,
           isOutage: false
         });
@@ -459,30 +460,30 @@ function generateCalendar(address, outageData, modalInfo) {
 
     if (isCurrentEvent) {
       // Актуальна подія - додаємо інфо з інфовікна (і час відновлення для on з графіка)
-      if (event.summary.startsWith('⏻ on ⚠️')) {
-        // Час до кінця події (графік)
-        const endH = String(event.end.getHours()).padStart(2, '0');
-        const endM = String(event.end.getMinutes()).padStart(2, '0');
-        const endD = String(event.end.getDate()).padStart(2, '0');
-        const endMo = String(event.end.getMonth() + 1).padStart(2, '0');
-        eventSummary = '⏻ on ⚠️ ⏻ до ' + endH + ':' + endM + ' ' + endD + '.' + endMo + (updateTimeStr ? ' ' + updateTimeStr : '') + infoSuffix;
-      } else if (event.summary.startsWith('⏼ off ⚠️')) {
-        // Час до кінця події (графік)
-        const endH = String(event.end.getHours()).padStart(2, '0');
-        const endM = String(event.end.getMinutes()).padStart(2, '0');
-        const endD = String(event.end.getDate()).padStart(2, '0');
-        const endMo = String(event.end.getMonth() + 1).padStart(2, '0');
-        eventSummary = '⏼ off ⚠️ ⏻ до ' + endH + ':' + endM + ' ' + endD + '.' + endMo + (updateTimeStr ? ' ' + updateTimeStr : '') + infoSuffix;
+      const endH = String(event.end.getHours()).padStart(2, '0');
+      const endM = String(event.end.getMinutes()).padStart(2, '0');
+      const endD = String(event.end.getDate()).padStart(2, '0');
+      const endMo = String(event.end.getMonth() + 1).padStart(2, '0');
+      // Визначаємо чи це on чи off
+      if (event.summary.startsWith('⏻ on')) {
+        eventSummary = '⏻ on' + (isUrgent ? ' ⚠️' : '') + ' ⏻ до ' + endH + ':' + endM + ' ' + endD + '.' + endMo + (updateTimeStr ? ' ' + updateTimeStr : '') + infoSuffix;
+        if (!isUrgent) eventSummary = eventSummary.replace(' ⚠️', '');
+      } else if (event.summary.startsWith('⏼ off')) {
+        eventSummary = '⏼ off' + (isUrgent ? ' ⚠️' : '') + ' ⏻ до ' + endH + ':' + endM + ' ' + endD + '.' + endMo + (updateTimeStr ? ' ' + updateTimeStr : '') + infoSuffix;
+        if (!isUrgent) eventSummary = eventSummary.replace(' ⚠️', '');
       } else {
         eventSummary = event.summary + (updateTimeStr ? ' ' + updateTimeStr : '');
+        if (!isUrgent) eventSummary = eventSummary.replace(' ⚠️', '');
       }
       eventDescription = event.description;
     } else {
-      // Майбутня подія - тільки ⏻ on ⚠️ або ⏼ off ⚠️
+      // Майбутня подія - тільки ⏻ on або ⏼ off, без ⚠️ якщо не потрібно
       eventSummary = event.summary + (updateTimeStr ? ' ' + updateTimeStr : '');
       eventDescription = event.description;
     }
     
+    // Діагностика для SUMMARY/⚠️
+    console.log('[DIAG]', address.filename, '{ isUrgent:', isUrgent, ', urgentMark:', urgentMark, ', eventSummary:', eventSummary, '}');
     cal.createEvent({
       start: event.start,
       end: event.end,
@@ -521,7 +522,9 @@ function generateCalendar(address, outageData, modalInfo) {
     );
     
     if (alertText) {
-      console.log('📢 Попап:', alertText.substring(0, 120) + '...');
+      // Діагностичний вивід: показати повний текст попапу
+      console.log('📢 Попап (повний):', alertText);
+      console.log('📢 Попап (120):', alertText.substring(0, 120) + '...');
       if (alertText.toLowerCase().includes('укренерго')) isUkrEnergoAlert = true;
       // Визначаємо тип за ключовими фразами (нормалізуємо пробіли та переноси)
       const lowerText = alertText.toLowerCase().replace(/\s+/g, ' ');
@@ -566,16 +569,17 @@ function generateCalendar(address, outageData, modalInfo) {
       // Визначаємо, чи потрібно ставити спеціальний знак для цієї адреси
       let urgentMark = null;
       const isEmergency = modalInfo.modalAlertType === 'emergency';
-      const isBoryspilOnly = isEmergency && /бориспільськ\w*.*район\w*/i.test(alertText || '');
-      if (isEmergency) {
-        if (isBoryspilOnly) {
-          // Екстрені лише для Бориспільського району
-          urgentMark = (address.filename === 'dtek.ics') ? '‼️' : '';
-        } else {
-          // Екстрені для всіх
-          urgentMark = null; // стандартна логіка (⚠️)
-        }
+      // Максимально гнучка перевірка
+      const lowerAlert = (alertText || '').toLowerCase();
+      const hasEmergency = lowerAlert.includes('екстрен');
+      const hasBoryspil = /бориспіль/i.test(lowerAlert);
+      if (hasEmergency && hasBoryspil) {
+        urgentMark = (address.filename === 'dtek.ics') ? '‼️' : '';
+      } else if (hasEmergency) {
+        urgentMark = null; // стандартна логіка (⚠️)
       }
+      // Діагностичний вивід значення urgentMark
+      console.log('   🛠️ urgentMark для', address.filename, ':', urgentMark);
       const { cal, outageCount } = generateCalendar(address, outageData, modalInfo, urgentMark);
       
       // Не записуємо порожній календар
@@ -589,24 +593,9 @@ function generateCalendar(address, outageData, modalInfo) {
       console.log('   ✅ ' + address.filename + ' (' + outageCount + ' відкл.)\n');
     }
 
-    // Git push
-    try {
-      const gitStatus = execSync('git status --porcelain ' + generatedFiles.join(' ')).toString().trim();
-      if (gitStatus) {
-        console.log('🔄 Оновлюємо репозиторій...');
-        execSync('git config user.name "GitHub Actions Bot"');
-        execSync('git config user.email "actions@github.com"');
-        execSync('git add ' + generatedFiles.join(' '));
-        execSync('git commit -m "📅 Оновлено календарі"');
-        execSync('git pull --rebase origin main');
-        execSync('git push');
-        console.log('✅ Готово!');
-      } else {
-        console.log('🧘 Без змін');
-      }
-    } catch (error) {
-      console.error('❌ Git:', error.message);
-    }
+    // Git push вимкнено для локального тестування
+    // Якщо потрібно автоматичний git, розкоментуйте цей блок
+    // console.log('🧘 Без змін (git push вимкнено)');
 
     await browser.close();
   } catch (error) {
