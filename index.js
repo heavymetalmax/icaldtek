@@ -566,7 +566,7 @@ function generateCalendar(address, outageData, modalInfo) {
       // Визначаємо, чи потрібно ставити спеціальний знак для цієї адреси
       let urgentMark = null;
       const isEmergency = modalInfo.modalAlertType === 'emergency';
-      const isBoryspilOnly = isEmergency && /бориспільськ\w*\s+район\w*/i.test(alertText || '');
+      const isBoryspilOnly = isEmergency && /бориспільськ\w*.*район\w*/i.test(alertText || '');
       if (isEmergency) {
         if (isBoryspilOnly) {
           // Екстрені лише для Бориспільського району
