@@ -46,6 +46,20 @@ jobs:
         run: node index.js
         # Скрипт сам керує git: комітить та пушить всі зміни
         # (dtek.ics, dtek-borshchahivka.ics, last_run_state.json)
+
+      - name: 🔁 Commit & push generated calendars
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add dtek.ics dtek-borshchahivka.ics last_run_state.json || true
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "chore(ci): update generated calendars [skip ci]" || true
+            git push
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
       - name: 📤 Завантажити календарі як артефакт
         if: always()
