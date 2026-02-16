@@ -56,7 +56,9 @@ jobs:
             echo "No changes to commit"
           else
             git commit -m "chore(ci): update generated calendars [skip ci]" || true
-            git push
+            # Ensure push uses the workflow token even if checkout didn't persist credentials
+            git remote set-url origin "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git"
+            git push origin HEAD:main
           fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
