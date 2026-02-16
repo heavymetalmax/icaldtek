@@ -609,9 +609,57 @@ function generateCalendar(address, outageData, modalInfo, urgentMark = null) {
       console.log('   ✅ ' + address.filename + ' (' + outageCount + ' відкл.)\n');
     }
 
-    // Git push вимкнено для локального тестування
-    // Якщо потрібно автоматичний git, розкоментуйте цей блок
-    // console.log('🧘 Без змін (git push вимкнено)');
+    // Автоматичний коміт/пуш згенерованих файлів (запускається тільки коли
+    // скрипт працює в CI або якщо встановлено змінну оточення AUTO_PUSH=true).
+    // Коміт містить [skip ci], щоб уникнути циклів повторного тригеру workflow.
+    const shouldAutoPush = process.env.GITHUB_ACTIONS === 'true' || process.env.CI === 'true' || process.env.AUTO_PUSH === 'true';
+    if (shouldAutoPush) {
+      try {
+        if (generatedFiles.length === 0) {
+          console.log('🧾 Немає згенерованих файлів для запису в git.');
+        } else {
+          console.log('🗂️  Підготовка до git commit/push для файлів:', generatedFiles.join(', '));
+          try {
+            execSync('git add ' + generatedFiles.join(' '), { stdio: 'inherit' });
+          } catch (e) {
+            console.log('   ⚠️ Помилка при git add (ігноруємо):', e.message);
+          }
+
+          let hasChanges = false;
+          try {
+            execSync('git diff --staged --quiet');
+            hasChanges = false;
+          } catch (e) {
+            hasChanges = true;
+          }
+
+          if (hasChanges) {
+            try {
+              execSync('git config user.name "github-actions[bot]"');
+              execSync('git config user.email "github-actions[bot]@users.noreply.github.com"');
+              execSync('git commit -m "chore(ci): update generated calendars [skip ci]"', { stdio: 'inherit' });
+
+              if (process.env.GITHUB_TOKEN && process.env.GITHUB_REPOSITORY) {
+                const remoteUrl = `https://x-access-token:${process.env.GITHUB_TOKEN}@github.com/${process.env.GITHUB_REPOSITORY}.git`;
+                execSync(`git remote set-url origin "${remoteUrl}"`);
+                execSync('git push origin HEAD:main', { stdio: 'inherit' });
+              } else {
+                execSync('git push', { stdio: 'inherit' });
+              }
+              console.log('✅ Зміни в календарях закомічені та запушені.');
+            } catch (e) {
+              console.error('❌ Помилка при commit/push:', e.message);
+            }
+          } else {
+            console.log('🧘 Немає змін для коміту.');
+          }
+        }
+      } catch (e) {
+        console.error('❌ Непередбачена помилка при автопуші:', e.message);
+      }
+    } else {
+      console.log('🧘 Автопуш вимкнено (щоб увімкнути, встановіть AUTO_PUSH=true або запускайте в CI).');
+    }
 
     await browser.close();
   } catch (error) {
