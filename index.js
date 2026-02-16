@@ -609,56 +609,9 @@ function generateCalendar(address, outageData, modalInfo, urgentMark = null) {
       console.log('   ✅ ' + address.filename + ' (' + outageCount + ' відкл.)\n');
     }
 
-    // Автоматичний коміт/пуш згенерованих файлів
-    // Якщо runner має доступ (наприклад, GITHUB_ACTIONS + GITHUB_TOKEN),
-    // скрипт додасть, закомітить і запушить змінені календарі.
-    try {
-      if (generatedFiles.length > 0) {
-        console.log('🗂️  Підготовка до git commit/push для файлів:', generatedFiles.join(', '));
-        try {
-          execSync('git add ' + generatedFiles.join(' '), { stdio: 'inherit' });
-        } catch (e) {
-          console.log('   ⚠️ Помилка при git add (ігноруємо):', e.message);
-        }
-
-        let hasChanges = false;
-        try {
-          execSync('git diff --staged --quiet');
-          // якщо код повернув 0 - змін немає
-          hasChanges = false;
-        } catch (e) {
-          // git diff --staged --quiet повертає код 1 коли є зміни
-          hasChanges = true;
-        }
-
-        if (hasChanges) {
-          try {
-            execSync('git config user.name "github-actions[bot]"');
-            execSync('git config user.email "github-actions[bot]@users.noreply.github.com"');
-            execSync('git commit -m "chore(ci): update generated calendars [skip ci]"', { stdio: 'inherit' });
-
-            // Якщо доступний GITHUB_TOKEN, використовуємо його в URL для push
-            if (process.env.GITHUB_TOKEN && process.env.GITHUB_REPOSITORY) {
-              const remoteUrl = `https://x-access-token:${process.env.GITHUB_TOKEN}@github.com/${process.env.GITHUB_REPOSITORY}.git`;
-              execSync(`git remote set-url origin "${remoteUrl}"`);
-              execSync('git push origin HEAD:main', { stdio: 'inherit' });
-            } else {
-              // Інакше пробуємо звичайний git push (припускаємо, що ssh/https налаштовано)
-              execSync('git push', { stdio: 'inherit' });
-            }
-            console.log('✅ Зміни в календарях закомічені та запушені.');
-          } catch (e) {
-            console.error('❌ Помилка при commit/push:', e.message);
-          }
-        } else {
-          console.log('🧘 Немає змін для коміту.');
-        }
-      } else {
-        console.log('🧾 Немає згенерованих файлів для запису в git.');
-      }
-    } catch (e) {
-      console.error('❌ Непередбачена помилка при автопуші:', e.message);
-    }
+    // Git push вимкнено для локального тестування
+    // Якщо потрібно автоматичний git, розкоментуйте цей блок
+    // console.log('🧘 Без змін (git push вимкнено)');
 
     await browser.close();
   } catch (error) {
