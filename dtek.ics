@@ -6,37 +6,37 @@ X-WR-CALNAME:⚡️Гора
 TIMEZONE-ID:Europe/Kyiv
 X-WR-TIMEZONE:Europe/Kyiv
 BEGIN:VEVENT
-UID:42218e41-e228-4af3-af07-ddf0fe9d9b6e
+UID:6ced1846-8c19-4b17-a032-db6650edce6e
 SEQUENCE:0
-DTSTAMP:20260219T163725
+DTSTAMP:20260219T170307
 DTSTART;TZID=Europe/Kyiv:20260219T173000
 DTEND;TZID=Europe/Kyiv:20260219T220000
-SUMMARY:‼️ ○ off ⟲ 18:35 | Причина: Стабілізаці
+SUMMARY:‼️ ○ off ⟲ 18:48 | Причина: Стабілізаці
  йне відключення (Згідно графіку погодин
  них відключень) Час початку – 17:30 19.02.2026
 DESCRIPTION:Відключення за графіком.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:‼️ ○ off ⟲ 18:35 | Причина: Стабіліза
+DESCRIPTION:‼️ ○ off ⟲ 18:48 | Причина: Стабіліза
  ційне відключення (Згідно графіку погод
  инних відключень) Час початку – 17:30 19.02.202
  6
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:2dc2bd5f-015a-4af0-852d-91f0e66b03fb
+UID:6b7d1902-57d8-4c08-b9bd-3a32b1e9807a
 SEQUENCE:0
-DTSTAMP:20260219T163725
+DTSTAMP:20260219T170307
 DTSTART;TZID=Europe/Kyiv:20260219T220000
 DTEND;TZID=Europe/Kyiv:20260221T000000
-SUMMARY:‼️ ● on ⟲ 18:35
+SUMMARY:‼️ ● on ⟲ 18:48
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:‼️ ● on ⟲ 18:35
+DESCRIPTION:‼️ ● on ⟲ 18:48
 END:VALARM
 END:VEVENT
 END:VCALENDAR
