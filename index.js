@@ -204,8 +204,9 @@ function generateCalendar(address, outageData, modalInfo, urgentMark = null) {
   const isAccident = outageData.infoBlockType === 'accident' || modalInfo.modalAlertType === 'accident';
   let isUrgent = isEmergency || isAccident;
   // Якщо передано urgentMark (наприклад, ‼️), то замінюємо ⚠️ на нього, або прибираємо позначку
-  let urgentOffSummary = '⏼ off';
-  let urgentOnSummary = '⏻ on';
+  // Використовуємо нові символи для подій: '○ off' та '● on'
+  let urgentOffSummary = '○ off';
+  let urgentOnSummary = '● on';
   if (typeof urgentMark !== 'undefined' && urgentMark !== null) {
     if (urgentMark === '‼️') {
       urgentOffSummary += ' ‼️';
@@ -229,7 +230,7 @@ function generateCalendar(address, outageData, modalInfo, urgentMark = null) {
       recoveryTimeStr = 'до ' + String(hours).padStart(2, '0') + ':' + minutes + ' ' + day + '.' + month;
     }
   }
-  if (recoveryTimeStr) urgentOffSummary += ' ⏻ ' + recoveryTimeStr;
+  if (recoveryTimeStr) urgentOffSummary += ' ● ' + recoveryTimeStr;
   // Не додаємо updateTimeStr до urgentOnSummary/urgentOffSummary — час оновлення лише з API (infoSuffix)
   
   // Текст інфовікна (без "Орієнтовний час відновлення" - це дублікат) - тільки для актуальної події
@@ -239,7 +240,7 @@ function generateCalendar(address, outageData, modalInfo, urgentMark = null) {
       .replace(/\n/g, ' ')
       .replace(/\s*Орієнтовний час відновлення[^|]*/i, '');
     if (recoveryTimeStr) {
-      infoSuffix = ' ⏻ ' + recoveryTimeStr + infoSuffix;
+      infoSuffix = ' ● ' + recoveryTimeStr + infoSuffix;
     }
     infoSuffix += ' | ' + infoText.trim();
     // Remove duplicate update time if present in infoSuffix
@@ -469,7 +470,7 @@ function generateCalendar(address, outageData, modalInfo, urgentMark = null) {
       } else if (isUrgent) {
         warn = '⚠️';
       }
-      let onoff = event.isOutage ? '⏼ off' : '⏻ on';
+      let onoff = event.isOutage ? '○ off' : '● on';
       let parts = [];
       if (warn) parts.push(warn);
       parts.push(onoff);
@@ -487,7 +488,7 @@ function generateCalendar(address, outageData, modalInfo, urgentMark = null) {
       } else if (isUrgent) {
         warnF = '⚠️';
       }
-      let onoffF = event.isOutage ? '⏼ off' : '⏻ on';
+      let onoffF = event.isOutage ? '○ off' : '● on';
       let partsF = [];
       if (warnF) partsF.push(warnF);
       partsF.push(onoffF);
@@ -497,6 +498,7 @@ function generateCalendar(address, outageData, modalInfo, urgentMark = null) {
       // (modal info should appear only on the currently active event)
       eventDescription = event.description;
     }
+    
     
     // Діагностика для SUMMARY/⚠️
     console.log('[DIAG]', address.filename, '{ isUrgent:', isUrgent, ', urgentMark:', urgentMark, ', eventSummary:', eventSummary, '}');
