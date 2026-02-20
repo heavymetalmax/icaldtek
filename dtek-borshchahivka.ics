@@ -6,36 +6,36 @@ X-WR-CALNAME:⚡️Борщагівка
 TIMEZONE-ID:Europe/Kyiv
 X-WR-TIMEZONE:Europe/Kyiv
 BEGIN:VEVENT
-UID:41630503-1d83-44d0-87e8-a7132f856fe1
+UID:bab17ada-d3da-433e-a274-bdbce532d162
 SEQUENCE:0
-DTSTAMP:20260220T170337
+DTSTAMP:20260220T172346
 DTSTART;TZID=Europe/Kyiv:20260220T143000
 DTEND;TZID=Europe/Kyiv:20260220T213000
-SUMMARY:○ off ⟲ 18:54 | Причина: Стабілізаційне 
+SUMMARY:○ off ⟲ 19:21 | Причина: Стабілізаційне 
  відключення (Згідно графіку погодинних 
  відключень) Час початку – 14:30 20.02.2026
 DESCRIPTION:Відключення за графіком.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:○ off ⟲ 18:54 | Причина: Стабілізаційн
+DESCRIPTION:○ off ⟲ 19:21 | Причина: Стабілізаційн
  е відключення (Згідно графіку погодинни
  х відключень) Час початку – 14:30 20.02.2026
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:f9881e00-1d67-4e6a-8b22-bd3345d75559
+UID:83ee0fbb-9018-4b2b-a3e8-4f9a2b4d2857
 SEQUENCE:0
-DTSTAMP:20260220T170337
+DTSTAMP:20260220T172346
 DTSTART;TZID=Europe/Kyiv:20260220T213000
 DTEND;TZID=Europe/Kyiv:20260222T000000
-SUMMARY:● on ⟲ 18:54
+SUMMARY:● on ⟲ 19:21
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:● on ⟲ 18:54
+DESCRIPTION:● on ⟲ 19:21
 END:VALARM
 END:VEVENT
 END:VCALENDAR
