@@ -249,6 +249,7 @@ function generateCalendar(address, outageData, modalInfo, urgentMark = null) {
       infoSuffix = infoSuffix.replace(updateTimeStr, '').replace(/\s{2,}/g, ' ').trim();
     }
   }
+  const modalText = modalInfo && modalInfo.modalText ? modalInfo.modalText.replace(/\s+/g, ' ').trim() : '';
   
   // Опис події
   const defaultDescription = 'Електроенергія має бути в наявності.';
@@ -479,6 +480,11 @@ function generateCalendar(address, outageData, modalInfo, urgentMark = null) {
       if (infoSuffix.trim()) {
         eventSummary += infoSuffix;
       }
+      // Якщо є текст модального вікна — додаємо його до заголовка поточної події
+      if (modalText) {
+        const shortModal = modalText.length > 120 ? modalText.substring(0, 120) + '...' : modalText;
+        eventSummary = (eventSummary || '').trim() + ' | ' + shortModal;
+      }
       eventDescription = event.description;
     } else {
       // Майбутня подія - використовуємо той самий порядок: алерт, подія, час, опис
@@ -556,7 +562,7 @@ function generateCalendar(address, outageData, modalInfo, urgentMark = null) {
       console.log('   📋 Тип попапу:', modalAlertType || 'не визначено');
     }
 
-    const modalInfo = { isUkrEnergoAlert, modalAlertType };
+    const modalInfo = { isUkrEnergoAlert, modalAlertType, modalText: alertText };
     const sessionData = await evaluateWithRetry(
       page,
       () => ({
