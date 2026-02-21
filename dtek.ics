@@ -6,12 +6,12 @@ X-WR-CALNAME:⚡️Гора
 TIMEZONE-ID:Europe/Kyiv
 X-WR-TIMEZONE:Europe/Kyiv
 BEGIN:VEVENT
-UID:329e4a2b-0e73-44a6-8416-e18abd596825
+UID:4005a209-22bc-4ccf-8146-8f66acc001af
 SEQUENCE:0
-DTSTAMP:20260221T153016
+DTSTAMP:20260221T154305
 DTSTART;TZID=Europe/Kyiv:20260221T150000
 DTEND;TZID=Europe/Kyiv:20260221T220000
-SUMMARY:‼️ ● on ⟲ 17:19 | Причина: Екстренні ві
+SUMMARY:‼️ ● on ⟲ 17:37 | Причина: Екстренні ві
  дключення (Аварійне без застосування гр
  афіку погодинних відключень) Час початк
  у – 16:00 21.02.2026 | Шановні клієнти! В частині
@@ -23,7 +23,7 @@ DESCRIPTION:Електроенергія має бути в наявнос
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:‼️ ● on ⟲ 17:19 | Причина: Екстренні 
+DESCRIPTION:‼️ ● on ⟲ 17:37 | Причина: Екстренні 
  відключення (Аварійне без застосування 
  графіку погодинних відключень) Час поча
  тку – 16:00 21.02.2026 | Шановні клієнти! В части
@@ -33,32 +33,32 @@ DESCRIPTION:‼️ ● on ⟲ 17:19 | Причина: Екстренні
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:a6406de5-0e34-4223-9c83-8dd8217ef59c
+UID:c39f0dd2-6244-457d-afc6-43e0ae3bf09b
 SEQUENCE:0
-DTSTAMP:20260221T153016
+DTSTAMP:20260221T154305
 DTSTART;TZID=Europe/Kyiv:20260221T220000
 DTEND;TZID=Europe/Kyiv:20260222T000000
-SUMMARY:‼️ ○ off ⟲ 17:19
+SUMMARY:‼️ ○ off ⟲ 17:37
 DESCRIPTION:Відключення за графіком.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:‼️ ○ off ⟲ 17:19
+DESCRIPTION:‼️ ○ off ⟲ 17:37
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:82e66800-ef61-439d-9244-89e959247090
+UID:3396a3ba-7030-46c9-a88d-2fd8409129ef
 SEQUENCE:0
-DTSTAMP:20260221T153016
+DTSTAMP:20260221T154305
 DTSTART;TZID=Europe/Kyiv:20260222T000000
 DTEND;TZID=Europe/Kyiv:20260223T000000
-SUMMARY:‼️ ● on ⟲ 17:19
+SUMMARY:‼️ ● on ⟲ 17:37
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:‼️ ● on ⟲ 17:19
+DESCRIPTION:‼️ ● on ⟲ 17:37
 END:VALARM
 END:VEVENT
 END:VCALENDAR
