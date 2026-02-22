@@ -6,38 +6,43 @@ X-WR-CALNAME:⚡️Борщагівка
 TIMEZONE-ID:Europe/Kyiv
 X-WR-TIMEZONE:Europe/Kyiv
 BEGIN:VEVENT
-UID:7add40cb-0a8f-4a89-b5c4-4c0f78d7bce7
+UID:988d58f9-bd8f-4fd2-9013-8403e08a8a54
 SEQUENCE:0
-DTSTAMP:20260222T173520
+DTSTAMP:20260222T174801
 DTSTART;TZID=Europe/Kyiv:20260222T190000
 DTEND;TZID=Europe/Kyiv:20260222T223000
-SUMMARY:○ off ⟲ 19:23 | Шановні клієнти! В частин
- і мереж Бориспільського та Броварського
-  районів діють екстрені відключення еле
- ктроенергії. В ре...
+SUMMARY:○ off ⟲ 19:37 | Причина: Стабілізаційне 
+ відключення (Згідно графіку погодинних 
+ відключень) Час початку – 19:00 22.02.2026 | Шан
+ овні клієнти! В частині мереж Бориспільс
+ ького та Броварського районів діють екс
+ трені відключення електроенергії. В ре...
 DESCRIPTION:Відключення за графіком.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:○ off ⟲ 19:23 | Шановні клієнти! В част
- ині мереж Бориспільського та Броварсько
- го районів діють екстрені відключення е
- лектроенергії. В ре...
+DESCRIPTION:○ off ⟲ 19:37 | Причина: Стабілізаційн
+ е відключення (Згідно графіку погодинни
+ х відключень) Час початку – 19:00 22.02.2026 | Ша
+ новні клієнти! В частині мереж Бориспіль
+ ського та Броварського районів діють ек
+ стрені відключення електроенергії. В ре.
+ ..
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:24b42ffe-5a44-45a9-b8ad-b6abadb5bd95
+UID:470fd134-7221-4fe2-b3a5-f7f395a77241
 SEQUENCE:0
-DTSTAMP:20260222T173520
+DTSTAMP:20260222T174801
 DTSTART;TZID=Europe/Kyiv:20260222T223000
 DTEND;TZID=Europe/Kyiv:20260224T000000
-SUMMARY:● on ⟲ 19:23
+SUMMARY:● on ⟲ 19:37
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:● on ⟲ 19:23
+DESCRIPTION:● on ⟲ 19:37
 END:VALARM
 END:VEVENT
 END:VCALENDAR
