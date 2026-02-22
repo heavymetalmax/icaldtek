@@ -6,12 +6,12 @@ X-WR-CALNAME:⚡️Гора
 TIMEZONE-ID:Europe/Kyiv
 X-WR-TIMEZONE:Europe/Kyiv
 BEGIN:VEVENT
-UID:2a718c04-098b-43d2-a81b-3fac64f8ab48
+UID:822ba334-1092-4be1-8f7d-b608c1a1ec89
 SEQUENCE:0
-DTSTAMP:20260222T101930
+DTSTAMP:20260222T103537
 DTSTART;TZID=Europe/Kyiv:20260222T120000
 DTEND;TZID=Europe/Kyiv:20260222T190000
-SUMMARY:‼️ ● on ⟲ 12:07 | Шановні клієнти! В час
+SUMMARY:‼️ ● on ⟲ 12:19 | Шановні клієнти! В час
  тині мереж Бориспільського району діють
   екстрені відключення електроенергії. В 
  решті області діють...
@@ -20,39 +20,39 @@ DESCRIPTION:Електроенергія має бути в наявнос
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:‼️ ● on ⟲ 12:07 | Шановні клієнти! В ч
+DESCRIPTION:‼️ ● on ⟲ 12:19 | Шановні клієнти! В ч
  астині мереж Бориспільського району дію
  ть екстрені відключення електроенергії.
   В решті області діють...
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:b0415cd9-6bfe-47b4-bd5a-a60470be672d
+UID:58060ae3-d977-4353-8f38-e077137810ba
 SEQUENCE:0
-DTSTAMP:20260222T101930
+DTSTAMP:20260222T103537
 DTSTART;TZID=Europe/Kyiv:20260222T190000
 DTEND;TZID=Europe/Kyiv:20260222T223000
-SUMMARY:‼️ ○ off ⟲ 12:07
+SUMMARY:‼️ ○ off ⟲ 12:19
 DESCRIPTION:Відключення за графіком.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:‼️ ○ off ⟲ 12:07
+DESCRIPTION:‼️ ○ off ⟲ 12:19
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:14664c19-3d2f-4ce6-a6c4-b1805b678947
+UID:409e7206-10d2-40ac-adbe-e2b014044bae
 SEQUENCE:0
-DTSTAMP:20260222T101930
+DTSTAMP:20260222T103537
 DTSTART;TZID=Europe/Kyiv:20260222T223000
 DTEND;TZID=Europe/Kyiv:20260224T000000
-SUMMARY:‼️ ● on ⟲ 12:07
+SUMMARY:‼️ ● on ⟲ 12:19
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:‼️ ● on ⟲ 12:07
+DESCRIPTION:‼️ ● on ⟲ 12:19
 END:VALARM
 END:VEVENT
 END:VCALENDAR
