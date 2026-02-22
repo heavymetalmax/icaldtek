@@ -6,49 +6,30 @@ X-WR-CALNAME:⚡️Борщагівка
 TIMEZONE-ID:Europe/Kyiv
 X-WR-TIMEZONE:Europe/Kyiv
 BEGIN:VEVENT
-UID:2a7b23e8-4896-4733-9e8e-a3ce29b7cb90
+UID:0e4eda89-b018-4b90-b237-5c37c13d9726
 SEQUENCE:0
-DTSTAMP:20260222T095625
-DTSTART;TZID=Europe/Kyiv:20260222T083000
-DTEND;TZID=Europe/Kyiv:20260222T120000
-SUMMARY:○ off ⟲ 11:50 | Причина: Стабілізаційне 
- відключення (Згідно графіку погодинних 
- відключень) Час початку – 08:30 22.02.2026 | Шан
- овні клієнти! В частині мереж Бориспільс
- ького району діють екстрені відключення
-  електроенергії. В решті області діють...
-DESCRIPTION:Відключення за графіком.
-BEGIN:VALARM
-ACTION:DISPLAY
-TRIGGER:-PT15M
-DESCRIPTION:○ off ⟲ 11:50 | Причина: Стабілізаційн
- е відключення (Згідно графіку погодинни
- х відключень) Час початку – 08:30 22.02.2026 | Ша
- новні клієнти! В частині мереж Бориспіль
- ського району діють екстрені відключенн
- я електроенергії. В решті області діють..
- .
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:a9b9d44f-2cdf-4c14-ad76-f921923a9787
-SEQUENCE:0
-DTSTAMP:20260222T095625
+DTSTAMP:20260222T100706
 DTSTART;TZID=Europe/Kyiv:20260222T120000
 DTEND;TZID=Europe/Kyiv:20260222T190000
-SUMMARY:● on ⟲ 11:50
+SUMMARY:● on ⟲ 11:50 | Шановні клієнти! В частин
+ і мереж Бориспільського району діють ек
+ стрені відключення електроенергії. В ре
+ шті області діють...
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:● on ⟲ 11:50
+DESCRIPTION:● on ⟲ 11:50 | Шановні клієнти! В част
+ ині мереж Бориспільського району діють 
+ екстрені відключення електроенергії. В 
+ решті області діють...
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:af507d73-6ed1-4719-ae1f-87c94187381e
+UID:08218459-9c7e-4a3c-baf7-9a4756a09f52
 SEQUENCE:0
-DTSTAMP:20260222T095625
+DTSTAMP:20260222T100706
 DTSTART;TZID=Europe/Kyiv:20260222T190000
 DTEND;TZID=Europe/Kyiv:20260222T223000
 SUMMARY:○ off ⟲ 11:50
@@ -60,9 +41,9 @@ DESCRIPTION:○ off ⟲ 11:50
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:7831ef4b-30e0-49f0-81b0-d913b9630f89
+UID:06d46afe-4623-41c7-9494-ec292d4b2ac0
 SEQUENCE:0
-DTSTAMP:20260222T095625
+DTSTAMP:20260222T100706
 DTSTART;TZID=Europe/Kyiv:20260222T223000
 DTEND;TZID=Europe/Kyiv:20260224T000000
 SUMMARY:● on ⟲ 11:50
