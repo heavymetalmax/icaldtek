@@ -6,67 +6,67 @@ X-WR-CALNAME:⚡️Борщагівка
 TIMEZONE-ID:Europe/Kyiv
 X-WR-TIMEZONE:Europe/Kyiv
 BEGIN:VEVENT
-UID:354cdcb8-68d4-4c2c-a80c-56752b5a80f9
+UID:b86d8df9-c38a-4d9e-b485-8dd5247b944c
 SEQUENCE:0
-DTSTAMP:20260223T040844
+DTSTAMP:20260223T045238
 DTSTART;TZID=Europe/Kyiv:20260223T053000
 DTEND;TZID=Europe/Kyiv:20260223T123000
-SUMMARY:○ off ⟲ 06:02 | Шановні клієнти! В частин
- і мереж Бориспільського та Броварського
-  районів діють екстрені відключення еле
- ктроенергії. В ре...
+SUMMARY:○ off ⟲ 06:48 | Шановні клієнти! В частин
+ і мереж Бориспільського району діють ек
+ стрені відключення електроенергії. В ре
+ шті області діють...
 DESCRIPTION:Відключення за графіком.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:○ off ⟲ 06:02 | Шановні клієнти! В част
- ині мереж Бориспільського та Броварсько
- го районів діють екстрені відключення е
- лектроенергії. В ре...
+DESCRIPTION:○ off ⟲ 06:48 | Шановні клієнти! В част
+ ині мереж Бориспільського району діють 
+ екстрені відключення електроенергії. В 
+ решті області діють...
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:556d45d6-1800-4b04-87cb-4b92b3988cd0
+UID:7cb4da28-5df6-4854-b0d5-f826e91f0479
 SEQUENCE:0
-DTSTAMP:20260223T040844
+DTSTAMP:20260223T045238
 DTSTART;TZID=Europe/Kyiv:20260223T123000
 DTEND;TZID=Europe/Kyiv:20260223T160000
-SUMMARY:● on ⟲ 06:02
+SUMMARY:● on ⟲ 06:48
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:● on ⟲ 06:02
+DESCRIPTION:● on ⟲ 06:48
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:9a366781-c36a-4813-b5e4-aa433c889e28
+UID:878bdb77-899c-450b-a5db-2d294a9d9bd8
 SEQUENCE:0
-DTSTAMP:20260223T040844
+DTSTAMP:20260223T045238
 DTSTART;TZID=Europe/Kyiv:20260223T160000
 DTEND;TZID=Europe/Kyiv:20260223T193000
-SUMMARY:○ off ⟲ 06:02
+SUMMARY:○ off ⟲ 06:48
 DESCRIPTION:Відключення за графіком.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:○ off ⟲ 06:02
+DESCRIPTION:○ off ⟲ 06:48
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:c5c51576-9e40-4d4e-ab0f-6ccc10e68245
+UID:f9d5fc25-c6a3-4def-b5b1-42b567755332
 SEQUENCE:0
-DTSTAMP:20260223T040844
+DTSTAMP:20260223T045238
 DTSTART;TZID=Europe/Kyiv:20260223T193000
 DTEND;TZID=Europe/Kyiv:20260225T000000
-SUMMARY:● on ⟲ 06:02
+SUMMARY:● on ⟲ 06:48
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:● on ⟲ 06:02
+DESCRIPTION:● on ⟲ 06:48
 END:VALARM
 END:VEVENT
 END:VCALENDAR
