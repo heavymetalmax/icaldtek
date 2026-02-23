@@ -249,7 +249,8 @@ function generateCalendar(address, outageData, modalInfo, urgentMark = null) {
       infoSuffix = infoSuffix.replace(updateTimeStr, '').replace(/\s{2,}/g, ' ').trim();
     }
   }
-  const modalText = modalInfo && modalInfo.modalText ? modalInfo.modalText.replace(/\s+/g, ' ').trim() : '';
+  // Note: modal popup text is available in modalInfo.modalText but we prefer
+  // the API-provided info window text (`outageData.infoBlockText`) for SUMMARY.
   
   // Опис події
   const defaultDescription = 'Електроенергія має бути в наявності.';
@@ -480,12 +481,8 @@ function generateCalendar(address, outageData, modalInfo, urgentMark = null) {
       if (infoSuffix.trim()) {
         eventSummary += infoSuffix;
       }
-      // Якщо є текст модального вікна — додаємо його до заголовка поточної події
-      if (modalText) {
-        const shortModal = modalText.length > 120 ? modalText.substring(0, 120) + '...' : modalText;
-        eventSummary = (eventSummary || '').trim() + ' | ' + shortModal;
-      }
-      eventDescription = event.description;
+      // `infoSuffix` already contains cleaned `outageData.infoBlockText` (from API)
+      // and is appended above; do not append modal popup text here.
     } else {
       // Майбутня подія - використовуємо той самий порядок: алерт, подія, час, опис
       let warnF = '';
