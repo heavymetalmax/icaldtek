@@ -6,12 +6,12 @@ X-WR-CALNAME:⚡️Борщагівка
 TIMEZONE-ID:Europe/Kyiv
 X-WR-TIMEZONE:Europe/Kyiv
 BEGIN:VEVENT
-UID:ec801546-f740-400f-b73b-5f026a9e386a
+UID:95977ac4-eab6-4524-bf81-4d18914094db
 SEQUENCE:0
-DTSTAMP:20260309T182423
+DTSTAMP:20260309T184646
 DTSTART;TZID=Europe/Kyiv:20260309T000000
 DTEND;TZID=Europe/Kyiv:20260311T000000
-SUMMARY:⚠️ ● on ⟲ 20:18 | Причина: Стабілізацій
+SUMMARY:⚠️ ● on ⟲ 20:34 | Причина: Стабілізацій
  не відключення (Згідно графіку погодинн
  их відключень) Час початку – 19:41 09.03.2026
 DESCRIPTION:Електроенергія має бути в наявнос
@@ -19,7 +19,7 @@ DESCRIPTION:Електроенергія має бути в наявнос
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:⚠️ ● on ⟲ 20:18 | Причина: Стабілізац
+DESCRIPTION:⚠️ ● on ⟲ 20:34 | Причина: Стабілізац
  ійне відключення (Згідно графіку погоди
  нних відключень) Час початку – 19:41 09.03.2026
 END:VALARM
