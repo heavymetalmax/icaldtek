@@ -6,12 +6,12 @@ X-WR-CALNAME:⚡️Борщагівка
 TIMEZONE-ID:Europe/Kyiv
 X-WR-TIMEZONE:Europe/Kyiv
 BEGIN:VEVENT
-UID:cda35963-7531-4e77-8047-0d3f9177bbd1
+UID:6dea7455-acda-4e63-aa31-86ddcef819a1
 SEQUENCE:0
-DTSTAMP:20260310T134602
-DTSTART;TZID=Europe/Kyiv:20260310T000000
+DTSTAMP:20260310T140848
+DTSTART;TZID=Europe/Kyiv:20260310T133000
 DTEND;TZID=Europe/Kyiv:20260312T000000
-SUMMARY:⚠️ ● on ⟲ 15:33 | Причина: Екстренні ві
+SUMMARY:⚠️ ● on ⟲ 16:05 | Причина: Екстренні ві
  дключення (Аварійне без застосування гр
  афіку погодинних відключень) Час початк
  у – 14:48 10.03.2026
@@ -20,7 +20,7 @@ DESCRIPTION:Електроенергія має бути в наявнос
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:⚠️ ● on ⟲ 15:33 | Причина: Екстренні 
+DESCRIPTION:⚠️ ● on ⟲ 16:05 | Причина: Екстренні 
  відключення (Аварійне без застосування 
  графіку погодинних відключень) Час поча
  тку – 14:48 10.03.2026
