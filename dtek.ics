@@ -6,12 +6,12 @@ X-WR-CALNAME:⚡️Гора
 TIMEZONE-ID:Europe/Kyiv
 X-WR-TIMEZONE:Europe/Kyiv
 BEGIN:VEVENT
-UID:d5562c74-da9d-4bc4-98e1-a4d109a2ec9e
+UID:5594ffda-be32-4a57-83db-39984725868e
 SEQUENCE:0
-DTSTAMP:20260318T102942
+DTSTAMP:20260318T105228
 DTSTART;TZID=Europe/Kyiv:20260318T110000
 DTEND;TZID=Europe/Kyiv:20260318T133000
-SUMMARY:⚠️ ○ off ⟲ 12:20 | Причина: Екстренні ві
+SUMMARY:⚠️ ○ off ⟲ 12:50 | Причина: Екстренні ві
  дключення (Аварійне без застосування гр
  афіку погодинних відключень) Час початк
  у – 10:16 18.03.2026
@@ -19,25 +19,25 @@ DESCRIPTION:Відключення за графіком.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:⚠️ ○ off ⟲ 12:20 | Причина: Екстренні 
+DESCRIPTION:⚠️ ○ off ⟲ 12:50 | Причина: Екстренні 
  відключення (Аварійне без застосування 
  графіку погодинних відключень) Час поча
  тку – 10:16 18.03.2026
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:b167f919-5de2-44cb-92b8-3dbe82bb6e25
+UID:c5151ab7-6e53-4bc4-8fd6-73b4d59bd391
 SEQUENCE:0
-DTSTAMP:20260318T102942
+DTSTAMP:20260318T105228
 DTSTART;TZID=Europe/Kyiv:20260318T133000
 DTEND;TZID=Europe/Kyiv:20260320T000000
-SUMMARY:⚠️ ● on ⟲ 12:20
+SUMMARY:⚠️ ● on ⟲ 12:50
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:⚠️ ● on ⟲ 12:20
+DESCRIPTION:⚠️ ● on ⟲ 12:50
 END:VALARM
 END:VEVENT
 END:VCALENDAR
