@@ -6,24 +6,67 @@ X-WR-CALNAME:⚡️Гора
 TIMEZONE-ID:Europe/Kyiv
 X-WR-TIMEZONE:Europe/Kyiv
 BEGIN:VEVENT
-UID:5eb8bd35-2c1d-4ab3-a77f-0ec6c832248a
+UID:d7f15b0e-d049-4f0a-8f57-d09bf559d5d1
 SEQUENCE:0
-DTSTAMP:20260318T090857
-DTSTART;TZID=Europe/Kyiv:20260318T000000
-DTEND;TZID=Europe/Kyiv:20260320T000000
-SUMMARY:‼️ ● on ⟲ 11:04 | Причина: Екстренні ві
+DTSTAMP:20260318T093305
+DTSTART;TZID=Europe/Kyiv:20260318T110000
+DTEND;TZID=Europe/Kyiv:20260318T133000
+SUMMARY:⚠️ ○ off ⟲ 11:31 | Причина: Екстренні ві
  дключення (Аварійне без застосування гр
  афіку погодинних відключень) Час початк
  у – 10:16 18.03.2026
+DESCRIPTION:Відключення за графіком.
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT15M
+DESCRIPTION:⚠️ ○ off ⟲ 11:31 | Причина: Екстренні 
+ відключення (Аварійне без застосування 
+ графіку погодинних відключень) Час поча
+ тку – 10:16 18.03.2026
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:ebb560f8-5df5-4330-8352-9108a465bdc7
+SEQUENCE:0
+DTSTAMP:20260318T093305
+DTSTART;TZID=Europe/Kyiv:20260318T133000
+DTEND;TZID=Europe/Kyiv:20260318T203000
+SUMMARY:⚠️ ● on ⟲ 11:31
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:‼️ ● on ⟲ 11:04 | Причина: Екстренні 
- відключення (Аварійне без застосування 
- графіку погодинних відключень) Час поча
- тку – 10:16 18.03.2026
+DESCRIPTION:⚠️ ● on ⟲ 11:31
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:6e2b5539-a545-42e3-aefb-2bfd28bb2559
+SEQUENCE:0
+DTSTAMP:20260318T093305
+DTSTART;TZID=Europe/Kyiv:20260318T203000
+DTEND;TZID=Europe/Kyiv:20260319T000000
+SUMMARY:⚠️ ○ off ⟲ 11:31
+DESCRIPTION:Відключення за графіком.
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT15M
+DESCRIPTION:⚠️ ○ off ⟲ 11:31
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:ffbd1931-9a1b-4394-8f89-e28fc1a5eb44
+SEQUENCE:0
+DTSTAMP:20260318T093305
+DTSTART;TZID=Europe/Kyiv:20260319T000000
+DTEND;TZID=Europe/Kyiv:20260320T000000
+SUMMARY:⚠️ ● on ⟲ 11:31
+DESCRIPTION:Електроенергія має бути в наявнос
+ ті.
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT15M
+DESCRIPTION:⚠️ ● on ⟲ 11:31
 END:VALARM
 END:VEVENT
 END:VCALENDAR
