@@ -6,24 +6,18 @@ X-WR-CALNAME:⚡️Гора
 TIMEZONE-ID:Europe/Kyiv
 X-WR-TIMEZONE:Europe/Kyiv
 BEGIN:VEVENT
-UID:5ae4e76c-ca47-4e10-8718-2a7c257bd252
+UID:c1d0a766-f303-47fa-96b0-dea08f72c19f
 SEQUENCE:0
-DTSTAMP:20260318T113659
+DTSTAMP:20260318T115728
 DTSTART;TZID=Europe/Kyiv:20260318T133000
 DTEND;TZID=Europe/Kyiv:20260320T000000
-SUMMARY:⚠️ ● on ⟲ 13:33 | Причина: Екстренні ві
- дключення (Аварійне без застосування гр
- афіку погодинних відключень) Час початк
- у – 10:16 18.03.2026
+SUMMARY:● on ⟲ 13:51
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:⚠️ ● on ⟲ 13:33 | Причина: Екстренні 
- відключення (Аварійне без застосування 
- графіку погодинних відключень) Час поча
- тку – 10:16 18.03.2026
+DESCRIPTION:● on ⟲ 13:51
 END:VALARM
 END:VEVENT
 END:VCALENDAR
