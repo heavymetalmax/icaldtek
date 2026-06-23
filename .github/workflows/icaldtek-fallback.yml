@@ -1,0 +1,65 @@
+name: icaldtek Fallback Generator
+
+on:
+  schedule:
+    - cron: '*/15 * * * *'
+  workflow_dispatch:
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 10
+      
+      - name: Check last commit age
+        id: check_age
+        run: |
+          LAST_COMMIT=$(git log --oneline -1 --format=%ai 2>/dev/null || echo "$(date -u -d '2 hours ago')")
+          LAST_COMMIT_EPOCH=$(date -d "$LAST_COMMIT" +%s)
+          NOW_EPOCH=$(date +%s)
+          AGE_MINUTES=$(( ($NOW_EPOCH - $LAST_COMMIT_EPOCH) / 60 ))
+          
+          echo "Last commit: $LAST_COMMIT"
+          echo "Age (minutes): $AGE_MINUTES"
+          
+          if [ $AGE_MINUTES -gt 60 ]; then
+            echo "should_run=true" >> $GITHUB_OUTPUT
+            echo "⚠️ No updates for $AGE_MINUTES minutes - running fallback"
+          else
+            echo "should_run=false" >> $GITHUB_OUTPUT
+            echo "✅ Server is active (last update: $AGE_MINUTES min ago)"
+          fi
+      
+      - name: Setup Node.js
+        if: steps.check_age.outputs.should_run == 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      
+      - name: Install dependencies
+        if: steps.check_age.outputs.should_run == 'true'
+        run: |
+          npm install
+      
+      - name: Install system dependencies
+        if: steps.check_age.outputs.should_run == 'true'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y xvfb xauth
+          npx playwright install chromium
+      
+      - name: Generate calendars
+        if: steps.check_age.outputs.should_run == 'true'
+        run: xvfb-run -a node index.js
+      
+      - name: Commit and push
+        if: steps.check_age.outputs.should_run == 'true'
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add *.ics
+          git commit -m "chore: fallback update from GitHub Actions [skip ci]" || echo "No changes"
+          git push || echo "Nothing to push"
