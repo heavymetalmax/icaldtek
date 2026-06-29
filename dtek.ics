@@ -6,19 +6,19 @@ X-WR-CALNAME:⚡️Гора
 TIMEZONE-ID:Europe/Kyiv
 X-WR-TIMEZONE:Europe/Kyiv
 BEGIN:VEVENT
-UID:b5659066-d112-4e9f-854f-94a2350867aa
+UID:bd5857c5-11a2-44e0-ab70-33d20623ec51
 SEQUENCE:0
-DTSTAMP:20260629T202931
-DTSTART;TZID=Europe/Kyiv:20260629T000000
+DTSTAMP:20260629T210651
+DTSTART;TZID=Europe/Kyiv:20260630T000000
 DTEND;TZID=Europe/Kyiv:20260701T000000
-SUMMARY:⚠️ ● on ⟲ 23:18 | Причина: Аварійні рем
+SUMMARY:⚠️ ● on ⟲ 00:03 | Причина: Аварійні рем
  онтні роботи Час початку – 19:59 29.06.2026
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:⚠️ ● on ⟲ 23:18 | Причина: Аварійні р
+DESCRIPTION:⚠️ ● on ⟲ 00:03 | Причина: Аварійні р
  емонтні роботи Час початку – 19:59 29.06.2026
 END:VALARM
 END:VEVENT
