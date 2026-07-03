@@ -6,19 +6,19 @@ X-WR-CALNAME:⚡️Борщагівка
 TIMEZONE-ID:Europe/Kyiv
 X-WR-TIMEZONE:Europe/Kyiv
 BEGIN:VEVENT
-UID:3a9e3920-72ae-428c-91c4-a1aa3e212988
+UID:ad33d6c6-fd14-493d-a48e-8ab8f91b786c
 SEQUENCE:0
-DTSTAMP:20260703T201515
+DTSTAMP:20260703T203014
 DTSTART;TZID=Europe/Kyiv:20260703T000000
 DTEND;TZID=Europe/Kyiv:20260704T000000
-SUMMARY:⚠️ ● on ⟲ 20:02 | Причина: Аварійні рем
+SUMMARY:⚠️ ● on ⟲ 20:16 | Причина: Аварійні рем
  онтні роботи Час початку – 17:12 03.07.2026
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:⚠️ ● on ⟲ 20:02 | Причина: Аварійні р
+DESCRIPTION:⚠️ ● on ⟲ 20:16 | Причина: Аварійні р
  емонтні роботи Час початку – 17:12 03.07.2026
 END:VALARM
 END:VEVENT
