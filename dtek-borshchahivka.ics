@@ -6,38 +6,24 @@ X-WR-CALNAME:⚡️Борщагівка
 TIMEZONE-ID:Europe/Kyiv
 X-WR-TIMEZONE:Europe/Kyiv
 BEGIN:VEVENT
-UID:0c7dd96c-33aa-4d2a-bc8c-e88d8746c369
+UID:a9ad26e5-f0de-4488-8a6f-88c6c7d8a6e4
 SEQUENCE:0
-DTSTAMP:20261012T153944
-DTSTART;TZID=Europe/Kyiv:20261012T160000
-DTEND;TZID=Europe/Kyiv:20261012T200000
-SUMMARY:⚠️ ○ off ⟲ 18:34 | Причина: Екстренні ві
+DTSTAMP:20261012T201518
+DTSTART;TZID=Europe/Kyiv:20261012T200000
+DTEND;TZID=Europe/Kyiv:20261013T000000
+SUMMARY:⚠️ ● on ⟲ 20:05 | Причина: Екстренні ві
  дключення (Аварійне без застосування гр
  афіку погодинних відключень) Час початк
  у – 16:01 12.10.2026
-DESCRIPTION:Відключення за графіком.
-BEGIN:VALARM
-ACTION:DISPLAY
-TRIGGER:-PT15M
-DESCRIPTION:⚠️ ○ off ⟲ 18:34 | Причина: Екстренні 
- відключення (Аварійне без застосування 
- графіку погодинних відключень) Час поча
- тку – 16:01 12.10.2026
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:9159a15c-cc85-440d-9ce0-83df0989ed26
-SEQUENCE:0
-DTSTAMP:20261012T153944
-DTSTART;TZID=Europe/Kyiv:20261012T200000
-DTEND;TZID=Europe/Kyiv:20261013T000000
-SUMMARY:⚠️ ● on ⟲ 18:34
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:⚠️ ● on ⟲ 18:34
+DESCRIPTION:⚠️ ● on ⟲ 20:05 | Причина: Екстренні 
+ відключення (Аварійне без застосування 
+ графіку погодинних відключень) Час поча
+ тку – 16:01 12.10.2026
 END:VALARM
 END:VEVENT
 END:VCALENDAR

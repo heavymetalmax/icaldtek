@@ -6,36 +6,18 @@ X-WR-CALNAME:⚡️Гора
 TIMEZONE-ID:Europe/Kyiv
 X-WR-TIMEZONE:Europe/Kyiv
 BEGIN:VEVENT
-UID:b02c1e84-6814-4b1b-84cf-728aff7c9e0f
+UID:bba078fb-e524-4fa9-a31b-ff819d1a058b
 SEQUENCE:0
-DTSTAMP:20261012T153943
-DTSTART;TZID=Europe/Kyiv:20261012T160000
-DTEND;TZID=Europe/Kyiv:20261012T200000
-SUMMARY:○ off ⟲ 18:34 | Причина: Стабілізаційне 
- відключення (Згідно графіку погодинних 
- відключень) Час початку – 16:02 12.10.2026
-DESCRIPTION:Відключення за графіком.
-BEGIN:VALARM
-ACTION:DISPLAY
-TRIGGER:-PT15M
-DESCRIPTION:○ off ⟲ 18:34 | Причина: Стабілізаційн
- е відключення (Згідно графіку погодинни
- х відключень) Час початку – 16:02 12.10.2026
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:bc7e7fe4-97c5-436b-b8b1-210f0f8ee6ca
-SEQUENCE:0
-DTSTAMP:20261012T153943
+DTSTAMP:20261012T201517
 DTSTART;TZID=Europe/Kyiv:20261012T200000
 DTEND;TZID=Europe/Kyiv:20261013T000000
-SUMMARY:● on ⟲ 18:34
+SUMMARY:● on ⟲ 20:05
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:● on ⟲ 18:34
+DESCRIPTION:● on ⟲ 20:05
 END:VALARM
 END:VEVENT
 END:VCALENDAR
