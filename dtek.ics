@@ -6,37 +6,36 @@ X-WR-CALNAME:⚡️Гора
 TIMEZONE-ID:Europe/Kyiv
 X-WR-TIMEZONE:Europe/Kyiv
 BEGIN:VEVENT
-UID:a9ca1313-df52-4ae9-a728-381437ecad7e
+UID:7f8bef0d-7eef-419e-b4e0-10092440c1a8
 SEQUENCE:0
-DTSTAMP:20261016T123615
+DTSTAMP:20261016T165458
 DTSTART;TZID=Europe/Kyiv:20261016T143000
-DTEND;TZID=Europe/Kyiv:20261016T183000
-SUMMARY:⚠️ ○ off ⟲ 15:32 | Причина: Стабілізаці
- йне відключення (Згідно графіку погодин
- них відключень) Час початку – 14:32 16.10.2026
+DTEND;TZID=Europe/Kyiv:20261016T220000
+SUMMARY:○ off ⟲ 19:48 | Причина: Стабілізаційне 
+ відключення (Згідно графіку погодинних 
+ відключень) Час початку – 14:32 16.10.2026
 DESCRIPTION:Відключення за графіком.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:⚠️ ○ off ⟲ 15:32 | Причина: Стабіліза
- ційне відключення (Згідно графіку погод
- инних відключень) Час початку – 14:32 16.10.202
- 6
+DESCRIPTION:○ off ⟲ 19:48 | Причина: Стабілізаційн
+ е відключення (Згідно графіку погодинни
+ х відключень) Час початку – 14:32 16.10.2026
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:143f218b-f8ff-4861-8654-726cd7e3e7a0
+UID:6d087564-67d3-48d7-8659-f1e07d9bff94
 SEQUENCE:0
-DTSTAMP:20261016T123615
-DTSTART;TZID=Europe/Kyiv:20261016T183000
+DTSTAMP:20261016T165458
+DTSTART;TZID=Europe/Kyiv:20261016T220000
 DTEND;TZID=Europe/Kyiv:20261017T000000
-SUMMARY:⚠️ ● on ⟲ 15:32
+SUMMARY:● on ⟲ 19:48
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:⚠️ ● on ⟲ 15:32
+DESCRIPTION:● on ⟲ 19:48
 END:VALARM
 END:VEVENT
 END:VCALENDAR
