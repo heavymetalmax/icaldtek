@@ -202,6 +202,7 @@ function generateCalendar(address, outageData, modalInfo, urgentMark = null) {
   // Чи діють екстрені/аварійні відключення
   const isEmergency = outageData.infoBlockType === 'emergency' || modalInfo.modalAlertType === 'emergency';
   const isAccident = outageData.infoBlockType === 'accident' || modalInfo.modalAlertType === 'accident';
+  const isStabilization = outageData.infoBlockType === 'stabilization' || modalInfo.modalAlertType === 'stabilization';
   let isUrgent = isEmergency || isAccident;
   // Якщо передано urgentMark (наприклад, ‼️), то замінюємо ⚠️ на нього, або прибираємо позначку
   // Використовуємо нові символи для подій: '○ off' та '● on'
@@ -447,59 +448,36 @@ function generateCalendar(address, outageData, modalInfo, urgentMark = null) {
     
     // Визначаємо чи подія актуальна (зараз активна) чи майбутня
     const isCurrentEvent = event.start <= now && event.end > now;
-    const isFutureEvent = event.start > now;
-    
-    // Для актуальної події - якщо є інфовікно, то для on беремо час з графіка (event.end)
-    let infoSuffix = '';
-    if (outageData.infoBlockText) {
-      let infoText = outageData.infoBlockText
-        .replace(/\n/g, ' ')
-        .replace(/\s*Орієнтовний час відновлення[^|]*/i, '');
-      infoSuffix = ' | ' + infoText.trim();
-    }
-    
-    // Додаємо час оновлення (⟲ ...) у заголовок події
-    let eventSummary = event.summary;
-    let eventDescription = event.description;
+
     const updateTimeStr = outageData.updateTime ? '⟲ ' + outageData.updateTime : '';
 
-    if (isCurrentEvent) {
-      // Актуальна подія - тільки on/off, екстреність, час оновлення, інфо з модального (без часу відновлення)
-      // Формуємо SUMMARY у чітко заданому порядку: алерт, подія, час, опис
-      let warn = '';
-      if (typeof urgentMark !== 'undefined' && urgentMark !== null && urgentMark !== '') {
-        warn = urgentMark;
-      } else if (isUrgent) {
-        warn = '⚠️';
-      }
-      let onoff = event.isOutage ? '○ off' : '● on';
-      let parts = [];
-      if (warn) parts.push(warn);
-      parts.push(onoff);
-      if (updateTimeStr) parts.push(updateTimeStr);
-      eventSummary = parts.join(' ');
-      if (infoSuffix.trim()) {
-        eventSummary += infoSuffix;
-      }
-      // `infoSuffix` already contains cleaned `outageData.infoBlockText` (from API)
-      // and is appended above; do not append modal popup text here.
+    // Тип відключення словом — для off-події
+    let outageWord = 'off';
+    if (isAccident) outageWord = 'Аварійне відключення';
+    else if (isEmergency) outageWord = 'Екстрене відключення';
+    else if (isStabilization) outageWord = 'Стабілізаційне відключення';
+
+    // Необов'язкова позначка (напр. ‼️) зі спец-логіки urgentMark
+    let mark = '';
+    if (typeof urgentMark !== 'undefined' && urgentMark !== null && urgentMark !== '') {
+      mark = urgentMark + ' ';
+    }
+
+    // Стислий заголовок: стан + (для off) тип відключення
+    let eventSummary;
+    if (event.isOutage) {
+      eventSummary = mark + '○ ' + outageWord;
     } else {
-      // Майбутня подія - використовуємо той самий порядок: алерт, подія, час, опис
-      let warnF = '';
-      if (typeof urgentMark !== 'undefined' && urgentMark !== null && urgentMark !== '') {
-        warnF = urgentMark;
-      } else if (isUrgent) {
-        warnF = '⚠️';
+      eventSummary = mark + '● on';
+    }
+
+    // Нотатки: повна інформація з інфо-вікна для актуальної події, інакше стандартний опис
+    let eventDescription = event.description;
+    if (isCurrentEvent && outageData.infoBlockText) {
+      eventDescription = outageData.infoBlockText.trim();
+      if (updateTimeStr) {
+        eventDescription += '\n\nОновлено: ' + outageData.updateTime;
       }
-      let onoffF = event.isOutage ? '○ off' : '● on';
-      let partsF = [];
-      if (warnF) partsF.push(warnF);
-      partsF.push(onoffF);
-      if (updateTimeStr) partsF.push(updateTimeStr);
-      eventSummary = partsF.join(' ');
-      // Do NOT append modal/info window text to future events' SUMMARY
-      // (modal info should appear only on the currently active event)
-      eventDescription = event.description;
     }
     
     
