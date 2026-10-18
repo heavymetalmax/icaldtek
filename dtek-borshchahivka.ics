@@ -6,9 +6,9 @@ X-WR-CALNAME:⚡️Борщагівка
 TIMEZONE-ID:Europe/Kyiv
 X-WR-TIMEZONE:Europe/Kyiv
 BEGIN:VEVENT
-UID:78ff8237-7c43-4f54-a5b3-0c8cc64a9e67
+UID:67c405ea-bed6-42da-8332-45b566e57d3d
 SEQUENCE:0
-DTSTAMP:20261018T190017
+DTSTAMP:20261018T191516
 DTSTART;TZID=Europe/Kyiv:20261018T153000
 DTEND;TZID=Europe/Kyiv:20261019T000000
 SUMMARY:● on
@@ -16,7 +16,7 @@ DESCRIPTION:Причина: Стабілізаційне відключе
  ння (Згідно графіку погодинних відключе
  нь)\nЧас початку – 14:31 18.10.2026\nОрієнтовний 
  час відновлення – до 19:45 18.10.2026\n\nОновлен
- о: 18:49
+ о: 19:03
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
