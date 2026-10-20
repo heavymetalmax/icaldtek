@@ -6,17 +6,17 @@ X-WR-CALNAME:⚡️Борщагівка
 TIMEZONE-ID:Europe/Kyiv
 X-WR-TIMEZONE:Europe/Kyiv
 BEGIN:VEVENT
-UID:16114ac2-381f-40ce-9d02-dd416dfdab58
+UID:2484f725-29ea-4c7f-a493-d608865b6705
 SEQUENCE:0
-DTSTAMP:20261020T170018
+DTSTAMP:20261020T171516
 DTSTART;TZID=Europe/Kyiv:20261020T170000
 DTEND;TZID=Europe/Kyiv:20261021T000000
 SUMMARY:● on
 DESCRIPTION:Причина: Екстренні відключення (А
  варійне без застосування графіку погоди
  нних відключень)\nЧас початку – 13:04 20.10.2026
- \nОрієнтовний час відновлення – до 17:02 20.1
- 0.2026\n\nОновлено: 16:50
+ \nОрієнтовний час відновлення – до 20:50 20.1
+ 0.2026\n\nОновлено: 17:03
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
