@@ -6,17 +6,14 @@ X-WR-CALNAME:⚡️Борщагівка
 TIMEZONE-ID:Europe/Kyiv
 X-WR-TIMEZONE:Europe/Kyiv
 BEGIN:VEVENT
-UID:e586c240-efc1-4429-9dfc-9ff2cfb8e34f
+UID:7282d399-6845-4477-8936-b56e2961e8aa
 SEQUENCE:0
-DTSTAMP:20261028T141517
+DTSTAMP:20261028T143016
 DTSTART;TZID=Europe/Kyiv:20261028T140000
 DTEND;TZID=Europe/Kyiv:20261028T203000
 SUMMARY:● on
-DESCRIPTION:Причина: Екстренні відключення (А
- варійне без застосування графіку погоди
- нних відключень)\nЧас початку – 13:25 28.10.2026
- \nОрієнтовний час відновлення – до 17:25 28.1
- 0.2026\n\nОновлено: 14:08
+DESCRIPTION:Електроенергія має бути в наявнос
+ ті.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
@@ -24,17 +21,17 @@ DESCRIPTION:● on
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:686a6c42-de01-4e3c-96c2-04dd55ea02a8
+UID:a9027859-d6de-4113-be05-04bfb9cfad6a
 SEQUENCE:0
-DTSTAMP:20261028T141517
+DTSTAMP:20261028T143016
 DTSTART;TZID=Europe/Kyiv:20261028T203000
 DTEND;TZID=Europe/Kyiv:20261029T000000
-SUMMARY:○ Аварійне відключення
+SUMMARY:○ Стабілізаційне відключення
 DESCRIPTION:Відключення за графіком.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:○ Аварійне відключення
+DESCRIPTION:○ Стабілізаційне відключення
 END:VALARM
 END:VEVENT
 END:VCALENDAR
