@@ -6,16 +6,14 @@ X-WR-CALNAME:⚡️Борщагівка
 TIMEZONE-ID:Europe/Kyiv
 X-WR-TIMEZONE:Europe/Kyiv
 BEGIN:VEVENT
-UID:3b48402f-e46a-4867-9733-2d93d61545b5
+UID:927f954c-e8ee-46dc-b027-a0a13217c105
 SEQUENCE:0
-DTSTAMP:20261030T201516
+DTSTAMP:20261030T203016
 DTSTART;TZID=Europe/Kyiv:20261030T183000
 DTEND;TZID=Europe/Kyiv:20261031T000000
 SUMMARY:● on
-DESCRIPTION:Причина: Аварійні ремонтні роботи
- \nЧас початку – 13:09 30.10.2026\nОрієнтовний ча
- с відновлення – до 20:25 30.10.2026\n\nОновлено: 2
- 0:06
+DESCRIPTION:Електроенергія має бути в наявнос
+ ті.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
