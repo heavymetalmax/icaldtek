@@ -6,15 +6,15 @@ X-WR-CALNAME:⚡️Гора
 TIMEZONE-ID:Europe/Kyiv
 X-WR-TIMEZONE:Europe/Kyiv
 BEGIN:VEVENT
-UID:89639cdb-62d1-403d-b2f6-d6b867b8a561
+UID:8bda3ae7-bf28-4c00-b96a-b1a4fefa3b86
 SEQUENCE:0
-DTSTAMP:20261101T183015
+DTSTAMP:20261101T184515
 DTSTART;TZID=Europe/Kyiv:20261101T123000
 DTEND;TZID=Europe/Kyiv:20261101T190000
-SUMMARY:⚡️ on ⚠️ ⟲ 18:19
+SUMMARY:⚡️ on ⚠️ ⟲ 18:34
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.\n\nЗагальне повідомлення ДТЕК (переві
- рено 18:30):\nШановні клієнти!\n\nЧерез пості
+ рено 18:45):\nШановні клієнти!\n\nЧерез пості
  йні атаки і пошкодження обладнання в Буч
  анському\, Броварському\, Вишгородському
   і Бориспільському районах введені екст
@@ -25,18 +25,18 @@ DESCRIPTION:Електроенергія має бути в наявнос
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:⚡️ on ⚠️ ⟲ 18:19
+DESCRIPTION:⚡️ on ⚠️ ⟲ 18:34
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:b9dc5b15-973b-49c5-8027-eb9a6c7f3686
+UID:44633507-fb85-42b6-ae80-7dfde59827f5
 SEQUENCE:0
-DTSTAMP:20261101T183015
+DTSTAMP:20261101T184515
 DTSTART;TZID=Europe/Kyiv:20261101T190000
 DTEND;TZID=Europe/Kyiv:20261101T230000
-SUMMARY:⚠️ off ⟲ 18:19
+SUMMARY:⚠️ off ⟲ 18:34
 DESCRIPTION:Відключення за графіком.\n\nЗагаль
- не повідомлення ДТЕК (перевірено 18:30):\nШа
+ не повідомлення ДТЕК (перевірено 18:45):\nШа
  новні клієнти!\n\nЧерез постійні атаки і п
  ошкодження обладнання в Бучанському\, Бр
  оварському\, Вишгородському і Бориспіль
@@ -47,19 +47,19 @@ DESCRIPTION:Відключення за графіком.\n\nЗагаль
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:⚠️ off ⟲ 18:19
+DESCRIPTION:⚠️ off ⟲ 18:34
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:312455e1-45db-40cc-bf83-000c622e95c4
+UID:afee853d-c6ec-4ed9-bd11-38b39f484b83
 SEQUENCE:0
-DTSTAMP:20261101T183015
+DTSTAMP:20261101T184515
 DTSTART;TZID=Europe/Kyiv:20261101T230000
 DTEND;TZID=Europe/Kyiv:20261102T000000
-SUMMARY:⚡️ on ⚠️ ⟲ 18:19
+SUMMARY:⚡️ on ⚠️ ⟲ 18:34
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.\n\nЗагальне повідомлення ДТЕК (переві
- рено 18:30):\nШановні клієнти!\n\nЧерез пості
+ рено 18:45):\nШановні клієнти!\n\nЧерез пості
  йні атаки і пошкодження обладнання в Буч
  анському\, Броварському\, Вишгородському
   і Бориспільському районах введені екст
@@ -70,7 +70,7 @@ DESCRIPTION:Електроенергія має бути в наявнос
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:⚡️ on ⚠️ ⟲ 18:19
+DESCRIPTION:⚡️ on ⚠️ ⟲ 18:34
 END:VALARM
 END:VEVENT
 END:VCALENDAR
