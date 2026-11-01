@@ -7,7 +7,8 @@
       "street": "вул. Мостова",
       "house": "21",
       "queue": "GPV5.1",
-      "filename": "dtek.ics"
+      "filename": "dtek.ics",
+      "districtStem": "бориспіль"
     },
     {
       "id": "borshchahivka",
@@ -15,7 +16,8 @@
       "city": "с. Петропавлівська Борщагівка",
       "street": "вул. Волошкова",
       "house": "2",
-      "filename": "dtek-borshchahivka.ics"
+      "filename": "dtek-borshchahivka.ics",
+      "districtStem": "бучанськ"
     }
   ]
 }
