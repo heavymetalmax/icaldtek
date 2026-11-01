@@ -6,37 +6,14 @@ X-WR-CALNAME:⚡️Борщагівка
 TIMEZONE-ID:Europe/Kyiv
 X-WR-TIMEZONE:Europe/Kyiv
 BEGIN:VEVENT
-UID:a553424e-b748-41d9-a8c0-d9fa39100833
+UID:78a9f71f-c792-4b13-9142-97382694ada9
 SEQUENCE:0
-DTSTAMP:20261101T184516
-DTSTART;TZID=Europe/Kyiv:20261101T123000
-DTEND;TZID=Europe/Kyiv:20261101T190000
-SUMMARY:⚡️ on ⚠️ ⟲ 18:34
-DESCRIPTION:Електроенергія має бути в наявнос
- ті.\n\nЗагальне повідомлення ДТЕК (переві
- рено 18:45):\nШановні клієнти!\n\nЧерез пості
- йні атаки і пошкодження обладнання в Буч
- анському\, Броварському\, Вишгородському
-  і Бориспільському районах введені екст
- рені відключення електроенергії. Графік
- и при цьому не діють. \n\nВ інших районах д
- іють графіки стабілізаційних відключен
- ь.
-BEGIN:VALARM
-ACTION:DISPLAY
-TRIGGER:-PT15M
-DESCRIPTION:⚡️ on ⚠️ ⟲ 18:34
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:4310f8fe-1b5b-4bd3-88be-0d2ef70b2c21
-SEQUENCE:0
-DTSTAMP:20261101T184516
+DTSTAMP:20261101T190016
 DTSTART;TZID=Europe/Kyiv:20261101T190000
 DTEND;TZID=Europe/Kyiv:20261101T230000
-SUMMARY:⚠️ off ⟲ 18:34
+SUMMARY:⚠️ off ⟲ 18:49
 DESCRIPTION:Відключення за графіком.\n\nЗагаль
- не повідомлення ДТЕК (перевірено 18:45):\nШа
+ не повідомлення ДТЕК (перевірено 19:00):\nШа
  новні клієнти!\n\nЧерез постійні атаки і п
  ошкодження обладнання в Бучанському\, Бр
  оварському\, Вишгородському і Бориспіль
@@ -47,19 +24,19 @@ DESCRIPTION:Відключення за графіком.\n\nЗагаль
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:⚠️ off ⟲ 18:34
+DESCRIPTION:⚠️ off ⟲ 18:49
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:981b0965-5c96-4481-89ba-3af78df07ba6
+UID:2bf41b06-99eb-4f13-bec7-1a8b6d460cb0
 SEQUENCE:0
-DTSTAMP:20261101T184516
+DTSTAMP:20261101T190016
 DTSTART;TZID=Europe/Kyiv:20261101T230000
 DTEND;TZID=Europe/Kyiv:20261102T000000
-SUMMARY:⚡️ on ⚠️ ⟲ 18:34
+SUMMARY:⚡️ on ⚠️ ⟲ 18:49
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.\n\nЗагальне повідомлення ДТЕК (переві
- рено 18:45):\nШановні клієнти!\n\nЧерез пості
+ рено 19:00):\nШановні клієнти!\n\nЧерез пості
  йні атаки і пошкодження обладнання в Буч
  анському\, Броварському\, Вишгородському
   і Бориспільському районах введені екст
@@ -70,7 +47,7 @@ DESCRIPTION:Електроенергія має бути в наявнос
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:⚡️ on ⚠️ ⟲ 18:34
+DESCRIPTION:⚡️ on ⚠️ ⟲ 18:49
 END:VALARM
 END:VEVENT
 END:VCALENDAR
