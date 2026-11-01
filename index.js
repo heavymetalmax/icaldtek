@@ -194,65 +194,34 @@ async function fetchAddressData(page, address, sessionData) {
 }
 
 // Генеруємо календар
-function generateCalendar(address, outageData, modalInfo, urgentMark = null) {
+function generateCalendar(address, outageData, regionalEmergency, modalText, kyivCheckTime) {
   const cal = ical({ name: '⚡️' + address.name, timezone: 'Europe/Kyiv' });
-  
+
+  // Час оновлення з адресного інфовікна (updateTimestamp API) — показуємо в заголовку кожної події
   const updateTimeStr = outageData.updateTime ? '⟲ ' + outageData.updateTime : '';
-  
-  // Чи діють екстрені/аварійні відключення
-  const isEmergency = outageData.infoBlockType === 'emergency' || modalInfo.modalAlertType === 'emergency';
-  const isAccident = outageData.infoBlockType === 'accident' || modalInfo.modalAlertType === 'accident';
-  const isStabilization = outageData.infoBlockType === 'stabilization' || modalInfo.modalAlertType === 'stabilization';
-  let isUrgent = isEmergency || isAccident;
-  // Якщо передано urgentMark (наприклад, ‼️), то замінюємо ⚠️ на нього, або прибираємо позначку
-  // Використовуємо нові символи для подій: '○ off' та '● on'
-  let urgentOffSummary = '○ off';
-  let urgentOnSummary = '● on';
-  if (typeof urgentMark !== 'undefined' && urgentMark !== null) {
-    if (urgentMark === '‼️') {
-      urgentOffSummary += ' ‼️';
-      urgentOnSummary += ' ‼️';
-      isUrgent = false;
-    } else if (urgentMark === '') {
-      // Без позначок: не додаємо ⚠️
-      // нічого не додаємо
-      isUrgent = false;
-    }
-  } else if (isUrgent) {
-    urgentOffSummary += ' ⚠️';
-    urgentOnSummary += ' ⚠️';
-  }
-  // Парсимо час відновлення з API (формат: "до 13:34 07.02")
-  let recoveryTimeStr = null;
-  if (outageData.currentOutage?.endDate) {
-    const match = outageData.currentOutage.endDate.match(/(\d{1,2}):(\d{2})\s+(\d{2})\.(\d{2})/);
-    if (match) {
-      const [, hours, minutes, day, month] = match;
-      recoveryTimeStr = 'до ' + String(hours).padStart(2, '0') + ':' + minutes + ' ' + day + '.' + month;
-    }
-  }
-  if (recoveryTimeStr) urgentOffSummary += ' ● ' + recoveryTimeStr;
-  // Не додаємо updateTimeStr до urgentOnSummary/urgentOffSummary — час оновлення лише з API (infoSuffix)
-  
-  // Текст інфовікна (без "Орієнтовний час відновлення" - це дублікат) - тільки для актуальної події
-  let infoSuffix = '';
+
+  // Джерела не змішуємо: аварійні — лише з адресного інфовікна (API),
+  // екстрені — лише зі стартового інфовікна (вже з урахуванням району адреси).
+  const isAccident = outageData.infoBlockType === 'accident';
+  const isEmergency = !!regionalEmergency;
+
+  // Нотатки: повні тексти обох інфовікон підписаними блоками —
+  // для ручної перевірки автоматичної класифікації.
+  const notesBlocks = [];
   if (outageData.infoBlockText) {
-    let infoText = outageData.infoBlockText
-      .replace(/\n/g, ' ')
-      .replace(/\s*Орієнтовний час відновлення[^|]*/i, '');
-    if (recoveryTimeStr) {
-      infoSuffix = ' ● ' + recoveryTimeStr + infoSuffix;
-    }
-    infoSuffix += ' | ' + infoText.trim();
-    // Remove duplicate update time if present in infoSuffix
-    if (updateTimeStr && infoSuffix.includes(updateTimeStr)) {
-      // Remove updateTimeStr from infoSuffix to avoid duplication
-      infoSuffix = infoSuffix.replace(updateTimeStr, '').replace(/\s{2,}/g, ' ').trim();
-    }
+    notesBlocks.push(
+      'Повідомлення за адресою' +
+      (outageData.updateTime ? ' (оновлено ' + outageData.updateTime + ')' : '') +
+      ':\n' + outageData.infoBlockText.trim()
+    );
   }
-  // Note: modal popup text is available in modalInfo.modalText but we prefer
-  // the API-provided info window text (`outageData.infoBlockText`) for SUMMARY.
-  
+  if (modalText) {
+    notesBlocks.push(
+      'Загальне повідомлення ДТЕК (перевірено ' + kyivCheckTime + '):\n' + modalText.trim()
+    );
+  }
+  const extraNotes = notesBlocks.length ? '\n\n' + notesBlocks.join('\n\n') : '';
+
   // Опис події
   const defaultDescription = 'Електроенергія має бути в наявності.';
   const defaultOutageDescription = 'Відключення за графіком.';
@@ -310,7 +279,7 @@ function generateCalendar(address, outageData, modalInfo, urgentMark = null) {
           allEvents.push({
             start: eventStart,
             end: midnight,
-            summary: isUrgent ? urgentOffSummary + ' ⚠️' : urgentOffSummary,
+            summary: '○ off',
             description: defaultOutageDescription,
             isOutage: true
           });
@@ -318,7 +287,7 @@ function generateCalendar(address, outageData, modalInfo, urgentMark = null) {
           allEvents.push({
             start: midnight,
             end: eventEnd,
-            summary: isUrgent ? urgentOffSummary + ' ⚠️' : urgentOffSummary,
+            summary: '○ off',
             description: defaultOutageDescription,
             isOutage: true
           });
@@ -327,7 +296,7 @@ function generateCalendar(address, outageData, modalInfo, urgentMark = null) {
           allEvents.push({
             start: eventStart,
             end: midnight,
-            summary: isUrgent ? urgentOffSummary + ' ⚠️' : urgentOffSummary,
+            summary: '○ off',
             description: defaultOutageDescription,
             isOutage: true
           });
@@ -337,7 +306,7 @@ function generateCalendar(address, outageData, modalInfo, urgentMark = null) {
         allEvents.push({
           start: eventStart,
           end: eventEnd,
-            summary: isUrgent ? urgentOffSummary + ' ⚠️' : urgentOffSummary,
+            summary: '○ off',
           description: defaultOutageDescription,
           isOutage: true
         });
@@ -372,7 +341,7 @@ function generateCalendar(address, outageData, modalInfo, urgentMark = null) {
           allEvents.push({
             start: eventStart,
             end: midnight,
-            summary: isUrgent ? urgentOnSummary + ' ⚠️' : urgentOnSummary,
+            summary: '● on',
             description: defaultDescription,
             isOutage: false
           });
@@ -380,7 +349,7 @@ function generateCalendar(address, outageData, modalInfo, urgentMark = null) {
           allEvents.push({
             start: midnight,
             end: eventEnd,
-            summary: isUrgent ? urgentOnSummary + ' ⚠️' : urgentOnSummary,
+            summary: '● on',
             description: defaultDescription,
             isOutage: false
           });
@@ -389,7 +358,7 @@ function generateCalendar(address, outageData, modalInfo, urgentMark = null) {
           allEvents.push({
             start: eventStart,
             end: midnight,
-            summary: isUrgent ? urgentOnSummary + ' ⚠️' : urgentOnSummary,
+            summary: '● on',
             description: defaultDescription,
             isOutage: false
           });
@@ -399,7 +368,7 @@ function generateCalendar(address, outageData, modalInfo, urgentMark = null) {
         allEvents.push({
           start: eventStart,
           end: eventEnd,
-            summary: isUrgent ? urgentOnSummary + ' ⚠️' : urgentOnSummary,
+            summary: '● on',
           description: defaultDescription,
           isOutage: false
         });
@@ -446,43 +415,23 @@ function generateCalendar(address, outageData, modalInfo, urgentMark = null) {
       return;
     }
     
-    // Визначаємо чи подія актуальна (зараз активна) чи майбутня
-    const isCurrentEvent = event.start <= now && event.end > now;
-
-    const updateTimeStr = outageData.updateTime ? '⟲ ' + outageData.updateTime : '';
-
-    // Тип відключення словом — для off-події
-    let outageWord = 'off';
-    if (isAccident) outageWord = 'Аварійне відключення';
-    else if (isEmergency) outageWord = 'Екстрене відключення';
-    else if (isStabilization) outageWord = 'Стабілізаційне відключення';
-
-    // Необов'язкова позначка (напр. ‼️) зі спец-логіки urgentMark
-    let mark = '';
-    if (typeof urgentMark !== 'undefined' && urgentMark !== null && urgentMark !== '') {
-      mark = urgentMark + ' ';
-    }
-
-    // Стислий заголовок: стан + (для off) тип відключення
+    // Заголовок: стан + час оновлення з адресного інфовікна.
+    // ⚡️ on — світло є; 🚫 off — стабілізаційне (за графіком);
+    // ⚠️ off — екстрені в нашому районі (зі стартового вікна); 🚨 off — аварійне за адресою.
     let eventSummary;
     if (event.isOutage) {
-      eventSummary = mark + '○ ' + outageWord;
+      eventSummary = (isAccident ? '🚨' : isEmergency ? '⚠️' : '🚫') + ' off';
     } else {
-      eventSummary = mark + '● on';
+      eventSummary = '⚡️ on';
+      if (isAccident) eventSummary += ' 🚨';
+      else if (isEmergency) eventSummary += ' ⚠️';
     }
+    if (updateTimeStr) eventSummary += ' ' + updateTimeStr;
 
-    // Нотатки: повна інформація з інфо-вікна для актуальної події, інакше стандартний опис
-    let eventDescription = event.description;
-    if (isCurrentEvent && outageData.infoBlockText) {
-      eventDescription = outageData.infoBlockText.trim();
-      if (updateTimeStr) {
-        eventDescription += '\n\nОновлено: ' + outageData.updateTime;
-      }
-    }
-    
-    
-    // Діагностика для SUMMARY/⚠️
-    console.log('[DIAG]', address.filename, '{ isUrgent:', isUrgent, ', urgentMark:', urgentMark, ', eventSummary:', eventSummary, '}');
+    // Нотатки: стандартний опис + повні тексти інфовікон
+    const eventDescription = event.description + extraNotes;
+
+    console.log('[DIAG]', address.filename, '{ accident:', isAccident, ', emergency:', isEmergency, ', eventSummary:', eventSummary, '}');
     cal.createEvent({
       start: event.start,
       end: event.end,
@@ -496,6 +445,73 @@ function generateCalendar(address, outageData, modalInfo, urgentMark = null) {
   return { cal, outageCount: allEvents.length };
 }
 
+// Читає текст спливного інфовікна з перевіркою видимості елемента.
+async function readVisibleModalText(page, maxWaitMs = 60000) {
+  const started = Date.now();
+  while (true) {
+    const text = await page.evaluate(() => {
+      const candidates = document.querySelectorAll('.modal, .popup, [role="dialog"], .alert, .notification');
+      for (const el of candidates) {
+        const cs = getComputedStyle(el);
+        const r = el.getBoundingClientRect();
+        const visible = cs.display !== 'none' && cs.visibility !== 'hidden' &&
+          parseFloat(cs.opacity || '1') > 0 && r.width > 0 && r.height > 0;
+        if (!visible) continue;
+        const t = (el.innerText || '').trim();
+        if (t.length > 10) return t;
+      }
+      return null;
+    });
+    if (text) return text;
+    if (Date.now() - started >= maxWaitMs) return null;
+    await page.waitForTimeout(5000);
+  }
+}
+
+// Стеми назв районів для визначення області дії регіонального оголошення
+const DISTRICT_STEMS = ['бориспіль', 'бучанськ', 'обухів', 'фастів', 'бровар', 'вишгород', 'білоцерків', 'васильків'];
+
+// Екстрені відключення — лише зі стартового інфовікна.
+// Аналізуємо по реченнях: стан прив'язуємо до твердження й районів у ньому.
+// Речення без районів успадковує райони попереднього ("Тут графіки не діють");
+// "в інших районах ..." — доповнення до названих. Заперечення ("скасовано",
+// "не застосовуються") і непідтверджені формулювання ("можливі") — НЕ emergency.
+// Оголошення лише про інші райони — не наше. Неоднозначність -> false.
+function isEmergencyForAddress(alertText, districtStem) {
+  if (!alertText) return false;
+  const sentences = alertText.toLowerCase().split(/[.\n!;]+/).map(s => s.trim()).filter(Boolean);
+  let lastDistricts = [];
+  for (const s of sentences) {
+    const districts = DISTRICT_STEMS.filter(stem => s.includes(stem));
+    const isComplement = s.includes('інших районах') || s.includes('решті районів');
+    const negated = /(скасов|відмінен|не застосов|не ввод|не оголош|можлив)/.test(s);
+    const scheduleDead = /графік[а-яіїєґ]*\s+не\s+ді[ює]/.test(s);
+    const noPower = s.includes('відсутнє електропостачання') || s.includes('відсутня електроенергія');
+    const scheduleAlive = /графік[а-яіїєґ]*\s+ді[ює]|діють\s+графік/.test(s) && !scheduleDead;
+    const emergencyClaim = !negated && !scheduleAlive &&
+      (s.includes('екстрен') || scheduleDead || noPower);
+    if (!emergencyClaim) {
+      if (districts.length > 0) lastDistricts = districts;
+      continue;
+    }
+    // Область дії твердження
+    let includesStem;
+    if (districts.length > 0) {
+      lastDistricts = districts;
+      includesStem = districtStem ? districts.includes(districtStem) : true;
+    } else if (isComplement) {
+      includesStem = districtStem ? !lastDistricts.includes(districtStem) : true;
+    } else if (lastDistricts.length > 0) {
+      includesStem = districtStem ? lastDistricts.includes(districtStem) : true;
+    } else {
+      includesStem = true; // глобальне твердження без уточнення районів
+    }
+    if (includesStem) return true;
+  }
+  return false;
+}
+
+
 // Головна функція
 (async () => {
   const isCI = process.env.CI === 'true' || process.env.GITHUB_ACTIONS === 'true';
@@ -508,36 +524,17 @@ function generateCalendar(address, outageData, modalInfo, urgentMark = null) {
     await page.goto('https://www.dtek-krem.com.ua/ua/shutdowns', { waitUntil: 'networkidle', timeout: 60000 });
     await page.waitForTimeout(5000);
 
-    // Перевіряємо спливне вікно
-    let isUkrEnergoAlert = false, modalAlertType = null;
-    const alertText = await evaluateWithRetry(
-      page,
-      () => {
-        const modal = document.querySelector('.modal, .popup, [role="dialog"], .alert, .notification');
-        return modal ? modal.innerText : null;
-      },
-      undefined,
-      { label: 'modal evaluate' }
-    );
-    
+    // Читаємо спливне інфовікно: лише ВИДИМИЙ елемент із непустим текстом.
+    // Приховані DOM-шаблони повідомленнями не вважаються.
+    // Попап з'являється із затримкою, тому опитуємо до 60 с.
+    const alertText = await readVisibleModalText(page, 60000);
+
     if (alertText) {
-      // Діагностичний вивід: показати повний текст попапу
       console.log('📢 Попап (повний):', alertText);
-      console.log('📢 Попап (120):', alertText.substring(0, 120) + '...');
-      if (alertText.toLowerCase().includes('укренерго')) isUkrEnergoAlert = true;
-      // Визначаємо тип за ключовими фразами (нормалізуємо пробіли та переноси)
-      const lowerText = alertText.toLowerCase().replace(/\s+/g, ' ');
-      if (lowerText.includes('екстрені відключення') || lowerText.includes('екстренні відключення')) {
-        modalAlertType = 'emergency';
-      } else if (lowerText.includes('стабілізаційні відключення') || lowerText.includes('стабілізаційні графіки')) {
-        modalAlertType = 'stabilization';
-      } else if (lowerText.includes('аварійн')) {
-        modalAlertType = 'accident';
-      }
-      console.log('   📋 Тип попапу:', modalAlertType || 'не визначено');
+    } else {
+      console.log('📢 Спливного вікна немає (видимість перевірено, 60 с)');
     }
 
-    const modalInfo = { isUkrEnergoAlert, modalAlertType, modalText: alertText };
     const sessionData = await evaluateWithRetry(
       page,
       () => ({
@@ -565,21 +562,11 @@ function generateCalendar(address, outageData, modalInfo, urgentMark = null) {
         console.log('         Слоти:', sched.schedule.map(s => `${s.hour}: ${s.status}`).join(', '));
       });
 
-      // Визначаємо, чи потрібно ставити спеціальний знак для цієї адреси
-      let urgentMark = null;
-      const isEmergency = modalInfo.modalAlertType === 'emergency';
-      // Максимально гнучка перевірка
-      const lowerAlert = (alertText || '').toLowerCase();
-      const hasEmergency = lowerAlert.includes('екстрен');
-      const hasBoryspil = /бориспіль/i.test(lowerAlert);
-      if (hasEmergency && hasBoryspil) {
-        urgentMark = (address.filename === 'dtek.ics') ? '‼️' : '';
-      } else if (hasEmergency) {
-        urgentMark = null; // стандартна логіка (⚠️)
-      }
-      // Діагностичний вивід значення urgentMark
-      console.log('   🛠️ urgentMark для', address.filename, ':', urgentMark);
-      const { cal, outageCount } = generateCalendar(address, outageData, modalInfo, urgentMark);
+      // Екстрені — зі стартового вікна, лише якщо оголошення стосується району адреси
+      const regionalEmergency = isEmergencyForAddress(alertText, address.districtStem);
+      console.log('   🛠️ Екстрені для', address.filename, ':', regionalEmergency);
+      const kyivCheckTime = new Date().toLocaleTimeString('uk-UA', { timeZone: 'Europe/Kyiv', hour: '2-digit', minute: '2-digit' });
+      const { cal, outageCount } = generateCalendar(address, outageData, regionalEmergency, alertText, kyivCheckTime);
       
       // Не записуємо порожній календар
       if (outageCount === 0) {
