@@ -6,15 +6,15 @@ X-WR-CALNAME:⚡️Гора
 TIMEZONE-ID:Europe/Kyiv
 X-WR-TIMEZONE:Europe/Kyiv
 BEGIN:VEVENT
-UID:1b765b69-f742-454d-b9a4-c4b1f557e9ca
+UID:be8d9257-27b3-4127-bbb7-72987e24d57f
 SEQUENCE:0
-DTSTAMP:20261101T150015
+DTSTAMP:20261101T151511
 DTSTART;TZID=Europe/Kyiv:20261101T123000
 DTEND;TZID=Europe/Kyiv:20261101T190000
-SUMMARY:⚡️ on ⟲ 14:50
+SUMMARY:⚡️ on ⟲ 15:06
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.\n\nЗагальне повідомлення ДТЕК (переві
- рено 15:00):\nШановні клієнти!\n\nЧерез пості
+ рено 15:15):\nШановні клієнти!\n\nЧерез пості
  йні атаки і пошкодження обладнання в Буч
  анському та Броварському районах введе
  ні екстрені відключення електроенергії.
@@ -24,18 +24,18 @@ DESCRIPTION:Електроенергія має бути в наявнос
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:⚡️ on ⟲ 14:50
+DESCRIPTION:⚡️ on ⟲ 15:06
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:07002b25-8ba5-4f7e-bff7-741f85301196
+UID:b28bec91-7d72-4d0d-89a7-af7411438c7f
 SEQUENCE:0
-DTSTAMP:20261101T150015
+DTSTAMP:20261101T151511
 DTSTART;TZID=Europe/Kyiv:20261101T190000
 DTEND;TZID=Europe/Kyiv:20261101T230000
-SUMMARY:🚫 off ⟲ 14:50
+SUMMARY:🚫 off ⟲ 15:06
 DESCRIPTION:Відключення за графіком.\n\nЗагаль
- не повідомлення ДТЕК (перевірено 15:00):\nШа
+ не повідомлення ДТЕК (перевірено 15:15):\nШа
  новні клієнти!\n\nЧерез постійні атаки і п
  ошкодження обладнання в Бучанському та 
  Броварському районах введені екстрені 
@@ -46,19 +46,19 @@ DESCRIPTION:Відключення за графіком.\n\nЗагаль
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:🚫 off ⟲ 14:50
+DESCRIPTION:🚫 off ⟲ 15:06
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:249bafef-9f55-4095-bdc3-7b66734a3e05
+UID:c0187688-0a8b-4d44-98ef-f22d4e05a82b
 SEQUENCE:0
-DTSTAMP:20261101T150015
+DTSTAMP:20261101T151511
 DTSTART;TZID=Europe/Kyiv:20261101T230000
 DTEND;TZID=Europe/Kyiv:20261102T000000
-SUMMARY:⚡️ on ⟲ 14:50
+SUMMARY:⚡️ on ⟲ 15:06
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.\n\nЗагальне повідомлення ДТЕК (переві
- рено 15:00):\nШановні клієнти!\n\nЧерез пості
+ рено 15:15):\nШановні клієнти!\n\nЧерез пості
  йні атаки і пошкодження обладнання в Буч
  анському та Броварському районах введе
  ні екстрені відключення електроенергії.
@@ -68,7 +68,7 @@ DESCRIPTION:Електроенергія має бути в наявнос
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:⚡️ on ⟲ 14:50
+DESCRIPTION:⚡️ on ⟲ 15:06
 END:VALARM
 END:VEVENT
 END:VCALENDAR
