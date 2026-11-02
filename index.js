@@ -481,7 +481,9 @@ function isEmergencyForAddress(alertText, districtStem) {
   if (!alertText) return false;
   const sentences = alertText.toLowerCase().split(/[.\n!;]+/).map(s => s.trim()).filter(Boolean);
   let lastDistricts = [];
-  for (const s of sentences) {
+  for (const sRaw of sentences) {
+    // Прохання "уникнути екстрених відключень" - не оголошення про екстрені.
+    const s = sRaw.replace(/(уникн\S*|запоб\S*|не допуст\S*|щоб не)\s+екстрен\S*/g, '');
     const districts = DISTRICT_STEMS.filter(stem => s.includes(stem));
     const isComplement = s.includes('інших районах') || s.includes('решті районів');
     const negated = /(скасов|відмінен|не застосов|не ввод|не оголош|можлив)/.test(s);
