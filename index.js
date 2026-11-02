@@ -621,6 +621,7 @@ function isEmergencyForAddress(alertText, districtStem) {
               console.log('✅ Зміни в календарях закомічені та запушені.');
             } catch (e) {
               console.error('❌ Помилка при commit/push:', e.message);
+              throw e;
             }
           } else {
             console.log('🧘 Немає змін для коміту.');
@@ -628,6 +629,7 @@ function isEmergencyForAddress(alertText, districtStem) {
         }
       } catch (e) {
         console.error('❌ Непередбачена помилка при автопуші:', e.message);
+        throw e;
       }
     } else {
       console.log('🧘 Автопуш вимкнено (щоб увімкнути, встановіть AUTO_PUSH=true або запускайте в CI).');
@@ -636,6 +638,7 @@ function isEmergencyForAddress(alertText, districtStem) {
     await browser.close();
   } catch (error) {
     console.error('❌ Помилка:', error.message);
+    process.exitCode = 1;
     await browser.close();
   }
 })();
