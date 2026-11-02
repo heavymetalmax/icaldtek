@@ -8,6 +8,8 @@ on:
 jobs:
   generate:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     
     steps:
       - uses: actions/checkout@v4
@@ -61,5 +63,9 @@ jobs:
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
           git add *.ics
-          git commit -m "chore: fallback update from GitHub Actions [skip ci]" || echo "No changes"
-          git push || echo "Nothing to push"
+          if git diff --staged --quiet; then
+            echo "No staged changes"
+          else
+            git commit -m "chore: fallback update from GitHub Actions [skip ci]"
+          fi
+          git push
