@@ -27,9 +27,9 @@ jobs:
           echo "Last commit: $LAST_COMMIT"
           echo "Age (minutes): $AGE_MINUTES"
           
-          if [ $AGE_MINUTES -gt 60 ]; then
+          if [ "$GITHUB_EVENT_NAME" = "workflow_dispatch" ] || [ $AGE_MINUTES -gt 60 ]; then
             echo "should_run=true" >> $GITHUB_OUTPUT
-            echo "⚠️ No updates for $AGE_MINUTES minutes - running fallback"
+            echo "Running fallback (event: $GITHUB_EVENT_NAME; last commit: $AGE_MINUTES minutes ago)"
           else
             echo "should_run=false" >> $GITHUB_OUTPUT
             echo "✅ Server is active (last update: $AGE_MINUTES min ago)"
