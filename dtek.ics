@@ -11,7 +11,7 @@ SEQUENCE:0
 DTSTAMP:20261102T061512
 DTSTART;TZID=Europe/Kyiv:20261102T060000
 DTEND;TZID=Europe/Kyiv:20261102T093000
-SUMMARY:⚠️ off ⟲ 06:03
+SUMMARY:🚫 off ⟲ 06:03
 DESCRIPTION:Відключення за графіком.\n\nЗагаль
  не повідомлення ДТЕК (перевірено 06:15):\nШа
  новні клієнти!\n\nЗа наказом НЕК Укренерг
@@ -24,7 +24,7 @@ DESCRIPTION:Відключення за графіком.\n\nЗагаль
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:⚠️ off ⟲ 06:03
+DESCRIPTION:🚫 off ⟲ 06:03
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
@@ -33,7 +33,7 @@ SEQUENCE:0
 DTSTAMP:20261102T061512
 DTSTART;TZID=Europe/Kyiv:20261102T093000
 DTEND;TZID=Europe/Kyiv:20261102T160000
-SUMMARY:⚡️ on ⚠️ ⟲ 06:03
+SUMMARY:⚡️ on ⟲ 06:03
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.\n\nЗагальне повідомлення ДТЕК (переві
  рено 06:15):\nШановні клієнти!\n\nЗа наказом Н
@@ -46,7 +46,7 @@ DESCRIPTION:Електроенергія має бути в наявнос
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:⚡️ on ⚠️ ⟲ 06:03
+DESCRIPTION:⚡️ on ⟲ 06:03
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
@@ -55,7 +55,7 @@ SEQUENCE:0
 DTSTAMP:20261102T061512
 DTSTART;TZID=Europe/Kyiv:20261102T160000
 DTEND;TZID=Europe/Kyiv:20261102T200000
-SUMMARY:⚠️ off ⟲ 06:03
+SUMMARY:🚫 off ⟲ 06:03
 DESCRIPTION:Відключення за графіком.\n\nЗагаль
  не повідомлення ДТЕК (перевірено 06:15):\nШа
  новні клієнти!\n\nЗа наказом НЕК Укренерг
@@ -68,7 +68,7 @@ DESCRIPTION:Відключення за графіком.\n\nЗагаль
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:⚠️ off ⟲ 06:03
+DESCRIPTION:🚫 off ⟲ 06:03
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
@@ -77,7 +77,7 @@ SEQUENCE:0
 DTSTAMP:20261102T061512
 DTSTART;TZID=Europe/Kyiv:20261102T200000
 DTEND;TZID=Europe/Kyiv:20261103T000000
-SUMMARY:⚡️ on ⚠️ ⟲ 06:03
+SUMMARY:⚡️ on ⟲ 06:03
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.\n\nЗагальне повідомлення ДТЕК (переві
  рено 06:15):\nШановні клієнти!\n\nЗа наказом Н
@@ -90,7 +90,7 @@ DESCRIPTION:Електроенергія має бути в наявнос
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:⚡️ on ⚠️ ⟲ 06:03
+DESCRIPTION:⚡️ on ⟲ 06:03
 END:VALARM
 END:VEVENT
 END:VCALENDAR
