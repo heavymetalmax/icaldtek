@@ -415,16 +415,15 @@ function generateCalendar(address, outageData, regionalEmergency, modalText, kyi
       return;
     }
     
-    // Заголовок: стан + час оновлення з адресного інфовікна.
-    // ⚡️ on — світло є; 🚫 off — стабілізаційне (за графіком);
-    // ⚠️ off — екстрені в нашому районі (зі стартового вікна); 🚨 off — аварійне за адресою.
+    // Заголовок: одна іконка на початку + стан + час оновлення з адресного інфовікна.
+    // Попереджувальний знак ЗАМІНЮЄ стандартний: 🚨 — аварійне за адресою,
+    // ⚠️ — екстрені в нашому районі (зі стартового вікна); без попереджень — ⚡️ on / 🚫 off.
     let eventSummary;
+    const warnIcon = isAccident ? '🚨' : isEmergency ? '⚠️' : null;
     if (event.isOutage) {
-      eventSummary = (isAccident ? '🚨' : isEmergency ? '⚠️' : '🚫') + ' off';
+      eventSummary = (warnIcon || '🚫') + ' off';
     } else {
-      eventSummary = '⚡️ on';
-      if (isAccident) eventSummary += ' 🚨';
-      else if (isEmergency) eventSummary += ' ⚠️';
+      eventSummary = (warnIcon || '⚡️') + ' on';
     }
     if (updateTimeStr) eventSummary += ' ' + updateTimeStr;
 
