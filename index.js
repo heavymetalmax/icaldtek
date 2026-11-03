@@ -421,9 +421,9 @@ function generateCalendar(address, outageData, regionalEmergency, modalText, kyi
     let eventSummary;
     const warnIcon = isAccident ? '🚨' : isEmergency ? '⚠️' : null;
     if (event.isOutage) {
-      eventSummary = (warnIcon || '🚫') + ' off';
+      eventSummary = (warnIcon || '🚫') + ' OFF';
     } else {
-      eventSummary = (warnIcon || '⚡️') + ' on';
+      eventSummary = (warnIcon || '⚡️') + ' ON';
     }
     if (updateTimeStr) eventSummary += ' ' + updateTimeStr;
 
