@@ -6,15 +6,15 @@ X-WR-CALNAME:⚡️Борщагівка
 TIMEZONE-ID:Europe/Kyiv
 X-WR-TIMEZONE:Europe/Kyiv
 BEGIN:VEVENT
-UID:20628100-333f-423b-96ab-49913ce75911
+UID:e9b13e1e-7139-4902-af95-2d6bf6aa807a
 SEQUENCE:0
-DTSTAMP:20261113T213016
+DTSTAMP:20261113T220016
 DTSTART;TZID=Europe/Kyiv:20261113T210000
-DTEND;TZID=Europe/Kyiv:20261114T000000
-SUMMARY:⚠️ ON ⟲ 21:17
+DTEND;TZID=Europe/Kyiv:20261114T013000
+SUMMARY:⚠️ ON ⟲ 21:52
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.\n\nЗагальне повідомлення ДТЕК (переві
- рено 21:30):\nШановні клієнти!\n\nЧерез ворож
+ рено 22:00):\nШановні клієнти!\n\nЧерез ворож
  і обстріли та обмеження передачі електр
  оенергії через пошкодження енергосисте
  ми у Бучанському\, Фастівському\, Білоцер
@@ -25,7 +25,119 @@ DESCRIPTION:Електроенергія має бути в наявнос
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:⚠️ ON ⟲ 21:17
+DESCRIPTION:⚠️ ON ⟲ 21:52
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:30db3b6f-79b1-4086-9409-fa17e98ef7c6
+SEQUENCE:0
+DTSTAMP:20261113T220016
+DTSTART;TZID=Europe/Kyiv:20261114T013000
+DTEND;TZID=Europe/Kyiv:20261114T053000
+SUMMARY:⚠️ OFF ⟲ 21:52
+DESCRIPTION:Відключення за графіком.\n\nЗагаль
+ не повідомлення ДТЕК (перевірено 22:00):\nШа
+ новні клієнти!\n\nЧерез ворожі обстріли т
+ а обмеження передачі електроенергії чер
+ ез пошкодження енергосистеми у Бучанськ
+ ому\, Фастівському\, Білоцерківському\, О
+ бухівському районах діють екстрені відк
+ лючення.\n\nВ решті області продовжують д
+ іяти стабілізаційні графіки.
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT15M
+DESCRIPTION:⚠️ OFF ⟲ 21:52
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:29fd1aee-4f5b-4350-a42a-d281356cfcde
+SEQUENCE:0
+DTSTAMP:20261113T220016
+DTSTART;TZID=Europe/Kyiv:20261114T053000
+DTEND;TZID=Europe/Kyiv:20261114T120000
+SUMMARY:⚠️ ON ⟲ 21:52
+DESCRIPTION:Електроенергія має бути в наявнос
+ ті.\n\nЗагальне повідомлення ДТЕК (переві
+ рено 22:00):\nШановні клієнти!\n\nЧерез ворож
+ і обстріли та обмеження передачі електр
+ оенергії через пошкодження енергосисте
+ ми у Бучанському\, Фастівському\, Білоцер
+ ківському\, Обухівському районах діють е
+ кстрені відключення.\n\nВ решті області п
+ родовжують діяти стабілізаційні графік
+ и.
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT15M
+DESCRIPTION:⚠️ ON ⟲ 21:52
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:07a8006e-42ce-4247-b8e3-888a885acd53
+SEQUENCE:0
+DTSTAMP:20261113T220016
+DTSTART;TZID=Europe/Kyiv:20261114T120000
+DTEND;TZID=Europe/Kyiv:20261114T160000
+SUMMARY:⚠️ OFF ⟲ 21:52
+DESCRIPTION:Відключення за графіком.\n\nЗагаль
+ не повідомлення ДТЕК (перевірено 22:00):\nШа
+ новні клієнти!\n\nЧерез ворожі обстріли т
+ а обмеження передачі електроенергії чер
+ ез пошкодження енергосистеми у Бучанськ
+ ому\, Фастівському\, Білоцерківському\, О
+ бухівському районах діють екстрені відк
+ лючення.\n\nВ решті області продовжують д
+ іяти стабілізаційні графіки.
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT15M
+DESCRIPTION:⚠️ OFF ⟲ 21:52
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:ba72a111-c73f-463e-9908-0d81b8423bd2
+SEQUENCE:0
+DTSTAMP:20261113T220016
+DTSTART;TZID=Europe/Kyiv:20261114T160000
+DTEND;TZID=Europe/Kyiv:20261114T223000
+SUMMARY:⚠️ ON ⟲ 21:52
+DESCRIPTION:Електроенергія має бути в наявнос
+ ті.\n\nЗагальне повідомлення ДТЕК (переві
+ рено 22:00):\nШановні клієнти!\n\nЧерез ворож
+ і обстріли та обмеження передачі електр
+ оенергії через пошкодження енергосисте
+ ми у Бучанському\, Фастівському\, Білоцер
+ ківському\, Обухівському районах діють е
+ кстрені відключення.\n\nВ решті області п
+ родовжують діяти стабілізаційні графік
+ и.
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT15M
+DESCRIPTION:⚠️ ON ⟲ 21:52
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:c5f56d23-b0e1-43dd-8414-58bbc3344c01
+SEQUENCE:0
+DTSTAMP:20261113T220016
+DTSTART;TZID=Europe/Kyiv:20261114T223000
+DTEND;TZID=Europe/Kyiv:20261115T000000
+SUMMARY:⚠️ OFF ⟲ 21:52
+DESCRIPTION:Відключення за графіком.\n\nЗагаль
+ не повідомлення ДТЕК (перевірено 22:00):\nШа
+ новні клієнти!\n\nЧерез ворожі обстріли т
+ а обмеження передачі електроенергії чер
+ ез пошкодження енергосистеми у Бучанськ
+ ому\, Фастівському\, Білоцерківському\, О
+ бухівському районах діють екстрені відк
+ лючення.\n\nВ решті області продовжують д
+ іяти стабілізаційні графіки.
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT15M
+DESCRIPTION:⚠️ OFF ⟲ 21:52
 END:VALARM
 END:VEVENT
 END:VCALENDAR
