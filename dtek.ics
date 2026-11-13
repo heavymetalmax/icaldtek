@@ -6,15 +6,15 @@ X-WR-CALNAME:⚡️Гора
 TIMEZONE-ID:Europe/Kyiv
 X-WR-TIMEZONE:Europe/Kyiv
 BEGIN:VEVENT
-UID:4984e5aa-c420-47b3-a1b0-114eabd3a24f
+UID:8eaa1a5b-895b-4d13-a52d-72d465200059
 SEQUENCE:0
-DTSTAMP:20261114T000012
+DTSTAMP:20261114T003013
 DTSTART;TZID=Europe/Kyiv:20261114T000000
 DTEND;TZID=Europe/Kyiv:20261114T013000
-SUMMARY:⚡️ ON ⟲ 23:50
+SUMMARY:⚡️ ON ⟲ 00:18
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.\n\nЗагальне повідомлення ДТЕК (переві
- рено 00:00):\nШановні клієнти!\n\nЧерез ворож
+ рено 00:30):\nШановні клієнти!\n\nЧерез ворож
  і обстріли та обмеження передачі електр
  оенергії через пошкодження енергосисте
  ми у Бучанському\, Фастівському\, Білоцер
@@ -25,18 +25,18 @@ DESCRIPTION:Електроенергія має бути в наявнос
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:⚡️ ON ⟲ 23:50
+DESCRIPTION:⚡️ ON ⟲ 00:18
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:3b1bbdb4-115c-4c95-b5cf-6792fbde701f
+UID:b0e38cb0-8a96-41c4-9558-1d47ad75cc6f
 SEQUENCE:0
-DTSTAMP:20261114T000012
+DTSTAMP:20261114T003013
 DTSTART;TZID=Europe/Kyiv:20261114T013000
 DTEND;TZID=Europe/Kyiv:20261114T053000
-SUMMARY:🚫 OFF ⟲ 23:50
+SUMMARY:🚫 OFF ⟲ 00:18
 DESCRIPTION:Відключення за графіком.\n\nЗагаль
- не повідомлення ДТЕК (перевірено 00:00):\nШа
+ не повідомлення ДТЕК (перевірено 00:30):\nШа
  новні клієнти!\n\nЧерез ворожі обстріли т
  а обмеження передачі електроенергії чер
  ез пошкодження енергосистеми у Бучанськ
@@ -47,19 +47,19 @@ DESCRIPTION:Відключення за графіком.\n\nЗагаль
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:🚫 OFF ⟲ 23:50
+DESCRIPTION:🚫 OFF ⟲ 00:18
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:95815b03-ad4e-40a0-a090-9ca3ff6c88ee
+UID:6704aa54-7e3e-47e1-a69d-2356cd15a1a8
 SEQUENCE:0
-DTSTAMP:20261114T000012
+DTSTAMP:20261114T003013
 DTSTART;TZID=Europe/Kyiv:20261114T053000
 DTEND;TZID=Europe/Kyiv:20261114T120000
-SUMMARY:⚡️ ON ⟲ 23:50
+SUMMARY:⚡️ ON ⟲ 00:18
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.\n\nЗагальне повідомлення ДТЕК (переві
- рено 00:00):\nШановні клієнти!\n\nЧерез ворож
+ рено 00:30):\nШановні клієнти!\n\nЧерез ворож
  і обстріли та обмеження передачі електр
  оенергії через пошкодження енергосисте
  ми у Бучанському\, Фастівському\, Білоцер
@@ -70,18 +70,18 @@ DESCRIPTION:Електроенергія має бути в наявнос
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:⚡️ ON ⟲ 23:50
+DESCRIPTION:⚡️ ON ⟲ 00:18
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:88d4e1e7-e24b-4d80-86aa-e7f903f9403d
+UID:729d1a5d-8f62-42ec-bbe8-7e5fe96c3f61
 SEQUENCE:0
-DTSTAMP:20261114T000012
+DTSTAMP:20261114T003013
 DTSTART;TZID=Europe/Kyiv:20261114T120000
 DTEND;TZID=Europe/Kyiv:20261114T160000
-SUMMARY:🚫 OFF ⟲ 23:50
+SUMMARY:🚫 OFF ⟲ 00:18
 DESCRIPTION:Відключення за графіком.\n\nЗагаль
- не повідомлення ДТЕК (перевірено 00:00):\nШа
+ не повідомлення ДТЕК (перевірено 00:30):\nШа
  новні клієнти!\n\nЧерез ворожі обстріли т
  а обмеження передачі електроенергії чер
  ез пошкодження енергосистеми у Бучанськ
@@ -92,19 +92,19 @@ DESCRIPTION:Відключення за графіком.\n\nЗагаль
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:🚫 OFF ⟲ 23:50
+DESCRIPTION:🚫 OFF ⟲ 00:18
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:ca9defb0-f5d1-45ad-a0dc-6c4f411fac3a
+UID:26785963-0e0a-41bd-ad69-54f9fa3e5bb7
 SEQUENCE:0
-DTSTAMP:20261114T000012
+DTSTAMP:20261114T003013
 DTSTART;TZID=Europe/Kyiv:20261114T160000
 DTEND;TZID=Europe/Kyiv:20261114T223000
-SUMMARY:⚡️ ON ⟲ 23:50
+SUMMARY:⚡️ ON ⟲ 00:18
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.\n\nЗагальне повідомлення ДТЕК (переві
- рено 00:00):\nШановні клієнти!\n\nЧерез ворож
+ рено 00:30):\nШановні клієнти!\n\nЧерез ворож
  і обстріли та обмеження передачі електр
  оенергії через пошкодження енергосисте
  ми у Бучанському\, Фастівському\, Білоцер
@@ -115,18 +115,18 @@ DESCRIPTION:Електроенергія має бути в наявнос
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:⚡️ ON ⟲ 23:50
+DESCRIPTION:⚡️ ON ⟲ 00:18
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:cc19bdc4-25f5-4539-9f3e-ffae453747b9
+UID:0b19f220-9e15-4c02-8ddb-20acb39859f3
 SEQUENCE:0
-DTSTAMP:20261114T000012
+DTSTAMP:20261114T003014
 DTSTART;TZID=Europe/Kyiv:20261114T223000
 DTEND;TZID=Europe/Kyiv:20261115T000000
-SUMMARY:🚫 OFF ⟲ 23:50
+SUMMARY:🚫 OFF ⟲ 00:18
 DESCRIPTION:Відключення за графіком.\n\nЗагаль
- не повідомлення ДТЕК (перевірено 00:00):\nШа
+ не повідомлення ДТЕК (перевірено 00:30):\nШа
  новні клієнти!\n\nЧерез ворожі обстріли т
  а обмеження передачі електроенергії чер
  ез пошкодження енергосистеми у Бучанськ
@@ -137,7 +137,7 @@ DESCRIPTION:Відключення за графіком.\n\nЗагаль
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:🚫 OFF ⟲ 23:50
+DESCRIPTION:🚫 OFF ⟲ 00:18
 END:VALARM
 END:VEVENT
 END:VCALENDAR
