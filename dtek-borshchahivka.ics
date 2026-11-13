@@ -6,37 +6,15 @@ X-WR-CALNAME:⚡️Борщагівка
 TIMEZONE-ID:Europe/Kyiv
 X-WR-TIMEZONE:Europe/Kyiv
 BEGIN:VEVENT
-UID:1c75086b-a87f-4296-98f9-e3cea102c19f
+UID:0f5e4a36-7ede-480f-87a9-c08ea1d7faa9
 SEQUENCE:0
-DTSTAMP:20261113T203014
-DTSTART;TZID=Europe/Kyiv:20261113T140000
-DTEND;TZID=Europe/Kyiv:20261113T210000
-SUMMARY:⚠️ OFF ⟲ 20:17
-DESCRIPTION:Відключення за графіком.\n\nЗагаль
- не повідомлення ДТЕК (перевірено 20:30):\nШа
- новні клієнти!\n\nЧерез ворожі обстріли т
- а обмеження передачі електроенергії чер
- ез пошкодження енергосистеми у Бучанськ
- ому\, Фастівському\, Білоцерківському\, О
- бухівському районах діють екстрені відк
- лючення.\n\nВ решті області продовжують д
- іяти стабілізаційні графіки.
-BEGIN:VALARM
-ACTION:DISPLAY
-TRIGGER:-PT15M
-DESCRIPTION:⚠️ OFF ⟲ 20:17
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:8fbb5bfb-f751-4868-bde3-400d9337026a
-SEQUENCE:0
-DTSTAMP:20261113T203014
+DTSTAMP:20261113T210016
 DTSTART;TZID=Europe/Kyiv:20261113T210000
 DTEND;TZID=Europe/Kyiv:20261114T000000
-SUMMARY:⚠️ ON ⟲ 20:17
+SUMMARY:⚠️ ON ⟲ 20:51
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.\n\nЗагальне повідомлення ДТЕК (переві
- рено 20:30):\nШановні клієнти!\n\nЧерез ворож
+ рено 21:00):\nШановні клієнти!\n\nЧерез ворож
  і обстріли та обмеження передачі електр
  оенергії через пошкодження енергосисте
  ми у Бучанському\, Фастівському\, Білоцер
@@ -47,7 +25,7 @@ DESCRIPTION:Електроенергія має бути в наявнос
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:⚠️ ON ⟲ 20:17
+DESCRIPTION:⚠️ ON ⟲ 20:51
 END:VALARM
 END:VEVENT
 END:VCALENDAR
