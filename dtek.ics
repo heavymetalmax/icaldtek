@@ -6,15 +6,15 @@ X-WR-CALNAME:⚡️Гора
 TIMEZONE-ID:Europe/Kyiv
 X-WR-TIMEZONE:Europe/Kyiv
 BEGIN:VEVENT
-UID:d5acf148-a808-4016-82ce-57282e9384be
+UID:f3150afc-846b-4b21-beec-fccdf81270df
 SEQUENCE:0
-DTSTAMP:20261113T210015
+DTSTAMP:20261113T213014
 DTSTART;TZID=Europe/Kyiv:20261113T210000
 DTEND;TZID=Europe/Kyiv:20261114T000000
-SUMMARY:⚡️ ON ⟲ 20:51
+SUMMARY:⚡️ ON ⟲ 21:17
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.\n\nЗагальне повідомлення ДТЕК (переві
- рено 21:00):\nШановні клієнти!\n\nЧерез ворож
+ рено 21:30):\nШановні клієнти!\n\nЧерез ворож
  і обстріли та обмеження передачі електр
  оенергії через пошкодження енергосисте
  ми у Бучанському\, Фастівському\, Білоцер
@@ -25,7 +25,7 @@ DESCRIPTION:Електроенергія має бути в наявнос
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:⚡️ ON ⟲ 20:51
+DESCRIPTION:⚡️ ON ⟲ 21:17
 END:VALARM
 END:VEVENT
 END:VCALENDAR
