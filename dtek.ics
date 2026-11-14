@@ -6,37 +6,15 @@ X-WR-CALNAME:⚡️Гора
 TIMEZONE-ID:Europe/Kyiv
 X-WR-TIMEZONE:Europe/Kyiv
 BEGIN:VEVENT
-UID:99284f08-e19b-4d92-9023-0178830b4736
+UID:e460bde1-e49e-4df0-a366-8deba4fa46cd
 SEQUENCE:0
-DTSTAMP:20261114T120014
-DTSTART;TZID=Europe/Kyiv:20261114T120000
-DTEND;TZID=Europe/Kyiv:20261114T160000
-SUMMARY:🚫 OFF ⟲ 11:49
-DESCRIPTION:Відключення за графіком.\n\nЗагаль
- не повідомлення ДТЕК (перевірено 12:00):\nШа
- новні клієнти!\n\nЧерез ворожі обстріли т
- а обмеження передачі електроенергії чер
- ез пошкодження енергосистеми у Бучанськ
- ому\, Фастівському\, Обухівському района
- х діють екстрені відключення.\n\nВ решті о
- бласті продовжують діяти стабілізаційн
- і графіки.
-BEGIN:VALARM
-ACTION:DISPLAY
-TRIGGER:-PT15M
-DESCRIPTION:🚫 OFF ⟲ 11:49
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:318dac54-d426-4dd7-93bb-7e3127335ac7
-SEQUENCE:0
-DTSTAMP:20261114T120014
+DTSTAMP:20261114T163015
 DTSTART;TZID=Europe/Kyiv:20261114T160000
 DTEND;TZID=Europe/Kyiv:20261114T223000
-SUMMARY:⚡️ ON ⟲ 11:49
+SUMMARY:⚡️ ON ⟲ 16:19
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.\n\nЗагальне повідомлення ДТЕК (переві
- рено 12:00):\nШановні клієнти!\n\nЧерез ворож
+ рено 16:30):\nШановні клієнти!\n\nЧерез ворож
  і обстріли та обмеження передачі електр
  оенергії через пошкодження енергосисте
  ми у Бучанському\, Фастівському\, Обухівс
@@ -46,18 +24,18 @@ DESCRIPTION:Електроенергія має бути в наявнос
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:⚡️ ON ⟲ 11:49
+DESCRIPTION:⚡️ ON ⟲ 16:19
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:53f26ba6-7481-4c57-9923-603ea849c08c
+UID:6f25dd5c-0836-4544-b36a-e7c64b7a6fe5
 SEQUENCE:0
-DTSTAMP:20261114T120014
+DTSTAMP:20261114T163015
 DTSTART;TZID=Europe/Kyiv:20261114T223000
 DTEND;TZID=Europe/Kyiv:20261115T000000
-SUMMARY:🚫 OFF ⟲ 11:49
+SUMMARY:🚫 OFF ⟲ 16:19
 DESCRIPTION:Відключення за графіком.\n\nЗагаль
- не повідомлення ДТЕК (перевірено 12:00):\nШа
+ не повідомлення ДТЕК (перевірено 16:30):\nШа
  новні клієнти!\n\nЧерез ворожі обстріли т
  а обмеження передачі електроенергії чер
  ез пошкодження енергосистеми у Бучанськ
@@ -68,7 +46,7 @@ DESCRIPTION:Відключення за графіком.\n\nЗагаль
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:🚫 OFF ⟲ 11:49
+DESCRIPTION:🚫 OFF ⟲ 16:19
 END:VALARM
 END:VEVENT
 END:VCALENDAR
