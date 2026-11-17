@@ -6,44 +6,87 @@ X-WR-CALNAME:⚡️Борщагівка
 TIMEZONE-ID:Europe/Kyiv
 X-WR-TIMEZONE:Europe/Kyiv
 BEGIN:VEVENT
-UID:95b0fa0e-ddd7-41ec-9d3b-93a1ee03960f
+UID:ab3c8ba1-d388-476d-a03e-7f709f5fafab
 SEQUENCE:0
-DTSTAMP:20261117T140015
-DTSTART;TZID=Europe/Kyiv:20261117T140000
-DTEND;TZID=Europe/Kyiv:20261117T203000
-SUMMARY:🚫 OFF ⟲ 13:48
-DESCRIPTION:Відключення за графіком.\n\nЗагаль
- не повідомлення ДТЕК (перевірено 14:00):\nШа
- новні клієнти!\n\nЗа розпорядженням НЕК У
- кренерго в частині Бориспільського та Б
- роварського районів застосовуються екс
- трені відключення.\nВ інших районах діют
- ь графіки стабілізаційних відключень.
+DTSTAMP:20261117T210020
+DTSTART;TZID=Europe/Kyiv:20261117T203000
+DTEND;TZID=Europe/Kyiv:20261118T093000
+SUMMARY:⚡️ ON ⟲ 20:46
+DESCRIPTION:Електроенергія має бути в наявнос
+ ті.\n\nЗагальне повідомлення ДТЕК (переві
+ рено 21:00):\nШановні клієнти!\n\nЗа наказом Н
+ ЕК Укренерго 17.11 діють стабілізаційні ві
+ дключення електроенергії.  \n\nЧерез ава
+ рію в мережі знеструмлені частково Бори
+ спільський та Броварський райони. Тут г
+ рафіки не діють.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:🚫 OFF ⟲ 13:48
+DESCRIPTION:⚡️ ON ⟲ 20:46
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:bdd53141-0301-4140-8f42-745a343fbfe1
+UID:156655d1-ca1f-499c-97cc-236058a8066e
 SEQUENCE:0
-DTSTAMP:20261117T140015
-DTSTART;TZID=Europe/Kyiv:20261117T203000
-DTEND;TZID=Europe/Kyiv:20261118T000000
-SUMMARY:⚡️ ON ⟲ 13:48
-DESCRIPTION:Електроенергія має бути в наявнос
- ті.\n\nЗагальне повідомлення ДТЕК (переві
- рено 14:00):\nШановні клієнти!\n\nЗа розпоряд
- женням НЕК Укренерго в частині Бориспіл
- ьського та Броварського районів застосо
- вуються екстрені відключення.\nВ інших р
- айонах діють графіки стабілізаційних ві
- дключень.
+DTSTAMP:20261117T210020
+DTSTART;TZID=Europe/Kyiv:20261118T093000
+DTEND;TZID=Europe/Kyiv:20261118T133000
+SUMMARY:🚫 OFF ⟲ 20:46
+DESCRIPTION:Відключення за графіком.\n\nЗагаль
+ не повідомлення ДТЕК (перевірено 21:00):\nШа
+ новні клієнти!\n\nЗа наказом НЕК Укренерг
+ о 17.11 діють стабілізаційні відключення е
+ лектроенергії.  \n\nЧерез аварію в мережі
+  знеструмлені частково Бориспільський т
+ а Броварський райони. Тут графіки не дію
+ ть.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:⚡️ ON ⟲ 13:48
+DESCRIPTION:🚫 OFF ⟲ 20:46
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:1dd36e4c-1628-4c62-8581-93c9c50acd41
+SEQUENCE:0
+DTSTAMP:20261117T210020
+DTSTART;TZID=Europe/Kyiv:20261118T133000
+DTEND;TZID=Europe/Kyiv:20261118T200000
+SUMMARY:⚡️ ON ⟲ 20:46
+DESCRIPTION:Електроенергія має бути в наявнос
+ ті.\n\nЗагальне повідомлення ДТЕК (переві
+ рено 21:00):\nШановні клієнти!\n\nЗа наказом Н
+ ЕК Укренерго 17.11 діють стабілізаційні ві
+ дключення електроенергії.  \n\nЧерез ава
+ рію в мережі знеструмлені частково Бори
+ спільський та Броварський райони. Тут г
+ рафіки не діють.
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT15M
+DESCRIPTION:⚡️ ON ⟲ 20:46
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:f16247e5-e12d-459d-99af-09d72ba16c98
+SEQUENCE:0
+DTSTAMP:20261117T210020
+DTSTART;TZID=Europe/Kyiv:20261118T200000
+DTEND;TZID=Europe/Kyiv:20261119T000000
+SUMMARY:🚫 OFF ⟲ 20:46
+DESCRIPTION:Відключення за графіком.\n\nЗагаль
+ не повідомлення ДТЕК (перевірено 21:00):\nШа
+ новні клієнти!\n\nЗа наказом НЕК Укренерг
+ о 17.11 діють стабілізаційні відключення е
+ лектроенергії.  \n\nЧерез аварію в мережі
+  знеструмлені частково Бориспільський т
+ а Броварський райони. Тут графіки не дію
+ ть.
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT15M
+DESCRIPTION:🚫 OFF ⟲ 20:46
 END:VALARM
 END:VEVENT
 END:VCALENDAR
