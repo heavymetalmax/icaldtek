@@ -6,15 +6,15 @@ X-WR-CALNAME:⚡️Борщагівка
 TIMEZONE-ID:Europe/Kyiv
 X-WR-TIMEZONE:Europe/Kyiv
 BEGIN:VEVENT
-UID:f4a1ff10-f76d-40ca-a34b-b96582654bf6
+UID:47bb625b-8b6a-4174-af72-337cd4e4da90
 SEQUENCE:0
-DTSTAMP:20261118T143015
+DTSTAMP:20261118T150016
 DTSTART;TZID=Europe/Kyiv:20261118T133000
 DTEND;TZID=Europe/Kyiv:20261118T200000
-SUMMARY:⚡️ ON ⟲ 14:18
+SUMMARY:⚡️ ON ⟲ 14:48
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.\n\nЗагальне повідомлення ДТЕК (переві
- рено 14:30):\nШановні клієнти!\n\nЗа наказом Н
+ рено 15:00):\nШановні клієнти!\n\nЗа наказом Н
  ЕК Укренерго 18.11 діють стабілізаційні ві
  дключення електроенергії.  \n\nБудь ласк
  а\, розумно споживайте електроенергію — 
@@ -23,18 +23,18 @@ DESCRIPTION:Електроенергія має бути в наявнос
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:⚡️ ON ⟲ 14:18
+DESCRIPTION:⚡️ ON ⟲ 14:48
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:bc83e9b8-cd03-4fc6-a7d2-5673a6b551e1
+UID:854409cd-72cb-4ddd-ab2b-e51427c0f3e1
 SEQUENCE:0
-DTSTAMP:20261118T143015
+DTSTAMP:20261118T150016
 DTSTART;TZID=Europe/Kyiv:20261118T200000
 DTEND;TZID=Europe/Kyiv:20261119T000000
-SUMMARY:🚫 OFF ⟲ 14:18
+SUMMARY:🚫 OFF ⟲ 14:48
 DESCRIPTION:Відключення за графіком.\n\nЗагаль
- не повідомлення ДТЕК (перевірено 14:30):\nШа
+ не повідомлення ДТЕК (перевірено 15:00):\nШа
  новні клієнти!\n\nЗа наказом НЕК Укренерг
  о 18.11 діють стабілізаційні відключення е
  лектроенергії.  \n\nБудь ласка\, розумно с
@@ -44,7 +44,7 @@ DESCRIPTION:Відключення за графіком.\n\nЗагаль
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:🚫 OFF ⟲ 14:18
+DESCRIPTION:🚫 OFF ⟲ 14:48
 END:VALARM
 END:VEVENT
 END:VCALENDAR
