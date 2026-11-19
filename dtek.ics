@@ -6,15 +6,15 @@ X-WR-CALNAME:⚡️Гора
 TIMEZONE-ID:Europe/Kyiv
 X-WR-TIMEZONE:Europe/Kyiv
 BEGIN:VEVENT
-UID:40cda1d6-d43d-4172-a55a-71a7195090a6
+UID:a6d94138-0d63-4ad8-a0f2-43d575e47707
 SEQUENCE:0
-DTSTAMP:20261119T203014
+DTSTAMP:20261119T210012
 DTSTART;TZID=Europe/Kyiv:20261119T200000
 DTEND;TZID=Europe/Kyiv:20261120T000000
-SUMMARY:⚡️ ON ⟲ 20:18
+SUMMARY:⚡️ ON ⟲ 20:48
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.\n\nЗагальне повідомлення ДТЕК (переві
- рено 20:30):\nШановні клієнти!\n\nЗа наказом Н
+ рено 21:00):\nШановні клієнти!\n\nЗа наказом Н
  ЕК Укренерго 19.11 з 6:00 до 23:59 діють стабілі
  заційні відключення електроенергії.  \n\
  nБудь ласка\, розумно споживайте електро
@@ -24,7 +24,7 @@ DESCRIPTION:Електроенергія має бути в наявнос
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:⚡️ ON ⟲ 20:18
+DESCRIPTION:⚡️ ON ⟲ 20:48
 END:VALARM
 END:VEVENT
 END:VCALENDAR
