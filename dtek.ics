@@ -6,15 +6,15 @@ X-WR-CALNAME:⚡️Гора
 TIMEZONE-ID:Europe/Kyiv
 X-WR-TIMEZONE:Europe/Kyiv
 BEGIN:VEVENT
-UID:c808e05f-9b66-456d-b947-e39f074194f9
+UID:64a966e0-7c7a-4a56-b008-4a11f46f0360
 SEQUENCE:0
-DTSTAMP:20261119T043013
+DTSTAMP:20261119T050014
 DTSTART;TZID=Europe/Kyiv:20261119T000000
 DTEND;TZID=Europe/Kyiv:20261119T080000
-SUMMARY:⚡️ ON ⟲ 04:17
+SUMMARY:⚡️ ON ⟲ 04:47
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.\n\nЗагальне повідомлення ДТЕК (переві
- рено 04:30):\nШановні клієнти!\n\nЗа наказом Н
+ рено 05:00):\nШановні клієнти!\n\nЗа наказом Н
  ЕК Укренерго 19.11 з 6:00 до 23:59 діють стабілі
  заційні відключення електроенергії.  \n\
  nБудь ласка\, розумно споживайте електро
@@ -24,18 +24,18 @@ DESCRIPTION:Електроенергія має бути в наявнос
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:⚡️ ON ⟲ 04:17
+DESCRIPTION:⚡️ ON ⟲ 04:47
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:e48f6104-e8c2-4563-ae49-7330d0c87aaa
+UID:8953ee57-bd7d-430e-964c-1b01cc499566
 SEQUENCE:0
-DTSTAMP:20261119T043013
+DTSTAMP:20261119T050014
 DTSTART;TZID=Europe/Kyiv:20261119T080000
 DTEND;TZID=Europe/Kyiv:20261119T110000
-SUMMARY:🚫 OFF ⟲ 04:17
+SUMMARY:🚫 OFF ⟲ 04:47
 DESCRIPTION:Відключення за графіком.\n\nЗагаль
- не повідомлення ДТЕК (перевірено 04:30):\nШа
+ не повідомлення ДТЕК (перевірено 05:00):\nШа
  новні клієнти!\n\nЗа наказом НЕК Укренерг
  о 19.11 з 6:00 до 23:59 діють стабілізаційні від
  ключення електроенергії.  \n\nБудь ласка\
@@ -45,19 +45,19 @@ DESCRIPTION:Відключення за графіком.\n\nЗагаль
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:🚫 OFF ⟲ 04:17
+DESCRIPTION:🚫 OFF ⟲ 04:47
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:044f86bd-7032-4b5e-af0c-6256c7a616e9
+UID:0aca1132-0282-40e9-b344-9bf6b81e5e11
 SEQUENCE:0
-DTSTAMP:20261119T043013
+DTSTAMP:20261119T050014
 DTSTART;TZID=Europe/Kyiv:20261119T110000
 DTEND;TZID=Europe/Kyiv:20261119T170000
-SUMMARY:⚡️ ON ⟲ 04:17
+SUMMARY:⚡️ ON ⟲ 04:47
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.\n\nЗагальне повідомлення ДТЕК (переві
- рено 04:30):\nШановні клієнти!\n\nЗа наказом Н
+ рено 05:00):\nШановні клієнти!\n\nЗа наказом Н
  ЕК Укренерго 19.11 з 6:00 до 23:59 діють стабілі
  заційні відключення електроенергії.  \n\
  nБудь ласка\, розумно споживайте електро
@@ -67,18 +67,18 @@ DESCRIPTION:Електроенергія має бути в наявнос
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:⚡️ ON ⟲ 04:17
+DESCRIPTION:⚡️ ON ⟲ 04:47
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:571450dd-ecf4-4e46-9468-341c8b2e5bdd
+UID:2d4fb49f-f48b-4d7f-a301-392615ba4da8
 SEQUENCE:0
-DTSTAMP:20261119T043013
+DTSTAMP:20261119T050014
 DTSTART;TZID=Europe/Kyiv:20261119T170000
 DTEND;TZID=Europe/Kyiv:20261119T210000
-SUMMARY:🚫 OFF ⟲ 04:17
+SUMMARY:🚫 OFF ⟲ 04:47
 DESCRIPTION:Відключення за графіком.\n\nЗагаль
- не повідомлення ДТЕК (перевірено 04:30):\nШа
+ не повідомлення ДТЕК (перевірено 05:00):\nШа
  новні клієнти!\n\nЗа наказом НЕК Укренерг
  о 19.11 з 6:00 до 23:59 діють стабілізаційні від
  ключення електроенергії.  \n\nБудь ласка\
@@ -88,19 +88,19 @@ DESCRIPTION:Відключення за графіком.\n\nЗагаль
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:🚫 OFF ⟲ 04:17
+DESCRIPTION:🚫 OFF ⟲ 04:47
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:6c6ae168-b70f-440f-9b83-c70a7c1fb9e1
+UID:aa2b028f-955b-45a6-9a60-dd9d5fe861b5
 SEQUENCE:0
-DTSTAMP:20261119T043013
+DTSTAMP:20261119T050014
 DTSTART;TZID=Europe/Kyiv:20261119T210000
 DTEND;TZID=Europe/Kyiv:20261120T000000
-SUMMARY:⚡️ ON ⟲ 04:17
+SUMMARY:⚡️ ON ⟲ 04:47
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.\n\nЗагальне повідомлення ДТЕК (переві
- рено 04:30):\nШановні клієнти!\n\nЗа наказом Н
+ рено 05:00):\nШановні клієнти!\n\nЗа наказом Н
  ЕК Укренерго 19.11 з 6:00 до 23:59 діють стабілі
  заційні відключення електроенергії.  \n\
  nБудь ласка\, розумно споживайте електро
@@ -110,7 +110,7 @@ DESCRIPTION:Електроенергія має бути в наявнос
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:⚡️ ON ⟲ 04:17
+DESCRIPTION:⚡️ ON ⟲ 04:47
 END:VALARM
 END:VEVENT
 END:VCALENDAR
