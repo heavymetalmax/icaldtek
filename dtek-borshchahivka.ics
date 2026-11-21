@@ -6,33 +6,33 @@ X-WR-CALNAME:⚡️Борщагівка
 TIMEZONE-ID:Europe/Kyiv
 X-WR-TIMEZONE:Europe/Kyiv
 BEGIN:VEVENT
-UID:a8fb733b-0f88-4c12-a90c-6053aa970d70
+UID:c34a3f58-a691-48f5-85f4-bdaf8695edbd
 SEQUENCE:0
-DTSTAMP:20261121T023120
+DTSTAMP:20261121T030115
 DTSTART;TZID=Europe/Kyiv:20261121T020000
 DTEND;TZID=Europe/Kyiv:20261121T110000
-SUMMARY:⚡️ ON ⟲ 02:18
+SUMMARY:⚡️ ON ⟲ 02:48
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.\n\nПовідомлення за адресою (оновлено 02
- :18):\nПричина: Стабілізаційне відключення
+ :48):\nПричина: Стабілізаційне відключення
   (Згідно графіку погодинних відключень)\n
  Час початку – 01:03 21.11.2026\nОрієнтовний час 
  відновлення – до 06:10 21.11.2026
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:⚡️ ON ⟲ 02:18
+DESCRIPTION:⚡️ ON ⟲ 02:48
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:0134b70a-2ed9-4c5c-9f4c-34ccb6c9cd63
+UID:a9828a4a-e615-46f9-8efa-3221e19fe06a
 SEQUENCE:0
-DTSTAMP:20261121T023120
+DTSTAMP:20261121T030115
 DTSTART;TZID=Europe/Kyiv:20261121T110000
 DTEND;TZID=Europe/Kyiv:20261121T150000
-SUMMARY:🚫 OFF ⟲ 02:18
+SUMMARY:🚫 OFF ⟲ 02:48
 DESCRIPTION:Відключення за графіком.\n\nПовідо
- млення за адресою (оновлено 02:18):\nПричина
+ млення за адресою (оновлено 02:48):\nПричина
  : Стабілізаційне відключення (Згідно гра
  фіку погодинних відключень)\nЧас початку
   – 01:03 21.11.2026\nОрієнтовний час відновленн
@@ -40,37 +40,37 @@ DESCRIPTION:Відключення за графіком.\n\nПовідо
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:🚫 OFF ⟲ 02:18
+DESCRIPTION:🚫 OFF ⟲ 02:48
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:1cb175b5-398d-47c2-9afd-9f74b1e55eea
+UID:2c95ad19-6d5d-42d4-af52-284c4786ff7c
 SEQUENCE:0
-DTSTAMP:20261121T023120
+DTSTAMP:20261121T030115
 DTSTART;TZID=Europe/Kyiv:20261121T150000
 DTEND;TZID=Europe/Kyiv:20261121T220000
-SUMMARY:⚡️ ON ⟲ 02:18
+SUMMARY:⚡️ ON ⟲ 02:48
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.\n\nПовідомлення за адресою (оновлено 02
- :18):\nПричина: Стабілізаційне відключення
+ :48):\nПричина: Стабілізаційне відключення
   (Згідно графіку погодинних відключень)\n
  Час початку – 01:03 21.11.2026\nОрієнтовний час 
  відновлення – до 06:10 21.11.2026
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:⚡️ ON ⟲ 02:18
+DESCRIPTION:⚡️ ON ⟲ 02:48
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:871b1a4e-9d51-413f-bc0c-49a29015ac32
+UID:a2450a1a-799c-49fd-8865-b3ef16e1ec97
 SEQUENCE:0
-DTSTAMP:20261121T023120
+DTSTAMP:20261121T030115
 DTSTART;TZID=Europe/Kyiv:20261121T220000
 DTEND;TZID=Europe/Kyiv:20261122T000000
-SUMMARY:🚫 OFF ⟲ 02:18
+SUMMARY:🚫 OFF ⟲ 02:48
 DESCRIPTION:Відключення за графіком.\n\nПовідо
- млення за адресою (оновлено 02:18):\nПричина
+ млення за адресою (оновлено 02:48):\nПричина
  : Стабілізаційне відключення (Згідно гра
  фіку погодинних відключень)\nЧас початку
   – 01:03 21.11.2026\nОрієнтовний час відновленн
@@ -78,7 +78,7 @@ DESCRIPTION:Відключення за графіком.\n\nПовідо
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:🚫 OFF ⟲ 02:18
+DESCRIPTION:🚫 OFF ⟲ 02:48
 END:VALARM
 END:VEVENT
 END:VCALENDAR
