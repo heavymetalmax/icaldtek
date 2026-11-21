@@ -6,36 +6,15 @@ X-WR-CALNAME:⚡️Борщагівка
 TIMEZONE-ID:Europe/Kyiv
 X-WR-TIMEZONE:Europe/Kyiv
 BEGIN:VEVENT
-UID:208495b4-0448-4ce4-ab1b-c07e4964add7
+UID:5615680c-a844-484a-aec3-28d86179c9f9
 SEQUENCE:0
-DTSTAMP:20261121T113015
-DTSTART;TZID=Europe/Kyiv:20261121T113000
-DTEND;TZID=Europe/Kyiv:20261121T153000
-SUMMARY:🚫 OFF ⟲ 11:17
-DESCRIPTION:Відключення за графіком.\n\nЗагаль
- не повідомлення ДТЕК (перевірено 11:30):\nШа
- новні клієнти!\n\nЗа наказом НЕК Укренерг
- о 21.11 діють стабілізаційні відключення е
- лектроенергії.  \n\nБудь ласка\, розумно с
- поживайте електроенергію — це допоможе 
- зменшити навантаження на мережу та уник
- нути екстрених відключень.
-BEGIN:VALARM
-ACTION:DISPLAY
-TRIGGER:-PT15M
-DESCRIPTION:🚫 OFF ⟲ 11:17
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:1ae2bea9-c8cc-45db-9a72-956b657007d3
-SEQUENCE:0
-DTSTAMP:20261121T113015
+DTSTAMP:20261121T160017
 DTSTART;TZID=Europe/Kyiv:20261121T153000
-DTEND;TZID=Europe/Kyiv:20261121T223000
-SUMMARY:⚡️ ON ⟲ 11:17
+DTEND;TZID=Europe/Kyiv:20261122T000000
+SUMMARY:⚡️ ON ⟲ 15:47
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.\n\nЗагальне повідомлення ДТЕК (переві
- рено 11:30):\nШановні клієнти!\n\nЗа наказом Н
+ рено 16:00):\nШановні клієнти!\n\nЗа наказом Н
  ЕК Укренерго 21.11 діють стабілізаційні ві
  дключення електроенергії.  \n\nБудь ласк
  а\, розумно споживайте електроенергію — 
@@ -44,28 +23,7 @@ DESCRIPTION:Електроенергія має бути в наявнос
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:⚡️ ON ⟲ 11:17
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:fbc70357-67f7-4d70-b63c-d6bec99d336e
-SEQUENCE:0
-DTSTAMP:20261121T113015
-DTSTART;TZID=Europe/Kyiv:20261121T223000
-DTEND;TZID=Europe/Kyiv:20261122T000000
-SUMMARY:🚫 OFF ⟲ 11:17
-DESCRIPTION:Відключення за графіком.\n\nЗагаль
- не повідомлення ДТЕК (перевірено 11:30):\nШа
- новні клієнти!\n\nЗа наказом НЕК Укренерг
- о 21.11 діють стабілізаційні відключення е
- лектроенергії.  \n\nБудь ласка\, розумно с
- поживайте електроенергію — це допоможе 
- зменшити навантаження на мережу та уник
- нути екстрених відключень.
-BEGIN:VALARM
-ACTION:DISPLAY
-TRIGGER:-PT15M
-DESCRIPTION:🚫 OFF ⟲ 11:17
+DESCRIPTION:⚡️ ON ⟲ 15:47
 END:VALARM
 END:VEVENT
 END:VCALENDAR
