@@ -6,15 +6,15 @@ X-WR-CALNAME:⚡️Борщагівка
 TIMEZONE-ID:Europe/Kyiv
 X-WR-TIMEZONE:Europe/Kyiv
 BEGIN:VEVENT
-UID:6ea816be-e170-46b4-a684-85d287978bbd
+UID:a41692e4-1791-4e95-bd6c-aa8ec8f5719e
 SEQUENCE:0
-DTSTAMP:20261121T180015
+DTSTAMP:20261121T183015
 DTSTART;TZID=Europe/Kyiv:20261121T153000
 DTEND;TZID=Europe/Kyiv:20261122T000000
-SUMMARY:⚡️ ON ⟲ 17:48
+SUMMARY:⚡️ ON ⟲ 18:17
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.\n\nЗагальне повідомлення ДТЕК (переві
- рено 18:00):\nШановні клієнти!\n\nЗа наказом Н
+ рено 18:30):\nШановні клієнти!\n\nЗа наказом Н
  ЕК Укренерго 21.11 діють стабілізаційні ві
  дключення електроенергії.  \n\nБудь ласк
  а\, розумно споживайте електроенергію — 
@@ -23,7 +23,7 @@ DESCRIPTION:Електроенергія має бути в наявнос
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:⚡️ ON ⟲ 17:48
+DESCRIPTION:⚡️ ON ⟲ 18:17
 END:VALARM
 END:VEVENT
 END:VCALENDAR
