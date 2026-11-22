@@ -6,15 +6,15 @@ X-WR-CALNAME:⚡️Гора
 TIMEZONE-ID:Europe/Kyiv
 X-WR-TIMEZONE:Europe/Kyiv
 BEGIN:VEVENT
-UID:626b5fab-7e89-40e1-8bce-f23fec97f68b
+UID:34de3925-ef90-4a18-afbd-6b82b272b4d4
 SEQUENCE:0
-DTSTAMP:20261122T150012
+DTSTAMP:20261122T153013
 DTSTART;TZID=Europe/Kyiv:20261122T000000
 DTEND;TZID=Europe/Kyiv:20261122T190000
-SUMMARY:⚡️ ON ⟲ 14:46
+SUMMARY:⚡️ ON ⟲ 15:16
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.\n\nЗагальне повідомлення ДТЕК (переві
- рено 15:00):\nШановні клієнти!\n\nЗа наказом Н
+ рено 15:30):\nШановні клієнти!\n\nЗа наказом Н
  ЕК Укренерго 22.11 діють стабілізаційні ві
  дключення електроенергії.  \n\nБудь ласк
  а\, розумно споживайте електроенергію — 
@@ -23,18 +23,18 @@ DESCRIPTION:Електроенергія має бути в наявнос
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:⚡️ ON ⟲ 14:46
+DESCRIPTION:⚡️ ON ⟲ 15:16
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:68554b38-7e90-4a30-8171-6b4fd27ce3b3
+UID:4fba53bc-d134-4a81-881e-ffc18d82dd9f
 SEQUENCE:0
-DTSTAMP:20261122T150012
+DTSTAMP:20261122T153013
 DTSTART;TZID=Europe/Kyiv:20261122T190000
 DTEND;TZID=Europe/Kyiv:20261122T230000
-SUMMARY:🚫 OFF ⟲ 14:46
+SUMMARY:🚫 OFF ⟲ 15:16
 DESCRIPTION:Відключення за графіком.\n\nЗагаль
- не повідомлення ДТЕК (перевірено 15:00):\nШа
+ не повідомлення ДТЕК (перевірено 15:30):\nШа
  новні клієнти!\n\nЗа наказом НЕК Укренерг
  о 22.11 діють стабілізаційні відключення е
  лектроенергії.  \n\nБудь ласка\, розумно с
@@ -44,19 +44,19 @@ DESCRIPTION:Відключення за графіком.\n\nЗагаль
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:🚫 OFF ⟲ 14:46
+DESCRIPTION:🚫 OFF ⟲ 15:16
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:562ced30-a4f0-4237-87c4-2c5a7baf2294
+UID:693235c5-d591-4f45-8869-61fda0cd93a0
 SEQUENCE:0
-DTSTAMP:20261122T150012
+DTSTAMP:20261122T153013
 DTSTART;TZID=Europe/Kyiv:20261122T230000
 DTEND;TZID=Europe/Kyiv:20261123T000000
-SUMMARY:⚡️ ON ⟲ 14:46
+SUMMARY:⚡️ ON ⟲ 15:16
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.\n\nЗагальне повідомлення ДТЕК (переві
- рено 15:00):\nШановні клієнти!\n\nЗа наказом Н
+ рено 15:30):\nШановні клієнти!\n\nЗа наказом Н
  ЕК Укренерго 22.11 діють стабілізаційні ві
  дключення електроенергії.  \n\nБудь ласк
  а\, розумно споживайте електроенергію — 
@@ -65,7 +65,7 @@ DESCRIPTION:Електроенергія має бути в наявнос
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:⚡️ ON ⟲ 14:46
+DESCRIPTION:⚡️ ON ⟲ 15:16
 END:VALARM
 END:VEVENT
 END:VCALENDAR
