@@ -6,35 +6,14 @@ X-WR-CALNAME:⚡️Гора
 TIMEZONE-ID:Europe/Kyiv
 X-WR-TIMEZONE:Europe/Kyiv
 BEGIN:VEVENT
-UID:f1e399a3-1c5f-4061-ad4b-5bd71e07c19b
+UID:b158ee9d-d880-4cd9-b3f3-e6418989927c
 SEQUENCE:0
-DTSTAMP:20261122T183014
-DTSTART;TZID=Europe/Kyiv:20261122T000000
-DTEND;TZID=Europe/Kyiv:20261122T190000
-SUMMARY:⚡️ ON ⟲ 18:17
-DESCRIPTION:Електроенергія має бути в наявнос
- ті.\n\nЗагальне повідомлення ДТЕК (переві
- рено 18:30):\nШановні клієнти!\n\nЗа наказом Н
- ЕК Укренерго 22.11 діють стабілізаційні ві
- дключення електроенергії.  \n\nБудь ласк
- а\, розумно споживайте електроенергію — 
- це допоможе зменшити навантаження на ме
- режу та уникнути екстрених відключень.
-BEGIN:VALARM
-ACTION:DISPLAY
-TRIGGER:-PT15M
-DESCRIPTION:⚡️ ON ⟲ 18:17
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:45ca5e55-3ce5-4fc7-adf8-6e9ac8db7615
-SEQUENCE:0
-DTSTAMP:20261122T183014
+DTSTAMP:20261122T190014
 DTSTART;TZID=Europe/Kyiv:20261122T190000
 DTEND;TZID=Europe/Kyiv:20261122T230000
-SUMMARY:🚫 OFF ⟲ 18:17
+SUMMARY:🚫 OFF ⟲ 18:49
 DESCRIPTION:Відключення за графіком.\n\nЗагаль
- не повідомлення ДТЕК (перевірено 18:30):\nШа
+ не повідомлення ДТЕК (перевірено 19:00):\nШа
  новні клієнти!\n\nЗа наказом НЕК Укренерг
  о 22.11 діють стабілізаційні відключення е
  лектроенергії.  \n\nБудь ласка\, розумно с
@@ -44,19 +23,19 @@ DESCRIPTION:Відключення за графіком.\n\nЗагаль
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:🚫 OFF ⟲ 18:17
+DESCRIPTION:🚫 OFF ⟲ 18:49
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:8d6339e5-9e26-453b-9b46-89fc5e37b156
+UID:e84a4439-e7c1-4a41-9098-b83574e05e44
 SEQUENCE:0
-DTSTAMP:20261122T183014
+DTSTAMP:20261122T190014
 DTSTART;TZID=Europe/Kyiv:20261122T230000
 DTEND;TZID=Europe/Kyiv:20261123T000000
-SUMMARY:⚡️ ON ⟲ 18:17
+SUMMARY:⚡️ ON ⟲ 18:49
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.\n\nЗагальне повідомлення ДТЕК (переві
- рено 18:30):\nШановні клієнти!\n\nЗа наказом Н
+ рено 19:00):\nШановні клієнти!\n\nЗа наказом Н
  ЕК Укренерго 22.11 діють стабілізаційні ві
  дключення електроенергії.  \n\nБудь ласк
  а\, розумно споживайте електроенергію — 
@@ -65,7 +44,7 @@ DESCRIPTION:Електроенергія має бути в наявнос
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:⚡️ ON ⟲ 18:17
+DESCRIPTION:⚡️ ON ⟲ 18:49
 END:VALARM
 END:VEVENT
 END:VCALENDAR
