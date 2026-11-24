@@ -6,36 +6,15 @@ X-WR-CALNAME:⚡️Гора
 TIMEZONE-ID:Europe/Kyiv
 X-WR-TIMEZONE:Europe/Kyiv
 BEGIN:VEVENT
-UID:4061a953-b8f7-4545-aae4-30695f529cd7
+UID:6a0aff66-1418-418a-ad89-d61cf4a9ddf7
 SEQUENCE:0
-DTSTAMP:20261124T120013
-DTSTART;TZID=Europe/Kyiv:20261124T120000
-DTEND;TZID=Europe/Kyiv:20261124T183000
-SUMMARY:🚫 OFF ⟲ 11:48
-DESCRIPTION:Відключення за графіком.\n\nЗагаль
- не повідомлення ДТЕК (перевірено 12:00):\nШа
- новні клієнти!\n\nЗа наказом НЕК Укренерг
- о 24.11 діють стабілізаційні відключення е
- лектроенергії.  \n\nБудь ласка\, розумно с
- поживайте електроенергію — це допоможе 
- зменшити навантаження на мережу та уник
- нути екстрених відключень.
-BEGIN:VALARM
-ACTION:DISPLAY
-TRIGGER:-PT15M
-DESCRIPTION:🚫 OFF ⟲ 11:48
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:cf9f523f-714a-4ea0-8bb7-6c51d76b01b1
-SEQUENCE:0
-DTSTAMP:20261124T120013
+DTSTAMP:20261124T183022
 DTSTART;TZID=Europe/Kyiv:20261124T183000
 DTEND;TZID=Europe/Kyiv:20261124T230000
-SUMMARY:⚡️ ON ⟲ 11:48
+SUMMARY:⚡️ ON ⟲ 18:19
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.\n\nЗагальне повідомлення ДТЕК (переві
- рено 12:00):\nШановні клієнти!\n\nЗа наказом Н
+ рено 18:30):\nШановні клієнти!\n\nЗа наказом Н
  ЕК Укренерго 24.11 діють стабілізаційні ві
  дключення електроенергії.  \n\nБудь ласк
  а\, розумно споживайте електроенергію — 
@@ -44,18 +23,18 @@ DESCRIPTION:Електроенергія має бути в наявнос
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:⚡️ ON ⟲ 11:48
+DESCRIPTION:⚡️ ON ⟲ 18:19
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:4b0898c6-bb38-4a9a-b081-b9cd73a92522
+UID:2b4c4e4a-fd94-4d96-be94-47f5fdabcca8
 SEQUENCE:0
-DTSTAMP:20261124T120013
+DTSTAMP:20261124T183022
 DTSTART;TZID=Europe/Kyiv:20261124T230000
 DTEND;TZID=Europe/Kyiv:20261125T000000
-SUMMARY:🚫 OFF ⟲ 11:48
+SUMMARY:🚫 OFF ⟲ 18:19
 DESCRIPTION:Відключення за графіком.\n\nЗагаль
- не повідомлення ДТЕК (перевірено 12:00):\nШа
+ не повідомлення ДТЕК (перевірено 18:30):\nШа
  новні клієнти!\n\nЗа наказом НЕК Укренерг
  о 24.11 діють стабілізаційні відключення е
  лектроенергії.  \n\nБудь ласка\, розумно с
@@ -65,7 +44,7 @@ DESCRIPTION:Відключення за графіком.\n\nЗагаль
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:🚫 OFF ⟲ 11:48
+DESCRIPTION:🚫 OFF ⟲ 18:19
 END:VALARM
 END:VEVENT
 END:VCALENDAR
