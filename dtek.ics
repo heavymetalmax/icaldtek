@@ -6,14 +6,14 @@ X-WR-CALNAME:⚡️Гора
 TIMEZONE-ID:Europe/Kyiv
 X-WR-TIMEZONE:Europe/Kyiv
 BEGIN:VEVENT
-UID:6f6b7838-3096-42b4-8a50-adb0b3b6f02e
+UID:e8a0f4d1-a703-4595-9273-666b8d7b53fa
 SEQUENCE:0
-DTSTAMP:20261125T220012
+DTSTAMP:20261125T223014
 DTSTART;TZID=Europe/Kyiv:20261125T200000
 DTEND;TZID=Europe/Kyiv:20261125T233000
-SUMMARY:🚫 OFF ⟲ 21:48
+SUMMARY:🚫 OFF ⟲ 22:19
 DESCRIPTION:Відключення за графіком.\n\nЗагаль
- не повідомлення ДТЕК (перевірено 22:00):\nШа
+ не повідомлення ДТЕК (перевірено 22:30):\nШа
  новні клієнти!\n\nЗа наказом НЕК Укренерг
  о 25.11 діють стабілізаційні відключення е
  лектроенергії.  \n\nБудь ласка\, розумно с
@@ -23,19 +23,19 @@ DESCRIPTION:Відключення за графіком.\n\nЗагаль
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:🚫 OFF ⟲ 21:48
+DESCRIPTION:🚫 OFF ⟲ 22:19
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:d5565448-a3de-4507-9ba2-6b6ccfbf4cd3
+UID:c50b3d18-729a-4f3e-b120-d371327b8719
 SEQUENCE:0
-DTSTAMP:20261125T220012
+DTSTAMP:20261125T223014
 DTSTART;TZID=Europe/Kyiv:20261125T233000
-DTEND;TZID=Europe/Kyiv:20261126T000000
-SUMMARY:⚡️ ON ⟲ 21:48
+DTEND;TZID=Europe/Kyiv:20261126T080000
+SUMMARY:⚡️ ON ⟲ 22:19
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.\n\nЗагальне повідомлення ДТЕК (переві
- рено 22:00):\nШановні клієнти!\n\nЗа наказом Н
+ рено 22:30):\nШановні клієнти!\n\nЗа наказом Н
  ЕК Укренерго 25.11 діють стабілізаційні ві
  дключення електроенергії.  \n\nБудь ласк
  а\, розумно споживайте електроенергію — 
@@ -44,7 +44,91 @@ DESCRIPTION:Електроенергія має бути в наявнос
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:⚡️ ON ⟲ 21:48
+DESCRIPTION:⚡️ ON ⟲ 22:19
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:a82a4a22-5792-4a91-8133-45fa2141a3e6
+SEQUENCE:0
+DTSTAMP:20261125T223014
+DTSTART;TZID=Europe/Kyiv:20261126T080000
+DTEND;TZID=Europe/Kyiv:20261126T133000
+SUMMARY:🚫 OFF ⟲ 22:19
+DESCRIPTION:Відключення за графіком.\n\nЗагаль
+ не повідомлення ДТЕК (перевірено 22:30):\nШа
+ новні клієнти!\n\nЗа наказом НЕК Укренерг
+ о 25.11 діють стабілізаційні відключення е
+ лектроенергії.  \n\nБудь ласка\, розумно с
+ поживайте електроенергію — це допоможе 
+ зменшити навантаження на мережу та уник
+ нути екстрених відключень.
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT15M
+DESCRIPTION:🚫 OFF ⟲ 22:19
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:cd1b60c6-0bfd-4eb9-b2c5-a0af52f61b05
+SEQUENCE:0
+DTSTAMP:20261125T223014
+DTSTART;TZID=Europe/Kyiv:20261126T133000
+DTEND;TZID=Europe/Kyiv:20261126T180000
+SUMMARY:⚡️ ON ⟲ 22:19
+DESCRIPTION:Електроенергія має бути в наявнос
+ ті.\n\nЗагальне повідомлення ДТЕК (переві
+ рено 22:30):\nШановні клієнти!\n\nЗа наказом Н
+ ЕК Укренерго 25.11 діють стабілізаційні ві
+ дключення електроенергії.  \n\nБудь ласк
+ а\, розумно споживайте електроенергію — 
+ це допоможе зменшити навантаження на ме
+ режу та уникнути екстрених відключень.
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT15M
+DESCRIPTION:⚡️ ON ⟲ 22:19
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:1a1ecc71-b7d3-4dea-aff7-c07d9a9bd003
+SEQUENCE:0
+DTSTAMP:20261125T223014
+DTSTART;TZID=Europe/Kyiv:20261126T180000
+DTEND;TZID=Europe/Kyiv:20261126T220000
+SUMMARY:🚫 OFF ⟲ 22:19
+DESCRIPTION:Відключення за графіком.\n\nЗагаль
+ не повідомлення ДТЕК (перевірено 22:30):\nШа
+ новні клієнти!\n\nЗа наказом НЕК Укренерг
+ о 25.11 діють стабілізаційні відключення е
+ лектроенергії.  \n\nБудь ласка\, розумно с
+ поживайте електроенергію — це допоможе 
+ зменшити навантаження на мережу та уник
+ нути екстрених відключень.
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT15M
+DESCRIPTION:🚫 OFF ⟲ 22:19
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:18b15cab-d5e1-4cf2-bbbf-a03a7059fd6e
+SEQUENCE:0
+DTSTAMP:20261125T223014
+DTSTART;TZID=Europe/Kyiv:20261126T220000
+DTEND;TZID=Europe/Kyiv:20261127T000000
+SUMMARY:⚡️ ON ⟲ 22:19
+DESCRIPTION:Електроенергія має бути в наявнос
+ ті.\n\nЗагальне повідомлення ДТЕК (переві
+ рено 22:30):\nШановні клієнти!\n\nЗа наказом Н
+ ЕК Укренерго 25.11 діють стабілізаційні ві
+ дключення електроенергії.  \n\nБудь ласк
+ а\, розумно споживайте електроенергію — 
+ це допоможе зменшити навантаження на ме
+ режу та уникнути екстрених відключень.
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT15M
+DESCRIPTION:⚡️ ON ⟲ 22:19
 END:VALARM
 END:VEVENT
 END:VCALENDAR
