@@ -6,15 +6,15 @@ X-WR-CALNAME:⚡️Борщагівка
 TIMEZONE-ID:Europe/Kyiv
 X-WR-TIMEZONE:Europe/Kyiv
 BEGIN:VEVENT
-UID:e071a049-34d3-49d5-a4da-4efb17d98186
+UID:debaee05-a1b1-4127-a3c6-bc50bdde8288
 SEQUENCE:0
-DTSTAMP:20261125T013014
+DTSTAMP:20261125T030015
 DTSTART;TZID=Europe/Kyiv:20261125T000000
 DTEND;TZID=Europe/Kyiv:20261125T093000
-SUMMARY:⚡️ ON ⟲ 01:16
+SUMMARY:⚡️ ON ⟲ 02:48
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.\n\nЗагальне повідомлення ДТЕК (переві
- рено 01:30):\nШановні клієнти!\n\nЗа наказом Н
+ рено 03:00):\nШановні клієнти!\n\nЗа наказом Н
  ЕК Укренерго 25.11 діють стабілізаційні ві
  дключення електроенергії.  \n\nБудь ласк
  а\, розумно споживайте електроенергію — 
@@ -23,18 +23,18 @@ DESCRIPTION:Електроенергія має бути в наявнос
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:⚡️ ON ⟲ 01:16
+DESCRIPTION:⚡️ ON ⟲ 02:48
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:592ffd6a-d4b7-4f3e-8d00-6d9c008b6149
+UID:7b8df960-2b46-4a8e-a78c-d7313fa1a126
 SEQUENCE:0
-DTSTAMP:20261125T013014
+DTSTAMP:20261125T030015
 DTSTART;TZID=Europe/Kyiv:20261125T093000
-DTEND;TZID=Europe/Kyiv:20261125T163000
-SUMMARY:🚫 OFF ⟲ 01:16
+DTEND;TZID=Europe/Kyiv:20261125T150000
+SUMMARY:🚫 OFF ⟲ 02:48
 DESCRIPTION:Відключення за графіком.\n\nЗагаль
- не повідомлення ДТЕК (перевірено 01:30):\nШа
+ не повідомлення ДТЕК (перевірено 03:00):\nШа
  новні клієнти!\n\nЗа наказом НЕК Укренерг
  о 25.11 діють стабілізаційні відключення е
  лектроенергії.  \n\nБудь ласка\, розумно с
@@ -44,19 +44,19 @@ DESCRIPTION:Відключення за графіком.\n\nЗагаль
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:🚫 OFF ⟲ 01:16
+DESCRIPTION:🚫 OFF ⟲ 02:48
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:0c81bb0a-2453-4342-9b96-184ee2a480ef
+UID:69b61284-4872-425f-8f79-5f8c58d839d2
 SEQUENCE:0
-DTSTAMP:20261125T013014
-DTSTART;TZID=Europe/Kyiv:20261125T163000
+DTSTAMP:20261125T030015
+DTSTART;TZID=Europe/Kyiv:20261125T150000
 DTEND;TZID=Europe/Kyiv:20261125T200000
-SUMMARY:⚡️ ON ⟲ 01:16
+SUMMARY:⚡️ ON ⟲ 02:48
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.\n\nЗагальне повідомлення ДТЕК (переві
- рено 01:30):\nШановні клієнти!\n\nЗа наказом Н
+ рено 03:00):\nШановні клієнти!\n\nЗа наказом Н
  ЕК Укренерго 25.11 діють стабілізаційні ві
  дключення електроенергії.  \n\nБудь ласк
  а\, розумно споживайте електроенергію — 
@@ -65,18 +65,18 @@ DESCRIPTION:Електроенергія має бути в наявнос
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:⚡️ ON ⟲ 01:16
+DESCRIPTION:⚡️ ON ⟲ 02:48
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:765b8bdc-2e54-44e2-80e4-81279ef4ef53
+UID:b55074aa-ec42-4502-b3ab-eba528cf854a
 SEQUENCE:0
-DTSTAMP:20261125T013014
+DTSTAMP:20261125T030015
 DTSTART;TZID=Europe/Kyiv:20261125T200000
 DTEND;TZID=Europe/Kyiv:20261125T233000
-SUMMARY:🚫 OFF ⟲ 01:16
+SUMMARY:🚫 OFF ⟲ 02:48
 DESCRIPTION:Відключення за графіком.\n\nЗагаль
- не повідомлення ДТЕК (перевірено 01:30):\nШа
+ не повідомлення ДТЕК (перевірено 03:00):\nШа
  новні клієнти!\n\nЗа наказом НЕК Укренерг
  о 25.11 діють стабілізаційні відключення е
  лектроенергії.  \n\nБудь ласка\, розумно с
@@ -86,19 +86,19 @@ DESCRIPTION:Відключення за графіком.\n\nЗагаль
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:🚫 OFF ⟲ 01:16
+DESCRIPTION:🚫 OFF ⟲ 02:48
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:83812345-8d26-414a-8cf9-184c081a1e06
+UID:008c3f35-1f62-43aa-9fc5-0db2c30a5118
 SEQUENCE:0
-DTSTAMP:20261125T013014
+DTSTAMP:20261125T030015
 DTSTART;TZID=Europe/Kyiv:20261125T233000
 DTEND;TZID=Europe/Kyiv:20261126T000000
-SUMMARY:⚡️ ON ⟲ 01:16
+SUMMARY:⚡️ ON ⟲ 02:48
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.\n\nЗагальне повідомлення ДТЕК (переві
- рено 01:30):\nШановні клієнти!\n\nЗа наказом Н
+ рено 03:00):\nШановні клієнти!\n\nЗа наказом Н
  ЕК Укренерго 25.11 діють стабілізаційні ві
  дключення електроенергії.  \n\nБудь ласк
  а\, розумно споживайте електроенергію — 
@@ -107,7 +107,7 @@ DESCRIPTION:Електроенергія має бути в наявнос
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:⚡️ ON ⟲ 01:16
+DESCRIPTION:⚡️ ON ⟲ 02:48
 END:VALARM
 END:VEVENT
 END:VCALENDAR
