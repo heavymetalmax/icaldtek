@@ -6,15 +6,15 @@ X-WR-CALNAME:⚡️Борщагівка
 TIMEZONE-ID:Europe/Kyiv
 X-WR-TIMEZONE:Europe/Kyiv
 BEGIN:VEVENT
-UID:37d369db-f341-4c0a-8d4f-212cce52555e
+UID:c25a25d1-ab18-4cf1-a73f-469daff56f7d
 SEQUENCE:0
-DTSTAMP:20261127T210015
+DTSTAMP:20261127T213016
 DTSTART;TZID=Europe/Kyiv:20261127T190000
 DTEND;TZID=Europe/Kyiv:20261128T000000
-SUMMARY:⚡️ ON ⟲ 20:49
+SUMMARY:⚡️ ON ⟲ 21:21
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.\n\nЗагальне повідомлення ДТЕК (переві
- рено 21:00):\nШановні клієнти!\n\nЗа розпоряд
+ рено 21:30):\nШановні клієнти!\n\nЗа розпоряд
  женням НЕК Укренерго в частині Білоцерк
  івського району застосовуються екстрен
  і відключення.\nВ інших районах діють гра
@@ -22,7 +22,7 @@ DESCRIPTION:Електроенергія має бути в наявнос
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:⚡️ ON ⟲ 20:49
+DESCRIPTION:⚡️ ON ⟲ 21:21
 END:VALARM
 END:VEVENT
 END:VCALENDAR
