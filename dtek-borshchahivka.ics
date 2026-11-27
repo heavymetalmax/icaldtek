@@ -6,15 +6,15 @@ X-WR-CALNAME:⚡️Борщагівка
 TIMEZONE-ID:Europe/Kyiv
 X-WR-TIMEZONE:Europe/Kyiv
 BEGIN:VEVENT
-UID:e5de79fd-ed65-4179-97ab-63446b835459
+UID:42ff3153-9967-4098-8a15-9af6f653965d
 SEQUENCE:0
-DTSTAMP:20261127T220016
+DTSTAMP:20261127T223013
 DTSTART;TZID=Europe/Kyiv:20261127T190000
-DTEND;TZID=Europe/Kyiv:20261128T000000
-SUMMARY:⚡️ ON ⟲ 21:50
+DTEND;TZID=Europe/Kyiv:20261128T120000
+SUMMARY:⚡️ ON ⟲ 22:19
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.\n\nЗагальне повідомлення ДТЕК (переві
- рено 22:00):\nШановні клієнти!\n\nЗа розпоряд
+ рено 22:30):\nШановні клієнти!\n\nЗа розпоряд
  женням НЕК Укренерго в частині Білоцерк
  івського району застосовуються екстрен
  і відключення.\nВ інших районах діють гра
@@ -22,7 +22,67 @@ DESCRIPTION:Електроенергія має бути в наявнос
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:⚡️ ON ⟲ 21:50
+DESCRIPTION:⚡️ ON ⟲ 22:19
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:a2056da0-3454-4b98-bf29-bdf2a243e8f0
+SEQUENCE:0
+DTSTAMP:20261127T223013
+DTSTART;TZID=Europe/Kyiv:20261128T120000
+DTEND;TZID=Europe/Kyiv:20261128T183000
+SUMMARY:🚫 OFF ⟲ 22:19
+DESCRIPTION:Відключення за графіком.\n\nЗагаль
+ не повідомлення ДТЕК (перевірено 22:30):\nШа
+ новні клієнти!\n\nЗа розпорядженням НЕК У
+ кренерго в частині Білоцерківського рай
+ ону застосовуються екстрені відключенн
+ я.\nВ інших районах діють графіки стабілі
+ заційних відключень.
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT15M
+DESCRIPTION:🚫 OFF ⟲ 22:19
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:a45e63ac-ffff-4492-801a-7061482139fd
+SEQUENCE:0
+DTSTAMP:20261127T223013
+DTSTART;TZID=Europe/Kyiv:20261128T183000
+DTEND;TZID=Europe/Kyiv:20261128T223000
+SUMMARY:⚡️ ON ⟲ 22:19
+DESCRIPTION:Електроенергія має бути в наявнос
+ ті.\n\nЗагальне повідомлення ДТЕК (переві
+ рено 22:30):\nШановні клієнти!\n\nЗа розпоряд
+ женням НЕК Укренерго в частині Білоцерк
+ івського району застосовуються екстрен
+ і відключення.\nВ інших районах діють гра
+ фіки стабілізаційних відключень.
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT15M
+DESCRIPTION:⚡️ ON ⟲ 22:19
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:db9cff0f-be04-4beb-9a54-bbebe9bb334b
+SEQUENCE:0
+DTSTAMP:20261127T223013
+DTSTART;TZID=Europe/Kyiv:20261128T223000
+DTEND;TZID=Europe/Kyiv:20261129T000000
+SUMMARY:🚫 OFF ⟲ 22:19
+DESCRIPTION:Відключення за графіком.\n\nЗагаль
+ не повідомлення ДТЕК (перевірено 22:30):\nШа
+ новні клієнти!\n\nЗа розпорядженням НЕК У
+ кренерго в частині Білоцерківського рай
+ ону застосовуються екстрені відключенн
+ я.\nВ інших районах діють графіки стабілі
+ заційних відключень.
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT15M
+DESCRIPTION:🚫 OFF ⟲ 22:19
 END:VALARM
 END:VEVENT
 END:VCALENDAR
