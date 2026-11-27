@@ -6,15 +6,15 @@ X-WR-CALNAME:⚡️Гора
 TIMEZONE-ID:Europe/Kyiv
 X-WR-TIMEZONE:Europe/Kyiv
 BEGIN:VEVENT
-UID:72ad5a57-0431-4666-a6b0-89edcb18bd79
+UID:94aa315b-d282-49ea-806f-b35a943d4d6f
 SEQUENCE:0
-DTSTAMP:20261127T223012
+DTSTAMP:20261127T230014
 DTSTART;TZID=Europe/Kyiv:20261127T190000
 DTEND;TZID=Europe/Kyiv:20261128T120000
-SUMMARY:⚡️ ON ⟲ 22:19
+SUMMARY:⚡️ ON ⟲ 22:47
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.\n\nЗагальне повідомлення ДТЕК (переві
- рено 22:30):\nШановні клієнти!\n\nЗа розпоряд
+ рено 23:00):\nШановні клієнти!\n\nЗа розпоряд
  женням НЕК Укренерго в частині Білоцерк
  івського району застосовуються екстрен
  і відключення.\nВ інших районах діють гра
@@ -22,18 +22,18 @@ DESCRIPTION:Електроенергія має бути в наявнос
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:⚡️ ON ⟲ 22:19
+DESCRIPTION:⚡️ ON ⟲ 22:47
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:d0c40e84-b94d-414e-990a-f4cea48919d8
+UID:1f2c6a05-1769-451d-83a1-6d8a39a2661c
 SEQUENCE:0
-DTSTAMP:20261127T223012
+DTSTAMP:20261127T230014
 DTSTART;TZID=Europe/Kyiv:20261128T120000
 DTEND;TZID=Europe/Kyiv:20261128T183000
-SUMMARY:🚫 OFF ⟲ 22:19
+SUMMARY:🚫 OFF ⟲ 22:47
 DESCRIPTION:Відключення за графіком.\n\nЗагаль
- не повідомлення ДТЕК (перевірено 22:30):\nШа
+ не повідомлення ДТЕК (перевірено 23:00):\nШа
  новні клієнти!\n\nЗа розпорядженням НЕК У
  кренерго в частині Білоцерківського рай
  ону застосовуються екстрені відключенн
@@ -42,19 +42,19 @@ DESCRIPTION:Відключення за графіком.\n\nЗагаль
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:🚫 OFF ⟲ 22:19
+DESCRIPTION:🚫 OFF ⟲ 22:47
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:808692b5-26a6-456e-8cb9-e7efff5278a1
+UID:567489eb-8b4e-4efc-acdb-0e544db0084e
 SEQUENCE:0
-DTSTAMP:20261127T223012
+DTSTAMP:20261127T230014
 DTSTART;TZID=Europe/Kyiv:20261128T183000
 DTEND;TZID=Europe/Kyiv:20261128T223000
-SUMMARY:⚡️ ON ⟲ 22:19
+SUMMARY:⚡️ ON ⟲ 22:47
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.\n\nЗагальне повідомлення ДТЕК (переві
- рено 22:30):\nШановні клієнти!\n\nЗа розпоряд
+ рено 23:00):\nШановні клієнти!\n\nЗа розпоряд
  женням НЕК Укренерго в частині Білоцерк
  івського району застосовуються екстрен
  і відключення.\nВ інших районах діють гра
@@ -62,18 +62,18 @@ DESCRIPTION:Електроенергія має бути в наявнос
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:⚡️ ON ⟲ 22:19
+DESCRIPTION:⚡️ ON ⟲ 22:47
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:943d8d2b-703b-4cbd-af68-2e03aafd6712
+UID:47952e74-5014-4253-8743-6832cf31fdd1
 SEQUENCE:0
-DTSTAMP:20261127T223012
+DTSTAMP:20261127T230014
 DTSTART;TZID=Europe/Kyiv:20261128T223000
 DTEND;TZID=Europe/Kyiv:20261129T000000
-SUMMARY:🚫 OFF ⟲ 22:19
+SUMMARY:🚫 OFF ⟲ 22:47
 DESCRIPTION:Відключення за графіком.\n\nЗагаль
- не повідомлення ДТЕК (перевірено 22:30):\nШа
+ не повідомлення ДТЕК (перевірено 23:00):\nШа
  новні клієнти!\n\nЗа розпорядженням НЕК У
  кренерго в частині Білоцерківського рай
  ону застосовуються екстрені відключенн
@@ -82,7 +82,7 @@ DESCRIPTION:Відключення за графіком.\n\nЗагаль
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:🚫 OFF ⟲ 22:19
+DESCRIPTION:🚫 OFF ⟲ 22:47
 END:VALARM
 END:VEVENT
 END:VCALENDAR
