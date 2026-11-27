@@ -6,15 +6,15 @@ X-WR-CALNAME:⚡️Гора
 TIMEZONE-ID:Europe/Kyiv
 X-WR-TIMEZONE:Europe/Kyiv
 BEGIN:VEVENT
-UID:b168979d-f950-4987-94ae-327e7b6b8734
+UID:552cbe0b-ad4e-4874-89fd-06794100e234
 SEQUENCE:0
-DTSTAMP:20261127T193020
+DTSTAMP:20261127T200016
 DTSTART;TZID=Europe/Kyiv:20261127T190000
 DTEND;TZID=Europe/Kyiv:20261128T000000
-SUMMARY:⚡️ ON ⟲ 19:20
+SUMMARY:⚡️ ON ⟲ 19:50
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.\n\nЗагальне повідомлення ДТЕК (переві
- рено 19:30):\nШановні клієнти!\n\nЗа розпоряд
+ рено 20:00):\nШановні клієнти!\n\nЗа розпоряд
  женням НЕК Укренерго в частині Білоцерк
  івського району застосовуються екстрен
  і відключення.\nВ інших районах діють гра
@@ -22,7 +22,7 @@ DESCRIPTION:Електроенергія має бути в наявнос
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:⚡️ ON ⟲ 19:20
+DESCRIPTION:⚡️ ON ⟲ 19:50
 END:VALARM
 END:VEVENT
 END:VCALENDAR
