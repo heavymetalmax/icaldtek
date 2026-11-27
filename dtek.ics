@@ -6,66 +6,23 @@ X-WR-CALNAME:⚡️Гора
 TIMEZONE-ID:Europe/Kyiv
 X-WR-TIMEZONE:Europe/Kyiv
 BEGIN:VEVENT
-UID:4ce886ee-3ded-4000-9466-b7b935a2335f
+UID:b168979d-f950-4987-94ae-327e7b6b8734
 SEQUENCE:0
-DTSTAMP:20261127T143012
-DTSTART;TZID=Europe/Kyiv:20261127T090000
-DTEND;TZID=Europe/Kyiv:20261127T150000
-SUMMARY:⚡️ ON ⟲ 14:17
-DESCRIPTION:Електроенергія має бути в наявнос
- ті.\n\nЗагальне повідомлення ДТЕК (переві
- рено 14:30):\nШановні клієнти!\n\nЗа розпоряд
- женням НЕК Укренерго в частині Бучанськ
- ого\, Обухівського та Фастівського район
- ів застосовуються екстрені відключення.
- \nВ інших районах діють графіки стабіліз
- аційних відключень.
-BEGIN:VALARM
-ACTION:DISPLAY
-TRIGGER:-PT15M
-DESCRIPTION:⚡️ ON ⟲ 14:17
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:ba304829-33e5-4629-89da-c584cf087449
-SEQUENCE:0
-DTSTAMP:20261127T143012
-DTSTART;TZID=Europe/Kyiv:20261127T150000
-DTEND;TZID=Europe/Kyiv:20261127T190000
-SUMMARY:🚫 OFF ⟲ 14:17
-DESCRIPTION:Відключення за графіком.\n\nЗагаль
- не повідомлення ДТЕК (перевірено 14:30):\nШа
- новні клієнти!\n\nЗа розпорядженням НЕК У
- кренерго в частині Бучанського\, Обухівс
- ького та Фастівського районів застосову
- ються екстрені відключення.\nВ інших рай
- онах діють графіки стабілізаційних відк
- лючень.
-BEGIN:VALARM
-ACTION:DISPLAY
-TRIGGER:-PT15M
-DESCRIPTION:🚫 OFF ⟲ 14:17
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:225f640a-02b0-4c2d-8972-0263416633c8
-SEQUENCE:0
-DTSTAMP:20261127T143012
+DTSTAMP:20261127T193020
 DTSTART;TZID=Europe/Kyiv:20261127T190000
 DTEND;TZID=Europe/Kyiv:20261128T000000
-SUMMARY:⚡️ ON ⟲ 14:17
+SUMMARY:⚡️ ON ⟲ 19:20
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.\n\nЗагальне повідомлення ДТЕК (переві
- рено 14:30):\nШановні клієнти!\n\nЗа розпоряд
- женням НЕК Укренерго в частині Бучанськ
- ого\, Обухівського та Фастівського район
- ів застосовуються екстрені відключення.
- \nВ інших районах діють графіки стабіліз
- аційних відключень.
+ рено 19:30):\nШановні клієнти!\n\nЗа розпоряд
+ женням НЕК Укренерго в частині Білоцерк
+ івського району застосовуються екстрен
+ і відключення.\nВ інших районах діють гра
+ фіки стабілізаційних відключень.
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:⚡️ ON ⟲ 14:17
+DESCRIPTION:⚡️ ON ⟲ 19:20
 END:VALARM
 END:VEVENT
 END:VCALENDAR
