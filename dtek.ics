@@ -6,15 +6,15 @@ X-WR-CALNAME:⚡️Гора
 TIMEZONE-ID:Europe/Kyiv
 X-WR-TIMEZONE:Europe/Kyiv
 BEGIN:VEVENT
-UID:8bc02d9c-0dc9-4a9b-a41d-e7d9586471ff
+UID:f37647ae-ed00-49f5-88a3-650d1f72250f
 SEQUENCE:0
-DTSTAMP:20261127T020014
+DTSTAMP:20261127T023012
 DTSTART;TZID=Europe/Kyiv:20261127T000000
 DTEND;TZID=Europe/Kyiv:20261127T060000
-SUMMARY:⚡️ ON ⟲ 01:48
+SUMMARY:⚡️ ON ⟲ 02:19
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.\n\nЗагальне повідомлення ДТЕК (переві
- рено 02:00):\nШановні клієнти!\n\nВ частині Бі
+ рено 02:30):\nШановні клієнти!\n\nВ частині Бі
  лоцерківського району зникло світло чер
  ез локальну аварію в мережі. Фахівці вже 
  працюють над відновленням електропоста
@@ -23,18 +23,18 @@ DESCRIPTION:Електроенергія має бути в наявнос
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:⚡️ ON ⟲ 01:48
+DESCRIPTION:⚡️ ON ⟲ 02:19
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:16c1cad1-4f34-45c0-a940-eac085a2ffb1
+UID:c61ab46b-cf10-4555-a7b4-fb1e8fd56adf
 SEQUENCE:0
-DTSTAMP:20261127T020014
+DTSTAMP:20261127T023012
 DTSTART;TZID=Europe/Kyiv:20261127T060000
 DTEND;TZID=Europe/Kyiv:20261127T090000
-SUMMARY:🚫 OFF ⟲ 01:48
+SUMMARY:🚫 OFF ⟲ 02:19
 DESCRIPTION:Відключення за графіком.\n\nЗагаль
- не повідомлення ДТЕК (перевірено 02:00):\nШа
+ не повідомлення ДТЕК (перевірено 02:30):\nШа
  новні клієнти!\n\nВ частині Білоцерківськ
  ого району зникло світло через локальну 
  аварію в мережі. Фахівці вже працюють на
@@ -44,19 +44,19 @@ DESCRIPTION:Відключення за графіком.\n\nЗагаль
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:🚫 OFF ⟲ 01:48
+DESCRIPTION:🚫 OFF ⟲ 02:19
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:b945d043-12c0-4ca5-86a7-7a8422e5ef90
+UID:c6fb6b7e-4fc9-4bdf-8ed1-64249845585e
 SEQUENCE:0
-DTSTAMP:20261127T020014
+DTSTAMP:20261127T023012
 DTSTART;TZID=Europe/Kyiv:20261127T090000
 DTEND;TZID=Europe/Kyiv:20261127T150000
-SUMMARY:⚡️ ON ⟲ 01:48
+SUMMARY:⚡️ ON ⟲ 02:19
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.\n\nЗагальне повідомлення ДТЕК (переві
- рено 02:00):\nШановні клієнти!\n\nВ частині Бі
+ рено 02:30):\nШановні клієнти!\n\nВ частині Бі
  лоцерківського району зникло світло чер
  ез локальну аварію в мережі. Фахівці вже 
  працюють над відновленням електропоста
@@ -65,18 +65,18 @@ DESCRIPTION:Електроенергія має бути в наявнос
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:⚡️ ON ⟲ 01:48
+DESCRIPTION:⚡️ ON ⟲ 02:19
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:561d9eb5-19fd-4cb6-b145-c086381ce09c
+UID:4f2f4adb-7eb0-4121-a64d-fe589cb91a5d
 SEQUENCE:0
-DTSTAMP:20261127T020014
+DTSTAMP:20261127T023012
 DTSTART;TZID=Europe/Kyiv:20261127T150000
 DTEND;TZID=Europe/Kyiv:20261127T190000
-SUMMARY:🚫 OFF ⟲ 01:48
+SUMMARY:🚫 OFF ⟲ 02:19
 DESCRIPTION:Відключення за графіком.\n\nЗагаль
- не повідомлення ДТЕК (перевірено 02:00):\nШа
+ не повідомлення ДТЕК (перевірено 02:30):\nШа
  новні клієнти!\n\nВ частині Білоцерківськ
  ого району зникло світло через локальну 
  аварію в мережі. Фахівці вже працюють на
@@ -86,19 +86,19 @@ DESCRIPTION:Відключення за графіком.\n\nЗагаль
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:🚫 OFF ⟲ 01:48
+DESCRIPTION:🚫 OFF ⟲ 02:19
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:34e27ee3-102d-4b28-ae86-eb6475580c23
+UID:20578ca0-03ce-4273-8872-45e5641d00f4
 SEQUENCE:0
-DTSTAMP:20261127T020014
+DTSTAMP:20261127T023012
 DTSTART;TZID=Europe/Kyiv:20261127T190000
 DTEND;TZID=Europe/Kyiv:20261128T000000
-SUMMARY:⚡️ ON ⟲ 01:48
+SUMMARY:⚡️ ON ⟲ 02:19
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.\n\nЗагальне повідомлення ДТЕК (переві
- рено 02:00):\nШановні клієнти!\n\nВ частині Бі
+ рено 02:30):\nШановні клієнти!\n\nВ частині Бі
  лоцерківського району зникло світло чер
  ез локальну аварію в мережі. Фахівці вже 
  працюють над відновленням електропоста
@@ -107,7 +107,7 @@ DESCRIPTION:Електроенергія має бути в наявнос
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:⚡️ ON ⟲ 01:48
+DESCRIPTION:⚡️ ON ⟲ 02:19
 END:VALARM
 END:VEVENT
 END:VCALENDAR
