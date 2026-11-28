@@ -6,15 +6,15 @@ X-WR-CALNAME:⚡️Гора
 TIMEZONE-ID:Europe/Kyiv
 X-WR-TIMEZONE:Europe/Kyiv
 BEGIN:VEVENT
-UID:201a109e-3dda-45e6-b753-2b6bcec1347e
+UID:91281220-8546-4f82-a24b-fce0a746fcab
 SEQUENCE:0
-DTSTAMP:20261128T053014
+DTSTAMP:20261128T060014
 DTSTART;TZID=Europe/Kyiv:20261128T000000
 DTEND;TZID=Europe/Kyiv:20261128T120000
-SUMMARY:⚡️ ON ⟲ 05:17
+SUMMARY:⚡️ ON ⟲ 05:48
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.\n\nЗагальне повідомлення ДТЕК (переві
- рено 05:30):\nШановні клієнти!\n\nЗа наказом Н
+ рено 06:00):\nШановні клієнти!\n\nЗа наказом Н
  ЕК Укренерго 28.11 діють стабілізаційні в
  ідключення електроенергії.\nЧерез аварі
  ю в мережі знеструмлено частково Білоце
@@ -22,18 +22,18 @@ DESCRIPTION:Електроенергія має бути в наявнос
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:⚡️ ON ⟲ 05:17
+DESCRIPTION:⚡️ ON ⟲ 05:48
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:63458704-f91a-43b0-a298-5321b58eaea3
+UID:d9bba684-f3c1-45ce-98e6-f9b164fb0f5b
 SEQUENCE:0
-DTSTAMP:20261128T053014
+DTSTAMP:20261128T060014
 DTSTART;TZID=Europe/Kyiv:20261128T120000
 DTEND;TZID=Europe/Kyiv:20261128T183000
-SUMMARY:🚫 OFF ⟲ 05:17
+SUMMARY:🚫 OFF ⟲ 05:48
 DESCRIPTION:Відключення за графіком.\n\nЗагаль
- не повідомлення ДТЕК (перевірено 05:30):\nШа
+ не повідомлення ДТЕК (перевірено 06:00):\nШа
  новні клієнти!\n\nЗа наказом НЕК Укренерг
  о 28.11 діють стабілізаційні відключення 
  електроенергії.\nЧерез аварію в мережі з
@@ -42,19 +42,19 @@ DESCRIPTION:Відключення за графіком.\n\nЗагаль
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:🚫 OFF ⟲ 05:17
+DESCRIPTION:🚫 OFF ⟲ 05:48
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:6f9bdb6a-68cb-4a5c-929f-351eb15eae90
+UID:ac7880b6-ac87-466f-a53b-6f8c932f52dc
 SEQUENCE:0
-DTSTAMP:20261128T053014
+DTSTAMP:20261128T060014
 DTSTART;TZID=Europe/Kyiv:20261128T183000
 DTEND;TZID=Europe/Kyiv:20261128T223000
-SUMMARY:⚡️ ON ⟲ 05:17
+SUMMARY:⚡️ ON ⟲ 05:48
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.\n\nЗагальне повідомлення ДТЕК (переві
- рено 05:30):\nШановні клієнти!\n\nЗа наказом Н
+ рено 06:00):\nШановні клієнти!\n\nЗа наказом Н
  ЕК Укренерго 28.11 діють стабілізаційні в
  ідключення електроенергії.\nЧерез аварі
  ю в мережі знеструмлено частково Білоце
@@ -62,18 +62,18 @@ DESCRIPTION:Електроенергія має бути в наявнос
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:⚡️ ON ⟲ 05:17
+DESCRIPTION:⚡️ ON ⟲ 05:48
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:6dfe54e1-d9c1-4d4b-bfa0-79388242e43f
+UID:12502679-2a45-4c81-9229-c2fbb04886cc
 SEQUENCE:0
-DTSTAMP:20261128T053014
+DTSTAMP:20261128T060014
 DTSTART;TZID=Europe/Kyiv:20261128T223000
 DTEND;TZID=Europe/Kyiv:20261129T000000
-SUMMARY:🚫 OFF ⟲ 05:17
+SUMMARY:🚫 OFF ⟲ 05:48
 DESCRIPTION:Відключення за графіком.\n\nЗагаль
- не повідомлення ДТЕК (перевірено 05:30):\nШа
+ не повідомлення ДТЕК (перевірено 06:00):\nШа
  новні клієнти!\n\nЗа наказом НЕК Укренерг
  о 28.11 діють стабілізаційні відключення 
  електроенергії.\nЧерез аварію в мережі з
@@ -82,7 +82,7 @@ DESCRIPTION:Відключення за графіком.\n\nЗагаль
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:🚫 OFF ⟲ 05:17
+DESCRIPTION:🚫 OFF ⟲ 05:48
 END:VALARM
 END:VEVENT
 END:VCALENDAR
