@@ -6,15 +6,15 @@ X-WR-CALNAME:⚡️Гора
 TIMEZONE-ID:Europe/Kyiv
 X-WR-TIMEZONE:Europe/Kyiv
 BEGIN:VEVENT
-UID:06c0155b-5d3a-4eb5-8ce7-6e4e1d379cff
+UID:0bf84161-97cb-4f8d-a233-8bdaaf3aa0bc
 SEQUENCE:0
-DTSTAMP:20261128T110014
+DTSTAMP:20261128T113014
 DTSTART;TZID=Europe/Kyiv:20261128T000000
 DTEND;TZID=Europe/Kyiv:20261128T120000
-SUMMARY:⚡️ ON ⟲ 10:50
+SUMMARY:⚡️ ON ⟲ 11:21
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.\n\nЗагальне повідомлення ДТЕК (переві
- рено 11:00):\nШановні клієнти!\n\nЗа розпоряд
+ рено 11:30):\nШановні клієнти!\n\nЗа розпоряд
  женням НЕК Укренерго в частині Бучанськ
  ого\, Фастівського та Обухівського район
  ів застосовуються екстрені відключення.
@@ -23,18 +23,18 @@ DESCRIPTION:Електроенергія має бути в наявнос
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:⚡️ ON ⟲ 10:50
+DESCRIPTION:⚡️ ON ⟲ 11:21
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:e2bb7ede-8e2b-43c2-8ebb-a13877eaeeae
+UID:9b965e2c-81ad-4cb2-8652-949a1621a4f1
 SEQUENCE:0
-DTSTAMP:20261128T110014
+DTSTAMP:20261128T113014
 DTSTART;TZID=Europe/Kyiv:20261128T120000
 DTEND;TZID=Europe/Kyiv:20261128T183000
-SUMMARY:🚫 OFF ⟲ 10:50
+SUMMARY:🚫 OFF ⟲ 11:21
 DESCRIPTION:Відключення за графіком.\n\nЗагаль
- не повідомлення ДТЕК (перевірено 11:00):\nШа
+ не повідомлення ДТЕК (перевірено 11:30):\nШа
  новні клієнти!\n\nЗа розпорядженням НЕК У
  кренерго в частині Бучанського\, Фастівс
  ького та Обухівського районів застосову
@@ -44,19 +44,19 @@ DESCRIPTION:Відключення за графіком.\n\nЗагаль
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:🚫 OFF ⟲ 10:50
+DESCRIPTION:🚫 OFF ⟲ 11:21
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:96e24a6f-9616-45f0-81ba-2e68851d3763
+UID:d1d6563a-ed45-4ebe-bf55-84d247eb4af3
 SEQUENCE:0
-DTSTAMP:20261128T110014
+DTSTAMP:20261128T113014
 DTSTART;TZID=Europe/Kyiv:20261128T183000
 DTEND;TZID=Europe/Kyiv:20261128T223000
-SUMMARY:⚡️ ON ⟲ 10:50
+SUMMARY:⚡️ ON ⟲ 11:21
 DESCRIPTION:Електроенергія має бути в наявнос
  ті.\n\nЗагальне повідомлення ДТЕК (переві
- рено 11:00):\nШановні клієнти!\n\nЗа розпоряд
+ рено 11:30):\nШановні клієнти!\n\nЗа розпоряд
  женням НЕК Укренерго в частині Бучанськ
  ого\, Фастівського та Обухівського район
  ів застосовуються екстрені відключення.
@@ -65,18 +65,18 @@ DESCRIPTION:Електроенергія має бути в наявнос
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:⚡️ ON ⟲ 10:50
+DESCRIPTION:⚡️ ON ⟲ 11:21
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:78f2f73f-89fd-4f04-a1b8-d623b7053518
+UID:a2a9fd13-029b-4917-8ed4-1462b58a30c9
 SEQUENCE:0
-DTSTAMP:20261128T110014
+DTSTAMP:20261128T113014
 DTSTART;TZID=Europe/Kyiv:20261128T223000
 DTEND;TZID=Europe/Kyiv:20261129T000000
-SUMMARY:🚫 OFF ⟲ 10:50
+SUMMARY:🚫 OFF ⟲ 11:21
 DESCRIPTION:Відключення за графіком.\n\nЗагаль
- не повідомлення ДТЕК (перевірено 11:00):\nШа
+ не повідомлення ДТЕК (перевірено 11:30):\nШа
  новні клієнти!\n\nЗа розпорядженням НЕК У
  кренерго в частині Бучанського\, Фастівс
  ького та Обухівського районів застосову
@@ -86,7 +86,7 @@ DESCRIPTION:Відключення за графіком.\n\nЗагаль
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT15M
-DESCRIPTION:🚫 OFF ⟲ 10:50
+DESCRIPTION:🚫 OFF ⟲ 11:21
 END:VALARM
 END:VEVENT
 END:VCALENDAR
